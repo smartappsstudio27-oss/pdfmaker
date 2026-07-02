@@ -133,3 +133,21 @@ font-size:18px;
 }
 
 }
+.about{
+max-width:1000px;
+margin:auto;
+padding:60px 25px;
+text-align:center;
+}
+
+.about h2{
+font-size:38px;
+color:#1565C0;
+margin-bottom:20px;
+}
+
+.about p{
+font-size:19px;
+line-height:1.8;
+color:#555;
+}
