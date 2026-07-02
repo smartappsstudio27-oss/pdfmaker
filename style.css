@@ -385,3 +385,66 @@ transition:.3s;
 background:#0D47A1;
 
 }
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.logo-icon{
+
+font-size:40px;
+
+}
+
+.logo h2{
+
+font-size:24px;
+
+margin:0;
+
+}
+
+.logo small{
+
+color:#dbe9ff;
+
+font-size:13px;
+
+}
+
+nav a{
+
+position:relative;
+
+}
+
+nav a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-6px;
+
+width:0;
+
+height:3px;
+
+background:#FFD54F;
+
+transition:.35s;
+
+}
+
+nav a:hover::after{
+
+width:100%;
+
+}
