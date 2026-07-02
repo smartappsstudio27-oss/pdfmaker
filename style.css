@@ -448,3 +448,16 @@ nav a:hover::after{
 width:100%;
 
 }
+.tagline{
+
+font-size:22px;
+
+margin-bottom:25px;
+
+color:#FFE082;
+
+font-weight:bold;
+
+letter-spacing:2px;
+
+}
