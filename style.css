@@ -492,3 +492,66 @@ transition:.35s;
 transform:scale(1.05);
 
 }
+.download-section{
+
+background:linear-gradient(135deg,#1565C0,#0D47A1);
+
+color:white;
+
+text-align:center;
+
+padding:70px 20px;
+
+}
+
+.download-section h2{
+
+font-size:40px;
+
+margin-bottom:20px;
+
+}
+
+.download-section p{
+
+font-size:20px;
+
+max-width:700px;
+
+margin:auto;
+
+margin-bottom:35px;
+
+}
+
+.play-btn{
+
+display:inline-block;
+
+padding:18px 35px;
+
+background:white;
+
+color:#1565C0;
+
+font-size:20px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+border-radius:50px;
+
+transition:.3s;
+
+}
+
+.play-btn:hover{
+
+background:#FFD54F;
+
+color:black;
+
+transform:scale(1.05);
+
+}
