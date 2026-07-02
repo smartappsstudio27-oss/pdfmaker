@@ -1052,3 +1052,46 @@ width:94%;
 }
 
 }
+/* Mobile Menu */
+
+@media(max-width:768px){
+
+.navbar.show{
+
+display:block;
+
+position:absolute;
+
+top:80px;
+
+left:5%;
+
+width:90%;
+
+background:#fff;
+
+padding:20px;
+
+border-radius:18px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+}
+
+body.dark .navbar.show{
+
+background:#1f1f1f;
+
+}
+
+.navbar.show ul{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+}
