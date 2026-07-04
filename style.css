@@ -868,10 +868,11 @@ gap:40px;
 }
 
 .footer-logo{
-width:110px;
-height:110px;
-border-radius:30px;
-
+    width:110px;
+    height:auto;
+    max-width:110px;
+    display:block;
+    margin-bottom:15px;
 }
 
 footer h2,
