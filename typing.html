@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Typing | SmartApps Studio</title>
 <meta name="description" content="Smart Typing by SmartApps Studio — a professional typing practice platform with live speed tracking, accuracy, timed tests and auto-advancing passages.">
+<link rel="icon" href="smartapps.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,11 +52,18 @@
   }
   .logo-mark{
     width:38px;height:38px;border-radius:10px;
-    background:linear-gradient(145deg,var(--brass),var(--brass-deep));
+    background:var(--ink-softer);
     display:flex;align-items:center;justify-content:center;
     font-weight:800;font-size:14px;color:var(--ink);
     letter-spacing:0.5px;
     flex-shrink:0;
+    overflow:hidden;
+  }
+  .logo-mark img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
   }
   .brand-text h1{
     font-size:16px;margin:0;font-weight:700;color:var(--off-white);letter-spacing:0.2px;
@@ -327,9 +335,7 @@
 
 <header class="app-header">
   <div class="brand-row">
-    <div class="logo-mark">
-  <img src="smartapps.png" alt="SmartApps Studio logo">
-</div>
+    <div class="logo-mark"><img src="smartapps.png" alt="SmartApps Studio logo"></div>
     <div class="brand-text">
       <h1>Smart Typing</h1>
       <p>SmartApps Studio</p>
