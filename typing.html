@@ -1,141 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Smart Typing | SmartApps Studio</title>
-
-<meta name="description"
-content="Smart Typing by SmartApps Studio is a professional typing practice platform with typing lessons, typing tests, speed tracking, accuracy improvement, and keyboard training.">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://smartappsstudio.in/typing.html">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SmartApps Studio">
-<meta property="og:title" content="Smart Typing | SmartApps Studio">
-<meta property="og:description" content="Practice typing online with Smart Typing by SmartApps Studio. Improve speed, accuracy, and keyboard skills through professional typing lessons and tests.">
-<meta property="og:url" content="https://smartappsstudio.in/typing.html">
-<meta property="og:image" content="https://smartappsstudio.in/smartapps.png">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Smart Typing | SmartApps Studio">
-<meta name="twitter:description" content="Practice typing online with Smart Typing by SmartApps Studio. Improve speed, accuracy, and keyboard skills through professional typing lessons and tests.">
-<meta name="twitter:image" content="https://smartappsstudio.in/smartapps.png">
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-TNBKQNNTMY');
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type: "Organization",
-  "name": "SmartApps Studio",
-  "url": "https://smartappsstudio.in/",
-  "logo": "https://smartappsstudio.in/smartapps.png",
-  "email": "smartapps.studio27@gmail.com"
-}
-</script>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" href="smartapps.png">
-
+<meta name="description" content="Smart Typing by SmartApps Studio — a professional typing practice platform with live speed tracking, accuracy, timed tests and auto-advancing passages.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2024;
+    --ink-soft:#262b30;
+    --ink-softer:#31373d;
+    --paper:#f4ecd8;
+    --paper-line:rgba(60,45,20,0.08);
+    --paper-text:#2b2620;
+    --brass:#c9973f;
+    --brass-deep:#a97a2a;
+    --ribbon-red:#c25c53;
+    --success:#5b8a62;
+    --off-white:#eef1f3;
+    --muted:#9aa3ab;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--off-white);
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  /* ===== Header / Toolbar ===== */
+  .app-header{
+    background:var(--ink-soft);
+    border-bottom:1px solid var(--ink-softer);
+    padding:14px 20px 0;
+    flex-shrink:0;
+  }
+  .brand-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .logo-mark{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(145deg,var(--brass),var(--brass-deep));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;color:var(--ink);
+    letter-spacing:0.5px;
+    flex-shrink:0;
+  }
+  .brand-text h1{
+    font-size:16px;margin:0;font-weight:700;color:var(--off-white);letter-spacing:0.2px;
+  }
+  .brand-text p{
+    margin:0;font-size:11px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;
+  }
 
+  .ribbon{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-bottom:12px;
+    align-items:flex-end;
+  }
+  .ribbon-group{
+    background:var(--ink-softer);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px;
+    padding:8px 12px 7px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    position:relative;
+  }
+  .ribbon-group .grp-label{
+    position:absolute;
+    top:-9px;left:10px;
+    font-size:9px;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    background:var(--ink-softer);
+    padding:0 5px;
+    color:var(--brass);
+    font-weight:600;
+  }
+  .ribbon input[type="text"]{
+    background:var(--ink);
+    border:1px solid rgba(255,255,255,0.1);
+    color:var(--off-white);
+    border-radius:6px;
+    padding:7px 10px;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    width:140px;
+  }
+  .ribbon input[type="text"]:focus{outline:2px solid var(--brass);outline-offset:1px;}
+  .ribbon select{
+    background:var(--ink);
+    border:1px solid rgba(255,255,255,0.1);
+    color:var(--off-white);
+    border-radius:6px;
+    padding:7px 8px;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+  }
+  .ribbon select:focus{outline:2px solid var(--brass);outline-offset:1px;}
+  .btn{
+    border:none;border-radius:6px;
+    padding:8px 14px;
+    font-family:'Poppins',sans-serif;
+    font-size:13px;font-weight:600;
+    cursor:pointer;
+    transition:transform 0.12s ease, filter 0.12s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn:focus-visible{outline:2px solid var(--off-white);outline-offset:2px;}
+  .btn-start{background:var(--success);color:#fff;}
+  .btn-start:hover{filter:brightness(1.1);}
+  .btn-stop{background:var(--ribbon-red);color:#fff;}
+  .btn-stop:hover{filter:brightness(1.1);}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.18);color:var(--off-white);}
+  .btn-ghost:hover{border-color:var(--brass);color:var(--brass);}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .toggle-wrap{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);}
+
+  .stats-bar{
+    display:flex;
+    gap:22px;
+    padding:9px 4px;
+    border-top:1px solid rgba(255,255,255,0.05);
+    flex-wrap:wrap;
+  }
+  .stat{display:flex;flex-direction:column;align-items:flex-start;}
+  .stat .val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--brass);line-height:1.1;}
+  .stat .lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-top:2px;}
+  .stat.timer .val{color:var(--off-white);}
+
+  /* ===== Workspace ===== */
+  .workspace{
+    flex:1;
+    display:flex;
+    min-height:0;
+    padding:16px;
+    gap:16px;
+  }
+  @media (max-width:860px){
+    .workspace{flex-direction:column;}
+  }
+
+  .panel{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    border-radius:12px;
+    overflow:hidden;
+    min-height:0;
+  }
+  .panel-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.8px;
+    font-weight:600;
+    padding:9px 16px;
+    flex-shrink:0;
+  }
+
+  /* Passage (paper) panel */
+  .passage-panel{
+    background:var(--paper);
+    color:var(--paper-text);
+  }
+  .passage-panel .panel-label{
+    color:var(--brass-deep);
+    background:rgba(0,0,0,0.03);
+  }
+  .passage-text{
+    flex:1;
+    overflow-y:auto;
+    padding:20px 22px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:17px;
+    line-height:2.1;
+    background-image:repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(2.1em - 1px),
+      var(--paper-line) calc(2.1em - 1px),
+      var(--paper-line) 2.1em
+    );
+  }
+  .passage-text .ch{white-space:pre-wrap;}
+  .passage-text .ch.correct{color:var(--success);}
+  .passage-text .ch.incorrect{color:var(--ribbon-red);text-decoration:underline wavy var(--ribbon-red);}
+  .passage-text .ch.current{background:var(--brass);color:var(--ink);border-radius:2px;}
+  .passage-text .ch.pending{color:var(--paper-text);opacity:0.75;}
+
+  .carriage-track{
+    height:14px;flex-shrink:0;
+    background:rgba(0,0,0,0.05);
+    position:relative;
+    border-top:1px solid var(--paper-line);
+  }
+  .carriage{
+    position:absolute;top:50%;left:0;
+    width:14px;height:14px;
+    background:var(--brass-deep);
+    border-radius:50%;
+    transform:translate(0,-50%);
+    transition:left 0.15s linear;
+    box-shadow:0 0 0 3px rgba(169,122,42,0.18);
+  }
+  .carriage.ding{animation:ding 0.4s ease;}
+  @keyframes ding{
+    0%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}
+    40%{box-shadow:0 0 0 9px rgba(201,151,63,0.35);}
+    100%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}
+  }
+
+  /* Typing panel */
+  .type-panel{
+    background:var(--ink-soft);
+    border:1px solid var(--ink-softer);
+  }
+  .type-panel .panel-label{color:var(--brass);}
+  .typed-wrap{
+    flex:1;
+    position:relative;
+    overflow-y:auto;
+    padding:20px 22px;
+  }
+  .typed-text{
+    font-family:'JetBrains Mono',monospace;
+    font-size:17px;
+    line-height:2.1;
+    white-space:pre-wrap;
+    word-break:break-word;
+    min-height:100%;
+  }
+  .typed-text .ch.correct{color:var(--off-white);}
+  .typed-text .ch.incorrect{color:var(--ribbon-red);background:rgba(194,92,83,0.15);border-radius:2px;}
+  .caret{
+    display:inline-block;width:2px;height:1.1em;
+    background:var(--brass);
+    vertical-align:middle;
+    animation:blink 1s step-start infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  #hiddenInput{
+    position:absolute;
+    opacity:0;
+    top:0;left:0;
+    width:1px;height:1px;
+    pointer-events:none;
+  }
+  .hint{
+    padding:10px 22px 16px;
+    font-size:12px;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+
+  /* ===== Modal / Certificate ===== */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.65);
+    display:none;
+    align-items:center;justify-content:center;
+    z-index:50;
+    padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .certificate{
+    background:var(--paper);
+    color:var(--paper-text);
+    border-radius:14px;
+    border:2px solid var(--brass);
+    max-width:460px;width:100%;
+    padding:30px 28px 24px;
+    text-align:center;
+    position:relative;
+  }
+  .certificate .cert-eyebrow{
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--brass-deep);font-weight:700;margin-bottom:6px;
+  }
+  .certificate h2{margin:0 0 4px;font-size:22px;}
+  .certificate .cert-name{
+    font-family:'JetBrains Mono',monospace;
+    font-size:19px;font-weight:700;
+    color:var(--brass-deep);
+    margin:10px 0 18px;
+  }
+  .cert-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .cert-grid .cbox{
+    background:rgba(0,0,0,0.04);
+    border-radius:8px;
+    padding:10px 6px;
+  }
+  .cert-grid .cbox .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--paper-text);}
+  .cert-grid .cbox .l{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--brass-deep);margin-top:3px;}
+  .cert-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .cert-date{font-size:11px;color:#7a7263;margin-top:16px;}
+
+  @media print{
+    body *{visibility:hidden;}
+    .certificate, .certificate *{visibility:visible;}
+    .certificate{position:fixed;top:10%;left:50%;transform:translateX(-50%);}
+    .cert-actions{display:none;}
+  }
+</style>
 </head>
-
 <body>
 
-<header>
+<header class="app-header">
+  <div class="brand-row">
+    <div class="logo-mark">SA</div>
+    <div class="brand-text">
+      <h1>Smart Typing</h1>
+      <p>SmartApps Studio</p>
+    </div>
+  </div>
 
-<h1>Smart Typing</h1>
+  <div class="ribbon">
+    <div class="ribbon-group">
+      <span class="grp-label">Session</span>
+      <input type="text" id="nameInput" placeholder="Your name" maxlength="30">
+      <button class="btn btn-start" id="startBtn">▶ Start</button>
+      <button class="btn btn-stop" id="stopBtn" disabled>■ Stop</button>
+      <button class="btn btn-ghost" id="resetBtn">⟲ Reset</button>
+    </div>
 
-<p>Professional Typing Practice Platform</p>
+    <div class="ribbon-group">
+      <span class="grp-label">Timer</span>
+      <select id="durationSelect">
+        <option value="60">1 min</option>
+        <option value="180" selected>3 min</option>
+        <option value="300">5 min</option>
+        <option value="600">10 min</option>
+        <option value="0">No limit</option>
+      </select>
+    </div>
 
+    <div class="ribbon-group">
+      <span class="grp-label">Passage</span>
+      <select id="levelSelect">
+        <option value="all">All levels</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+        <option value="Exam">Exam prep</option>
+      </select>
+      <button class="btn btn-ghost" id="nextBtn" disabled>⇥ Next Passage</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat timer"><span class="val" id="timeVal">00:00</span><span class="lbl">Time</span></div>
+    <div class="stat"><span class="val" id="wpmVal">0</span><span class="lbl">WPM</span></div>
+    <div class="stat"><span class="val" id="accVal">100%</span><span class="lbl">Accuracy</span></div>
+    <div class="stat"><span class="val" id="errVal">0</span><span class="lbl">Errors</span></div>
+    <div class="stat"><span class="val" id="passVal">0</span><span class="lbl">Passages</span></div>
+  </div>
 </header>
 
-<main>
+<main class="workspace">
+  <section class="panel passage-panel">
+    <div class="panel-label">Passage — <span id="passageTopic">Ready</span></div>
+    <div class="passage-text" id="passageText">Press <strong>Start</strong> to load a passage and begin.</div>
+    <div class="carriage-track"><div class="carriage" id="carriage"></div></div>
+  </section>
 
-<section>
-
-<h2>Coming Soon</h2>
-
-<p>
-
-Smart Typing is an upcoming professional typing practice platform developed by SmartApps Studio.
-
-</p>
-
-<ul>
-
-<li>Typing Lessons</li>
-
-<li>Typing Practice</li>
-
-<li>Typing Tests</li>
-
-<li>Typing Speed Analysis</li>
-
-<li>Accuracy Tracking</li>
-
-<li>Progress Reports</li>
-
-<li>Leaderboards</li>
-
-<li>Typing Certificates</li>
-
-</ul>
-
-<p>
-
-We are working hard to deliver one of the best typing platforms for students, professionals and competitive exam preparation.
-
-</p>
-
-<p>
-
-🚀 Launching Soon...
-
-</p>
-
-<p>
-
-<a href="index.html">← Back to Home</a>
-
-</p>
-
-</section>
-
+  <section class="panel type-panel">
+    <div class="panel-label">Your Typing</div>
+    <div class="typed-wrap" id="typedWrap">
+      <div class="typed-text" id="typedText"></div>
+      <textarea id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    </div>
+    <div class="hint" id="hint">Enter your name and click Start. Pasting is disabled — this is a typing test!</div>
+  </section>
 </main>
 
-<footer>
+<div class="modal-overlay" id="resultModal">
+  <div class="certificate">
+    <div class="cert-eyebrow">Smart Typing · Result</div>
+    <h2>Well done!</h2>
+    <div class="cert-name" id="certName">—</div>
+    <div class="cert-grid">
+      <div class="cbox"><div class="v" id="certWpm">0</div><div class="l">Words / Min</div></div>
+      <div class="cbox"><div class="v" id="certAcc">0%</div><div class="l">Accuracy</div></div>
+      <div class="cbox"><div class="v" id="certTime">0:00</div><div class="l">Time Taken</div></div>
+      <div class="cbox"><div class="v" id="certPass">0</div><div class="l">Passages Done</div></div>
+    </div>
+    <div class="cert-actions">
+      <button class="btn btn-start" id="tryAgainBtn">Try Again</button>
+      <button class="btn btn-ghost" id="printBtn">🖨 Print Certificate</button>
+    </div>
+    <div class="cert-date" id="certDate"></div>
+  </div>
+</div>
 
-<p>
+<script>
+(function(){
 
-© 2026 SmartApps Studio. All Rights Reserved.
+  // ---------- Passage bank ----------
+  const PASSAGES = [
+    {topic:"Technology", level:"Easy", text:"Computers have changed the way people live and work. From simple calculators to powerful smartphones, technology keeps growing faster every year. Learning to type quickly and correctly is one of the most useful skills in this digital age."},
+    {topic:"Nature", level:"Easy", text:"The forest was quiet in the early morning. Birds called softly from the tall trees while a gentle breeze moved through the leaves. Sunlight slipped between the branches and touched the cool, damp ground below."},
+    {topic:"Motivation", level:"Easy", text:"Success rarely comes overnight. It is built slowly, through small efforts repeated every single day. Anyone who keeps practicing with patience and focus will eventually notice real and lasting improvement."},
+    {topic:"General Knowledge", level:"Easy", text:"India is home to many rivers, mountains, and languages. Its culture has grown over thousands of years, blending traditions from many regions into one large and diverse nation."},
+    {topic:"Business", level:"Medium", text:"A good business plan clearly explains what a company sells, who its customers are, and how it plans to earn a profit. Investors often look for a strong plan before deciding whether to support a new venture with their money."},
+    {topic:"Science", level:"Medium", text:"Gravity is the force that pulls objects toward one another. It keeps the planets moving around the sun and keeps every person firmly on the ground. Without gravity, everything on Earth would simply drift away into space."},
+    {topic:"History", level:"Medium", text:"Ancient civilizations built great cities long before machines existed to help them. Using only simple tools, human labor, and clever engineering, they constructed monuments that have survived for thousands of years and still amaze visitors today."},
+    {topic:"Technology", level:"Medium", text:"Artificial intelligence is a branch of computer science that focuses on building systems capable of performing tasks that normally require human intelligence, such as recognizing speech, understanding language, and making decisions based on data."},
+    {topic:"Exam", level:"Exam", text:"Candidates appearing for competitive examinations are advised to manage their time carefully, attempt easier questions first, and avoid spending too long on a single problem. Regular practice under timed conditions greatly improves both speed and accuracy."},
+    {topic:"Exam", level:"Exam", text:"Typing speed is often tested in government and clerical examinations, where candidates must type a given passage accurately within a fixed time limit. A minimum accuracy percentage is usually required alongside a target words-per-minute score."},
+    {topic:"Environment", level:"Medium", text:"Climate change refers to long-term shifts in temperatures and weather patterns. While some changes occur naturally, human activity, especially burning fossil fuels, has been the main driver of these changes since the industrial era began."},
+    {topic:"Health", level:"Easy", text:"Drinking enough water, sleeping well, and staying active are simple habits that support good health. Small daily choices, repeated consistently, often matter more than occasional bursts of intense effort."},
+    {topic:"Space", level:"Hard", text:"Astronomers estimate that the observable universe contains roughly two trillion galaxies, each holding hundreds of billions of stars. Despite this staggering scale, light from the most distant galaxies takes billions of years to reach telescopes on Earth, meaning we observe them as they existed long ago."},
+    {topic:"Economics", level:"Hard", text:"Inflation occurs when the general price level of goods and services rises over time, reducing the purchasing power of a currency. Central banks attempt to manage inflation by adjusting interest rates, a delicate balancing act that affects borrowing, spending, and overall economic growth."},
+    {topic:"Literature", level:"Hard", text:"Great literature often explores universal themes such as love, loss, ambition, and morality, allowing readers across different cultures and generations to find meaning within the same story. A well-crafted narrative can reveal truths about human nature that plain explanation never quite manages to capture."},
+    {topic:"Philosophy", level:"Hard", text:"Philosophers have long debated the nature of free will, questioning whether human choices are truly independent or simply the result of prior causes stretching back before birth. This question touches fields as varied as physics, psychology, law, and everyday moral responsibility."},
+    {topic:"Sports", level:"Medium", text:"Consistent training, proper nutrition, and adequate rest form the foundation of any successful athletic career. Even the most naturally gifted players rely on disciplined daily routines to maintain peak performance across a long and demanding season."},
+    {topic:"Career", level:"Easy", text:"Building a strong resume takes time and honest reflection. Employers usually look for clear achievements, relevant skills, and a good match between the candidate and the role, rather than simply a long list of past job titles."}
+  ];
 
-</p>
+  // ---------- State ----------
+  let state = {
+    running:false,
+    duration:180,
+    remaining:180,
+    noLimit:false,
+    elapsed:0,
+    timerId:null,
+    currentPassage:null,
+    typed:'',
+    totalTyped:0,
+    totalCorrect:0,
+    passagesCompleted:0,
+    lastIndex:-1
+  };
 
-</footer>
+  // ---------- Elements ----------
+  const nameInput = document.getElementById('nameInput');
+  const startBtn = document.getElementById('startBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const durationSelect = document.getElementById('durationSelect');
+  const levelSelect = document.getElementById('levelSelect');
 
+  const timeVal = document.getElementById('timeVal');
+  const wpmVal = document.getElementById('wpmVal');
+  const accVal = document.getElementById('accVal');
+  const errVal = document.getElementById('errVal');
+  const passVal = document.getElementById('passVal');
+
+  const passageTopic = document.getElementById('passageTopic');
+  const passageText = document.getElementById('passageText');
+  const typedText = document.getElementById('typedText');
+  const hiddenInput = document.getElementById('hiddenInput');
+  const carriage = document.getElementById('carriage');
+  const hint = document.getElementById('hint');
+
+  const resultModal = document.getElementById('resultModal');
+  const certName = document.getElementById('certName');
+  const certWpm = document.getElementById('certWpm');
+  const certAcc = document.getElementById('certAcc');
+  const certTime = document.getElementById('certTime');
+  const certPass = document.getElementById('certPass');
+  const certDate = document.getElementById('certDate');
+  const tryAgainBtn = document.getElementById('tryAgainBtn');
+  const printBtn = document.getElementById('printBtn');
+
+  // ---------- Helpers ----------
+  function pickPassage(){
+    const level = levelSelect.value;
+    let pool = level === 'all' ? PASSAGES : PASSAGES.filter(p => p.level === level);
+    if(pool.length === 0) pool = PASSAGES;
+    let idx;
+    if(pool.length === 1){
+      idx = 0;
+    } else {
+      do { idx = Math.floor(Math.random() * pool.length); } while(pool[idx] === state.currentPassage);
+    }
+    return pool[idx];
+  }
+
+  function loadPassage(){
+    state.currentPassage = pickPassage();
+    state.typed = '';
+    passageTopic.textContent = state.currentPassage.topic + ' · ' + state.currentPassage.level;
+    renderPassage();
+    renderTyped();
+    updateCarriage();
+  }
+
+  function renderPassage(){
+    const text = state.currentPassage.text;
+    const typed = state.typed;
+    let html = '';
+    for(let i=0;i<text.length;i++){
+      let cls = 'pending';
+      if(i < typed.length){
+        cls = typed[i] === text[i] ? 'correct' : 'incorrect';
+      } else if(i === typed.length){
+        cls = 'current';
+      }
+      html += `<span class="ch ${cls}">${escapeHtml(text[i])}</span>`;
+    }
+    passageText.innerHTML = html;
+  }
+
+  function renderTyped(){
+    const text = state.currentPassage.text;
+    const typed = state.typed;
+    let html = '';
+    for(let i=0;i<typed.length;i++){
+      const cls = typed[i] === text[i] ? 'correct' : 'incorrect';
+      html += `<span class="ch ${cls}">${escapeHtml(typed[i])}</span>`;
+    }
+    html += '<span class="caret"></span>';
+    typedText.innerHTML = html;
+    document.getElementById('typedWrap').scrollTop = document.getElementById('typedWrap').scrollHeight;
+  }
+
+  function escapeHtml(ch){
+    if(ch === '<') return '&lt;';
+    if(ch === '>') return '&gt;';
+    if(ch === '&') return '&amp;';
+    if(ch === ' ') return ' ';
+    return ch;
+  }
+
+  function updateCarriage(){
+    const total = state.currentPassage ? state.currentPassage.text.length : 1;
+    const pct = Math.min(100, (state.typed.length / total) * 100);
+    carriage.style.left = `calc(${pct}% - 7px)`;
+  }
+
+  function currentCorrectCount(){
+    const text = state.currentPassage.text;
+    const typed = state.typed;
+    let c = 0;
+    for(let i=0;i<typed.length;i++){ if(typed[i] === text[i]) c++; }
+    return c;
+  }
+
+  function finalizeCurrentPassage(){
+    if(!state.currentPassage) return;
+    state.totalTyped += state.typed.length;
+    state.totalCorrect += currentCorrectCount();
+    state.passagesCompleted += 1;
+  }
+
+  function liveStats(){
+    const correctSoFar = state.totalCorrect + (state.currentPassage ? currentCorrectCount() : 0);
+    const typedSoFar = state.totalTyped + (state.currentPassage ? state.typed.length : 0);
+    const timeSec = state.noLimit ? state.elapsed : (state.duration - state.remaining);
+    const minutes = Math.max(timeSec, 1) / 60;
+    const wpm = Math.max(0, Math.round((correctSoFar / 5) / minutes));
+    const accuracy = typedSoFar > 0 ? Math.round((correctSoFar / typedSoFar) * 100) : 100;
+    const errors = typedSoFar - correctSoFar;
+    return {wpm, accuracy, errors, typedSoFar, correctSoFar, timeSec};
+  }
+
+  function refreshStatsBar(){
+    const s = liveStats();
+    wpmVal.textContent = s.wpm;
+    accVal.textContent = s.accuracy + '%';
+    errVal.textContent = s.errors;
+    passVal.textContent = state.passagesCompleted;
+  }
+
+  function formatTime(sec){
+    sec = Math.max(0, Math.floor(sec));
+    const m = Math.floor(sec/60).toString().padStart(2,'0');
+    const s = (sec%60).toString().padStart(2,'0');
+    return m+':'+s;
+  }
+
+  // ---------- Timer ----------
+  function tick(){
+    if(state.noLimit){
+      state.elapsed += 1;
+      timeVal.textContent = formatTime(state.elapsed);
+    } else {
+      state.remaining -= 1;
+      timeVal.textContent = formatTime(state.remaining);
+      if(state.remaining <= 0){
+        refreshStatsBar();
+        stopSession(true);
+        return;
+      }
+    }
+    refreshStatsBar();
+  }
+
+  // ---------- Session control ----------
+  function startSession(){
+    const name = nameInput.value.trim();
+    if(!name){
+      hint.textContent = 'Please enter your name before starting.';
+      nameInput.focus();
+      return;
+    }
+    const durVal = parseInt(durationSelect.value, 10);
+    state.noLimit = durVal === 0;
+    state.duration = durVal;
+    state.remaining = durVal;
+    state.elapsed = 0;
+    state.totalTyped = 0;
+    state.totalCorrect = 0;
+    state.passagesCompleted = 0;
+    state.running = true;
+
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    nextBtn.disabled = false;
+    nameInput.disabled = true;
+    durationSelect.disabled = true;
+    hint.textContent = 'Go! Start typing the passage on the left.';
+
+    timeVal.textContent = state.noLimit ? '00:00' : formatTime(state.remaining);
+    refreshStatsBar();
+
+    loadPassage();
+    hiddenInput.value = '';
+    hiddenInput.disabled = false;
+    hiddenInput.focus();
+
+    state.timerId = setInterval(tick, 1000);
+  }
+
+  function stopSession(auto){
+    if(!state.running) return;
+    finalizeCurrentPassage();
+    clearInterval(state.timerId);
+    state.running = false;
+    hiddenInput.disabled = true;
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    nextBtn.disabled = true;
+    nameInput.disabled = false;
+    durationSelect.disabled = false;
+    hint.textContent = auto ? 'Time is up! Here are your results.' : 'Session stopped. Here are your results.';
+    showResults();
+  }
+
+  function resetSession(){
+    clearInterval(state.timerId);
+    state = {
+      running:false, duration:parseInt(durationSelect.value,10)||180,
+      remaining:parseInt(durationSelect.value,10)||180, noLimit:durationSelect.value==='0',
+      elapsed:0, timerId:null, currentPassage:null, typed:'', totalTyped:0, totalCorrect:0,
+      passagesCompleted:0, lastIndex:-1
+    };
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    nextBtn.disabled = true;
+    nameInput.disabled = false;
+    durationSelect.disabled = false;
+    hiddenInput.value = '';
+    hiddenInput.disabled = true;
+    passageTopic.textContent = 'Ready';
+    passageText.innerHTML = 'Press <strong>Start</strong> to load a passage and begin.';
+    typedText.innerHTML = '';
+    carriage.style.left = '0';
+    timeVal.textContent = '00:00';
+    wpmVal.textContent = '0';
+    accVal.textContent = '100%';
+    errVal.textContent = '0';
+    passVal.textContent = '0';
+    hint.textContent = 'Enter your name and click Start. Pasting is disabled — this is a typing test!';
+    resultModal.classList.remove('show');
+  }
+
+  function advancePassage(manual){
+    finalizeCurrentPassage();
+    if(manual){
+      carriage.classList.remove('ding'); void carriage.offsetWidth; carriage.classList.add('ding');
+    } else {
+      carriage.classList.remove('ding'); void carriage.offsetWidth; carriage.classList.add('ding');
+    }
+    loadPassage();
+    refreshStatsBar();
+  }
+
+  function showResults(){
+    const s = liveStats();
+    certName.textContent = nameInput.value.trim() || 'Anonymous';
+    certWpm.textContent = s.wpm;
+    certAcc.textContent = s.accuracy + '%';
+    certTime.textContent = formatTime(s.timeSec);
+    certPass.textContent = state.passagesCompleted;
+    certDate.textContent = new Date().toLocaleDateString('en-IN', {year:'numeric',month:'long',day:'numeric'});
+    resultModal.classList.add('show');
+  }
+
+  // ---------- Input handling ----------
+  hiddenInput.addEventListener('input', function(e){
+    if(!state.running || !state.currentPassage) return;
+    let val = e.target.value;
+    const maxLen = state.currentPassage.text.length;
+    if(val.length > maxLen) val = val.slice(0, maxLen);
+    state.typed = val;
+    renderPassage();
+    renderTyped();
+    updateCarriage();
+    refreshStatsBar();
+
+    if(state.typed.length >= maxLen){
+      hiddenInput.value = '';
+      advancePassage(false);
+    }
+  });
+
+  hiddenInput.addEventListener('paste', function(e){ e.preventDefault(); });
+  hiddenInput.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  document.getElementById('typedWrap').addEventListener('click', function(){
+    if(state.running) hiddenInput.focus();
+  });
+
+  // ---------- Button wiring ----------
+  startBtn.addEventListener('click', startSession);
+  stopBtn.addEventListener('click', function(){ stopSession(false); });
+  resetBtn.addEventListener('click', resetSession);
+  nextBtn.addEventListener('click', function(){
+    if(state.running){
+      hiddenInput.value = '';
+      advancePassage(true);
+    }
+  });
+  tryAgainBtn.addEventListener('click', function(){
+    resultModal.classList.remove('show');
+    resetSession();
+  });
+  printBtn.addEventListener('click', function(){ window.print(); });
+
+  durationSelect.addEventListener('change', function(){
+    if(!state.running){
+      const durVal = parseInt(durationSelect.value,10);
+      state.noLimit = durVal === 0;
+      state.duration = durVal;
+      state.remaining = durVal;
+      timeVal.textContent = state.noLimit ? '00:00' : formatTime(durVal);
+    }
+  });
+
+  // Initial paint
+  resetSession();
+
+})();
+</script>
 </body>
-
 </html>
