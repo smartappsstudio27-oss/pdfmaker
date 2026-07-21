@@ -1,98 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Smart Typing | SmartApps Studio</title>
-
-<meta name="description"
-content="Practice typing online with Smart Typing by SmartApps Studio. Improve typing speed, accuracy, keyboard skills, and productivity through professional lessons and tests.">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://smartappsstudio.in/typing.html">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SmartApps Studio">
-<meta property="og:title" content="Smart Typing | SmartApps Studio">
-<meta property="og:description" content="Practice typing online with Smart Typing by SmartApps Studio. Improve typing speed, accuracy, keyboard skills, and productivity through professional lessons and tests.">
-<meta property="og:url" content="https://smartappsstudio.in/typing.html">
-<meta property="og:image" content="https://smartappsstudio.in/og-image.png">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Smart Typing | SmartApps Studio">
-<meta name="twitter:description" content="Practice typing online with Smart Typing by SmartApps Studio. Improve typing speed, accuracy, keyboard skills, and productivity through professional lessons and tests.">
-<meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-TNBKQNNTMY');
-</script>
-<!-- Organization Schema -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"SmartApps Studio",
-  "url":"https://smartappsstudio.in/",
-  "logo":"https://smartappsstudio.in/smartapps.png",
-  "email":"smartapps.studio27@gmail.com"
-}
-</script>
-<!-- WebSite Schema -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"SmartApps Studio",
-  "url":"https://smartappsstudio.in/",
-  "description":"Official website of SmartApps Studio, developing Android apps, games, PDF tools and Smart Typing.",
-  "inLanguage":"en",
-  "publisher":{
-    "@type":"Organization",
-    "name":"SmartApps Studio",
-    "url":"https://smartappsstudio.in/"
-  }
-}
-</script>
-
-<!-- WebPage Schema -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebPage",
-  "name":"Smart Typing | SmartApps Studio",
-  "url":"https://smartappsstudio.in/typing.html",
-  "description":"Professional typing practice platform with typing lessons, speed tests, accuracy tracking and timed typing exercises.",
-  "inLanguage":"en",
-  "isPartOf":{
-    "@type":"WebSite",
-    "name":"SmartApps Studio",
-    "url":"https://smartappsstudio.in/"
-  },
-  "about":{
-    "@type":"SoftwareApplication",
-    "name":"Smart Typing"
-  }
-}
-</script>
+<meta name="description" content="Smart Typing by SmartApps Studio — a professional typing practice platform with beginner drills, timed tests, live speed tracking and multi-language support.">
 <link rel="icon" href="smartapps.png">
-<link rel="icon" href="favicon.ico" sizes="any">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1c2024;
@@ -120,342 +36,247 @@ gtag('config', 'G-TNBKQNNTMY');
     min-height:100vh;
     overflow-x:hidden;
   }
+  .mr-text{font-family:'Noto Sans Devanagari','JetBrains Mono',sans-serif;}
 
-  /* ===== Header / Toolbar ===== */
+  /* ===== Header / Toolbar (compact single row) ===== */
   .app-header{
     background:var(--ink-soft);
     border-bottom:1px solid var(--ink-softer);
-    padding:14px 20px 0;
+    padding:10px 16px;
     flex-shrink:0;
   }
-  .brand-row{
+  .header-row{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-bottom:12px;
-  }
-  .logo-mark{
-    width:38px;height:38px;border-radius:10px;
-    background:var(--ink-softer);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:800;font-size:14px;color:var(--ink);
-    letter-spacing:0.5px;
-    flex-shrink:0;
-    overflow:hidden;
-  }
-  .logo-mark img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-  }
-  .brand-text h1{
-    font-size:16px;margin:0;font-weight:700;color:var(--off-white);letter-spacing:0.2px;
-  }
-  .brand-text p{
-    margin:0;font-size:11px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;
-  }
-
-  .ribbon{
-    display:flex;
     flex-wrap:wrap;
     gap:10px;
-    padding-bottom:12px;
-    align-items:flex-end;
   }
+  .brand-mini{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .logo-mark{
+    width:32px;height:32px;border-radius:9px;
+    background:var(--ink-softer);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;overflow:hidden;
+  }
+  .logo-mark img{width:100%;height:100%;object-fit:contain;display:block;}
+  .brand-mini h1{font-size:14px;margin:0;font-weight:700;color:var(--off-white);line-height:1.1;}
+  .brand-mini p{margin:0;font-size:9px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;}
+
+  .ribbon{display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex:1;}
   .ribbon-group{
     background:var(--ink-softer);
     border:1px solid rgba(255,255,255,0.06);
-    border-radius:10px;
-    padding:8px 12px 7px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    position:relative;
-  }
-  .ribbon-group .grp-label{
-    position:absolute;
-    top:-9px;left:10px;
-    font-size:9px;
-    letter-spacing:0.8px;
-    text-transform:uppercase;
-    background:var(--ink-softer);
-    padding:0 5px;
-    color:var(--brass);
-    font-weight:600;
+    border-radius:9px;
+    padding:6px 10px;
+    display:flex;align-items:center;gap:6px;
   }
   .ribbon input[type="text"]{
-    background:var(--ink);
-    border:1px solid rgba(255,255,255,0.1);
-    color:var(--off-white);
-    border-radius:6px;
-    padding:7px 10px;
-    font-family:'Poppins',sans-serif;
-    font-size:13px;
-    width:140px;
+    background:var(--ink);border:1px solid rgba(255,255,255,0.1);color:var(--off-white);
+    border-radius:6px;padding:6px 9px;font-family:'Poppins',sans-serif;font-size:12px;width:120px;
   }
   .ribbon input[type="text"]:focus{outline:2px solid var(--brass);outline-offset:1px;}
   .ribbon select{
-    background:var(--ink);
-    border:1px solid rgba(255,255,255,0.1);
-    color:var(--off-white);
-    border-radius:6px;
-    padding:7px 8px;
-    font-family:'Poppins',sans-serif;
-    font-size:13px;
+    background:var(--ink);border:1px solid rgba(255,255,255,0.1);color:var(--off-white);
+    border-radius:6px;padding:6px 7px;font-family:'Poppins',sans-serif;font-size:12px;
   }
-  .ribbon select:focus{outline:2px solid var(--brass);outline-offset:1px;}
   .btn{
-    border:none;border-radius:6px;
-    padding:8px 14px;
-    font-family:'Poppins',sans-serif;
-    font-size:13px;font-weight:600;
-    cursor:pointer;
-    transition:transform 0.12s ease, filter 0.12s ease;
+    border:none;border-radius:6px;padding:7px 12px;font-family:'Poppins',sans-serif;
+    font-size:12px;font-weight:600;cursor:pointer;transition:transform 0.12s ease, filter 0.12s ease;
+    white-space:nowrap;
   }
   .btn:active{transform:translateY(1px);}
-  .btn:focus-visible{outline:2px solid var(--off-white);outline-offset:2px;}
   .btn-start{background:var(--success);color:#fff;}
-  .btn-start:hover{filter:brightness(1.1);}
   .btn-stop{background:var(--ribbon-red);color:#fff;}
-  .btn-stop:hover{filter:brightness(1.1);}
   .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.18);color:var(--off-white);}
   .btn-ghost:hover{border-color:var(--brass);color:var(--brass);}
+  .btn-ghost.active{background:var(--brass);color:var(--ink);border-color:var(--brass);}
   .btn:disabled{opacity:0.4;cursor:not-allowed;}
-  .toggle-wrap{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);}
 
-  .stats-bar{
-    display:flex;
-    gap:22px;
-    padding:9px 4px;
-    border-top:1px solid rgba(255,255,255,0.05);
-    flex-wrap:wrap;
-  }
+  .stats-bar{display:flex;gap:18px;padding-top:8px;flex-wrap:wrap;}
   .stat{display:flex;flex-direction:column;align-items:flex-start;}
-  .stat .val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--brass);line-height:1.1;}
-  .stat .lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);margin-top:2px;}
+  .stat .val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--brass);line-height:1.1;}
+  .stat .lbl{font-size:8px;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-top:2px;}
   .stat.timer .val{color:var(--off-white);}
 
-  /* ===== Workspace ===== */
+  /* ===== Workspace (togglable layout) ===== */
   .workspace{
-    flex:1;
     display:flex;
+    gap:14px;
+    padding:14px 16px;
     min-height:0;
-    padding:16px;
-    gap:16px;
   }
+  .workspace[data-layout="row"]{flex-direction:row;}
+  .workspace[data-layout="row-rev"]{flex-direction:row-reverse;}
+  .workspace[data-layout="col"]{flex-direction:column;}
+  .workspace[data-layout="col-rev"]{flex-direction:column-reverse;}
   @media (max-width:860px){
-    .workspace{flex-direction:column;}
+    .workspace{flex-direction:column !important;}
   }
 
-  .panel{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    border-radius:12px;
-    overflow:hidden;
-    min-height:0;
-  }
-  .panel-label{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:0.8px;
-    font-weight:600;
-    padding:9px 16px;
-    flex-shrink:0;
-  }
+  .panel{flex:1;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;min-height:0;}
+  .panel-label{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;font-weight:600;padding:8px 14px;flex-shrink:0;}
 
-  /* Passage (paper) panel */
-  .passage-panel{
-    background:var(--paper);
-    color:var(--paper-text);
-  }
-  .passage-panel .panel-label{
-    color:var(--brass-deep);
-    background:rgba(0,0,0,0.03);
-  }
+  .passage-panel{background:var(--paper);color:var(--paper-text);}
+  .passage-panel .panel-label{color:var(--brass-deep);background:rgba(0,0,0,0.03);}
   .passage-text{
-    flex:1;
-    overflow-y:auto;
-    padding:20px 22px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:17px;
-    line-height:2.1;
-    background-image:repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent calc(2.1em - 1px),
-      var(--paper-line) calc(2.1em - 1px),
-      var(--paper-line) 2.1em
-    );
+    min-height:260px;max-height:400px;overflow-y:auto;padding:18px 20px;
+    font-family:'JetBrains Mono',monospace;font-size:16px;line-height:2.1;
+    background-image:repeating-linear-gradient(to bottom,transparent,transparent calc(2.1em - 1px),var(--paper-line) calc(2.1em - 1px),var(--paper-line) 2.1em);
   }
-  .passage-text .ch{white-space:pre-wrap;}
+  .passage-text.mr-text{font-size:18px;line-height:2.3;}
   .passage-text .ch.correct{color:var(--success);}
   .passage-text .ch.incorrect{color:var(--ribbon-red);text-decoration:underline wavy var(--ribbon-red);}
   .passage-text .ch.current{background:var(--brass);color:var(--ink);border-radius:2px;}
   .passage-text .ch.pending{color:var(--paper-text);opacity:0.75;}
 
-  .carriage-track{
-    height:14px;flex-shrink:0;
-    background:rgba(0,0,0,0.05);
-    position:relative;
-    border-top:1px solid var(--paper-line);
-  }
-  .carriage{
-    position:absolute;top:50%;left:0;
-    width:14px;height:14px;
-    background:var(--brass-deep);
-    border-radius:50%;
-    transform:translate(0,-50%);
-    transition:left 0.15s linear;
-    box-shadow:0 0 0 3px rgba(169,122,42,0.18);
-  }
+  .carriage-track{height:12px;flex-shrink:0;background:rgba(0,0,0,0.05);position:relative;border-top:1px solid var(--paper-line);}
+  .carriage{position:absolute;top:50%;left:0;width:12px;height:12px;background:var(--brass-deep);border-radius:50%;transform:translate(0,-50%);transition:left 0.15s linear;box-shadow:0 0 0 3px rgba(169,122,42,0.18);}
   .carriage.ding{animation:ding 0.4s ease;}
-  @keyframes ding{
-    0%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}
-    40%{box-shadow:0 0 0 9px rgba(201,151,63,0.35);}
-    100%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}
-  }
+  @keyframes ding{0%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}40%{box-shadow:0 0 0 9px rgba(201,151,63,0.35);}100%{box-shadow:0 0 0 3px rgba(169,122,42,0.18);}}
 
-  /* Typing panel */
-  .type-panel{
-    background:var(--ink-soft);
-    border:1px solid var(--ink-softer);
-  }
+  .type-panel{background:var(--ink-soft);border:1px solid var(--ink-softer);}
   .type-panel .panel-label{color:var(--brass);}
-  .typed-wrap{
-    flex:1;
-    position:relative;
-    overflow-y:auto;
-    padding:20px 22px;
-  }
-  .typed-text{
-    font-family:'JetBrains Mono',monospace;
-    font-size:17px;
-    line-height:2.1;
-    white-space:pre-wrap;
-    word-break:break-word;
-    min-height:100%;
-  }
+  .typed-wrap{min-height:260px;max-height:400px;position:relative;overflow-y:auto;padding:18px 20px;}
+  .typed-text{font-family:'JetBrains Mono',monospace;font-size:16px;line-height:2.1;white-space:pre-wrap;word-break:break-word;min-height:100%;}
+  .typed-text.mr-text{font-size:18px;line-height:2.3;}
   .typed-text .ch.correct{color:var(--off-white);}
   .typed-text .ch.incorrect{color:var(--ribbon-red);background:rgba(194,92,83,0.15);border-radius:2px;}
-  .caret{
-    display:inline-block;width:2px;height:1.1em;
-    background:var(--brass);
-    vertical-align:middle;
-    animation:blink 1s step-start infinite;
-  }
+  .caret{display:inline-block;width:2px;height:1.1em;background:var(--brass);vertical-align:middle;animation:blink 1s step-start infinite;}
   @keyframes blink{50%{opacity:0;}}
-  #hiddenInput{
-    position:absolute;
-    opacity:0;
-    top:0;left:0;
-    width:1px;height:1px;
-    pointer-events:none;
-  }
-  .hint{
-    padding:10px 22px 16px;
-    font-size:12px;
-    color:var(--muted);
-    flex-shrink:0;
-  }
+  #hiddenInput{position:absolute;opacity:0;top:0;left:0;width:1px;height:1px;pointer-events:none;}
+  .hint{padding:8px 20px 14px;font-size:11px;color:var(--muted);flex-shrink:0;}
 
-  /* ===== Modal / Certificate ===== */
-  .modal-overlay{
-    position:fixed;inset:0;
-    background:rgba(0,0,0,0.65);
+  /* ===== Result section (inline, not an overlay) ===== */
+  .result-section{
     display:none;
-    align-items:center;justify-content:center;
-    z-index:50;
-    padding:20px;
-  }
-  .modal-overlay.show{display:flex;}
-  .certificate{
-    background:var(--paper);
-    color:var(--paper-text);
-    border-radius:14px;
-    border:2px solid var(--brass);
-    max-width:460px;width:100%;
-    padding:30px 28px 24px;
-    text-align:center;
-    position:relative;
-  }
-  .certificate .cert-eyebrow{
-    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-    color:var(--brass-deep);font-weight:700;margin-bottom:6px;
-  }
-  .certificate h2{margin:0 0 4px;font-size:22px;}
-  .certificate .cert-name{
-    font-family:'JetBrains Mono',monospace;
-    font-size:19px;font-weight:700;
-    color:var(--brass-deep);
-    margin:10px 0 18px;
-  }
-  .cert-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    padding:0 16px 16px;
     gap:14px;
-    margin-bottom:22px;
   }
-  .cert-grid .cbox{
-    background:rgba(0,0,0,0.04);
-    border-radius:8px;
-    padding:10px 6px;
+  .result-section.show{display:flex;flex-wrap:wrap;}
+  .result-card{
+    flex:2;min-width:260px;
+    background:var(--paper);color:var(--paper-text);
+    border-radius:12px;border:2px solid var(--brass);
+    padding:18px 20px;
   }
-  .cert-grid .cbox .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--paper-text);}
-  .cert-grid .cbox .l{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--brass-deep);margin-top:3px;}
-  .cert-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-  .cert-date{font-size:11px;color:#7a7263;margin-top:16px;}
+  .result-card .r-eyebrow{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--brass-deep);font-weight:700;margin-bottom:4px;}
+  .result-card h2{margin:0 0 2px;font-size:18px;}
+  .result-card .r-name{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--brass-deep);margin:6px 0 14px;}
+  .r-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+  .r-grid .rbox{background:rgba(0,0,0,0.04);border-radius:8px;padding:8px 6px;text-align:center;}
+  .r-grid .rbox .v{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;}
+  .r-grid .rbox .l{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--brass-deep);margin-top:2px;}
+  .r-actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* ===== Ad slot placeholders =====
+     These are just visual placeholders so the layout is ready.
+     Swap the inner content for your real AdSense <ins> tag once
+     your site is approved. See comments near the bottom of the
+     body for exactly where the AdSense script goes. */
+  .ad-slot{
+    background:var(--ink-softer);
+    border:1px dashed rgba(255,255,255,0.15);
+    border-radius:10px;
+    min-height:90px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;
+  }
+  .ad-slot.beside{flex:1;min-width:160px;min-height:150px;}
+  .ad-row{display:flex;gap:14px;padding:0 16px 16px;flex-wrap:wrap;}
+  .ad-row .ad-slot{flex:1;min-width:220px;}
+
+  /* ===== Guide / FAQ section ===== */
+  .guide-section{background:var(--ink-soft);border-top:1px solid var(--ink-softer);padding:24px 16px 40px;}
+  .guide-inner{max-width:820px;margin:0 auto;}
+  .guide-inner h2{font-size:18px;color:var(--brass);margin:0 0 6px;}
+  .guide-inner h3{font-size:14px;color:var(--off-white);margin:26px 0 8px;}
+  .guide-inner p{font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 10px;}
+  .guide-inner ul{font-size:13px;line-height:1.8;color:var(--muted);padding-left:18px;}
+
+  /* Finger placement diagram */
+  .keyboard-diagram{margin:16px 0;}
+  .kb-row{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap;}
+  .kb-key{
+    width:38px;height:38px;border-radius:6px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);
+    line-height:1.1;
+  }
+  .kb-key .fin{font-size:7px;font-weight:600;text-transform:uppercase;opacity:0.75;}
+  .f-pinky{background:var(--ribbon-red);}
+  .f-ring{background:var(--brass);}
+  .f-middle{background:var(--success);}
+  .f-index{background:#5fa8d3;}
+  .kb-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:8px;}
+  .kb-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .kb-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .faq-item{border-top:1px solid var(--ink-softer);padding:12px 0;}
+  .faq-item summary{font-size:13px;font-weight:600;color:var(--off-white);cursor:pointer;}
+  .faq-item p{margin-top:8px;}
 
   @media print{
     body *{visibility:hidden;}
-    .certificate, .certificate *{visibility:visible;}
-    .certificate{position:fixed;top:10%;left:50%;transform:translateX(-50%);}
-    .cert-actions{display:none;}
+    .result-card, .result-card *{visibility:visible;}
+    .result-card{position:fixed;top:10%;left:50%;transform:translateX(-50%);}
+    .r-actions{display:none;}
   }
 </style>
 </head>
 <body>
 
 <header class="app-header">
-  <div class="brand-row">
-    <div class="logo-mark"><img src="smartapps.png" alt="SmartApps Studio logo"></div>
-    <div class="brand-text">
-      <h1>Smart Typing</h1>
-      <p>SmartApps Studio</p>
-    </div>
-  </div>
-
-  <div class="ribbon">
-    <div class="ribbon-group">
-      <span class="grp-label">Session</span>
-      <input type="text" id="nameInput" placeholder="Your name" maxlength="30">
-      <button class="btn btn-start" id="startBtn">▶ Start</button>
-      <button class="btn btn-stop" id="stopBtn" disabled>■ Stop</button>
-      <button class="btn btn-ghost" id="resetBtn">⟲ Reset</button>
+  <div class="header-row">
+    <div class="brand-mini">
+      <div class="logo-mark"><img src="smartapps.png" alt="SmartApps Studio logo"></div>
+      <div>
+        <h1>Smart Typing</h1>
+        <p>SmartApps Studio</p>
+      </div>
     </div>
 
-    <div class="ribbon-group">
-      <span class="grp-label">Timer</span>
-      <select id="durationSelect">
-        <option value="60">1 min</option>
-        <option value="180" selected>3 min</option>
-        <option value="300">5 min</option>
-        <option value="600">10 min</option>
-        <option value="0">No limit</option>
-      </select>
-    </div>
+    <div class="ribbon">
+      <div class="ribbon-group">
+        <input type="text" id="nameInput" placeholder="Your name" maxlength="30">
+        <button class="btn btn-start" id="startBtn">▶ Start</button>
+        <button class="btn btn-stop" id="stopBtn" disabled>■ Stop</button>
+        <button class="btn btn-ghost" id="resetBtn">⟲ Reset</button>
+      </div>
 
-    <div class="ribbon-group">
-      <span class="grp-label">Passage</span>
-      <select id="levelSelect">
-        <option value="all">All levels</option>
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
-        <option value="Exam">Exam prep</option>
-      </select>
-      <button class="btn btn-ghost" id="nextBtn" disabled>⇥ Next Passage</button>
+      <div class="ribbon-group">
+        <select id="durationSelect">
+          <option value="60">1 min</option>
+          <option value="180" selected>3 min</option>
+          <option value="300">5 min</option>
+          <option value="600">10 min</option>
+          <option value="0">No limit</option>
+        </select>
+        <select id="langSelect">
+          <option value="en" selected>English</option>
+          <option value="mr">मराठी</option>
+        </select>
+      </div>
+
+      <div class="ribbon-group">
+        <!-- Mode buttons: Beginner runs the row-drill progression,
+             Advanced uses the normal (now double-length) passages -->
+        <button class="btn btn-ghost active" id="advancedModeBtn">Advanced</button>
+        <button class="btn btn-ghost" id="beginnerModeBtn">Beginner</button>
+        <select id="levelSelect">
+          <option value="all">All levels</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+          <option value="Exam">Exam prep</option>
+        </select>
+        <button class="btn btn-ghost" id="nextBtn" disabled>⇥ Next</button>
+      </div>
+
+      <div class="ribbon-group">
+        <!-- Cycles the passage/typing panel arrangement:
+             row -> row-reversed -> column -> column-reversed -> row ... -->
+        <button class="btn btn-ghost" id="layoutBtn" title="Change panel arrangement">⇄ Layout</button>
+      </div>
     </div>
   </div>
 
@@ -465,10 +286,11 @@ gtag('config', 'G-TNBKQNNTMY');
     <div class="stat"><span class="val" id="accVal">100%</span><span class="lbl">Accuracy</span></div>
     <div class="stat"><span class="val" id="errVal">0</span><span class="lbl">Errors</span></div>
     <div class="stat"><span class="val" id="passVal">0</span><span class="lbl">Passages</span></div>
+    <div class="stat"><span class="val" id="stageVal">—</span><span class="lbl">Stage</span></div>
   </div>
 </header>
 
-<main class="workspace">
+<main class="workspace" id="workspace" data-layout="row">
   <section class="panel passage-panel">
     <div class="panel-label">Passage — <span id="passageTopic">Ready</span></div>
     <div class="passage-text" id="passageText">Press <strong>Start</strong> to load a passage and begin.</div>
@@ -485,65 +307,251 @@ gtag('config', 'G-TNBKQNNTMY');
   </section>
 </main>
 
-<div class="modal-overlay" id="resultModal">
-  <div class="certificate">
-    <div class="cert-eyebrow">Smart Typing · Result</div>
+<!-- Ad zone 1: right after the tool, away from all buttons -->
+<div class="ad-row">
+  <div class="ad-slot"><!-- ADSENSE PLACEHOLDER 1 --> Ad space</div>
+  <div class="ad-slot"><!-- ADSENSE PLACEHOLDER 2 --> Ad space</div>
+</div>
+
+<!-- Result section: appears inline in the page (not a full overlay)
+     so an ad can sit next to it and stay visible -->
+<section class="result-section" id="resultSection">
+  <div class="result-card">
+    <div class="r-eyebrow">Smart Typing · Result</div>
     <h2>Well done!</h2>
-    <div class="cert-name" id="certName">—</div>
-    <div class="cert-grid">
-      <div class="cbox"><div class="v" id="certWpm">0</div><div class="l">Words / Min</div></div>
-      <div class="cbox"><div class="v" id="certAcc">0%</div><div class="l">Accuracy</div></div>
-      <div class="cbox"><div class="v" id="certTime">0:00</div><div class="l">Time Taken</div></div>
-      <div class="cbox"><div class="v" id="certPass">0</div><div class="l">Passages Done</div></div>
+    <div class="r-name" id="certName">—</div>
+    <div class="r-grid">
+      <div class="rbox"><div class="v" id="certWpm">0</div><div class="l">Words / Min</div></div>
+      <div class="rbox"><div class="v" id="certAcc">0%</div><div class="l">Accuracy</div></div>
+      <div class="rbox"><div class="v" id="certTime">0:00</div><div class="l">Time Taken</div></div>
+      <div class="rbox"><div class="v" id="certPass">0</div><div class="l">Passages Done</div></div>
     </div>
-    <div class="cert-actions">
+    <div class="r-actions">
       <button class="btn btn-start" id="tryAgainBtn">Try Again</button>
       <button class="btn btn-ghost" id="printBtn">🖨 Print Certificate</button>
     </div>
-    <div class="cert-date" id="certDate"></div>
   </div>
-</div>
+  <div class="ad-slot beside"><!-- ADSENSE PLACEHOLDER 3 (beside result) --> Ad space</div>
+</section>
+
+<!-- Guide / FAQ section: real content for readers, plus safe ad spots -->
+<section class="guide-section">
+  <div class="guide-inner">
+    <h2>How to use Smart Typing</h2>
+    <p>Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.</p>
+
+    <h3>Finger placement for beginners</h3>
+    <p>Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.</p>
+
+    <div class="keyboard-diagram">
+      <div class="kb-row">
+        <div class="kb-key f-pinky">Q<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring">W<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle">E<span class="fin">L middle</span></div>
+        <div class="kb-key f-index">R<span class="fin">L index</span></div>
+        <div class="kb-key f-index">T<span class="fin">L index</span></div>
+        <div class="kb-key f-index">Y<span class="fin">R index</span></div>
+        <div class="kb-key f-index">U<span class="fin">R index</span></div>
+        <div class="kb-key f-middle">I<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring">O<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky">P<span class="fin">R pinky</span></div>
+      </div>
+      <div class="kb-row">
+        <div class="kb-key f-pinky">A<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring">S<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle">D<span class="fin">L middle</span></div>
+        <div class="kb-key f-index">F<span class="fin">L index</span></div>
+        <div class="kb-key f-index">G<span class="fin">L index</span></div>
+        <div class="kb-key f-index">H<span class="fin">R index</span></div>
+        <div class="kb-key f-index">J<span class="fin">R index</span></div>
+        <div class="kb-key f-middle">K<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring">L<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky">;<span class="fin">R pinky</span></div>
+      </div>
+      <div class="kb-row">
+        <div class="kb-key f-pinky">Z<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring">X<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle">C<span class="fin">L middle</span></div>
+        <div class="kb-key f-index">V<span class="fin">L index</span></div>
+        <div class="kb-key f-index">B<span class="fin">L index</span></div>
+        <div class="kb-key f-index">N<span class="fin">R index</span></div>
+        <div class="kb-key f-index">M<span class="fin">R index</span></div>
+        <div class="kb-key f-middle">,<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring">.<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky">/<span class="fin">R pinky</span></div>
+      </div>
+      <div class="kb-legend">
+        <span><i style="background:var(--ribbon-red)"></i> Pinky</span>
+        <span><i style="background:var(--brass)"></i> Ring</span>
+        <span><i style="background:var(--success)"></i> Middle</span>
+        <span><i style="background:#5fa8d3"></i> Index</span>
+      </div>
+    </div>
+
+    <!-- Ad zone inside the guide, in between content blocks -->
+    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 4 --> Ad space</div>
+
+    <h3>Beginner mode progression</h3>
+    <p>Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.</p>
+
+    <h3>Tips to improve your typing speed</h3>
+    <ul>
+      <li>Keep your fingers on the home row between keystrokes.</li>
+      <li>Don't look at the keyboard — trust your fingers and look at the screen.</li>
+      <li>Accuracy first, speed second. A clean 40 WPM beats a sloppy 60 WPM.</li>
+      <li>Practice in short, regular sessions rather than one long session occasionally.</li>
+    </ul>
+
+    <h3>Frequently asked questions</h3>
+    <details class="faq-item">
+      <summary>What is WPM?</summary>
+      <p>WPM means Words Per Minute. It's calculated as (correct characters typed ÷ 5) ÷ minutes elapsed, which is the standard formula used by most typing tests.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How is accuracy calculated?</summary>
+      <p>Accuracy is the percentage of correctly typed characters out of all characters you typed, including mistakes.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I change the passage before finishing it?</summary>
+      <p>Yes — use the Next button in the toolbar at any time to skip to a new passage without waiting for time to run out.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Does this work in Marathi?</summary>
+      <p>Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes.</p>
+    </details>
+
+    <!-- Second ad zone inside the guide -->
+    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 5 --> Ad space</div>
+  </div>
+</section>
 
 <script>
 (function(){
 
-  // ---------- Passage bank ----------
-  const PASSAGES = [
-    {topic:"Technology", level:"Easy", text:"Computers have changed the way people live and work. From simple calculators to powerful smartphones, technology keeps growing faster every year. Learning to type quickly and correctly is one of the most useful skills in this digital age."},
-    {topic:"Nature", level:"Easy", text:"The forest was quiet in the early morning. Birds called softly from the tall trees while a gentle breeze moved through the leaves. Sunlight slipped between the branches and touched the cool, damp ground below."},
-    {topic:"Motivation", level:"Easy", text:"Success rarely comes overnight. It is built slowly, through small efforts repeated every single day. Anyone who keeps practicing with patience and focus will eventually notice real and lasting improvement."},
-    {topic:"General Knowledge", level:"Easy", text:"India is home to many rivers, mountains, and languages. Its culture has grown over thousands of years, blending traditions from many regions into one large and diverse nation."},
-    {topic:"Business", level:"Medium", text:"A good business plan clearly explains what a company sells, who its customers are, and how it plans to earn a profit. Investors often look for a strong plan before deciding whether to support a new venture with their money."},
-    {topic:"Science", level:"Medium", text:"Gravity is the force that pulls objects toward one another. It keeps the planets moving around the sun and keeps every person firmly on the ground. Without gravity, everything on Earth would simply drift away into space."},
-    {topic:"History", level:"Medium", text:"Ancient civilizations built great cities long before machines existed to help them. Using only simple tools, human labor, and clever engineering, they constructed monuments that have survived for thousands of years and still amaze visitors today."},
-    {topic:"Technology", level:"Medium", text:"Artificial intelligence is a branch of computer science that focuses on building systems capable of performing tasks that normally require human intelligence, such as recognizing speech, understanding language, and making decisions based on data."},
-    {topic:"Exam", level:"Exam", text:"Candidates appearing for competitive examinations are advised to manage their time carefully, attempt easier questions first, and avoid spending too long on a single problem. Regular practice under timed conditions greatly improves both speed and accuracy."},
-    {topic:"Exam", level:"Exam", text:"Typing speed is often tested in government and clerical examinations, where candidates must type a given passage accurately within a fixed time limit. A minimum accuracy percentage is usually required alongside a target words-per-minute score."},
-    {topic:"Environment", level:"Medium", text:"Climate change refers to long-term shifts in temperatures and weather patterns. While some changes occur naturally, human activity, especially burning fossil fuels, has been the main driver of these changes since the industrial era began."},
-    {topic:"Health", level:"Easy", text:"Drinking enough water, sleeping well, and staying active are simple habits that support good health. Small daily choices, repeated consistently, often matter more than occasional bursts of intense effort."},
-    {topic:"Space", level:"Hard", text:"Astronomers estimate that the observable universe contains roughly two trillion galaxies, each holding hundreds of billions of stars. Despite this staggering scale, light from the most distant galaxies takes billions of years to reach telescopes on Earth, meaning we observe them as they existed long ago."},
-    {topic:"Economics", level:"Hard", text:"Inflation occurs when the general price level of goods and services rises over time, reducing the purchasing power of a currency. Central banks attempt to manage inflation by adjusting interest rates, a delicate balancing act that affects borrowing, spending, and overall economic growth."},
-    {topic:"Literature", level:"Hard", text:"Great literature often explores universal themes such as love, loss, ambition, and morality, allowing readers across different cultures and generations to find meaning within the same story. A well-crafted narrative can reveal truths about human nature that plain explanation never quite manages to capture."},
-    {topic:"Philosophy", level:"Hard", text:"Philosophers have long debated the nature of free will, questioning whether human choices are truly independent or simply the result of prior causes stretching back before birth. This question touches fields as varied as physics, psychology, law, and everyday moral responsibility."},
-    {topic:"Sports", level:"Medium", text:"Consistent training, proper nutrition, and adequate rest form the foundation of any successful athletic career. Even the most naturally gifted players rely on disciplined daily routines to maintain peak performance across a long and demanding season."},
-    {topic:"Career", level:"Easy", text:"Building a strong resume takes time and honest reflection. Employers usually look for clear achievements, relevant skills, and a good match between the candidate and the role, rather than simply a long list of past job titles."}
-  ];
+  /* ================================================================
+     PASSAGE DATA
+     ================================================================
+     Structure:
+       ADVANCED_PASSAGES[langCode]  -> array of {topic, level, text}
+       BEGINNER_PASSAGES[langCode]  -> ordered array of {stage, label, text}
+                                       (played in order, then loops)
+
+     ----------------------------------------------------------------
+     HOW TO ADD A NEW LANGUAGE
+     1. Pick a short code, e.g. "hi" for Hindi.
+     2. Add <option value="hi">Hindi</option> to #langSelect in the HTML.
+     3. Add ADVANCED_PASSAGES["hi"] = [ {topic, level, text}, ... ]
+        Write full paragraphs, any length, any topic.
+     4. Add BEGINNER_PASSAGES["hi"] = [ {stage, label, text}, ... ]
+        For QWERTY-friendly scripts you can reuse the row-drill idea
+        (home row / top row / bottom row) like English does. For
+        scripts that don't map to QWERTY rows (like Marathi/Devanagari
+        below), just use short common words, then simple sentences.
+     5. If the script needs a different font, add a font-family
+        rule (see .mr-text below) and apply that class to the
+        passage/typed text elements when the language is active.
+     6. That's it — mode switching, filtering, and progression all
+        read from these two objects automatically.
+     ================================================================ */
+
+  const ADVANCED_PASSAGES = {
+    en: [
+      {topic:"Technology", level:"Easy", text:"Computers have changed the way people live and work. From simple calculators to powerful smartphones, technology keeps growing faster every year. Learning to type quickly and correctly is one of the most useful skills in this digital age. Computers have changed the way people live and work. From simple calculators to powerful smartphones, technology keeps growing faster every year. Learning to type quickly and correctly is one of the most useful skills in this digital age."},
+      {topic:"Nature", level:"Easy", text:"The forest was quiet in the early morning. Birds called softly from the tall trees while a gentle breeze moved through the leaves. Sunlight slipped between the branches and touched the cool, damp ground below. The forest was quiet in the early morning. Birds called softly from the tall trees while a gentle breeze moved through the leaves. Sunlight slipped between the branches and touched the cool, damp ground below."},
+      {topic:"Motivation", level:"Easy", text:"Success rarely comes overnight. It is built slowly, through small efforts repeated every single day. Anyone who keeps practicing with patience and focus will eventually notice real and lasting improvement. Success rarely comes overnight. It is built slowly, through small efforts repeated every single day. Anyone who keeps practicing with patience and focus will eventually notice real and lasting improvement."},
+      {topic:"General Knowledge", level:"Easy", text:"India is home to many rivers, mountains, and languages. Its culture has grown over thousands of years, blending traditions from many regions into one large and diverse nation. India is home to many rivers, mountains, and languages. Its culture has grown over thousands of years, blending traditions from many regions into one large and diverse nation."},
+      {topic:"Business", level:"Medium", text:"A good business plan clearly explains what a company sells, who its customers are, and how it plans to earn a profit. Investors often look for a strong plan before deciding whether to support a new venture with their money. A good business plan clearly explains what a company sells, who its customers are, and how it plans to earn a profit. Investors often look for a strong plan before deciding whether to support a new venture with their money."},
+      {topic:"Science", level:"Medium", text:"Gravity is the force that pulls objects toward one another. It keeps the planets moving around the sun and keeps every person firmly on the ground. Without gravity, everything on Earth would simply drift away into space. Gravity is the force that pulls objects toward one another. It keeps the planets moving around the sun and keeps every person firmly on the ground. Without gravity, everything on Earth would simply drift away into space."},
+      {topic:"History", level:"Medium", text:"Ancient civilizations built great cities long before machines existed to help them. Using only simple tools, human labor, and clever engineering, they constructed monuments that have survived for thousands of years and still amaze visitors today. Ancient civilizations built great cities long before machines existed to help them. Using only simple tools, human labor, and clever engineering, they constructed monuments that have survived for thousands of years and still amaze visitors today."},
+      {topic:"Technology", level:"Medium", text:"Artificial intelligence is a branch of computer science that focuses on building systems capable of performing tasks that normally require human intelligence, such as recognizing speech, understanding language, and making decisions based on data. Artificial intelligence is a branch of computer science that focuses on building systems capable of performing tasks that normally require human intelligence, such as recognizing speech, understanding language, and making decisions based on data."},
+      {topic:"Exam", level:"Exam", text:"Candidates appearing for competitive examinations are advised to manage their time carefully, attempt easier questions first, and avoid spending too long on a single problem. Regular practice under timed conditions greatly improves both speed and accuracy. Candidates appearing for competitive examinations are advised to manage their time carefully, attempt easier questions first, and avoid spending too long on a single problem. Regular practice under timed conditions greatly improves both speed and accuracy."},
+      {topic:"Exam", level:"Exam", text:"Typing speed is often tested in government and clerical examinations, where candidates must type a given passage accurately within a fixed time limit. A minimum accuracy percentage is usually required alongside a target words-per-minute score. Typing speed is often tested in government and clerical examinations, where candidates must type a given passage accurately within a fixed time limit. A minimum accuracy percentage is usually required alongside a target words-per-minute score."},
+      {topic:"Environment", level:"Medium", text:"Climate change refers to long-term shifts in temperatures and weather patterns. While some changes occur naturally, human activity, especially burning fossil fuels, has been the main driver of these changes since the industrial era began. Climate change refers to long-term shifts in temperatures and weather patterns. While some changes occur naturally, human activity, especially burning fossil fuels, has been the main driver of these changes since the industrial era began."},
+      {topic:"Health", level:"Easy", text:"Drinking enough water, sleeping well, and staying active are simple habits that support good health. Small daily choices, repeated consistently, often matter more than occasional bursts of intense effort. Drinking enough water, sleeping well, and staying active are simple habits that support good health. Small daily choices, repeated consistently, often matter more than occasional bursts of intense effort."},
+      {topic:"Space", level:"Hard", text:"Astronomers estimate that the observable universe contains roughly two trillion galaxies, each holding hundreds of billions of stars. Despite this staggering scale, light from the most distant galaxies takes billions of years to reach telescopes on Earth, meaning we observe them as they existed long ago. Astronomers estimate that the observable universe contains roughly two trillion galaxies, each holding hundreds of billions of stars. Despite this staggering scale, light from the most distant galaxies takes billions of years to reach telescopes on Earth, meaning we observe them as they existed long ago."},
+      {topic:"Economics", level:"Hard", text:"Inflation occurs when the general price level of goods and services rises over time, reducing the purchasing power of a currency. Central banks attempt to manage inflation by adjusting interest rates, a delicate balancing act that affects borrowing, spending, and overall economic growth. Inflation occurs when the general price level of goods and services rises over time, reducing the purchasing power of a currency. Central banks attempt to manage inflation by adjusting interest rates, a delicate balancing act that affects borrowing, spending, and overall economic growth."},
+      {topic:"Literature", level:"Hard", text:"Great literature often explores universal themes such as love, loss, ambition, and morality, allowing readers across different cultures and generations to find meaning within the same story. A well-crafted narrative can reveal truths about human nature that plain explanation never quite manages to capture. Great literature often explores universal themes such as love, loss, ambition, and morality, allowing readers across different cultures and generations to find meaning within the same story. A well-crafted narrative can reveal truths about human nature that plain explanation never quite manages to capture."},
+      {topic:"Philosophy", level:"Hard", text:"Philosophers have long debated the nature of free will, questioning whether human choices are truly independent or simply the result of prior causes stretching back before birth. This question touches fields as varied as physics, psychology, law, and everyday moral responsibility. Philosophers have long debated the nature of free will, questioning whether human choices are truly independent or simply the result of prior causes stretching back before birth. This question touches fields as varied as physics, psychology, law, and everyday moral responsibility."},
+      {topic:"Sports", level:"Medium", text:"Consistent training, proper nutrition, and adequate rest form the foundation of any successful athletic career. Even the most naturally gifted players rely on disciplined daily routines to maintain peak performance across a long and demanding season. Consistent training, proper nutrition, and adequate rest form the foundation of any successful athletic career. Even the most naturally gifted players rely on disciplined daily routines to maintain peak performance across a long and demanding season."},
+      {topic:"Career", level:"Easy", text:"Building a strong resume takes time and honest reflection. Employers usually look for clear achievements, relevant skills, and a good match between the candidate and the role, rather than simply a long list of past job titles. Building a strong resume takes time and honest reflection. Employers usually look for clear achievements, relevant skills, and a good match between the candidate and the role, rather than simply a long list of past job titles."}
+    ],
+    mr: [
+      {topic:"तंत्रज्ञान", level:"Easy", text:"संगणकामुळे लोकांच्या जगण्याच्या आणि काम करण्याच्या पद्धतीत मोठा बदल झाला आहे. साध्या कॅल्क्युलेटरपासून ते आजच्या स्मार्टफोनपर्यंत, तंत्रज्ञान दरवर्षी वेगाने वाढत आहे. जलद आणि अचूक टायपिंग शिकणे हे या डिजिटल युगातील एक अतिशय उपयुक्त कौशल्य आहे."},
+      {topic:"निसर्ग", level:"Easy", text:"पहाटे जंगलात खूप शांतता असते. उंच झाडांवरून पक्ष्यांचा मंद आवाज ऐकू येतो आणि हलकासा वारा पानांमधून वाहत असतो. सूर्यकिरणे फांद्यांमधून झिरपत खालच्या थंडगार जमिनीला स्पर्श करतात."},
+      {topic:"प्रेरणा", level:"Medium", text:"यश एका रात्रीत मिळत नाही. ते हळूहळू, दररोज केलेल्या छोट्या प्रयत्नांतून घडत असते. जो कोणी संयमाने आणि लक्ष केंद्रित करून सराव करत राहतो, त्याला कालांतराने खरी आणि टिकाऊ प्रगती दिसून येते."},
+      {topic:"सामान्य ज्ञान", level:"Easy", text:"भारतात अनेक नद्या, पर्वत आणि भाषा आहेत. हजारो वर्षांपासून येथील संस्कृती अनेक प्रदेशांतील परंपरांना एकत्र आणत मोठी आणि वैविध्यपूर्ण राष्ट्र म्हणून विकसित झाली आहे."},
+      {topic:"आरोग्य", level:"Easy", text:"पुरेसे पाणी पिणे, चांगली झोप घेणे आणि सक्रिय राहणे या साध्या सवयी चांगल्या आरोग्यासाठी उपयुक्त ठरतात. दररोजचे छोटे चांगले निर्णय हे कधीकधी केलेल्या मोठ्या प्रयत्नांपेक्षा जास्त महत्त्वाचे असतात."},
+      {topic:"शिक्षण", level:"Medium", text:"शिक्षण हे फक्त पुस्तकांपुरते मर्यादित नसते. ते जीवनातील अनुभवांतून, चुकांमधून आणि सतत जिज्ञासा ठेवण्यातून घडत असते. जो विद्यार्थी नियमितपणे सराव करतो, तो नेहमीच पुढे जातो."},
+      {topic:"पर्यावरण", level:"Medium", text:"हवामान बदल म्हणजे तापमान आणि हवामानाच्या पद्धतींमध्ये होणारा दीर्घकालीन बदल. काही बदल नैसर्गिक असले तरी, मानवी क्रियाकलाप, विशेषतः इंधन जाळणे, हे या बदलांचे मुख्य कारण आहे."},
+      {topic:"क्रीडा", level:"Medium", text:"सातत्यपूर्ण सराव, योग्य आहार आणि पुरेशी विश्रांती हे कोणत्याही यशस्वी क्रीडा कारकीर्दीचा पाया असतात. नैसर्गिक कौशल्य असलेले खेळाडूही शिस्तबद्ध दिनक्रमावरच अवलंबून असतात."}
+    ]
+  };
+
+  const BEGINNER_PASSAGES = {
+    en: [
+      {stage:1, label:"Home row: asdfg ;lkjh", text:"asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh"},
+      {stage:2, label:"Home row: gfdsa hjkl;", text:"gfdsa hjkl; gfdsa hjkl; gfdsa hjkl; gfdsa hjkl; gfdsa hjkl;"},
+      {stage:2, label:"Home row: gfdsa hjkl;", text:"gfdsa hjkl; hjkl; gfdsa gfdsa hjkl; hjkl; gfdsa gfdsa hjkl;"},
+      {stage:3, label:"Home row — mixed letters", text:"asdf ghjk l;as dfgh jkl; asdf ghjk fdsa jkhg lkjh asfd"},
+      {stage:3, label:"Home row — mixed letters", text:"jkla sdfh gkl; asjd fghk lasd jfhg klas djfh gkla sjdf"},
+      {stage:3, label:"Home row — mixed letters", text:"hjkl asdf ;lkj hgfd sakl jhgf dsak ljhg fdsa kljh gfds"},
+      {stage:4, label:"Top row — mixed letters", text:"qwer tyui opqw ertyu iopq werty uiop qwer tyui opqw erty"},
+      {stage:4, label:"Top row — mixed letters", text:"ytre wqop iuyt rewq poiuy trew qopi uytr ewqp oiuy trew"},
+      {stage:4, label:"Top row — mixed letters", text:"were topi uytr qwop ertyu iopq wert yuio pqwe rtyui opqw"},
+      {stage:5, label:"Home + top row mix", text:"asdf qwer tyui jkl; asdf ghjk poiu asdf jkl; qwer tyui"},
+      {stage:5, label:"Home + top row mix", text:"qwer asdf jkl; poiu tyui asdf ghjk qwer jkl; asdf tyui"},
+      {stage:5, label:"Home + top row mix", text:"jkl; tyui asdf qwer ghjk poiu asdf jkl; qwer asdf tyui"},
+      {stage:5, label:"Home + top row mix", text:"poiu asdf tyui jkl; qwer ghjk asdf qwer jkl; tyui asdf"},
+      {stage:5, label:"Home + top row mix", text:"tyui jkl; qwer asdf poiu ghjk qwer asdf jkl; asdf tyui"},
+      {stage:5, label:"Home + top row mix", text:"ghjk qwer jkl; tyui asdf poiu asdf qwer tyui jkl; asdf"},
+      {stage:5, label:"Home + top row mix", text:"asdf poiu jkl; qwer ghjk tyui asdf jkl; qwer asdf poiu"},
+      {stage:6, label:"Bottom row — mixed letters", text:"zxcv bnm, ./zx cvbn m,./ zxcv bnm, ./zx cvbn m,./ zxcv"},
+      {stage:6, label:"Bottom row — mixed letters", text:"nm,. /zxc vbnm ,./z xcvb nm,. /zxc vbnm ,./z xcvb nm,."},
+      {stage:6, label:"Bottom row — mixed letters", text:"cvbn m,./ zxcv bnm, ./zx cvbn m,./ zxcv bnm, ./zx cvbn"},
+      {stage:7, label:"Home + bottom row mix", text:"asdf zxcv jkl; bnm, asdf ./zx jkl; cvbn asdf zxcv jkl;"},
+      {stage:7, label:"Home + bottom row mix", text:"zxcv jkl; asdf bnm, jkl; ./zx asdf cvbn jkl; zxcv asdf"},
+      {stage:7, label:"Home + bottom row mix", text:"bnm, asdf zxcv jkl; cvbn asdf jkl; zxcv bnm, asdf jkl;"},
+      {stage:8, label:"Easy words", text:"The cat sat on the mat. The dog ran to the park. A big red ball rolled fast."},
+      {stage:8, label:"Easy words", text:"I like to read a book. She has a pet cat. We play in the sun all day."},
+      {stage:8, label:"Easy words", text:"He can run and jump high. The sky is blue and clear. Birds fly over the tall trees."},
+      {stage:8, label:"Easy words", text:"My mom made a cake today. We ate it after lunch time. It was soft and very sweet."}
+    ],
+    mr: [
+      /* Devanagari doesn't map onto QWERTY rows the way English does,
+         so beginner Marathi drills use short common words instead of
+         row drills, then move on to simple sentences. */
+      {stage:1, label:"सोपे शब्द", text:"आई बाबा घर पाणी सूर्य चंद्र फूल पान झाड फळ"},
+      {stage:1, label:"सोपे शब्द", text:"शाळा पुस्तक पेन खुर्ची टेबल दार खिडकी भिंत छत जमीन"},
+      {stage:2, label:"सोपे शब्द", text:"नमस्कार धन्यवाद माफ करा कृपया होय नाही ठीक आहे चला जाऊया"},
+      {stage:2, label:"सोपे शब्द", text:"आज उद्या काल सकाळ दुपार संध्याकाळ रात्र वेळ दिवस महिना"},
+      {stage:3, label:"साधी वाक्ये", text:"आई स्वयंपाक करते. बाबा कामावर जातात. मी शाळेत जातो."},
+      {stage:3, label:"साधी वाक्ये", text:"पाऊस पडत आहे. मुले बाहेर खेळत आहेत. आकाश निरभ्र आहे."},
+      {stage:3, label:"साधी वाक्ये", text:"मला वाचायला आवडते. ती दररोज सराव करते. आम्ही एकत्र जेवतो."},
+      {stage:3, label:"साधी वाक्ये", text:"सूर्य उगवला आहे. पक्षी गाणे गात आहेत. सकाळ खूप छान आहे."}
+    ]
+  };
+
+  /* ================================================================
+     HOW TO ADD MORE PASSAGES
+     - Advanced: just push another {topic, level, text} object into
+       ADVANCED_PASSAGES[lang]. Keep paragraphs original (don't paste
+       copyrighted text) and roughly this length.
+     - Beginner: push another {stage, label, text} object into
+       BEGINNER_PASSAGES[lang], in the position you want it played.
+       The stage number only feeds the "Stage" counter in the stats
+       bar - it doesn't have to be perfectly sequential.
+     ================================================================ */
 
   // ---------- State ----------
   let state = {
-    running:false,
-    duration:180,
-    remaining:180,
-    noLimit:false,
-    elapsed:0,
-    timerId:null,
-    currentPassage:null,
-    typed:'',
-    totalTyped:0,
-    totalCorrect:0,
-    passagesCompleted:0,
-    lastIndex:-1
+    running:false, duration:180, remaining:180, noLimit:false, elapsed:0, timerId:null,
+    currentPassage:null, typed:'', totalTyped:0, totalCorrect:0, passagesCompleted:0,
+    mode:'advanced',           // 'advanced' | 'beginner'
+    lang:'en',                 // 'en' | 'mr'
+    beginnerIndex:0,           // position in BEGINNER_PASSAGES[lang]
+    layoutIdx:0                // 0=row,1=row-rev,2=col,3=col-rev
   };
+  const LAYOUTS = ['row','row-rev','col','col-rev'];
 
   // ---------- Elements ----------
   const nameInput = document.getElementById('nameInput');
@@ -553,12 +561,18 @@ gtag('config', 'G-TNBKQNNTMY');
   const nextBtn = document.getElementById('nextBtn');
   const durationSelect = document.getElementById('durationSelect');
   const levelSelect = document.getElementById('levelSelect');
+  const langSelect = document.getElementById('langSelect');
+  const advancedModeBtn = document.getElementById('advancedModeBtn');
+  const beginnerModeBtn = document.getElementById('beginnerModeBtn');
+  const layoutBtn = document.getElementById('layoutBtn');
+  const workspace = document.getElementById('workspace');
 
   const timeVal = document.getElementById('timeVal');
   const wpmVal = document.getElementById('wpmVal');
   const accVal = document.getElementById('accVal');
   const errVal = document.getElementById('errVal');
   const passVal = document.getElementById('passVal');
+  const stageVal = document.getElementById('stageVal');
 
   const passageTopic = document.getElementById('passageTopic');
   const passageText = document.getElementById('passageText');
@@ -567,34 +581,49 @@ gtag('config', 'G-TNBKQNNTMY');
   const carriage = document.getElementById('carriage');
   const hint = document.getElementById('hint');
 
-  const resultModal = document.getElementById('resultModal');
+  const resultSection = document.getElementById('resultSection');
   const certName = document.getElementById('certName');
   const certWpm = document.getElementById('certWpm');
   const certAcc = document.getElementById('certAcc');
   const certTime = document.getElementById('certTime');
   const certPass = document.getElementById('certPass');
-  const certDate = document.getElementById('certDate');
   const tryAgainBtn = document.getElementById('tryAgainBtn');
   const printBtn = document.getElementById('printBtn');
 
-  // ---------- Helpers ----------
-  function pickPassage(){
+  // ---------- Passage selection ----------
+  function pickAdvancedPassage(){
     const level = levelSelect.value;
-    let pool = level === 'all' ? PASSAGES : PASSAGES.filter(p => p.level === level);
-    if(pool.length === 0) pool = PASSAGES;
-    let idx;
-    if(pool.length === 1){
-      idx = 0;
-    } else {
-      do { idx = Math.floor(Math.random() * pool.length); } while(pool[idx] === state.currentPassage);
+    let pool = ADVANCED_PASSAGES[state.lang] || ADVANCED_PASSAGES.en;
+    if(level !== 'all'){
+      const filtered = pool.filter(p => p.level === level);
+      if(filtered.length) pool = filtered;
     }
+    let idx;
+    if(pool.length === 1){ idx = 0; }
+    else { do { idx = Math.floor(Math.random()*pool.length); } while(pool[idx] === state.currentPassage); }
     return pool[idx];
   }
 
+  function pickBeginnerPassage(){
+    const list = BEGINNER_PASSAGES[state.lang] || BEGINNER_PASSAGES.en;
+    const item = list[state.beginnerIndex % list.length];
+    state.beginnerIndex++;
+    return item;
+  }
+
   function loadPassage(){
-    state.currentPassage = pickPassage();
+    state.currentPassage = state.mode === 'beginner' ? pickBeginnerPassage() : pickAdvancedPassage();
     state.typed = '';
-    passageTopic.textContent = state.currentPassage.topic + ' · ' + state.currentPassage.level;
+    if(state.mode === 'beginner'){
+      passageTopic.textContent = state.currentPassage.label;
+      stageVal.textContent = state.currentPassage.stage;
+    } else {
+      passageTopic.textContent = state.currentPassage.topic + ' · ' + state.currentPassage.level;
+      stageVal.textContent = '—';
+    }
+    const isMr = state.lang === 'mr';
+    passageText.className = 'passage-text' + (isMr ? ' mr-text' : '');
+    typedText.className = 'typed-text' + (isMr ? ' mr-text' : '');
     renderPassage();
     renderTyped();
     updateCarriage();
@@ -606,12 +635,9 @@ gtag('config', 'G-TNBKQNNTMY');
     let html = '';
     for(let i=0;i<text.length;i++){
       let cls = 'pending';
-      if(i < typed.length){
-        cls = typed[i] === text[i] ? 'correct' : 'incorrect';
-      } else if(i === typed.length){
-        cls = 'current';
-      }
-      html += `<span class="ch ${cls}">${escapeHtml(text[i])}</span>`;
+      if(i < typed.length){ cls = typed[i] === text[i] ? 'correct' : 'incorrect'; }
+      else if(i === typed.length){ cls = 'current'; }
+      html += '<span class="ch ' + cls + '">' + escapeHtml(text[i]) + '</span>';
     }
     passageText.innerHTML = html;
   }
@@ -622,7 +648,7 @@ gtag('config', 'G-TNBKQNNTMY');
     let html = '';
     for(let i=0;i<typed.length;i++){
       const cls = typed[i] === text[i] ? 'correct' : 'incorrect';
-      html += `<span class="ch ${cls}">${escapeHtml(typed[i])}</span>`;
+      html += '<span class="ch ' + cls + '">' + escapeHtml(typed[i]) + '</span>';
     }
     html += '<span class="caret"></span>';
     typedText.innerHTML = html;
@@ -633,14 +659,13 @@ gtag('config', 'G-TNBKQNNTMY');
     if(ch === '<') return '&lt;';
     if(ch === '>') return '&gt;';
     if(ch === '&') return '&amp;';
-    if(ch === ' ') return ' ';
     return ch;
   }
 
   function updateCarriage(){
     const total = state.currentPassage ? state.currentPassage.text.length : 1;
-    const pct = Math.min(100, (state.typed.length / total) * 100);
-    carriage.style.left = `calc(${pct}% - 7px)`;
+    const pct = Math.min(100, (state.typed.length/total)*100);
+    carriage.style.left = 'calc(' + pct + '% - 6px)';
   }
 
   function currentCorrectCount(){
@@ -662,9 +687,9 @@ gtag('config', 'G-TNBKQNNTMY');
     const correctSoFar = state.totalCorrect + (state.currentPassage ? currentCorrectCount() : 0);
     const typedSoFar = state.totalTyped + (state.currentPassage ? state.typed.length : 0);
     const timeSec = state.noLimit ? state.elapsed : (state.duration - state.remaining);
-    const minutes = Math.max(timeSec, 1) / 60;
-    const wpm = Math.max(0, Math.round((correctSoFar / 5) / minutes));
-    const accuracy = typedSoFar > 0 ? Math.round((correctSoFar / typedSoFar) * 100) : 100;
+    const minutes = Math.max(timeSec,1)/60;
+    const wpm = Math.max(0, Math.round((correctSoFar/5)/minutes));
+    const accuracy = typedSoFar > 0 ? Math.round((correctSoFar/typedSoFar)*100) : 100;
     const errors = typedSoFar - correctSoFar;
     return {wpm, accuracy, errors, typedSoFar, correctSoFar, timeSec};
   }
@@ -692,23 +717,39 @@ gtag('config', 'G-TNBKQNNTMY');
     } else {
       state.remaining -= 1;
       timeVal.textContent = formatTime(state.remaining);
-      if(state.remaining <= 0){
-        refreshStatsBar();
-        stopSession(true);
-        return;
-      }
+      if(state.remaining <= 0){ refreshStatsBar(); stopSession(true); return; }
     }
     refreshStatsBar();
   }
 
+  // ---------- Mode / language switching ----------
+  function setMode(mode){
+    if(state.running) return; // don't allow switching mid-session
+    state.mode = mode;
+    advancedModeBtn.classList.toggle('active', mode === 'advanced');
+    beginnerModeBtn.classList.toggle('active', mode === 'beginner');
+    levelSelect.disabled = (mode === 'beginner');
+    state.beginnerIndex = 0;
+  }
+  advancedModeBtn.addEventListener('click', function(){ setMode('advanced'); });
+  beginnerModeBtn.addEventListener('click', function(){ setMode('beginner'); });
+
+  langSelect.addEventListener('change', function(){
+    if(state.running) return;
+    state.lang = langSelect.value;
+  });
+
+  // ---------- Layout toggle ----------
+  layoutBtn.addEventListener('click', function(){
+    state.layoutIdx = (state.layoutIdx + 1) % LAYOUTS.length;
+    workspace.setAttribute('data-layout', LAYOUTS[state.layoutIdx]);
+  });
+
   // ---------- Session control ----------
   function startSession(){
     const name = nameInput.value.trim();
-    if(!name){
-      hint.textContent = 'Please enter your name before starting.';
-      nameInput.focus();
-      return;
-    }
+    if(!name){ hint.textContent = 'Please enter your name before starting.'; nameInput.focus(); return; }
+
     const durVal = parseInt(durationSelect.value, 10);
     state.noLimit = durVal === 0;
     state.duration = durVal;
@@ -717,23 +758,21 @@ gtag('config', 'G-TNBKQNNTMY');
     state.totalTyped = 0;
     state.totalCorrect = 0;
     state.passagesCompleted = 0;
+    state.beginnerIndex = 0;
     state.running = true;
 
-    startBtn.disabled = true;
-    stopBtn.disabled = false;
-    nextBtn.disabled = false;
-    nameInput.disabled = true;
-    durationSelect.disabled = true;
+    startBtn.disabled = true; stopBtn.disabled = false; nextBtn.disabled = false;
+    nameInput.disabled = true; durationSelect.disabled = true; langSelect.disabled = true;
+    advancedModeBtn.disabled = true; beginnerModeBtn.disabled = true;
     hint.textContent = 'Go! Start typing the passage on the left.';
+    resultSection.classList.remove('show');
 
     timeVal.textContent = state.noLimit ? '00:00' : formatTime(state.remaining);
     refreshStatsBar();
-
     loadPassage();
     hiddenInput.value = '';
     hiddenInput.disabled = false;
     hiddenInput.focus();
-
     state.timerId = setInterval(tick, 1000);
   }
 
@@ -743,50 +782,39 @@ gtag('config', 'G-TNBKQNNTMY');
     clearInterval(state.timerId);
     state.running = false;
     hiddenInput.disabled = true;
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    nextBtn.disabled = true;
-    nameInput.disabled = false;
-    durationSelect.disabled = false;
+    startBtn.disabled = false; stopBtn.disabled = true; nextBtn.disabled = true;
+    nameInput.disabled = false; durationSelect.disabled = false; langSelect.disabled = false;
+    advancedModeBtn.disabled = false; beginnerModeBtn.disabled = false;
     hint.textContent = auto ? 'Time is up! Here are your results.' : 'Session stopped. Here are your results.';
     showResults();
   }
 
   function resetSession(){
     clearInterval(state.timerId);
+    const keepLang = state.lang, keepMode = state.mode, keepLayout = state.layoutIdx;
     state = {
       running:false, duration:parseInt(durationSelect.value,10)||180,
       remaining:parseInt(durationSelect.value,10)||180, noLimit:durationSelect.value==='0',
       elapsed:0, timerId:null, currentPassage:null, typed:'', totalTyped:0, totalCorrect:0,
-      passagesCompleted:0, lastIndex:-1
+      passagesCompleted:0, mode:keepMode, lang:keepLang, beginnerIndex:0, layoutIdx:keepLayout
     };
-    startBtn.disabled = false;
-    stopBtn.disabled = true;
-    nextBtn.disabled = true;
-    nameInput.disabled = false;
-    durationSelect.disabled = false;
-    hiddenInput.value = '';
-    hiddenInput.disabled = true;
+    startBtn.disabled = false; stopBtn.disabled = true; nextBtn.disabled = true;
+    nameInput.disabled = false; durationSelect.disabled = false; langSelect.disabled = false;
+    advancedModeBtn.disabled = false; beginnerModeBtn.disabled = false;
+    hiddenInput.value = ''; hiddenInput.disabled = true;
     passageTopic.textContent = 'Ready';
     passageText.innerHTML = 'Press <strong>Start</strong> to load a passage and begin.';
     typedText.innerHTML = '';
     carriage.style.left = '0';
-    timeVal.textContent = '00:00';
-    wpmVal.textContent = '0';
-    accVal.textContent = '100%';
-    errVal.textContent = '0';
-    passVal.textContent = '0';
+    timeVal.textContent = '00:00'; wpmVal.textContent = '0'; accVal.textContent = '100%';
+    errVal.textContent = '0'; passVal.textContent = '0'; stageVal.textContent = '—';
     hint.textContent = 'Enter your name and click Start. Pasting is disabled — this is a typing test!';
-    resultModal.classList.remove('show');
+    resultSection.classList.remove('show');
   }
 
-  function advancePassage(manual){
+  function advancePassage(){
     finalizeCurrentPassage();
-    if(manual){
-      carriage.classList.remove('ding'); void carriage.offsetWidth; carriage.classList.add('ding');
-    } else {
-      carriage.classList.remove('ding'); void carriage.offsetWidth; carriage.classList.add('ding');
-    }
+    carriage.classList.remove('ding'); void carriage.offsetWidth; carriage.classList.add('ding');
     loadPassage();
     refreshStatsBar();
   }
@@ -798,8 +826,8 @@ gtag('config', 'G-TNBKQNNTMY');
     certAcc.textContent = s.accuracy + '%';
     certTime.textContent = formatTime(s.timeSec);
     certPass.textContent = state.passagesCompleted;
-    certDate.textContent = new Date().toLocaleDateString('en-IN', {year:'numeric',month:'long',day:'numeric'});
-    resultModal.classList.add('show');
+    resultSection.classList.add('show');
+    resultSection.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   // ---------- Input handling ----------
@@ -809,54 +837,43 @@ gtag('config', 'G-TNBKQNNTMY');
     const maxLen = state.currentPassage.text.length;
     if(val.length > maxLen) val = val.slice(0, maxLen);
     state.typed = val;
-    renderPassage();
-    renderTyped();
-    updateCarriage();
-    refreshStatsBar();
-
-    if(state.typed.length >= maxLen){
-      hiddenInput.value = '';
-      advancePassage(false);
-    }
+    renderPassage(); renderTyped(); updateCarriage(); refreshStatsBar();
+    if(state.typed.length >= maxLen){ hiddenInput.value = ''; advancePassage(); }
   });
-
   hiddenInput.addEventListener('paste', function(e){ e.preventDefault(); });
   hiddenInput.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-
-  document.getElementById('typedWrap').addEventListener('click', function(){
-    if(state.running) hiddenInput.focus();
-  });
+  document.getElementById('typedWrap').addEventListener('click', function(){ if(state.running) hiddenInput.focus(); });
 
   // ---------- Button wiring ----------
   startBtn.addEventListener('click', startSession);
   stopBtn.addEventListener('click', function(){ stopSession(false); });
   resetBtn.addEventListener('click', resetSession);
-  nextBtn.addEventListener('click', function(){
-    if(state.running){
-      hiddenInput.value = '';
-      advancePassage(true);
-    }
-  });
-  tryAgainBtn.addEventListener('click', function(){
-    resultModal.classList.remove('show');
-    resetSession();
-  });
+  nextBtn.addEventListener('click', function(){ if(state.running){ hiddenInput.value=''; advancePassage(); } });
+  tryAgainBtn.addEventListener('click', function(){ resultSection.classList.remove('show'); resetSession(); });
   printBtn.addEventListener('click', function(){ window.print(); });
 
   durationSelect.addEventListener('change', function(){
     if(!state.running){
       const durVal = parseInt(durationSelect.value,10);
-      state.noLimit = durVal === 0;
-      state.duration = durVal;
-      state.remaining = durVal;
+      state.noLimit = durVal === 0; state.duration = durVal; state.remaining = durVal;
       timeVal.textContent = state.noLimit ? '00:00' : formatTime(durVal);
     }
   });
 
-  // Initial paint
   resetSession();
-
 })();
 </script>
+
+<!-- ================================================================
+     ADSENSE SETUP (do this once your site is approved)
+     1. Paste Google's site-verification/auto-ads <script> tag
+        (the one starting with adsbygoogle.js) right before </head>.
+     2. For each ".ad-slot" div above, replace its inner content with
+        your <ins class="adsbygoogle" ...></ins> unit code and add
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        right after each <ins> tag.
+     3. Also add an ads.txt file at your site root as instructed by
+        AdSense — it won't work without it.
+     ================================================================ -->
 </body>
 </html>
