@@ -117,6 +117,20 @@
      panels can never collapse to zero height regardless of parent
      flex sizing quirks in any browser. */
   .panel{flex:1 1 0;min-width:280px;min-height:340px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;}
+
+  /* When panels are stacked top/bottom, shrink each one so the page
+     doesn't get too tall and the ad zone stays within easy reach */
+  .workspace[data-layout="col"] .panel,
+  .workspace[data-layout="col-rev"] .panel{
+    min-height:220px;
+  }
+  .workspace[data-layout="col"] .passage-text,
+  .workspace[data-layout="col-rev"] .passage-text,
+  .workspace[data-layout="col"] .typed-wrap,
+  .workspace[data-layout="col-rev"] .typed-wrap{
+    min-height:150px;
+    max-height:220px;
+  }
   .panel-label{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;font-weight:600;padding:8px 14px;flex-shrink:0;}
 
   .passage-panel{background:var(--paper);color:var(--paper-text);}
