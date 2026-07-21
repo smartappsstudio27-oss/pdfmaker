@@ -101,9 +101,9 @@
   /* ===== Workspace (togglable layout) ===== */
   .workspace{
     display:flex;
+    flex-direction:row;
     gap:14px;
     padding:14px 16px;
-    min-height:0;
   }
   .workspace[data-layout="row"]{flex-direction:row;}
   .workspace[data-layout="row-rev"]{flex-direction:row-reverse;}
@@ -113,7 +113,10 @@
     .workspace{flex-direction:column !important;}
   }
 
-  .panel{flex:1;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;min-height:0;}
+  /* Explicit min-height here (not just on the inner text areas) so the
+     panels can never collapse to zero height regardless of parent
+     flex sizing quirks in any browser. */
+  .panel{flex:1 1 0;min-width:280px;min-height:340px;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;}
   .panel-label{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;font-weight:600;padding:8px 14px;flex-shrink:0;}
 
   .passage-panel{background:var(--paper);color:var(--paper-text);}
@@ -268,6 +271,19 @@
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
           <option value="Exam">Exam prep</option>
+        </select>
+        <!-- Only visible in Beginner mode: lets the user pick a
+             specific drill instead of the automatic progression -->
+        <select id="beginnerStageSelect" style="display:none;">
+          <option value="auto">Auto (progressive)</option>
+          <option value="1">Home row: asdfg ;lkjh</option>
+          <option value="2">Home row: gfdsa hjkl;</option>
+          <option value="3">Home row — mixed</option>
+          <option value="4">Top row — mixed</option>
+          <option value="5">Home + top row mix</option>
+          <option value="6">Bottom row — mixed</option>
+          <option value="7">Home + bottom row mix</option>
+          <option value="8">Easy words</option>
         </select>
         <button class="btn btn-ghost" id="nextBtn" disabled>⇥ Next</button>
       </div>
@@ -564,6 +580,7 @@
   const langSelect = document.getElementById('langSelect');
   const advancedModeBtn = document.getElementById('advancedModeBtn');
   const beginnerModeBtn = document.getElementById('beginnerModeBtn');
+  const beginnerStageSelect = document.getElementById('beginnerStageSelect');
   const layoutBtn = document.getElementById('layoutBtn');
   const workspace = document.getElementById('workspace');
 
@@ -606,9 +623,23 @@
 
   function pickBeginnerPassage(){
     const list = BEGINNER_PASSAGES[state.lang] || BEGINNER_PASSAGES.en;
-    const item = list[state.beginnerIndex % list.length];
-    state.beginnerIndex++;
-    return item;
+    const chosenStage = beginnerStageSelect.value; // "auto" or a stage number as a string
+
+    if(chosenStage === 'auto'){
+      // Auto mode: walk through the full list in order, then loop
+      const item = list[state.beginnerIndex % list.length];
+      state.beginnerIndex++;
+      return item;
+    }
+
+    // Manual mode: only pick passages that belong to the chosen stage
+    const stageNum = parseInt(chosenStage, 10);
+    const filtered = list.filter(p => p.stage === stageNum);
+    const pool = filtered.length ? filtered : list;
+    let idx;
+    if(pool.length === 1){ idx = 0; }
+    else { do { idx = Math.floor(Math.random()*pool.length); } while(pool[idx] === state.currentPassage); }
+    return pool[idx];
   }
 
   function loadPassage(){
@@ -728,7 +759,9 @@
     state.mode = mode;
     advancedModeBtn.classList.toggle('active', mode === 'advanced');
     beginnerModeBtn.classList.toggle('active', mode === 'beginner');
-    levelSelect.disabled = (mode === 'beginner');
+    // Show the level dropdown for Advanced, the stage dropdown for Beginner
+    levelSelect.style.display = (mode === 'beginner') ? 'none' : '';
+    beginnerStageSelect.style.display = (mode === 'beginner') ? '' : 'none';
     state.beginnerIndex = 0;
   }
   advancedModeBtn.addEventListener('click', function(){ setMode('advanced'); });
