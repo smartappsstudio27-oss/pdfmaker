@@ -301,8 +301,8 @@ gtag('config', 'G-TNBKQNNTMY');
   .guide-inner{max-width:820px;margin:0 auto;}
   .guide-inner h2{font-size:18px;color:var(--brass);margin:0 0 6px;}
   .guide-inner h3{font-size:14px;color:var(--off-white);margin:26px 0 8px;}
-  .guide-inner p{font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 10px;}
-  .guide-inner ul{font-size:13px;line-height:1.8;color:var(--muted);padding-left:18px;}
+  .guide-inner p{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 10px;}
+  .guide-inner ul{font-size:14px;line-height:1.8;color:var(--muted);padding-left:18px;}
 
   /* Finger placement diagram */
   .keyboard-diagram{margin:16px 0;}
@@ -458,51 +458,53 @@ gtag('config', 'G-TNBKQNNTMY');
   <div class="ad-slot beside"><!-- ADSENSE PLACEHOLDER 3 (beside result) --> Ad space</div>
 </section>
 
-<!-- Guide / FAQ section: real content for readers, plus safe ad spots -->
+<!-- Guide / FAQ section: real content for readers, plus safe ad spots.
+     All the text in here is filled in by JS (see GUIDE_CONTENT in the
+     script below) so it can switch language along with the passages. -->
 <section class="guide-section">
   <div class="guide-inner">
-    <h2>How to use Smart Typing</h2>
-    <p>Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.</p>
+    <h2 id="guideTitle">How to use Smart Typing</h2>
+    <p id="guideIntro">Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.</p>
 
-    <h3>Finger placement for beginners</h3>
-    <p>Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.</p>
+    <h3 id="guideFingerHeading">Finger placement for beginners</h3>
+    <p id="guideFingerPara">Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.</p>
 
     <div class="keyboard-diagram">
       <div class="kb-row">
-        <div class="kb-key f-pinky">Q<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring">W<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle">E<span class="fin">L middle</span></div>
-        <div class="kb-key f-index">R<span class="fin">L index</span></div>
-        <div class="kb-key f-index">T<span class="fin">L index</span></div>
-        <div class="kb-key f-index">Y<span class="fin">R index</span></div>
-        <div class="kb-key f-index">U<span class="fin">R index</span></div>
-        <div class="kb-key f-middle">I<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring">O<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky">P<span class="fin">R pinky</span></div>
+        <div class="kb-key f-pinky" data-finger="0">Q<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring" data-finger="1">W<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle" data-finger="2">E<span class="fin">L middle</span></div>
+        <div class="kb-key f-index" data-finger="3">R<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="3">T<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="4">Y<span class="fin">R index</span></div>
+        <div class="kb-key f-index" data-finger="4">U<span class="fin">R index</span></div>
+        <div class="kb-key f-middle" data-finger="5">I<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring" data-finger="6">O<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky" data-finger="7">P<span class="fin">R pinky</span></div>
       </div>
       <div class="kb-row">
-        <div class="kb-key f-pinky">A<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring">S<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle">D<span class="fin">L middle</span></div>
-        <div class="kb-key f-index">F<span class="fin">L index</span></div>
-        <div class="kb-key f-index">G<span class="fin">L index</span></div>
-        <div class="kb-key f-index">H<span class="fin">R index</span></div>
-        <div class="kb-key f-index">J<span class="fin">R index</span></div>
-        <div class="kb-key f-middle">K<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring">L<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky">;<span class="fin">R pinky</span></div>
+        <div class="kb-key f-pinky" data-finger="0">A<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring" data-finger="1">S<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle" data-finger="2">D<span class="fin">L middle</span></div>
+        <div class="kb-key f-index" data-finger="3">F<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="3">G<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="4">H<span class="fin">R index</span></div>
+        <div class="kb-key f-index" data-finger="4">J<span class="fin">R index</span></div>
+        <div class="kb-key f-middle" data-finger="5">K<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring" data-finger="6">L<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky" data-finger="7">;<span class="fin">R pinky</span></div>
       </div>
       <div class="kb-row">
-        <div class="kb-key f-pinky">Z<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring">X<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle">C<span class="fin">L middle</span></div>
-        <div class="kb-key f-index">V<span class="fin">L index</span></div>
-        <div class="kb-key f-index">B<span class="fin">L index</span></div>
-        <div class="kb-key f-index">N<span class="fin">R index</span></div>
-        <div class="kb-key f-index">M<span class="fin">R index</span></div>
-        <div class="kb-key f-middle">,<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring">.<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky">/<span class="fin">R pinky</span></div>
+        <div class="kb-key f-pinky" data-finger="0">Z<span class="fin">L pinky</span></div>
+        <div class="kb-key f-ring" data-finger="1">X<span class="fin">L ring</span></div>
+        <div class="kb-key f-middle" data-finger="2">C<span class="fin">L middle</span></div>
+        <div class="kb-key f-index" data-finger="3">V<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="3">B<span class="fin">L index</span></div>
+        <div class="kb-key f-index" data-finger="4">N<span class="fin">R index</span></div>
+        <div class="kb-key f-index" data-finger="4">M<span class="fin">R index</span></div>
+        <div class="kb-key f-middle" data-finger="5">,<span class="fin">R middle</span></div>
+        <div class="kb-key f-ring" data-finger="6">.<span class="fin">R ring</span></div>
+        <div class="kb-key f-pinky" data-finger="7">/<span class="fin">R pinky</span></div>
       </div>
       <div class="kb-legend">
         <span><i style="background:var(--ribbon-red)"></i> Pinky</span>
@@ -515,34 +517,36 @@ gtag('config', 'G-TNBKQNNTMY');
     <!-- Ad zone inside the guide, in between content blocks -->
     <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 4 --> Ad space</div>
 
-    <h3>Beginner mode progression</h3>
-    <p>Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.</p>
+    <h3 id="guideBeginnerHeading">Beginner mode progression</h3>
+    <p id="guideBeginnerPara">Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.</p>
 
-    <h3>Tips to improve your typing speed</h3>
-    <ul>
+    <h3 id="guideTipsHeading">Tips to improve your typing speed</h3>
+    <ul id="guideTipsList">
       <li>Keep your fingers on the home row between keystrokes.</li>
       <li>Don't look at the keyboard — trust your fingers and look at the screen.</li>
       <li>Accuracy first, speed second. A clean 40 WPM beats a sloppy 60 WPM.</li>
       <li>Practice in short, regular sessions rather than one long session occasionally.</li>
     </ul>
 
-    <h3>Frequently asked questions</h3>
-    <details class="faq-item">
-      <summary>What is WPM?</summary>
-      <p>WPM means Words Per Minute. It's calculated as (correct characters typed ÷ 5) ÷ minutes elapsed, which is the standard formula used by most typing tests.</p>
-    </details>
-    <details class="faq-item">
-      <summary>How is accuracy calculated?</summary>
-      <p>Accuracy is the percentage of correctly typed characters out of all characters you typed, including mistakes.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Can I change the passage before finishing it?</summary>
-      <p>Yes — use the Next button in the toolbar at any time to skip to a new passage without waiting for time to run out.</p>
-    </details>
-    <details class="faq-item">
-      <summary>Does this work in Marathi?</summary>
-      <p>Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes.</p>
-    </details>
+    <h3 id="guideFaqHeading">Frequently asked questions</h3>
+    <div id="guideFaqList">
+      <details class="faq-item">
+        <summary>What is WPM?</summary>
+        <p>WPM means Words Per Minute. It's calculated as (correct characters typed ÷ 5) ÷ minutes elapsed, which is the standard formula used by most typing tests.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is accuracy calculated?</summary>
+        <p>Accuracy is the percentage of correctly typed characters out of all characters you typed, including mistakes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I change the passage before finishing it?</summary>
+        <p>Yes — use the Next button in the toolbar at any time to skip to a new passage without waiting for time to run out.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does this work in Marathi?</summary>
+        <p>Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes.</p>
+      </details>
+    </div>
 
     <!-- Second ad zone inside the guide -->
     <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 5 --> Ad space</div>
@@ -665,6 +669,93 @@ gtag('config', 'G-TNBKQNNTMY');
        The stage number only feeds the "Stage" counter in the stats
        bar - it doesn't have to be perfectly sequential.
      ================================================================ */
+
+  /* ================================================================
+     GUIDE / FAQ CONTENT (the "How to use" section below the tool)
+     ================================================================
+     One object per language, same shape as ADVANCED_PASSAGES /
+     BEGINNER_PASSAGES so it's easy to keep language support in sync.
+
+     HOW TO ADD A NEW LANGUAGE'S GUIDE TEXT
+     1. Copy the whole "en:" block below (or "mr:" if it's closer to
+        the new language) and rename the key to your language code,
+        e.g. GUIDE_CONTENT.hi = { ... }.
+     2. Translate every field - title, intro, headings, paragraphs,
+        the tips array, and the faq array (each {q, a} pair).
+     3. Nothing else to wire up - applyGuideLanguage() below reads
+        whichever key matches the current langSelect value.
+     ================================================================ */
+  const GUIDE_CONTENT = {
+    en: {
+      title: "How to use Smart Typing",
+      intro: "Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.",
+      fingerHeading: "Finger placement for beginners",
+      fingerPara: "Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.",
+      beginnerHeading: "Beginner mode progression",
+      beginnerPara: "Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.",
+      tipsHeading: "Tips to improve your typing speed",
+      tips: [
+        "Keep your fingers on the home row between keystrokes.",
+        "Don't look at the keyboard — trust your fingers and look at the screen.",
+        "Accuracy first, speed second. A clean 40 WPM beats a sloppy 60 WPM.",
+        "Practice in short, regular sessions rather than one long session occasionally."
+      ],
+      faqHeading: "Frequently asked questions",
+      faq: [
+        {q:"What is WPM?", a:"WPM means Words Per Minute. It's calculated as (correct characters typed ÷ 5) ÷ minutes elapsed, which is the standard formula used by most typing tests."},
+        {q:"How is accuracy calculated?", a:"Accuracy is the percentage of correctly typed characters out of all characters you typed, including mistakes."},
+        {q:"Can I change the passage before finishing it?", a:"Yes — use the Next button in the toolbar at any time to skip to a new passage without waiting for time to run out."},
+        {q:"Does this work in Marathi?", a:"Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes."}
+      ]
+    },
+    mr: {
+      title: "Smart Typing कसे वापरावे",
+      intro: "तुमचे नाव टाका, वेळ मर्यादा निवडा, Beginner किंवा Advanced मोड निवडा आणि Start दाबा. डावीकडे दिसणारा उतारा जसाच्या तसा टाइप करा. एक उतारा पूर्ण झाल्यावर पुढचा आपोआप सुरू होतो, जोपर्यंत वेळ संपत नाही किंवा तुम्ही Stop दाबत नाही.",
+      fingerHeading: "नवशिक्यांसाठी बोटांची योग्य जागा",
+      fingerPara: "टच टायपिंगची सुरुवात home row पासून होते. डाव्या हाताची बोटे A S D F वर आणि उजव्या हाताची बोटे J K L ; वर ठेवा, अंगठे स्पेस बारवर ठेवा. प्रत्येक बोट खालील चित्राप्रमाणे स्वतःच्या column च्या keys साठी जबाबदार असते.",
+      beginnerHeading: "Beginner मोडची पायरी-पायरी रचना",
+      beginnerPara: "Beginner मोड तुम्हाला keyboard हळूहळू शिकवतो — आधी home row चा सराव, मग top row, मग home + top row मिश्रण, मग bottom row, मग home + bottom row मिश्रण, आणि शेवटी सोपे शब्द. एकदा सराव झाला की Advanced मोडवर स्विच करून पूर्ण परिच्छेद टाइप करा.",
+      tipsHeading: "टायपिंग स्पीड सुधारण्यासाठी टिप्स",
+      tips: [
+        "टायपिंग करताना बोटे नेहमी home row वरच ठेवा.",
+        "कीबोर्डकडे न बघता स्क्रीनकडे बघून टाइप करण्याचा सराव करा.",
+        "आधी अचूकता, मग वेग — नीट टाइप केलेला 40 WPM हा घाईघाईतल्या 60 WPM पेक्षा चांगला असतो.",
+        "एकाच वेळी खूप वेळ सराव करण्याऐवजी दररोज थोडा-थोडा सराव करा."
+      ],
+      faqHeading: "वारंवार विचारले जाणारे प्रश्न",
+      faq: [
+        {q:"WPM म्हणजे काय?", a:"WPM म्हणजे Words Per Minute. हे (बरोबर टाइप केलेली अक्षरे ÷ 5) ÷ लागलेली मिनिटे या सूत्राने काढले जाते, जे बहुतेक टायपिंग टेस्टमध्ये वापरले जाते."},
+        {q:"Accuracy कशी मोजली जाते?", a:"तुम्ही टाइप केलेल्या एकूण अक्षरांपैकी बरोबर अक्षरांची टक्केवारी म्हणजे accuracy, यात चुकाही मोजल्या जातात."},
+        {q:"उतारा पूर्ण होण्याआधी बदलता येतो का?", a:"हो — वेळ संपण्याची वाट न बघता toolbar मधील Next बटण दाबून नवीन उतारा घेऊ शकता."},
+        {q:"हे मराठीत चालते का?", a:"हो — toolbar मधील भाषा dropdown वापरून Beginner आणि Advanced दोन्ही मोडमध्ये इंग्रजी आणि मराठी दरम्यान बदल करता येतो."}
+      ]
+    }
+  };
+
+  function applyGuideLanguage(lang){
+    const g = GUIDE_CONTENT[lang] || GUIDE_CONTENT.en;
+    const isMr = lang === 'mr';
+
+    document.getElementById('guideTitle').textContent = g.title;
+    document.getElementById('guideIntro').textContent = g.intro;
+    document.getElementById('guideFingerHeading').textContent = g.fingerHeading;
+    document.getElementById('guideFingerPara').textContent = g.fingerPara;
+    document.getElementById('guideBeginnerHeading').textContent = g.beginnerHeading;
+    document.getElementById('guideBeginnerPara').textContent = g.beginnerPara;
+    document.getElementById('guideTipsHeading').textContent = g.tipsHeading;
+    document.getElementById('guideFaqHeading').textContent = g.faqHeading;
+
+    const tipsList = document.getElementById('guideTipsList');
+    tipsList.innerHTML = g.tips.map(function(t){ return '<li>' + t + '</li>'; }).join('');
+
+    const faqList = document.getElementById('guideFaqList');
+    faqList.innerHTML = g.faq.map(function(item){
+      return '<details class="faq-item"><summary>' + item.q + '</summary><p>' + item.a + '</p></details>';
+    }).join('');
+
+    // Apply the Devanagari font to the guide text too when Marathi is active
+    document.querySelector('.guide-inner').classList.toggle('mr-text', isMr);
+  }
 
   // ---------- State ----------
   let state = {
@@ -878,6 +969,7 @@ gtag('config', 'G-TNBKQNNTMY');
   langSelect.addEventListener('change', function(){
     if(state.running) return;
     state.lang = langSelect.value;
+    applyGuideLanguage(state.lang);
   });
 
   // ---------- Layout toggle ----------
@@ -1005,6 +1097,7 @@ gtag('config', 'G-TNBKQNNTMY');
   });
 
   resetSession();
+  applyGuideLanguage(state.lang);
 })();
 </script>
 
