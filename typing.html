@@ -322,6 +322,23 @@ gtag('config', 'G-TNBKQNNTMY');
   .kb-legend span{display:inline-flex;align-items:center;gap:5px;}
   .kb-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
 
+  /* Finger-cycling animation: pulses whichever column is "active" */
+  .kb-key{transition:transform 0.25s ease, box-shadow 0.25s ease;}
+  .kb-key.active-finger{
+    transform:scale(1.14);
+    box-shadow:0 0 0 3px rgba(255,255,255,0.55);
+  }
+  .kb-anim-label{
+    margin-top:10px;font-size:12px;font-weight:600;color:var(--off-white);
+    min-height:18px;
+  }
+
+  /* WPM benchmark table */
+  .wpm-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:13px;}
+  .wpm-table td{padding:8px 10px;border-bottom:1px solid var(--ink-softer);color:var(--muted);}
+  .wpm-table tr:first-child td{color:var(--brass);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:0.5px;}
+  .wpm-table td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--off-white);}
+
   .faq-item{border-top:1px solid var(--ink-softer);padding:12px 0;}
   .faq-item summary{font-size:13px;font-weight:600;color:var(--off-white);cursor:pointer;}
   .faq-item p{margin-top:8px;}
@@ -411,6 +428,7 @@ gtag('config', 'G-TNBKQNNTMY');
     <div class="stat"><span class="val" id="errVal">0</span><span class="lbl">Errors</span></div>
     <div class="stat"><span class="val" id="passVal">0</span><span class="lbl">Passages</span></div>
     <div class="stat"><span class="val" id="stageVal">—</span><span class="lbl">Stage</span></div>
+    <div class="stat"><span class="val" id="bestVal">0</span><span class="lbl">Best WPM</span></div>
   </div>
 </header>
 
@@ -450,9 +468,15 @@ gtag('config', 'G-TNBKQNNTMY');
       <div class="rbox"><div class="v" id="certTime">0:00</div><div class="l">Time Taken</div></div>
       <div class="rbox"><div class="v" id="certPass">0</div><div class="l">Passages Done</div></div>
     </div>
+    <!-- Session-only best score (resets on page reload). See the
+         comment near "sessionBest" in the script if you want to make
+         this persist across visits using localStorage on your live
+         site (localStorage is intentionally not used here - see note). -->
+    <div class="r-best" id="certBest" style="font-size:11px;color:var(--brass-deep);margin:-8px 0 14px;"></div>
     <div class="r-actions">
       <button class="btn btn-start" id="tryAgainBtn">Try Again</button>
       <button class="btn btn-ghost" id="printBtn">🖨 Print Certificate</button>
+      <a class="btn btn-ghost" id="shareBtn" target="_blank" rel="noopener">📤 Share on WhatsApp</a>
     </div>
   </div>
   <div class="ad-slot beside"><!-- ADSENSE PLACEHOLDER 3 (beside result) --> Ad space</div>
@@ -512,6 +536,8 @@ gtag('config', 'G-TNBKQNNTMY');
         <span><i style="background:var(--success)"></i> Middle</span>
         <span><i style="background:#5fa8d3"></i> Index</span>
       </div>
+      <!-- Filled in by the finger-cycling animation in the script -->
+      <div class="kb-anim-label" id="fingerAnimLabel"></div>
     </div>
 
     <!-- Ad zone inside the guide, in between content blocks -->
@@ -520,6 +546,9 @@ gtag('config', 'G-TNBKQNNTMY');
     <h3 id="guideBeginnerHeading">Beginner mode progression</h3>
     <p id="guideBeginnerPara">Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.</p>
 
+    <h3 id="guideMistakesHeading">Common typing mistakes</h3>
+    <ul id="guideMistakesList"></ul>
+
     <h3 id="guideTipsHeading">Tips to improve your typing speed</h3>
     <ul id="guideTipsList">
       <li>Keep your fingers on the home row between keystrokes.</li>
@@ -527,6 +556,21 @@ gtag('config', 'G-TNBKQNNTMY');
       <li>Accuracy first, speed second. A clean 40 WPM beats a sloppy 60 WPM.</li>
       <li>Practice in short, regular sessions rather than one long session occasionally.</li>
     </ul>
+
+    <h3 id="guideBenefitsHeading">Why touch typing is worth learning</h3>
+    <p id="guideBenefitsPara"></p>
+
+    <!-- Ad zone: after the mistakes/tips/benefits block -->
+    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 6 --> Ad space</div>
+
+    <h3 id="guideWpmHeading">Typical WPM benchmarks</h3>
+    <table id="guideWpmTable" class="wpm-table"></table>
+
+    <h3 id="guideHistoryHeading">Why the keyboard is laid out this way</h3>
+    <p id="guideHistoryPara"></p>
+
+    <!-- Ad zone: after the benchmarks/history block -->
+    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 7 --> Ad space</div>
 
     <h3 id="guideFaqHeading">Frequently asked questions</h3>
     <div id="guideFaqList">
@@ -548,7 +592,7 @@ gtag('config', 'G-TNBKQNNTMY');
       </details>
     </div>
 
-    <!-- Second ad zone inside the guide -->
+    <!-- Final ad zone in the guide -->
     <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 5 --> Ad space</div>
   </div>
 </section>
@@ -693,6 +737,14 @@ gtag('config', 'G-TNBKQNNTMY');
       fingerPara: "Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.",
       beginnerHeading: "Beginner mode progression",
       beginnerPara: "Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.",
+      mistakesHeading: "Common typing mistakes",
+      mistakes: [
+        "Looking down at the keyboard instead of the screen while typing.",
+        "Using only two or three fingers instead of all ten.",
+        "Sitting too close or too far from the screen, which strains posture over time.",
+        "Rushing for speed before accuracy is comfortable, which builds bad muscle memory.",
+        "Not returning fingers to the home row after reaching for a key."
+      ],
       tipsHeading: "Tips to improve your typing speed",
       tips: [
         "Keep your fingers on the home row between keystrokes.",
@@ -700,12 +752,26 @@ gtag('config', 'G-TNBKQNNTMY');
         "Accuracy first, speed second. A clean 40 WPM beats a sloppy 60 WPM.",
         "Practice in short, regular sessions rather than one long session occasionally."
       ],
+      benefitsHeading: "Why touch typing is worth learning",
+      benefitsPara: "Typing without looking down frees up your attention for the actual content — useful for exams, office work, coding, and competitive government exams that test typing speed directly. It also reduces neck and eye strain from constantly switching focus between keyboard and screen, and it simply saves time across everything you do on a computer.",
+      wpmHeading: "Typical WPM benchmarks",
+      wpmTable: [
+        ["Level", "Typical speed"],
+        ["Beginner", "10 – 20 WPM"],
+        ["Average typist", "30 – 40 WPM"],
+        ["Good typist", "50 – 60 WPM"],
+        ["Professional / exam-ready", "70+ WPM"]
+      ],
+      historyHeading: "Why the keyboard is laid out this way",
+      historyPara: "The QWERTY layout dates back to early mechanical typewriters, where commonly paired letters were deliberately spaced apart to reduce the metal typebars jamming into each other. Computers don't have that mechanical limitation anymore, but QWERTY stuck around simply because generations of typists already knew it — which is exactly why practicing on the standard layout still pays off today.",
       faqHeading: "Frequently asked questions",
       faq: [
         {q:"What is WPM?", a:"WPM means Words Per Minute. It's calculated as (correct characters typed ÷ 5) ÷ minutes elapsed, which is the standard formula used by most typing tests."},
         {q:"How is accuracy calculated?", a:"Accuracy is the percentage of correctly typed characters out of all characters you typed, including mistakes."},
         {q:"Can I change the passage before finishing it?", a:"Yes — use the Next button in the toolbar at any time to skip to a new passage without waiting for time to run out."},
-        {q:"Does this work in Marathi?", a:"Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes."}
+        {q:"Does this work in Marathi?", a:"Yes — use the language dropdown in the toolbar to switch between English and Marathi passages for both Beginner and Advanced modes."},
+        {q:"How long does it take to improve?", a:"Most beginners notice a real difference within two to three weeks of short, regular daily practice — consistency matters more than session length."},
+        {q:"Should I prioritize speed or accuracy first?", a:"Accuracy first. Speed builds naturally once your fingers know the keys without conscious effort; typing fast with lots of errors just means more time spent correcting mistakes."}
       ]
     },
     mr: {
@@ -715,6 +781,14 @@ gtag('config', 'G-TNBKQNNTMY');
       fingerPara: "टच टायपिंगची सुरुवात home row पासून होते. डाव्या हाताची बोटे A S D F वर आणि उजव्या हाताची बोटे J K L ; वर ठेवा, अंगठे स्पेस बारवर ठेवा. प्रत्येक बोट खालील चित्राप्रमाणे स्वतःच्या column च्या keys साठी जबाबदार असते.",
       beginnerHeading: "Beginner मोडची पायरी-पायरी रचना",
       beginnerPara: "Beginner मोड तुम्हाला keyboard हळूहळू शिकवतो — आधी home row चा सराव, मग top row, मग home + top row मिश्रण, मग bottom row, मग home + bottom row मिश्रण, आणि शेवटी सोपे शब्द. एकदा सराव झाला की Advanced मोडवर स्विच करून पूर्ण परिच्छेद टाइप करा.",
+      mistakesHeading: "टायपिंग करताना होणाऱ्या सामान्य चुका",
+      mistakes: [
+        "स्क्रीनऐवजी सतत कीबोर्डकडे बघत राहणे.",
+        "दहा बोटांऐवजी फक्त दोन-तीन बोटांनीच टाइप करणे.",
+        "स्क्रीनपासून खूप जवळ किंवा खूप लांब बसणे, ज्यामुळे posture बिघडते.",
+        "अचूकता नीट होण्याआधीच वेगावर भर देणे, ज्यामुळे चुकीची सवय लागते.",
+        "एखादी key दाबल्यानंतर बोट परत home row वर न आणणे."
+      ],
       tipsHeading: "टायपिंग स्पीड सुधारण्यासाठी टिप्स",
       tips: [
         "टायपिंग करताना बोटे नेहमी home row वरच ठेवा.",
@@ -722,14 +796,37 @@ gtag('config', 'G-TNBKQNNTMY');
         "आधी अचूकता, मग वेग — नीट टाइप केलेला 40 WPM हा घाईघाईतल्या 60 WPM पेक्षा चांगला असतो.",
         "एकाच वेळी खूप वेळ सराव करण्याऐवजी दररोज थोडा-थोडा सराव करा."
       ],
+      benefitsHeading: "टच टायपिंग शिकणे का फायद्याचे आहे",
+      benefitsPara: "खाली न बघता टाइप केल्याने तुमचे पूर्ण लक्ष content वर राहते — परीक्षा, ऑफिसचे काम, coding आणि typing speed तपासणाऱ्या स्पर्धा परीक्षांसाठी हे खूप उपयोगी आहे. यामुळे कीबोर्ड आणि स्क्रीनमध्ये सतत लक्ष बदलल्याने होणारा मान आणि डोळ्यांवरचा ताणही कमी होतो, आणि संगणकावरील प्रत्येक कामात वेळही वाचतो.",
+      wpmHeading: "साधारण WPM मापदंड",
+      wpmTable: [
+        ["स्तर", "साधारण वेग"],
+        ["नवशिक्या", "10 – 20 WPM"],
+        ["सर्वसाधारण", "30 – 40 WPM"],
+        ["चांगला typist", "50 – 60 WPM"],
+        ["व्यावसायिक / परीक्षेसाठी तयार", "70+ WPM"]
+      ],
+      historyHeading: "कीबोर्डची रचना अशी का आहे",
+      historyPara: "QWERTY रचना जुन्या यांत्रिक टाइपरायटरपासून आली आहे, जिथे एकत्र वापरल्या जाणाऱ्या अक्षरांच्या धातूच्या पट्ट्या एकमेकांत अडकू नयेत म्हणून जाणूनबुजून लांब ठेवल्या गेल्या होत्या. आजच्या संगणकांना ती यांत्रिक अडचण नाही, पण पिढ्यानपिढ्या लोकांना QWERTY आधीच माहीत असल्याने ती तशीच राहिली — म्हणूनच याच layout वर सराव करणे आजही फायद्याचे आहे.",
       faqHeading: "वारंवार विचारले जाणारे प्रश्न",
       faq: [
         {q:"WPM म्हणजे काय?", a:"WPM म्हणजे Words Per Minute. हे (बरोबर टाइप केलेली अक्षरे ÷ 5) ÷ लागलेली मिनिटे या सूत्राने काढले जाते, जे बहुतेक टायपिंग टेस्टमध्ये वापरले जाते."},
         {q:"Accuracy कशी मोजली जाते?", a:"तुम्ही टाइप केलेल्या एकूण अक्षरांपैकी बरोबर अक्षरांची टक्केवारी म्हणजे accuracy, यात चुकाही मोजल्या जातात."},
         {q:"उतारा पूर्ण होण्याआधी बदलता येतो का?", a:"हो — वेळ संपण्याची वाट न बघता toolbar मधील Next बटण दाबून नवीन उतारा घेऊ शकता."},
-        {q:"हे मराठीत चालते का?", a:"हो — toolbar मधील भाषा dropdown वापरून Beginner आणि Advanced दोन्ही मोडमध्ये इंग्रजी आणि मराठी दरम्यान बदल करता येतो."}
+        {q:"हे मराठीत चालते का?", a:"हो — toolbar मधील भाषा dropdown वापरून Beginner आणि Advanced दोन्ही मोडमध्ये इंग्रजी आणि मराठी दरम्यान बदल करता येतो."},
+        {q:"सुधारणा दिसायला किती वेळ लागतो?", a:"बहुतेक नवशिक्यांना दररोज थोडा सराव केल्यास दोन-तीन आठवड्यांतच फरक जाणवतो — सरावाचा कालावधी नाही, सातत्य जास्त महत्त्वाचे आहे."},
+        {q:"आधी वेग की अचूकता?", a:"आधी अचूकता. बोटांना keys आपोआप सवयीच्या झाल्या की वेग स्वतःच वाढतो; चुका करत वेगाने टाइप केल्याने चुका सुधारण्यातच जास्त वेळ जातो."}
       ]
     }
+  };
+
+  // Labels shown under the keyboard diagram as the finger-cycling
+  // animation highlights each column (index 0-7 matches data-finger)
+  const FINGER_LABELS = {
+    en: ["Left pinky — Q, A, Z", "Left ring — W, S, X", "Left middle — E, D, C", "Left index — R, F, V, T, G, B",
+         "Right index — Y, H, N, U, J, M", "Right middle — I, K, ,", "Right ring — O, L, .", "Right pinky — P, ; , /"],
+    mr: ["डावी करंगळी — Q, A, Z", "डावी अनामिका — W, S, X", "डावे मधले बोट — E, D, C", "डावे तर्जनी — R, F, V, T, G, B",
+         "उजवे तर्जनी — Y, H, N, U, J, M", "उजवे मधले बोट — I, K, ,", "उजवी अनामिका — O, L, .", "उजवी करंगळी — P, ; , /"]
   };
 
   function applyGuideLanguage(lang){
@@ -742,11 +839,25 @@ gtag('config', 'G-TNBKQNNTMY');
     document.getElementById('guideFingerPara').textContent = g.fingerPara;
     document.getElementById('guideBeginnerHeading').textContent = g.beginnerHeading;
     document.getElementById('guideBeginnerPara').textContent = g.beginnerPara;
+    document.getElementById('guideMistakesHeading').textContent = g.mistakesHeading;
     document.getElementById('guideTipsHeading').textContent = g.tipsHeading;
+    document.getElementById('guideBenefitsHeading').textContent = g.benefitsHeading;
+    document.getElementById('guideBenefitsPara').textContent = g.benefitsPara;
+    document.getElementById('guideWpmHeading').textContent = g.wpmHeading;
+    document.getElementById('guideHistoryHeading').textContent = g.historyHeading;
+    document.getElementById('guideHistoryPara').textContent = g.historyPara;
     document.getElementById('guideFaqHeading').textContent = g.faqHeading;
+
+    const mistakesList = document.getElementById('guideMistakesList');
+    mistakesList.innerHTML = g.mistakes.map(function(t){ return '<li>' + t + '</li>'; }).join('');
 
     const tipsList = document.getElementById('guideTipsList');
     tipsList.innerHTML = g.tips.map(function(t){ return '<li>' + t + '</li>'; }).join('');
+
+    const wpmTable = document.getElementById('guideWpmTable');
+    wpmTable.innerHTML = g.wpmTable.map(function(row){
+      return '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td></tr>';
+    }).join('');
 
     const faqList = document.getElementById('guideFaqList');
     faqList.innerHTML = g.faq.map(function(item){
@@ -803,8 +914,19 @@ gtag('config', 'G-TNBKQNNTMY');
   const certAcc = document.getElementById('certAcc');
   const certTime = document.getElementById('certTime');
   const certPass = document.getElementById('certPass');
+  const certBest = document.getElementById('certBest');
+  const bestVal = document.getElementById('bestVal');
+  const shareBtn = document.getElementById('shareBtn');
   const tryAgainBtn = document.getElementById('tryAgainBtn');
   const printBtn = document.getElementById('printBtn');
+
+  // Best WPM for this browser tab session only (resets on page reload).
+  // Not using localStorage here on purpose - this file is also previewed
+  // inside sandboxed tool frames where localStorage can silently fail.
+  // Once this is deployed on your real site, you can swap this for
+  // localStorage (getItem/setItem with a fixed key) if you want the
+  // best score to persist across visits instead of just this session.
+  let sessionBest = 0;
 
   // ---------- Passage selection ----------
   function pickAdvancedPassage(){
@@ -1062,6 +1184,17 @@ gtag('config', 'G-TNBKQNNTMY');
     certAcc.textContent = s.accuracy + '%';
     certTime.textContent = formatTime(s.timeSec);
     certPass.textContent = state.passagesCompleted;
+
+    const isNewBest = s.wpm > sessionBest;
+    if(isNewBest){ sessionBest = s.wpm; bestVal.textContent = sessionBest; }
+    certBest.textContent = isNewBest
+      ? '🏆 New best for this session!'
+      : ('This session\'s best so far: ' + sessionBest + ' WPM');
+
+    const shareMsg = 'I just typed at ' + s.wpm + ' WPM with ' + s.accuracy +
+      '% accuracy on Smart Typing! Try it yourself: https://smartappsstudio.in/typing.html';
+    shareBtn.href = 'https://wa.me/?text=' + encodeURIComponent(shareMsg);
+
     resultSection.classList.add('show');
     resultSection.scrollIntoView({behavior:'smooth', block:'start'});
   }
@@ -1098,6 +1231,28 @@ gtag('config', 'G-TNBKQNNTMY');
 
   resetSession();
   applyGuideLanguage(state.lang);
+
+  // ---------- Finger-cycling animation (decorative, in the guide) ----------
+  // Cycles a highlight across the home-row keys, one at a time, and
+  // updates the caption below the keyboard to match. Runs continuously,
+  // independent of whether a typing session is active. The caption
+  // text follows whatever language is currently selected (state.lang).
+  const homeRowKeys = Array.from(
+    document.querySelectorAll('.keyboard-diagram .kb-row')[1].querySelectorAll('.kb-key')
+  );
+  const fingerAnimLabel = document.getElementById('fingerAnimLabel');
+  let fingerAnimIndex = 0;
+  function tickFingerAnim(){
+    homeRowKeys.forEach(function(k){ k.classList.remove('active-finger'); });
+    const key = homeRowKeys[fingerAnimIndex];
+    key.classList.add('active-finger');
+    const fingerIdx = parseInt(key.getAttribute('data-finger'), 10);
+    const labels = FINGER_LABELS[state.lang] || FINGER_LABELS.en;
+    fingerAnimLabel.textContent = labels[fingerIdx];
+    fingerAnimIndex = (fingerAnimIndex + 1) % homeRowKeys.length;
+  }
+  tickFingerAnim();
+  setInterval(tickFingerAnim, 1400);
 })();
 </script>
 
