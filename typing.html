@@ -183,6 +183,17 @@ gtag('config', 'G-TNBKQNNTMY');
   .btn-stop{background:var(--ribbon-red);color:#fff;}
   .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.18);color:var(--off-white);}
   .btn-ghost:hover{border-color:var(--brass);color:var(--brass);}
+  /* Ghost buttons look fine on the dark header, but the result card
+   has a cream/paper background — override colors just inside it */
+.result-card .btn-ghost{
+  background:transparent;
+  border:1px solid var(--brass-deep);
+  color:var(--brass-deep);
+}
+.result-card .btn-ghost:hover{
+  background:var(--brass-deep);
+  color:#fff;
+}
   .btn-ghost.active{background:var(--brass);color:var(--ink);border-color:var(--brass);}
   .btn:disabled{opacity:0.4;cursor:not-allowed;}
 
