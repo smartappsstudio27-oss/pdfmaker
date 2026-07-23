@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MP4 to MP3 Converter | SmartApps Studio</title>
+<meta name="description" content="Convert MP4 video to MP3 audio free, online, right in your browser. Drag and drop up to 5 files, no upload to any server, no signup, instant download.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://smartappsstudio.in/mp4-to-mp3.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SmartApps Studio">
+<meta property="og:title" content="MP4 to MP3 Converter | SmartApps Studio">
+<meta property="og:description" content="Convert MP4 video to MP3 audio free, online, right in your browser. Drag and drop up to 5 files, no upload to any server, no signup, instant download.">
+<meta property="og:url" content="https://smartappsstudio.in/mp4-to-mp3.html">
+<meta property="og:image" content="https://smartappsstudio.in/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MP4 to MP3 Converter | SmartApps Studio">
+<meta name="twitter:description" content="Convert MP4 video to MP3 audio free, online, right in your browser. Drag and drop up to 5 files, no upload to any server, no signup, instant download.">
+<meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNBKQNNTMY');
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
+}
+</script>
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "description":"Official website of SmartApps Studio, developing Android apps, games, PDF tools and Smart Typing.",
+  "inLanguage":"en",
+  "publisher":{
+    "@type":"Organization",
+    "name":"SmartApps Studio",
+    "url":"https://smartappsstudio.in/"
+  }
+}
+</script>
+<!-- WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"MP4 to MP3 Converter | SmartApps Studio",
+  "url":"https://smartappsstudio.in/mp4-to-mp3.html",
+  "description":"Free browser-based tool to convert MP4 video files to MP3 audio. Drag and drop up to 5 files, files never leave your device.",
+  "inLanguage":"en",
+  "isPartOf":{
+    "@type":"WebSite",
+    "name":"SmartApps Studio",
+    "url":"https://smartappsstudio.in/"
+  },
+  "about":{
+    "@type":"SoftwareApplication",
+    "name":"MP4 to MP3 Converter",
+    "applicationCategory":"MultimediaApplication",
+    "operatingSystem":"Any (Web Browser)",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"INR"
+    }
+  }
+}
+</script>
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"MP4 to MP3 Converter","item":"https://smartappsstudio.in/mp4-to-mp3.html"}
+  ]
+}
+</script>
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is this MP4 to MP3 converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter is completely free with no signup, no watermark and no hidden limits beyond 5 files per batch."}},
+    {"@type":"Question","name":"Are my video files uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs entirely inside your browser using WebAssembly. Your files never leave your device."}},
+    {"@type":"Question","name":"How many files can I convert at once?","acceptedAnswer":{"@type":"Answer","text":"You can select and convert up to 5 MP4 files in a single batch."}},
+    {"@type":"Question","name":"Will converting reduce audio quality?","acceptedAnswer":{"@type":"Answer","text":"You can choose the output bitrate: 128kbps for smaller files, 192kbps for balanced quality, or 320kbps for near-original audio quality."}},
+    {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, it works on any modern mobile or desktop browser that supports WebAssembly, including Chrome, Edge and Safari."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --success:#16A34A;
+    --danger:#DC2626;
+    --radius:14px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  /* Skip link for a11y */
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+
+  /* Header */
+  header.site-header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(248,249,251,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{
+    max-width:1320px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);font-weight:700;font-size:1.15rem;
+    text-decoration:none;color:var(--text);
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:var(--font-display);font-weight:700;font-size:.95rem;
+  }
+  nav.site-nav a{
+    text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;
+    margin-left:22px;
+  }
+  nav.site-nav a:hover{color:var(--primary);}
+
+  /* Layout with ad rails */
+  .page-shell{
+    max-width:1600px;margin:0 auto;
+    display:grid;
+    grid-template-columns:160px minmax(0,1fr) 160px;
+    gap:20px;
+    padding:0 16px;
+  }
+  .ad-rail{
+    position:sticky;top:78px;align-self:start;
+    width:160px;height:600px;
+    background:var(--surface);
+    border:1px dashed var(--border);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.72rem;font-family:var(--font-mono);
+    text-align:center;padding:8px;
+  }
+  @media (max-width:1400px){
+    .page-shell{grid-template-columns:1fr;}
+    .ad-rail{display:none;}
+  }
+  main.content{min-width:0;}
+
+  .ad-inline{
+    max-width:900px;margin:36px auto;
+    min-height:100px;
+    background:var(--surface);
+    border:1px dashed var(--border);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.75rem;font-family:var(--font-mono);
+  }
+
+  /* Hero */
+  .hero{
+    max-width:1100px;margin:0 auto;padding:56px 24px 20px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  @media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:36px;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  h1{
+    font-family:var(--font-display);font-size:2.6rem;line-height:1.1;
+    margin:18px 0 14px;font-weight:700;
+  }
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:46ch;}
+  .trust-row{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);font-weight:600;}
+  .trust-item svg{width:18px;height:18px;color:var(--success);flex-shrink:0;}
+
+  /* Waveform morph signature SVG */
+  .morph-wrap{display:flex;justify-content:center;}
+  .morph-wrap svg{width:100%;max-width:360px;height:auto;}
+
+  /* Converter card */
+  .converter-section{max-width:900px;margin:10px auto 0;padding:0 24px;}
+  .converter-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 1px 2px rgba(20,23,31,.04),0 10px 30px -18px rgba(20,23,31,.15);
+  }
+  .quality-row{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:14px;flex-wrap:wrap;margin-bottom:18px;
+  }
+  .quality-row label{font-weight:600;font-size:.88rem;color:var(--text);}
+  select.quality-select{
+    font-family:var(--font-mono);font-size:.85rem;font-weight:600;
+    padding:8px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);
+  }
+  .counter-pill{
+    font-family:var(--font-mono);font-size:.78rem;font-weight:600;
+    color:var(--muted);background:var(--bg);border:1px solid var(--border);
+    padding:5px 10px;border-radius:20px;
+  }
+
+  .dropzone{
+    border:2px dashed var(--border);
+    border-radius:16px;
+    padding:44px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+    background:linear-gradient(180deg,#FAFBFC,#FFFFFF);
+  }
+  .dropzone.dragover{border-color:var(--primary);background:#FCF2F1;}
+  .dropzone .dz-icon{
+    width:56px;height:56px;margin:0 auto 14px;color:var(--primary);
+  }
+  .dropzone h3{font-family:var(--font-display);margin:0 0 6px;font-size:1.15rem;}
+  .dropzone p{margin:0;color:var(--muted);font-size:.9rem;}
+  .browse-btn{
+    display:inline-block;margin-top:16px;
+    background:var(--primary);color:#fff;border:none;
+    padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;
+    cursor:pointer;font-family:var(--font-body);
+  }
+  .browse-btn:hover{background:var(--primary-dark);}
+  input[type=file]{display:none;}
+
+  .status-msg{font-size:.82rem;margin-top:10px;text-align:center;min-height:18px;}
+  .status-msg.error{color:var(--danger);font-weight:600;}
+
+  .file-list{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .file-item{
+    display:flex;align-items:center;gap:12px;
+    border:1px solid var(--border);border-radius:12px;padding:12px 14px;
+    background:var(--bg);
+  }
+  .file-icon{
+    width:40px;height:40px;border-radius:9px;flex-shrink:0;
+    background:#EAF6F5;color:var(--teal);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .file-meta{flex:1;min-width:0;}
+  .file-name{font-weight:600;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .file-sub{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);margin-top:2px;}
+  .file-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .remove-btn{
+    border:none;background:transparent;color:var(--muted);cursor:pointer;
+    width:28px;height:28px;border-radius:8px;
+  }
+  .remove-btn:hover{background:#FCE9E8;color:var(--danger);}
+  .download-link{
+    background:var(--success);color:#fff;text-decoration:none;
+    font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;
+    white-space:nowrap;
+  }
+  .progress-track{
+    width:100%;height:6px;background:var(--border);border-radius:6px;overflow:hidden;margin-top:8px;
+  }
+  .progress-fill{height:100%;width:0%;background:var(--primary);transition:width .2s ease;}
+
+  .action-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body);font-weight:700;font-size:.92rem;
+    padding:12px 22px;border-radius:10px;border:none;cursor:pointer;
+  }
+  .btn-primary{background:var(--primary);color:#fff;flex:1;min-width:180px;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-primary:disabled{background:#E4A9A8;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+  .btn-zip{background:var(--teal);color:#fff;}
+  .btn-zip:hover{background:#0C8B87;}
+
+  /* Sections */
+  section.info{max-width:900px;margin:64px auto;padding:0 24px;}
+  section.info h2{
+    font-family:var(--font-display);font-size:1.7rem;margin-bottom:10px;
+  }
+  section.info p.section-sub{color:var(--muted);margin-bottom:28px;max-width:60ch;}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:640px){.grid-2{grid-template-columns:1fr;}}
+  .info-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;
+  }
+  .info-card h3{font-family:var(--font-display);font-size:1.05rem;margin:0 0 8px;color:var(--primary);}
+  .info-card p{margin:0;color:var(--muted);font-size:.9rem;}
+
+  .steps{counter-reset:step;display:flex;flex-direction:column;gap:0;}
+  .step{
+    display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--border);
+  }
+  .step:first-child{border-top:none;}
+  .step-num{
+    counter-increment:step;
+    font-family:var(--font-mono);font-weight:700;color:var(--primary);
+    font-size:.85rem;flex-shrink:0;width:32px;
+  }
+  .step-num::before{content:"0" counter(step);}
+  .step-body h4{margin:0 0 4px;font-family:var(--font-display);font-size:1rem;}
+  .step-body p{margin:0;color:var(--muted);font-size:.88rem;}
+
+  table.compare{
+    width:100%;border-collapse:collapse;font-size:.88rem;
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  }
+  table.compare th,table.compare td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border);}
+  table.compare th{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);background:var(--bg);}
+  table.compare tr:last-child td{border-bottom:none;}
+  table.compare td strong{color:var(--primary);}
+
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;
+    padding:18px 0;font-family:var(--font-body);font-weight:600;font-size:.95rem;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);
+  }
+  .faq-q .plus{font-family:var(--font-mono);color:var(--primary);font-size:1.1rem;transition:transform .15s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;}
+  .faq-a p{margin:0 0 18px;color:var(--muted);font-size:.9rem;}
+
+  .privacy-banner{
+    display:flex;gap:14px;align-items:flex-start;
+    background:#EAF6F5;border:1px solid #CFEDEA;border-radius:14px;padding:18px 20px;
+  }
+  .privacy-banner svg{width:24px;height:24px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+  .privacy-banner p{margin:0;font-size:.88rem;color:#0B655F;}
+
+  footer.site-footer{
+    border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;
+    text-align:center;color:var(--muted);font-size:.82rem;
+  }
+  footer.site-footer a{color:var(--primary);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://smartappsstudio.in/" class="logo">
+      <span class="logo-mark">SA</span> SmartApps Studio
+    </a>
+    <nav class="site-nav">
+      <a href="https://smartappsstudio.in/">Home</a>
+      <a href="https://smartappsstudio.in/typing.html">Smart Typing</a>
+      <a href="#converter">MP4 → MP3</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-shell">
+  <!-- Left vertical ad rail -->
+  <aside class="ad-rail" id="ad-rail-left">
+    <!-- TODO: replace with real AdSense <ins class="adsbygoogle"> 160x600 unit -->
+    Advertisement<br>160×600
+  </aside>
+
+  <main class="content" id="main">
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> 100% browser-based · nothing uploaded</span>
+        <h1>Convert MP4 to MP3 in seconds</h1>
+        <p class="lead">Drag in your video, pick a quality, and pull out clean MP3 audio — right here on this page. No installs, no accounts, no waiting on uploads.</p>
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Free, no limits
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Files stay on your device
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Up to 5 files at once
+          </div>
+        </div>
+      </div>
+      <div class="morph-wrap" aria-hidden="true">
+        <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="60" width="110" height="100" rx="14" fill="#FCE9E8" stroke="#D32F2D" stroke-width="2"/>
+          <polygon points="55,90 55,130 90,110" fill="#D32F2D"/>
+          <path d="M132 110 H172" stroke="#C7CCD4" stroke-width="2" stroke-dasharray="4 5"/>
+          <polygon points="172,104 184,110 172,116" fill="#C7CCD4"/>
+          <g fill="#0EA5A0">
+            <rect x="196" y="95" width="8" height="30" rx="3"/>
+            <rect x="212" y="75" width="8" height="70" rx="3"/>
+            <rect x="228" y="55" width="8" height="110" rx="3"/>
+            <rect x="244" y="85" width="8" height="50" rx="3"/>
+            <rect x="260" y="65" width="8" height="90" rx="3"/>
+            <rect x="276" y="95" width="8" height="30" rx="3"/>
+            <rect x="292" y="75" width="8" height="70" rx="3"/>
+            <rect x="308" y="90" width="8" height="40" rx="3"/>
+            <rect x="324" y="100" width="8" height="20" rx="3"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="converter-section" id="converter">
+      <div class="converter-card">
+
+        <div class="quality-row">
+          <div>
+            <label for="quality">Output quality</label><br>
+            <select id="quality" class="quality-select">
+              <option value="128k">128 kbps — smaller file</option>
+              <option value="192k" selected>192 kbps — balanced</option>
+              <option value="320k">320 kbps — best quality</option>
+            </select>
+          </div>
+          <span class="counter-pill" id="fileCounter">0 / 5 files</span>
+        </div>
+
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Drag and drop MP4 files here, or click to browse">
+          <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+          </svg>
+          <h3>Drag &amp; drop MP4 files here</h3>
+          <p>or click to browse from your device · up to 5 files</p>
+          <button type="button" class="browse-btn" id="browseBtn">Choose Files</button>
+          <input type="file" id="fileInput" accept="video/mp4,.mp4" multiple>
+        </div>
+
+        <p class="status-msg" id="statusMsg"></p>
+
+        <div class="file-list" id="fileList"></div>
+
+        <div class="action-row" id="actionRow" style="display:none;">
+          <button class="btn btn-primary" id="convertBtn">Convert to MP3</button>
+          <button class="btn btn-ghost" id="clearBtn">Clear all</button>
+          <button class="btn btn-zip" id="zipBtn" style="display:none;">Download All (.zip)</button>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
+
+    <section class="info">
+      <h2>How it works</h2>
+      <p class="section-sub">Three steps, all running locally in your browser tab.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Add your MP4 files</h4>
+            <p>Drag and drop up to 5 videos onto the drop zone, or click Choose Files to browse your device.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Pick a quality and convert</h4>
+            <p>Choose 128, 192 or 320 kbps, then hit Convert. A small audio engine loads once and processes each file on your device.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <h4>Download your MP3s</h4>
+            <p>Save each track individually, or grab all of them at once as a single zip file.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info">
+      <h2>Why convert MP4 to MP3</h2>
+      <p class="section-sub">Pulling the audio track out of a video is useful for more than just music.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Lectures &amp; podcasts</h3>
+          <p>Turn recorded lectures, webinars or interviews into audio you can listen to while commuting or exercising.</p>
+        </div>
+        <div class="info-card">
+          <h3>Save storage space</h3>
+          <p>Audio-only files are a fraction of the size of video, so you keep the content you care about without the bulk.</p>
+        </div>
+        <div class="info-card">
+          <h3>Ringtones &amp; clips</h3>
+          <p>Extract a favourite moment from a video and use it as a ringtone or a short audio clip.</p>
+        </div>
+        <div class="info-card">
+          <h3>Offline listening</h3>
+          <p>MP3s play on virtually every device and app, making it easy to listen offline without a video player.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
+
+    <section class="info">
+      <h2>MP4 vs MP3 — what's the difference</h2>
+      <p class="section-sub">Two very different jobs: one is a video container, the other is an audio format.</p>
+      <table class="compare">
+        <thead>
+          <tr><th>&nbsp;</th><th>MP4</th><th>MP3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Type</td><td>Video container (video + audio + subtitles)</td><td><strong>Audio-only</strong> format</td></tr>
+          <tr><td>Typical size</td><td>Large (tens to hundreds of MB)</td><td><strong>Small</strong> (a few MB per song)</td></tr>
+          <tr><td>Common use</td><td>Movies, recordings, social video</td><td><strong>Music, podcasts, audiobooks</strong></td></tr>
+          <tr><td>Compatibility</td><td>Needs a video player</td><td><strong>Plays almost anywhere</strong></td></tr>
+          <tr><td>Editable audio</td><td>Locked inside the video track</td><td><strong>Standalone, easy to reuse</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="info">
+      <div class="privacy-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+        <p><strong>Your privacy is respected.</strong> Conversion happens entirely inside your browser using WebAssembly — your video files are never uploaded or sent to any server.</p>
+      </div>
+    </section>
+
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
+
+    <section class="info">
+      <h2>Frequently asked questions</h2>
+      <div id="faqList">
+        <div class="faq-item">
+          <button class="faq-q">Is this MP4 to MP3 converter free? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. It's free to use with no signup, no watermark, and no hidden limits beyond 5 files per batch.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Are my video files uploaded to a server? <span class="plus">+</span></button>
+          <div class="faq-a"><p>No. Conversion runs entirely inside your browser using WebAssembly, so your files never leave your device.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How many files can I convert at once? <span class="plus">+</span></button>
+          <div class="faq-a"><p>You can select and convert up to 5 MP4 files in a single batch.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Will converting reduce audio quality? <span class="plus">+</span></button>
+          <div class="faq-a"><p>You control this with the quality dropdown — choose 128kbps for a smaller file, 192kbps for balanced quality, or 320kbps for near-original quality.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Does this work on mobile phones? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes, it works on any modern mobile or desktop browser that supports WebAssembly, including Chrome, Edge and Safari.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Right vertical ad rail -->
+  <aside class="ad-rail" id="ad-rail-right">
+    <!-- TODO: replace with real AdSense <ins class="adsbygoogle"> 160x600 unit -->
+    Advertisement<br>160×600
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; 2026 SmartApps Studio · <a href="https://smartappsstudio27-oss.github.io/pdfmaker/privacy-policy.html">Privacy Policy</a> · <a href="mailto:smartapps.studio27@gmail.com">Contact</a></p>
+</footer>
+
+<!-- ffmpeg.wasm (single-thread build, works without special server headers) -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+<!-- JSZip for the "download all" option -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+(function(){
+  const MAX_FILES = 5;
+  let items = []; // {id, file, duration, status, progress, blobUrl, outName}
+  let ffmpeg = null;
+  let idSeed = 0;
+
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const browseBtn = document.getElementById('browseBtn');
+  const fileList = document.getElementById('fileList');
+  const statusMsg = document.getElementById('statusMsg');
+  const fileCounter = document.getElementById('fileCounter');
+  const actionRow = document.getElementById('actionRow');
+  const convertBtn = document.getElementById('convertBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const zipBtn = document.getElementById('zipBtn');
+  const qualitySelect = document.getElementById('quality');
+
+  browseBtn.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('click', (e) => { if(e.target === dropzone) fileInput.click(); });
+  dropzone.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
+
+  ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); dropzone.classList.add('dragover');
+  }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); dropzone.classList.remove('dragover');
+  }));
+  dropzone.addEventListener('drop', (e) => {
+    handleFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', (e) => {
+    handleFiles(e.target.files);
+    fileInput.value = '';
+  });
+
+  function setStatus(msg, isError){
+    statusMsg.textContent = msg || '';
+    statusMsg.classList.toggle('error', !!isError);
+  }
+
+  function formatBytes(bytes){
+    if(bytes < 1024) return bytes + ' B';
+    if(bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+    return (bytes/(1024*1024)).toFixed(1) + ' MB';
+  }
+  function formatDuration(sec){
+    if(!isFinite(sec)) return '--:--';
+    const m = Math.floor(sec/60), s = Math.floor(sec%60);
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function handleFiles(fileListRaw){
+    const incoming = Array.from(fileListRaw).filter(f =>
+      f.type === 'video/mp4' || f.name.toLowerCase().endsWith('.mp4')
+    );
+    const rejected = fileListRaw.length - incoming.length;
+
+    const room = MAX_FILES - items.length;
+    if(room <= 0){
+      setStatus('You can convert a maximum of 5 files at a time. Remove one to add another.', true);
+      return;
+    }
+    const toAdd = incoming.slice(0, room);
+    if(incoming.length > room){
+      setStatus('Only ' + room + ' more file(s) could be added — 5 file limit reached.', true);
+    } else if(rejected > 0){
+      setStatus('Some files were skipped because they were not MP4 videos.', true);
+    } else {
+      setStatus('');
+    }
+
+    toAdd.forEach(file => {
+      const id = 'f' + (idSeed++);
+      const item = { id, file, duration: null, status: 'ready', progress: 0, blobUrl: null, outName: null };
+      items.push(item);
+      const v = document.createElement('video');
+      v.preload = 'metadata';
+      v.onloadedmetadata = () => {
+        item.duration = v.duration;
+        URL.revokeObjectURL(v.src);
+        renderList();
+      };
+      v.src = URL.createObjectURL(file);
+    });
+
+    renderList();
+  }
+
+  function removeItem(id){
+    items = items.filter(i => i.id !== id);
+    renderList();
+  }
+
+  function renderList(){
+    fileList.innerHTML = '';
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'file-item';
+      row.innerHTML = `
+        <div class="file-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 4h16v16H4z" opacity="0"/>
+            <path d="M8 6l8 6-8 6z"/>
+          </svg>
+        </div>
+        <div class="file-meta">
+          <div class="file-name">${escapeHtml(item.file.name)}</div>
+          <div class="file-sub">${formatBytes(item.file.size)} · ${item.duration ? formatDuration(item.duration) : '…'}</div>
+          ${item.status === 'converting' ? `<div class="progress-track"><div class="progress-fill" style="width:${item.progress}%"></div></div>` : ''}
+        </div>
+        <div class="file-actions" data-actions></div>
+      `;
+      const actions = row.querySelector('[data-actions]');
+      if(item.status === 'done' && item.blobUrl){
+        const a = document.createElement('a');
+        a.href = item.blobUrl; a.download = item.outName; a.className = 'download-link';
+        a.textContent = 'Download MP3';
+        actions.appendChild(a);
+      } else if(item.status === 'converting'){
+        const span = document.createElement('span');
+        span.className = 'file-sub'; span.style.fontWeight = '700'; span.textContent = Math.round(item.progress) + '%';
+        actions.appendChild(span);
+      } else {
+        const btn = document.createElement('button');
+        btn.className = 'remove-btn'; btn.setAttribute('aria-label','Remove file');
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+        btn.addEventListener('click', () => removeItem(item.id));
+        actions.appendChild(btn);
+      }
+      fileList.appendChild(row);
+    });
+
+    fileCounter.textContent = items.length + ' / ' + MAX_FILES + ' files';
+    actionRow.style.display = items.length ? 'flex' : 'none';
+    zipBtn.style.display = items.every(i => i.status === 'done') && items.length > 1 ? 'inline-block' : 'none';
+  }
+
+  function escapeHtml(str){
+    return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  clearBtn.addEventListener('click', () => {
+    items.forEach(i => i.blobUrl && URL.revokeObjectURL(i.blobUrl));
+    items = [];
+    setStatus('');
+    renderList();
+  });
+
+  convertBtn.addEventListener('click', async () => {
+    if(!items.length) return;
+    convertBtn.disabled = true;
+    convertBtn.textContent = 'Loading engine…';
+    setStatus('Loading conversion engine (first time only, ~25MB)…');
+
+    try{
+      if(!ffmpeg){
+        ffmpeg = FFmpeg.createFFmpeg({ log: false });
+        await ffmpeg.load();
+      }
+    }catch(err){
+      setStatus('Could not load the conversion engine. Check your connection and try again.', true);
+      convertBtn.disabled = false;
+      convertBtn.textContent = 'Convert to MP3';
+      return;
+    }
+
+    const bitrate = qualitySelect.value;
+    setStatus('Converting…');
+
+    for(const item of items){
+      if(item.status === 'done') continue;
+      item.status = 'converting'; item.progress = 0;
+      renderList();
+
+      ffmpeg.setProgress(({ ratio }) => {
+        item.progress = Math.max(0, Math.min(100, Math.round((ratio || 0) * 100)));
+        renderList();
+      });
+
+      try{
+        const inputName = 'in_' + item.id + '.mp4';
+        const outputName = item.file.name.replace(/\.mp4$/i, '') + '.mp3';
+        ffmpeg.FS('writeFile', inputName, await FFmpeg.fetchFile(item.file));
+        await ffmpeg.run('-i', inputName, '-vn', '-acodec', 'libmp3lame', '-b:a', bitrate, outputName);
+        const data = ffmpeg.FS('readFile', outputName);
+        const blob = new Blob([data.buffer], { type: 'audio/mpeg' });
+        item.blobUrl = URL.createObjectURL(blob);
+        item.outName = outputName;
+        item.status = 'done'; item.progress = 100;
+        ffmpeg.FS('unlink', inputName);
+        ffmpeg.FS('unlink', outputName);
+      }catch(err){
+        item.status = 'error';
+        setStatus('Something went wrong converting "' + item.file.name + '". Try again.', true);
+      }
+      renderList();
+    }
+
+    convertBtn.disabled = false;
+    convertBtn.textContent = 'Convert to MP3';
+    if(items.every(i => i.status === 'done')) setStatus('All files converted — ready to download.');
+    renderList();
+  });
+
+  zipBtn.addEventListener('click', async () => {
+    const zip = new JSZip();
+    for(const item of items){
+      if(item.status !== 'done') continue;
+      const res = await fetch(item.blobUrl);
+      const blob = await res.blob();
+      zip.file(item.outName, blob);
+    }
+    const content = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(content);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'converted-mp3s.zip'; a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
