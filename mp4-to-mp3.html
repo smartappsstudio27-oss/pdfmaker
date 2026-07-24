@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  2
+  3
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MP4 to MP3 Converter | SmartApps Studio</title>
@@ -792,7 +792,8 @@ gtag('config', 'G-TNBKQNNTMY');
       if(!ffmpeg){
         ffmpeg = FFmpeg.createFFmpeg({
           log: false,
-          corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+          corePath: 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
+          mainName: 'main',
           logger: ({ message }) => {
             recentLog.push(message);
             if(recentLog.length > 25) recentLog.shift();
@@ -801,6 +802,7 @@ gtag('config', 'G-TNBKQNNTMY');
         await ffmpeg.load();
       }
     }catch(err){
+      ffmpeg = null;
       setStatus('Could not load the conversion engine: ' + (err && err.message ? err.message : 'unknown error') + '. Check your connection and try again.', true);
       convertBtn.disabled = false;
       convertBtn.textContent = 'Convert to MP3';
