@@ -791,6 +791,7 @@ gtag('config', 'G-TNBKQNNTMY');
       if(!ffmpeg){
         ffmpeg = FFmpeg.createFFmpeg({
           log: false,
+          corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
           logger: ({ message }) => {
             recentLog.push(message);
             if(recentLog.length > 25) recentLog.shift();
