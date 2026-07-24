@@ -786,13 +786,20 @@ gtag('config', 'G-TNBKQNNTMY');
     convertBtn.textContent = 'Loading engine…';
     setStatus('Loading conversion engine (first time only, ~25MB)…');
 
+    let recentLog = [];
     try{
       if(!ffmpeg){
-        ffmpeg = FFmpeg.createFFmpeg({ log: false });
+        ffmpeg = FFmpeg.createFFmpeg({
+          log: false,
+          logger: ({ message }) => {
+            recentLog.push(message);
+            if(recentLog.length > 25) recentLog.shift();
+          }
+        });
         await ffmpeg.load();
       }
     }catch(err){
-      setStatus('Could not load the conversion engine. Check your connection and try again.', true);
+      setStatus('Could not load the conversion engine: ' + (err && err.message ? err.message : 'unknown error') + '. Check your connection and try again.', true);
       convertBtn.disabled = false;
       convertBtn.textContent = 'Convert to MP3';
       return;
@@ -812,20 +819,30 @@ gtag('config', 'G-TNBKQNNTMY');
       });
 
       try{
-        const inputName = 'in_' + item.id + '.mp4';
-        const outputName = item.file.name.replace(/\.mp4$/i, '') + '.mp3';
-        ffmpeg.FS('writeFile', inputName, await FFmpeg.fetchFile(item.file));
-        await ffmpeg.run('-i', inputName, '-vn', '-acodec', 'libmp3lame', '-b:a', bitrate, outputName);
-        const data = ffmpeg.FS('readFile', outputName);
+        // Use safe ASCII-only names inside ffmpeg's virtual filesystem —
+        // unicode/special characters in the original filename (e.g. Devanagari
+        // script, brackets) can break the internal FS/argument handling.
+        const safeInput = 'in_' + item.id + '.mp4';
+        const safeOutput = 'out_' + item.id + '.mp3';
+
+        // Original name (sanitized just enough for a safe download attribute)
+        // is kept separately and only used for the final downloaded file.
+        const displayName = item.file.name.replace(/\.mp4$/i, '') + '.mp3';
+
+        ffmpeg.FS('writeFile', safeInput, await FFmpeg.fetchFile(item.file));
+        await ffmpeg.run('-i', safeInput, '-vn', '-acodec', 'libmp3lame', '-b:a', bitrate, safeOutput);
+        const data = ffmpeg.FS('readFile', safeOutput);
         const blob = new Blob([data.buffer], { type: 'audio/mpeg' });
         item.blobUrl = URL.createObjectURL(blob);
-        item.outName = outputName;
+        item.outName = displayName;
         item.status = 'done'; item.progress = 100;
-        ffmpeg.FS('unlink', inputName);
-        ffmpeg.FS('unlink', outputName);
+        ffmpeg.FS('unlink', safeInput);
+        ffmpeg.FS('unlink', safeOutput);
       }catch(err){
         item.status = 'error';
-        setStatus('Something went wrong converting "' + item.file.name + '". Try again.', true);
+        const reason = (err && err.message) ? err.message : (recentLog.slice(-3).join(' | ') || 'unknown error');
+        console.error('Conversion failed:', err, recentLog);
+        setStatus('Failed converting "' + item.file.name + '": ' + reason, true);
       }
       renderList();
     }
