@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  4
+  5
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MP4 to MP3 Converter | SmartApps Studio</title>
@@ -781,91 +781,72 @@ gtag('config', 'G-TNBKQNNTMY');
     renderList();
   });
 
+  async function createEngine(recentLog){
+    const engine = FFmpeg.createFFmpeg({
+      log: false,
+      corePath: 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
+      mainName: 'main',
+      logger: ({ message }) => {
+        recentLog.push(message);
+        if(recentLog.length > 25) recentLog.shift();
+      }
+    });
+    await engine.load();
+    return engine;
+  }
+
   convertBtn.addEventListener('click', async () => {
     if(!items.length) return;
     convertBtn.disabled = true;
-    convertBtn.textContent = 'Loading engine…';
-    setStatus('Loading conversion engine (first time only, ~25MB)…');
-
-    let recentLog = [];
-    try{
-      if(!ffmpeg){
-        ffmpeg = FFmpeg.createFFmpeg({
-          log: false,
-          corePath: 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
-          mainName: 'main',
-          logger: ({ message }) => {
-            recentLog.push(message);
-            if(recentLog.length > 25) recentLog.shift();
-          }
-        });
-        await ffmpeg.load();
-      }
-    }catch(err){
-      ffmpeg = null;
-      setStatus('Could not load the conversion engine: ' + (err && err.message ? err.message : 'unknown error') + '. Check your connection and try again.', true);
-      convertBtn.disabled = false;
-      convertBtn.textContent = 'Convert to MP3';
-      return;
-    }
+    setStatus('Loading conversion engine…');
 
     const bitrate = qualitySelect.value;
-    setStatus('Converting…');
 
     for (const item of items) {
       if(item.status === 'done') continue;
       item.status = 'converting'; item.progress = 0;
       renderList();
 
-      ffmpeg.setProgress(({ ratio }) => {
-        item.progress = Math.max(0, Math.min(100, Math.round((ratio || 0) * 100)));
-        renderList();
-      });
+      let recentLog = [];
+      let engine = null;
 
-      const safeInput = 'in_' + item.id + '.mp4';
-      const safeOutput = 'out_' + item.id + '.mp3';
-      const displayName = item.file.name.replace(/\.mp4$/i, '') + '.mp3';
+      try{
+        // A fresh engine instance is created per file. ffmpeg.wasm's single-
+        // thread core can get stuck reporting "busy" after a run completes,
+        // so reusing one instance across files is unreliable — a clean
+        // instance per file avoids that entirely. The core file itself is
+        // cached by the browser after the first download, so this stays fast.
+        convertBtn.textContent = 'Loading engine…';
+        engine = await createEngine(recentLog);
+        convertBtn.textContent = 'Converting…';
 
-      const attemptConvert = async () => {
-        ffmpeg.FS('writeFile', safeInput, await FFmpeg.fetchFile(item.file));
-        await ffmpeg.run('-i', safeInput, '-vn', '-acodec', 'libmp3lame', '-b:a', bitrate, safeOutput);
-        const data = ffmpeg.FS('readFile', safeOutput);
+        engine.setProgress(({ ratio }) => {
+          item.progress = Math.max(0, Math.min(100, Math.round((ratio || 0) * 100)));
+          renderList();
+        });
+
+        const safeInput = 'in_' + item.id + '.mp4';
+        const safeOutput = 'out_' + item.id + '.mp3';
+        const displayName = item.file.name.replace(/\.mp4$/i, '') + '.mp3';
+
+        engine.FS('writeFile', safeInput, await FFmpeg.fetchFile(item.file));
+        await engine.run('-i', safeInput, '-vn', '-acodec', 'libmp3lame', '-b:a', bitrate, safeOutput);
+        const data = engine.FS('readFile', safeOutput);
         const blob = new Blob([data.buffer], { type: 'audio/mpeg' });
         item.blobUrl = URL.createObjectURL(blob);
         item.outName = displayName;
         item.status = 'done'; item.progress = 100;
-        try{ ffmpeg.FS('unlink', safeInput); }catch(e){}
-        try{ ffmpeg.FS('unlink', safeOutput); }catch(e){}
-      };
-
-      try{
-        await attemptConvert();
       }catch(err){
-        const isBusyRace = err && /only run one command at a time/i.test(err.message || '');
-        if(isBusyRace){
-          // Known ffmpeg.wasm race condition: the engine's internal busy flag
-          // can lag briefly after finishing the previous file. Wait and retry once.
-          await new Promise(r => setTimeout(r, 800));
-          try{
-            await attemptConvert();
-          }catch(err2){
-            item.status = 'error';
-            const reason = (err2 && err2.message) ? err2.message : (recentLog.slice(-3).join(' | ') || 'unknown error');
-            console.error('Conversion failed:', err2, recentLog);
-            setStatus('Failed converting "' + item.file.name + '": ' + reason, true);
-          }
-        } else {
-          item.status = 'error';
-          const reason = (err && err.message) ? err.message : (recentLog.slice(-3).join(' | ') || 'unknown error');
-          console.error('Conversion failed:', err, recentLog);
-          setStatus('Failed converting "' + item.file.name + '": ' + reason, true);
+        item.status = 'error';
+        const reason = (err && err.message) ? err.message : (recentLog.slice(-3).join(' | ') || 'unknown error');
+        console.error('Conversion failed:', err, recentLog);
+        setStatus('Failed converting "' + item.file.name + '": ' + reason, true);
+      }finally{
+        if(engine){
+          try{ engine.exit(); }catch(e){}
         }
       }
       renderList();
-
-      // Small pause before starting the next file gives the engine time to
-      // fully reset internally and avoids the busy-flag race recurring.
-      await new Promise(r => setTimeout(r, 300));
     }
 
     convertBtn.disabled = false;
