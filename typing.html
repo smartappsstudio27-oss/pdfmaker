@@ -354,6 +354,95 @@ gtag('config', 'G-TNBKQNNTMY');
   .faq-item summary{font-size:13px;font-weight:600;color:var(--off-white);cursor:pointer;}
   .faq-item p{margin-top:8px;}
 
+  /* ===== Advanced workspace: narrower/taller panels + side ads ===== */
+  .advanced-zone{display:flex;gap:14px;padding:14px 16px;align-items:stretch;}
+  .advanced-zone .workspace{flex:1 1 auto;padding:0;min-width:0;}
+  .vert-ad{
+    flex:0 0 160px;min-height:520px;
+    background:var(--ink-softer);border:1px dashed rgba(255,255,255,0.15);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;
+    color:var(--muted);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;
+  }
+  @media (max-width:860px){ .vert-ad{display:none;} }
+  .advanced-zone .panel{min-width:220px;min-height:460px;}
+  .advanced-zone .passage-text,
+  .advanced-zone .typed-wrap{min-height:400px;max-height:520px;}
+
+  /* ===== Beginner Practice Zone (standalone, bottom of page) ===== */
+  .beginner-zone{background:var(--ink-soft);border-top:1px solid var(--ink-softer);padding:28px 16px 40px;}
+  .beginner-zone-inner{max-width:1180px;margin:0 auto;}
+  .bz-heading{font-size:19px;color:var(--brass);margin:0 0 4px;text-align:center;}
+  .bz-sub{font-size:13px;color:var(--muted);margin:0 0 20px;text-align:center;}
+  .bz-controls{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .bz-controls select, .bz-controls .btn{font-size:12px;}
+  .bz-controls select{
+    background:var(--ink);border:1px solid rgba(255,255,255,0.1);color:var(--off-white);
+    border-radius:6px;padding:7px 9px;font-family:'Poppins',sans-serif;
+  }
+  .bz-layout{display:flex;gap:14px;align-items:flex-start;}
+  .bz-main{flex:1 1 auto;min-width:0;}
+  .bz-panel{
+    background:var(--paper);color:var(--paper-text);border-radius:12px;
+    padding:14px 18px;margin-bottom:14px;min-height:120px;
+  }
+  .bz-panel .panel-label{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;font-weight:600;color:var(--brass-deep);margin-bottom:6px;}
+  .bz-passage{font-family:'JetBrains Mono',monospace;font-size:17px;line-height:2.1;}
+  .bz-passage.mr-text{font-size:19px;line-height:2.3;}
+  .bz-passage .ch.correct{color:var(--success);}
+  .bz-passage .ch.incorrect{color:var(--ribbon-red);text-decoration:underline wavy var(--ribbon-red);}
+  .bz-passage .ch.current{background:var(--brass);color:var(--ink);border-radius:2px;}
+  .bz-passage .ch.pending{color:var(--paper-text);opacity:0.75;}
+  .bz-stats{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;justify-content:center;}
+  .bz-stats .stat .val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--brass);}
+  .bz-stats .stat .lbl{font-size:8px;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);display:block;margin-top:2px;}
+  .bz-hint{text-align:center;font-size:11px;color:var(--muted);margin-top:10px;}
+
+  /* On-screen full QWERTY keyboard used only in the Beginner zone */
+  .bz-keyboard-wrap{position:relative;background:var(--ink-softer);border-radius:12px;padding:22px 16px 16px;}
+  .bz-kb-row{display:flex;gap:6px;margin-bottom:6px;justify-content:center;flex-wrap:wrap;}
+  .bz-key{
+    min-width:34px;height:38px;flex:1 1 34px;max-width:46px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--ink);
+    transition:transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    position:relative;user-select:none;
+  }
+  .bz-key.space{flex:6 1 auto;max-width:none;}
+  .bz-f-pinky{background:var(--ribbon-red);}
+  .bz-f-ring{background:var(--brass);}
+  .bz-f-middle{background:var(--success);}
+  .bz-f-index{background:#5fa8d3;}
+  .bz-f-thumb{background:#8b8fa3;}
+  .bz-key.key-glow{transform:scale(1.16);box-shadow:0 0 0 4px rgba(255,255,255,0.7),0 0 16px 4px var(--brass);z-index:2;}
+  .bz-key.key-flash-correct{animation:bzFlashGood 0.35s ease;}
+  .bz-key.key-flash-incorrect{animation:bzFlashBad 0.35s ease;}
+  @keyframes bzFlashGood{0%{box-shadow:0 0 0 6px rgba(91,138,98,0.7);}100%{box-shadow:0 0 0 0 rgba(91,138,98,0);}}
+  @keyframes bzFlashBad{0%{box-shadow:0 0 0 6px rgba(194,92,83,0.85);}100%{box-shadow:0 0 0 0 rgba(194,92,83,0);}}
+  .bz-kb-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-top:10px;justify-content:center;}
+  .bz-kb-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .bz-kb-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+
+  /* Invisible-hands idle animation (shown before Start is pressed) */
+  .bz-hands-overlay{
+    position:absolute;inset:0;pointer-events:none;
+    display:flex;align-items:flex-end;justify-content:center;
+    opacity:1;transition:opacity 0.25s ease;
+  }
+  .bz-hands-overlay.hidden{opacity:0;}
+  .bz-hand-caption{
+    position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+    font-size:11px;font-weight:600;color:var(--off-white);white-space:nowrap;
+    background:rgba(0,0,0,0.35);padding:2px 8px;border-radius:10px;
+  }
+  .bz-hand-glow{
+    position:absolute;width:44px;height:44px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;
+    background:rgba(255,255,255,0.22);border:1.5px solid rgba(255,255,255,0.55);
+    transform:translate(-50%,-50%);transition:left 0.5s ease, top 0.5s ease;
+    box-shadow:0 0 14px 4px rgba(255,255,255,0.18);
+  }
+
   @media print{
     body *{visibility:hidden;}
     .result-card, .result-card *{visibility:visible;}
@@ -397,29 +486,18 @@ gtag('config', 'G-TNBKQNNTMY');
       </div>
 
       <div class="ribbon-group">
-        <!-- Mode buttons: Beginner runs the row-drill progression,
-             Advanced uses the normal (now double-length) passages -->
-        <button class="btn btn-ghost active" id="advancedModeBtn">Advanced</button>
-        <button class="btn btn-ghost" id="beginnerModeBtn">Beginner</button>
+        <!-- This toolbar is now Advanced-only. "Beginner" no longer
+             switches a mode here — it just scrolls down to the
+             standalone Beginner Practice Zone at the bottom of the
+             page, which has its own Start/Stop and Day/Time controls. -->
+        <button class="btn btn-ghost active" id="advancedModeBtn" title="You're in Advanced mode">Advanced</button>
+        <button class="btn btn-ghost" id="beginnerModeBtn" title="Jump to the Beginner Practice Zone">↓ Beginner</button>
         <select id="levelSelect">
           <option value="all">All levels</option>
           <option value="Easy">Easy</option>
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
           <option value="Exam">Exam prep</option>
-        </select>
-        <!-- Only visible in Beginner mode: lets the user pick a
-             specific drill instead of the automatic progression -->
-        <select id="beginnerStageSelect" style="display:none;">
-          <option value="auto">Auto (progressive)</option>
-          <option value="1">Home row: asdfg ;lkjh</option>
-          <option value="2">Home row: gfdsa hjkl;</option>
-          <option value="3">Home row — mixed</option>
-          <option value="4">Top row — mixed</option>
-          <option value="5">Home + top row mix</option>
-          <option value="6">Bottom row — mixed</option>
-          <option value="7">Home + bottom row mix</option>
-          <option value="8">Easy words</option>
         </select>
         <button class="btn btn-ghost" id="nextBtn" disabled>⇥ Next</button>
       </div>
@@ -443,27 +521,27 @@ gtag('config', 'G-TNBKQNNTMY');
   </div>
 </header>
 
-<main class="workspace" id="workspace" data-layout="row">
-  <section class="panel passage-panel">
-    <div class="panel-label">Passage — <span id="passageTopic">Ready</span></div>
-    <div class="passage-text" id="passageText">Press <strong>Start</strong> to load a passage and begin.</div>
-    <div class="carriage-track"><div class="carriage" id="carriage"></div></div>
-  </section>
+<div class="advanced-zone">
+  <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 1 --> Ad space</div>
 
-  <section class="panel type-panel">
-    <div class="panel-label">Your Typing</div>
-    <div class="typed-wrap" id="typedWrap">
-      <div class="typed-text" id="typedText"></div>
-      <textarea id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-    </div>
-    <div class="hint" id="hint">Enter your name and click Start. Pasting is disabled — this is a typing test!</div>
-  </section>
-</main>
+  <main class="workspace" id="workspace" data-layout="row">
+    <section class="panel passage-panel">
+      <div class="panel-label">Passage — <span id="passageTopic">Ready</span></div>
+      <div class="passage-text" id="passageText">Press <strong>Start</strong> to load a passage and begin.</div>
+      <div class="carriage-track"><div class="carriage" id="carriage"></div></div>
+    </section>
 
-<!-- Ad zone 1: right after the tool, away from all buttons -->
-<div class="ad-row">
-  <div class="ad-slot"><!-- ADSENSE PLACEHOLDER 1 --> Ad space</div>
-  <div class="ad-slot"><!-- ADSENSE PLACEHOLDER 2 --> Ad space</div>
+    <section class="panel type-panel">
+      <div class="panel-label">Your Typing</div>
+      <div class="typed-wrap" id="typedWrap">
+        <div class="typed-text" id="typedText"></div>
+        <textarea id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      </div>
+      <div class="hint" id="hint">Enter your name and click Start. Pasting is disabled — this is a typing test!</div>
+    </section>
+  </main>
+
+  <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 2 --> Ad space</div>
 </div>
 
 <!-- Result section: appears inline in the page (not a full overlay)
@@ -500,56 +578,6 @@ gtag('config', 'G-TNBKQNNTMY');
   <div class="guide-inner">
     <h2 id="guideTitle">How to use Smart Typing</h2>
     <p id="guideIntro">Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.</p>
-
-    <h3 id="guideFingerHeading">Finger placement for beginners</h3>
-    <p id="guideFingerPara">Touch typing starts from the home row. Rest your fingers on A S D F (left hand) and J K L ; (right hand), with your thumbs on the space bar. Each finger is responsible for its own column of keys, as shown below.</p>
-
-    <div class="keyboard-diagram">
-      <div class="kb-row">
-        <div class="kb-key f-pinky" data-finger="0">Q<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring" data-finger="1">W<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle" data-finger="2">E<span class="fin">L middle</span></div>
-        <div class="kb-key f-index" data-finger="3">R<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="3">T<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="4">Y<span class="fin">R index</span></div>
-        <div class="kb-key f-index" data-finger="4">U<span class="fin">R index</span></div>
-        <div class="kb-key f-middle" data-finger="5">I<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring" data-finger="6">O<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky" data-finger="7">P<span class="fin">R pinky</span></div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-key f-pinky" data-finger="0">A<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring" data-finger="1">S<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle" data-finger="2">D<span class="fin">L middle</span></div>
-        <div class="kb-key f-index" data-finger="3">F<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="3">G<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="4">H<span class="fin">R index</span></div>
-        <div class="kb-key f-index" data-finger="4">J<span class="fin">R index</span></div>
-        <div class="kb-key f-middle" data-finger="5">K<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring" data-finger="6">L<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky" data-finger="7">;<span class="fin">R pinky</span></div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-key f-pinky" data-finger="0">Z<span class="fin">L pinky</span></div>
-        <div class="kb-key f-ring" data-finger="1">X<span class="fin">L ring</span></div>
-        <div class="kb-key f-middle" data-finger="2">C<span class="fin">L middle</span></div>
-        <div class="kb-key f-index" data-finger="3">V<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="3">B<span class="fin">L index</span></div>
-        <div class="kb-key f-index" data-finger="4">N<span class="fin">R index</span></div>
-        <div class="kb-key f-index" data-finger="4">M<span class="fin">R index</span></div>
-        <div class="kb-key f-middle" data-finger="5">,<span class="fin">R middle</span></div>
-        <div class="kb-key f-ring" data-finger="6">.<span class="fin">R ring</span></div>
-        <div class="kb-key f-pinky" data-finger="7">/<span class="fin">R pinky</span></div>
-      </div>
-      <div class="kb-legend">
-        <span><i style="background:var(--ribbon-red)"></i> Pinky</span>
-        <span><i style="background:var(--brass)"></i> Ring</span>
-        <span><i style="background:var(--success)"></i> Middle</span>
-        <span><i style="background:#5fa8d3"></i> Index</span>
-      </div>
-      <!-- Filled in by the finger-cycling animation in the script -->
-      <div class="kb-anim-label" id="fingerAnimLabel"></div>
-    </div>
 
     <!-- Ad zone inside the guide, in between content blocks -->
     <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 4 --> Ad space</div>
@@ -607,6 +635,85 @@ gtag('config', 'G-TNBKQNNTMY');
     <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 5 --> Ad space</div>
   </div>
 </section>
+
+<!-- ================================================================
+     BEGINNER PRACTICE ZONE — fully standalone (own Start/Stop, own
+     Day/Time controls, own on-screen keyboard). The header's
+     "↓ Beginner" button just scrolls here; it doesn't control this
+     zone. Language follows whichever language is selected in the
+     toolbar above (English/Marathi), since guide text is language
+     dependent already. Sits at the very bottom of the page.
+     ================================================================ -->
+<section class="beginner-zone" id="beginnerZone">
+  <div class="beginner-zone-inner">
+    <h2 class="bz-heading" id="bzHeading">Beginner Practice Zone</h2>
+    <p class="bz-sub" id="bzSub">Pick a day and a time limit, then press Start. Watch the on-screen keyboard — before you start it shows which finger goes where, and once you start it glows the next key you need to press.</p>
+
+    <div class="bz-controls">
+      <select id="bzDaySelect">
+        <option value="auto">Auto (progressive)</option>
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Day 3</option>
+        <option value="4">Day 4</option>
+        <option value="5">Day 5</option>
+        <option value="6">Day 6</option>
+        <option value="7">Day 7</option>
+        <option value="8">Day 8</option>
+      </select>
+      <select id="bzTimeSelect">
+        <option value="60">1 min</option>
+        <option value="180" selected>3 min</option>
+        <option value="300">5 min</option>
+        <option value="600">10 min</option>
+        <option value="0">No limit</option>
+      </select>
+      <button class="btn btn-start" id="bzStartBtn">▶ Start</button>
+      <button class="btn btn-stop" id="bzStopBtn" disabled>■ Stop</button>
+    </div>
+
+    <div class="bz-layout">
+      <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 8 --> Ad space</div>
+
+      <div class="bz-main">
+        <div class="bz-stats">
+          <div class="stat"><span class="val" id="bzTimeVal">00:00</span><span class="lbl">Time</span></div>
+          <div class="stat"><span class="val" id="bzWpmVal">0</span><span class="lbl">WPM</span></div>
+          <div class="stat"><span class="val" id="bzAccVal">100%</span><span class="lbl">Accuracy</span></div>
+          <div class="stat"><span class="val" id="bzDayVal">—</span><span class="lbl">Day</span></div>
+        </div>
+
+        <div class="bz-panel">
+          <div class="panel-label">Practice text — <span id="bzPassageLabel">Ready</span></div>
+          <div class="bz-passage" id="bzPassageText">Press <strong>Start</strong> to begin this drill.</div>
+        </div>
+
+        <div class="bz-keyboard-wrap" id="bzKeyboardWrap">
+          <div class="bz-hands-overlay" id="bzHandsOverlay">
+            <div class="bz-hand-glow" id="bzHandGlow"></div>
+            <div class="bz-hand-caption" id="bzHandCaption">Left pinky — Q, A, Z</div>
+          </div>
+          <!-- Rows are built by JS (buildBeginnerKeyboard) so every key
+               can carry a data-key attribute used for glow highlighting -->
+          <div id="bzKbRows"></div>
+          <div class="bz-kb-legend">
+            <span><i style="background:var(--ribbon-red)"></i> Pinky</span>
+            <span><i style="background:var(--brass)"></i> Ring</span>
+            <span><i style="background:var(--success)"></i> Middle</span>
+            <span><i style="background:#5fa8d3"></i> Index</span>
+            <span><i style="background:#8b8fa3"></i> Thumb</span>
+          </div>
+        </div>
+
+        <div class="bz-hint" id="bzHint">Choose a day and time above, then press Start.</div>
+      </div>
+
+      <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 9 --> Ad space</div>
+    </div>
+  </div>
+</section>
+
+<textarea id="bzHiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;opacity:0;top:0;left:0;width:1px;height:1px;pointer-events:none;"></textarea>
 
 <script>
 (function(){
@@ -846,8 +953,6 @@ gtag('config', 'G-TNBKQNNTMY');
 
     document.getElementById('guideTitle').textContent = g.title;
     document.getElementById('guideIntro').textContent = g.intro;
-    document.getElementById('guideFingerHeading').textContent = g.fingerHeading;
-    document.getElementById('guideFingerPara').textContent = g.fingerPara;
     document.getElementById('guideBeginnerHeading').textContent = g.beginnerHeading;
     document.getElementById('guideBeginnerPara').textContent = g.beginnerPara;
     document.getElementById('guideMistakesHeading').textContent = g.mistakesHeading;
@@ -899,9 +1004,7 @@ gtag('config', 'G-TNBKQNNTMY');
   const durationSelect = document.getElementById('durationSelect');
   const levelSelect = document.getElementById('levelSelect');
   const langSelect = document.getElementById('langSelect');
-  const advancedModeBtn = document.getElementById('advancedModeBtn');
   const beginnerModeBtn = document.getElementById('beginnerModeBtn');
-  const beginnerStageSelect = document.getElementById('beginnerStageSelect');
   const layoutBtn = document.getElementById('layoutBtn');
   const workspace = document.getElementById('workspace');
 
@@ -953,37 +1056,11 @@ gtag('config', 'G-TNBKQNNTMY');
     return pool[idx];
   }
 
-  function pickBeginnerPassage(){
-    const list = BEGINNER_PASSAGES[state.lang] || BEGINNER_PASSAGES.en;
-    const chosenStage = beginnerStageSelect.value; // "auto" or a stage number as a string
-
-    if(chosenStage === 'auto'){
-      // Auto mode: walk through the full list in order, then loop
-      const item = list[state.beginnerIndex % list.length];
-      state.beginnerIndex++;
-      return item;
-    }
-
-    // Manual mode: only pick passages that belong to the chosen stage
-    const stageNum = parseInt(chosenStage, 10);
-    const filtered = list.filter(p => p.stage === stageNum);
-    const pool = filtered.length ? filtered : list;
-    let idx;
-    if(pool.length === 1){ idx = 0; }
-    else { do { idx = Math.floor(Math.random()*pool.length); } while(pool[idx] === state.currentPassage); }
-    return pool[idx];
-  }
-
   function loadPassage(){
-    state.currentPassage = state.mode === 'beginner' ? pickBeginnerPassage() : pickAdvancedPassage();
+    state.currentPassage = pickAdvancedPassage();
     state.typed = '';
-    if(state.mode === 'beginner'){
-      passageTopic.textContent = state.currentPassage.label;
-      stageVal.textContent = state.currentPassage.stage;
-    } else {
-      passageTopic.textContent = state.currentPassage.topic + ' · ' + state.currentPassage.level;
-      stageVal.textContent = '—';
-    }
+    passageTopic.textContent = state.currentPassage.topic + ' · ' + state.currentPassage.level;
+    stageVal.textContent = '—';
     const isMr = state.lang === 'mr';
     passageText.className = 'passage-text' + (isMr ? ' mr-text' : '');
     typedText.className = 'typed-text' + (isMr ? ' mr-text' : '');
@@ -1085,24 +1162,23 @@ gtag('config', 'G-TNBKQNNTMY');
     refreshStatsBar();
   }
 
-  // ---------- Mode / language switching ----------
-  function setMode(mode){
-    if(state.running) return; // don't allow switching mid-session
-    state.mode = mode;
-    advancedModeBtn.classList.toggle('active', mode === 'advanced');
-    beginnerModeBtn.classList.toggle('active', mode === 'beginner');
-    // Show the level dropdown for Advanced, the stage dropdown for Beginner
-    levelSelect.style.display = (mode === 'beginner') ? 'none' : '';
-    beginnerStageSelect.style.display = (mode === 'beginner') ? '' : 'none';
-    state.beginnerIndex = 0;
-  }
-  advancedModeBtn.addEventListener('click', function(){ setMode('advanced'); });
-  beginnerModeBtn.addEventListener('click', function(){ setMode('beginner'); });
-
+  // ---------- Language (shared with the Beginner Practice Zone) ----------
+  // The Beginner zone reads window.smartTypingLang so both areas of the
+  // page always show passages/captions in the same language.
+  window.smartTypingLang = state.lang;
   langSelect.addEventListener('change', function(){
     if(state.running) return;
     state.lang = langSelect.value;
+    window.smartTypingLang = state.lang;
     applyGuideLanguage(state.lang);
+    if(typeof window.onSmartTypingLangChange === 'function') window.onSmartTypingLangChange(state.lang);
+  });
+
+  // "↓ Beginner" no longer switches a mode here — it scrolls down to
+  // the standalone Beginner Practice Zone, which runs independently.
+  beginnerModeBtn.addEventListener('click', function(){
+    const zone = document.getElementById('beginnerZone');
+    if(zone) zone.scrollIntoView({behavior:'smooth', block:'start'});
   });
 
   // ---------- Layout toggle ----------
@@ -1130,7 +1206,7 @@ gtag('config', 'G-TNBKQNNTMY');
 
     startBtn.disabled = true; stopBtn.disabled = false; nextBtn.disabled = false;
     nameInput.disabled = true; durationSelect.disabled = true; langSelect.disabled = true;
-    advancedModeBtn.disabled = true; beginnerModeBtn.disabled = true;
+    beginnerModeBtn.disabled = true;
     hint.textContent = 'Go! Start typing the passage on the left.';
     resultSection.classList.remove('show');
 
@@ -1152,7 +1228,7 @@ gtag('config', 'G-TNBKQNNTMY');
     hiddenInput.disabled = true;
     startBtn.disabled = false; stopBtn.disabled = true; nextBtn.disabled = true;
     nameInput.disabled = false; durationSelect.disabled = false; langSelect.disabled = false;
-    advancedModeBtn.disabled = false; beginnerModeBtn.disabled = false;
+    beginnerModeBtn.disabled = false;
     hint.textContent = auto ? 'Time is up! Here are your results.' : 'Session stopped. Here are your results.';
     showResults();
   }
@@ -1169,7 +1245,7 @@ gtag('config', 'G-TNBKQNNTMY');
     };
     startBtn.disabled = false; stopBtn.disabled = true; nextBtn.disabled = true;
     nameInput.disabled = false; durationSelect.disabled = false; langSelect.disabled = false;
-    advancedModeBtn.disabled = false; beginnerModeBtn.disabled = false;
+    beginnerModeBtn.disabled = false;
     hiddenInput.value = ''; hiddenInput.disabled = true;
     passageTopic.textContent = 'Ready';
     passageText.innerHTML = 'Press <strong>Start</strong> to load a passage and begin.';
@@ -1242,28 +1318,318 @@ gtag('config', 'G-TNBKQNNTMY');
 
   resetSession();
   applyGuideLanguage(state.lang);
+})();
+</script>
 
-  // ---------- Finger-cycling animation (decorative, in the guide) ----------
-  // Cycles a highlight across the home-row keys, one at a time, and
-  // updates the caption below the keyboard to match. Runs continuously,
-  // independent of whether a typing session is active. The caption
-  // text follows whatever language is currently selected (state.lang).
-  const homeRowKeys = Array.from(
-    document.querySelectorAll('.keyboard-diagram .kb-row')[1].querySelectorAll('.kb-key')
-  );
-  const fingerAnimLabel = document.getElementById('fingerAnimLabel');
-  let fingerAnimIndex = 0;
-  function tickFingerAnim(){
-    homeRowKeys.forEach(function(k){ k.classList.remove('active-finger'); });
-    const key = homeRowKeys[fingerAnimIndex];
-    key.classList.add('active-finger');
-    const fingerIdx = parseInt(key.getAttribute('data-finger'), 10);
-    const labels = FINGER_LABELS[state.lang] || FINGER_LABELS.en;
-    fingerAnimLabel.textContent = labels[fingerIdx];
-    fingerAnimIndex = (fingerAnimIndex + 1) % homeRowKeys.length;
+<script>
+/* ================================================================
+   BEGINNER PRACTICE ZONE — fully standalone controller.
+   Reuses BEGINNER_PASSAGES / FINGER_LABELS data structures that are
+   defined in the script above (same file, so they're on window scope
+   via the closure? No — they're inside an IIFE, so instead this zone
+   keeps its own small copies below to stay 100% independent, as
+   requested. Language follows window.smartTypingLang.
+   ================================================================ */
+(function(){
+
+  const BZ_BEGINNER_PASSAGES = {
+    en: [
+      {stage:1, label:"Day 1 — Home row: asdfg ;lkjh", text:"asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh asdfg ;lkjh"},
+      {stage:2, label:"Day 2 — Home row: gfdsa hjkl;", text:"gfdsa hjkl; gfdsa hjkl; gfdsa hjkl; gfdsa hjkl; gfdsa hjkl;"},
+      {stage:2, label:"Day 2 — Home row: gfdsa hjkl;", text:"gfdsa hjkl; hjkl; gfdsa gfdsa hjkl; hjkl; gfdsa gfdsa hjkl;"},
+      {stage:3, label:"Day 3 — Home row mixed", text:"asdf ghjk l;as dfgh jkl; asdf ghjk fdsa jkhg lkjh asfd"},
+      {stage:3, label:"Day 3 — Home row mixed", text:"jkla sdfh gkl; asjd fghk lasd jfhg klas djfh gkla sjdf"},
+      {stage:3, label:"Day 3 — Home row mixed", text:"hjkl asdf ;lkj hgfd sakl jhgf dsak ljhg fdsa kljh gfds"},
+      {stage:4, label:"Day 4 — Top row mixed", text:"qwer tyui opqw ertyu iopq werty uiop qwer tyui opqw erty"},
+      {stage:4, label:"Day 4 — Top row mixed", text:"ytre wqop iuyt rewq poiuy trew qopi uytr ewqp oiuy trew"},
+      {stage:4, label:"Day 4 — Top row mixed", text:"were topi uytr qwop ertyu iopq wert yuio pqwe rtyui opqw"},
+      {stage:5, label:"Day 5 — Home + top row mix", text:"asdf qwer tyui jkl; asdf ghjk poiu asdf jkl; qwer tyui"},
+      {stage:5, label:"Day 5 — Home + top row mix", text:"qwer asdf jkl; poiu tyui asdf ghjk qwer jkl; asdf tyui"},
+      {stage:5, label:"Day 5 — Home + top row mix", text:"jkl; tyui asdf qwer ghjk poiu asdf jkl; qwer asdf tyui"},
+      {stage:6, label:"Day 6 — Bottom row mixed", text:"zxcv bnm, ./zx cvbn m,./ zxcv bnm, ./zx cvbn m,./ zxcv"},
+      {stage:6, label:"Day 6 — Bottom row mixed", text:"nm,. /zxc vbnm ,./z xcvb nm,. /zxc vbnm ,./z xcvb nm,."},
+      {stage:7, label:"Day 7 — Home + bottom row mix", text:"asdf zxcv jkl; bnm, asdf ./zx jkl; cvbn asdf zxcv jkl;"},
+      {stage:7, label:"Day 7 — Home + bottom row mix", text:"zxcv jkl; asdf bnm, jkl; ./zx asdf cvbn jkl; zxcv asdf"},
+      {stage:8, label:"Day 8 — Easy words", text:"The cat sat on the mat. The dog ran to the park. A big red ball rolled fast."},
+      {stage:8, label:"Day 8 — Easy words", text:"I like to read a book. She has a pet cat. We play in the sun all day."},
+      {stage:8, label:"Day 8 — Easy words", text:"He can run and jump high. The sky is blue and clear. Birds fly over the tall trees."}
+    ],
+    mr: [
+      {stage:1, label:"Day 1 — सोपे शब्द", text:"आई बाबा घर पाणी सूर्य चंद्र फूल पान झाड फळ"},
+      {stage:1, label:"Day 1 — सोपे शब्द", text:"शाळा पुस्तक पेन खुर्ची टेबल दार खिडकी भिंत छत जमीन"},
+      {stage:2, label:"Day 2 — सोपे शब्द", text:"नमस्कार धन्यवाद माफ करा कृपया होय नाही ठीक आहे चला जाऊया"},
+      {stage:3, label:"Day 3 — साधी वाक्ये", text:"आई स्वयंपाक करते. बाबा कामावर जातात. मी शाळेत जातो."},
+      {stage:3, label:"Day 3 — साधी वाक्ये", text:"पाऊस पडत आहे. मुले बाहेर खेळत आहेत. आकाश निरभ्र आहे."},
+      {stage:4, label:"Day 4 — साधी वाक्ये", text:"मला वाचायला आवडते. ती दररोज सराव करते. आम्ही एकत्र जेवतो."},
+      {stage:4, label:"Day 4 — साधी वाक्ये", text:"सूर्य उगवला आहे. पक्षी गाणे गात आहेत. सकाळ खूप छान आहे."}
+    ]
+  };
+
+  // Labels for the idle hand-position caption, keyed by finger index
+  // (same column mapping used by the on-screen keyboard's data-finger)
+  const BZ_FINGER_LABELS = {
+    en: ["Left pinky — Q, A, Z", "Left ring — W, S, X", "Left middle — E, D, C", "Left index — R,F,V / T,G,B",
+         "Right index — Y,H,N / U,J,M", "Right middle — I, K, ,", "Right ring — O, L, .", "Right pinky — P, ; , /", "Thumbs — Space bar"],
+    mr: ["डावी करंगळी — Q, A, Z", "डावी अनामिका — W, S, X", "डावे मधले बोट — E, D, C", "डावे तर्जनी — R,F,V / T,G,B",
+         "उजवे तर्जनी — Y,H,N / U,J,M", "उजवे मधले बोट — I, K, ,", "उजवी अनामिका — O, L, .", "उजवी करंगळी — P, ; , /", "अंगठे — स्पेस बार"]
+  };
+
+  // ---------- Elements ----------
+  const daySelect = document.getElementById('bzDaySelect');
+  const timeSelect = document.getElementById('bzTimeSelect');
+  const startBtn = document.getElementById('bzStartBtn');
+  const stopBtn = document.getElementById('bzStopBtn');
+  const timeVal = document.getElementById('bzTimeVal');
+  const wpmVal = document.getElementById('bzWpmVal');
+  const accVal = document.getElementById('bzAccVal');
+  const dayVal = document.getElementById('bzDayVal');
+  const passageLabel = document.getElementById('bzPassageLabel');
+  const passageText = document.getElementById('bzPassageText');
+  const hint = document.getElementById('bzHint');
+  const hiddenInput = document.getElementById('bzHiddenInput');
+  const kbRows = document.getElementById('bzKbRows');
+  const handsOverlay = document.getElementById('bzHandsOverlay');
+  const handGlow = document.getElementById('bzHandGlow');
+  const handCaption = document.getElementById('bzHandCaption');
+
+  // ---------- State ----------
+  let bz = {
+    running:false, duration:180, remaining:180, noLimit:false, elapsed:0, timerId:null,
+    currentPassage:null, typed:'', totalTyped:0, totalCorrect:0, timerHandle:null
+  };
+
+  function bzLang(){ return window.smartTypingLang || 'en'; }
+
+  // ---------- Build the full on-screen QWERTY keyboard ----------
+  // Each key gets a data-key (lowercase char it types) so we can look
+  // it up instantly for the glow highlight, plus a finger-color class
+  // and data-finger index shared with BZ_FINGER_LABELS for the idle
+  // hand animation.
+  const KB_LAYOUT = [
+    [['q',0],['w',1],['e',2],['r',3],['t',3],['y',4],['u',4],['i',5],['o',6],['p',7]],
+    [['a',0],['s',1],['d',2],['f',3],['g',3],['h',4],['j',4],['k',5],['l',6],[';',7]],
+    [['z',0],['x',1],['c',2],['v',3],['b',3],['n',4],['m',4],[',',5],['.',6],['/',7]]
+  ];
+  const FINGER_CLASS = ['bz-f-pinky','bz-f-ring','bz-f-middle','bz-f-index','bz-f-index','bz-f-index','bz-f-ring','bz-f-pinky'];
+  const keyElements = {}; // char -> DOM element
+
+  function buildBeginnerKeyboard(){
+    kbRows.innerHTML = '';
+    KB_LAYOUT.forEach(function(row){
+      const rowEl = document.createElement('div');
+      rowEl.className = 'bz-kb-row';
+      row.forEach(function(pair){
+        const ch = pair[0], fingerIdx = pair[1];
+        const keyEl = document.createElement('div');
+        keyEl.className = 'bz-key ' + FINGER_CLASS[fingerIdx];
+        keyEl.setAttribute('data-key', ch);
+        keyEl.setAttribute('data-finger', fingerIdx);
+        keyEl.textContent = ch.toUpperCase();
+        rowEl.appendChild(keyEl);
+        keyElements[ch] = keyEl;
+      });
+      kbRows.appendChild(rowEl);
+    });
+    const spaceRow = document.createElement('div');
+    spaceRow.className = 'bz-kb-row';
+    const spaceKey = document.createElement('div');
+    spaceKey.className = 'bz-key space bz-f-thumb';
+    spaceKey.setAttribute('data-key', ' ');
+    spaceKey.setAttribute('data-finger', 8);
+    spaceKey.textContent = 'SPACE';
+    spaceRow.appendChild(spaceKey);
+    keyElements[' '] = spaceKey;
+    kbRows.appendChild(spaceRow);
   }
-  tickFingerAnim();
-  setInterval(tickFingerAnim, 1400);
+  buildBeginnerKeyboard();
+
+  // ---------- Idle "invisible fingers" animation (before Start) ----------
+  // Glides a soft, semi-transparent glow between the home-row finger
+  // positions and updates the caption, so learners can see which
+  // finger belongs on which key before they ever press Start.
+  const homeRowOrder = ['a','s','d','f','h','j','k','l'];
+  let handAnimIndex = 0;
+  let handAnimTimer = null;
+  function tickHandAnim(){
+    const key = keyElements[homeRowOrder[handAnimIndex]];
+    if(key){
+      const kbRect = document.getElementById('bzKeyboardWrap').getBoundingClientRect();
+      const keyRect = key.getBoundingClientRect();
+      handGlow.style.left = (keyRect.left - kbRect.left + keyRect.width/2) + 'px';
+      handGlow.style.top = (keyRect.top - kbRect.top + keyRect.height/2) + 'px';
+      const fingerIdx = parseInt(key.getAttribute('data-finger'), 10);
+      const labels = BZ_FINGER_LABELS[bzLang()] || BZ_FINGER_LABELS.en;
+      handCaption.textContent = labels[fingerIdx];
+    }
+    handAnimIndex = (handAnimIndex + 1) % homeRowOrder.length;
+  }
+  function startHandAnim(){
+    handsOverlay.classList.remove('hidden');
+    tickHandAnim();
+    handAnimTimer = setInterval(tickHandAnim, 1400);
+  }
+  function stopHandAnim(){
+    clearInterval(handAnimTimer);
+    handsOverlay.classList.add('hidden');
+  }
+  // Give layout a tick to settle before first positioning
+  setTimeout(startHandAnim, 50);
+
+  // ---------- Glow highlight (after Start) ----------
+  function clearKeyGlow(){
+    Object.keys(keyElements).forEach(function(ch){ keyElements[ch].classList.remove('key-glow'); });
+  }
+  function glowNextKey(){
+    clearKeyGlow();
+    if(!bz.currentPassage) return;
+    const nextChar = bz.currentPassage.text[bz.typed.length];
+    if(nextChar === undefined) return;
+    const el = keyElements[nextChar.toLowerCase()];
+    if(el) el.classList.add('key-glow');
+  }
+  function flashKey(ch, correct){
+    const el = keyElements[(ch || '').toLowerCase()];
+    if(!el) return;
+    el.classList.remove('key-flash-correct','key-flash-incorrect');
+    void el.offsetWidth;
+    el.classList.add(correct ? 'key-flash-correct' : 'key-flash-incorrect');
+  }
+
+  // ---------- Passage selection ----------
+  function pickPassage(){
+    const list = BZ_BEGINNER_PASSAGES[bzLang()] || BZ_BEGINNER_PASSAGES.en;
+    const chosen = daySelect.value;
+    if(chosen === 'auto'){
+      const idx = Math.floor(Math.random()*list.length);
+      return list[idx];
+    }
+    const dayNum = parseInt(chosen, 10);
+    const filtered = list.filter(function(p){ return p.stage === dayNum; });
+    const pool = filtered.length ? filtered : list;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+
+  function renderBzPassage(){
+    const text = bz.currentPassage.text;
+    const typed = bz.typed;
+    let html = '';
+    for(let i=0;i<text.length;i++){
+      let cls = 'pending';
+      if(i < typed.length){ cls = typed[i] === text[i] ? 'correct' : 'incorrect'; }
+      else if(i === typed.length){ cls = 'current'; }
+      html += '<span class="ch ' + cls + '">' + text[i].replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;') + '</span>';
+    }
+    passageText.innerHTML = html;
+  }
+
+  function loadBzPassage(){
+    bz.currentPassage = pickPassage();
+    bz.typed = '';
+    passageLabel.textContent = bz.currentPassage.label;
+    dayVal.textContent = bz.currentPassage.stage;
+    const isMr = bzLang() === 'mr';
+    passageText.className = 'bz-passage' + (isMr ? ' mr-text' : '');
+    renderBzPassage();
+    glowNextKey();
+  }
+
+  function bzStats(){
+    const timeSec = bz.noLimit ? bz.elapsed : (bz.duration - bz.remaining);
+    const minutes = Math.max(timeSec,1)/60;
+    const wpm = Math.max(0, Math.round((bz.totalCorrect/5)/minutes));
+    const accuracy = bz.totalTyped > 0 ? Math.round((bz.totalCorrect/bz.totalTyped)*100) : 100;
+    return {wpm, accuracy};
+  }
+  function refreshBzStats(){
+    const s = bzStats();
+    wpmVal.textContent = s.wpm;
+    accVal.textContent = s.accuracy + '%';
+  }
+  function formatBzTime(sec){
+    sec = Math.max(0, Math.floor(sec));
+    const m = Math.floor(sec/60).toString().padStart(2,'0');
+    const s = (sec%60).toString().padStart(2,'0');
+    return m+':'+s;
+  }
+  function bzTick(){
+    if(bz.noLimit){ bz.elapsed += 1; timeVal.textContent = formatBzTime(bz.elapsed); }
+    else {
+      bz.remaining -= 1; timeVal.textContent = formatBzTime(bz.remaining);
+      if(bz.remaining <= 0){ stopBzSession(true); return; }
+    }
+    refreshBzStats();
+  }
+
+  function startBzSession(){
+    const durVal = parseInt(timeSelect.value, 10);
+    bz.noLimit = durVal === 0; bz.duration = durVal; bz.remaining = durVal;
+    bz.elapsed = 0; bz.totalTyped = 0; bz.totalCorrect = 0; bz.running = true;
+
+    startBtn.disabled = true; stopBtn.disabled = false;
+    daySelect.disabled = true; timeSelect.disabled = true;
+    hint.textContent = 'Go! Watch the glowing key and type it.';
+    stopHandAnim();
+    timeVal.textContent = bz.noLimit ? '00:00' : formatBzTime(bz.remaining);
+    refreshBzStats();
+    loadBzPassage();
+    hiddenInput.value = '';
+    hiddenInput.disabled = false;
+    hiddenInput.focus();
+    bz.timerId = setInterval(bzTick, 1000);
+  }
+
+  function stopBzSession(auto){
+    if(!bz.running) return;
+    clearInterval(bz.timerId);
+    bz.running = false;
+    hiddenInput.disabled = true;
+    startBtn.disabled = false; stopBtn.disabled = true;
+    daySelect.disabled = false; timeSelect.disabled = false;
+    hint.textContent = auto ? ('Time is up! ' + bzStats().wpm + ' WPM at ' + bzStats().accuracy + '% accuracy.') : 'Stopped. Press Start to try again.';
+    clearKeyGlow();
+    startHandAnim();
+  }
+
+  hiddenInput.addEventListener('input', function(e){
+    if(!bz.running || !bz.currentPassage) return;
+    let val = e.target.value;
+    const maxLen = bz.currentPassage.text.length;
+    if(val.length > maxLen) val = val.slice(0, maxLen);
+
+    // Figure out the just-typed character for the flash + tally it
+    if(val.length > bz.typed.length){
+      const idx = bz.typed.length;
+      const typedChar = val[idx];
+      const expectedChar = bz.currentPassage.text[idx];
+      flashKey(typedChar, typedChar === expectedChar);
+    }
+    bz.typed = val;
+    bz.totalTyped = bz.typed.length;
+    let correct = 0;
+    for(let i=0;i<bz.typed.length;i++){ if(bz.typed[i] === bz.currentPassage.text[i]) correct++; }
+    bz.totalCorrect = correct;
+
+    renderBzPassage();
+    refreshBzStats();
+    glowNextKey();
+
+    if(bz.typed.length >= maxLen){
+      hiddenInput.value = '';
+      loadBzPassage();
+    }
+  });
+  hiddenInput.addEventListener('paste', function(e){ e.preventDefault(); });
+  document.getElementById('bzKeyboardWrap').addEventListener('click', function(){ if(bz.running) hiddenInput.focus(); });
+  document.querySelector('.bz-panel').addEventListener('click', function(){ if(bz.running) hiddenInput.focus(); });
+
+  startBtn.addEventListener('click', startBzSession);
+  stopBtn.addEventListener('click', function(){ stopBzSession(false); });
+
+  // Re-render the current on-screen labels if the toolbar language changes
+  window.onSmartTypingLangChange = function(){
+    if(!bz.running){ tickHandAnim(); }
+  };
+
 })();
 </script>
 
