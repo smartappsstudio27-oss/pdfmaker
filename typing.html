@@ -145,8 +145,8 @@ gtag('config', 'G-TNBKQNNTMY');
   .global-ad-rail{
     position:fixed;top:0;bottom:0;width:var(--ad-rail-w,170px);
     background:var(--ink-softer);
-    display:flex;align-items:center;justify-content:center;
-    writing-mode:vertical-rl;color:var(--muted);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    color:var(--muted);
     font-size:11px;letter-spacing:0.5px;text-transform:uppercase;
     z-index:40;
   }
@@ -477,14 +477,26 @@ gtag('config', 'G-TNBKQNNTMY');
     .r-actions{display:none;}
   }
 </style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <!-- Persistent side-ad rails: fixed to the viewport, top to bottom,
      for the entire page. They never scroll away and there is no
      button or control anywhere that hides them. -->
-<div class="global-ad-rail left"><!-- ADSENSE PLACEHOLDER: LEFT RAIL --> Ad space</div>
-<div class="global-ad-rail right"><!-- ADSENSE PLACEHOLDER: RIGHT RAIL --> Ad space</div>
+<div class="global-ad-rail left">
+  <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-1124864848953243"
+       data-ad-slot="LEFT_RAIL_SLOT_ID"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="global-ad-rail right">
+  <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-1124864848953243"
+       data-ad-slot="RIGHT_RAIL_SLOT_ID"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <header class="app-header">
   <div class="header-row">
@@ -597,7 +609,10 @@ gtag('config', 'G-TNBKQNNTMY');
       <a class="btn btn-ghost" id="shareBtn" target="_blank" rel="noopener">📤 Share on WhatsApp</a>
     </div>
   </div>
-  <div class="ad-slot beside"><!-- ADSENSE PLACEHOLDER 3 (beside result) --> Ad space</div>
+  <div class="ad-slot beside">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="RESULT_SIDE_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 </section>
 
 <!-- Guide / FAQ section: real content for readers, plus safe ad spots.
@@ -609,7 +624,10 @@ gtag('config', 'G-TNBKQNNTMY');
     <p id="guideIntro">Enter your name, choose a time limit, pick Beginner or Advanced mode, and press Start. Type the passage shown on the left exactly as it appears. When you finish one passage, the next one loads automatically until your time runs out or you press Stop.</p>
 
     <!-- Ad zone inside the guide, in between content blocks -->
-    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 4 --> Ad space</div>
+    <div class="ad-slot" style="margin:20px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="GUIDE_SLOT_4_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <h3 id="guideBeginnerHeading">Beginner mode progression</h3>
     <p id="guideBeginnerPara">Beginner mode walks you through the keyboard step by step: home row drills first, then the top row, then a home + top row mix, then the bottom row, then a home + bottom row mix, and finally easy real words. Once you're comfortable, switch to Advanced mode for full paragraphs.</p>
@@ -629,7 +647,10 @@ gtag('config', 'G-TNBKQNNTMY');
     <p id="guideBenefitsPara"></p>
 
     <!-- Ad zone: after the mistakes/tips/benefits block -->
-    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 6 --> Ad space</div>
+    <div class="ad-slot" style="margin:20px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="GUIDE_SLOT_6_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <h3 id="guideWpmHeading">Typical WPM benchmarks</h3>
     <table id="guideWpmTable" class="wpm-table"></table>
@@ -638,7 +659,10 @@ gtag('config', 'G-TNBKQNNTMY');
     <p id="guideHistoryPara"></p>
 
     <!-- Ad zone: after the benchmarks/history block -->
-    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 7 --> Ad space</div>
+    <div class="ad-slot" style="margin:20px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="GUIDE_SLOT_7_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <h3 id="guideFaqHeading">Frequently asked questions</h3>
     <div id="guideFaqList">
@@ -661,7 +685,10 @@ gtag('config', 'G-TNBKQNNTMY');
     </div>
 
     <!-- Final ad zone in the guide -->
-    <div class="ad-slot" style="margin:20px 0;"><!-- ADSENSE PLACEHOLDER 5 --> Ad space</div>
+    <div class="ad-slot" style="margin:20px 0;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="GUIDE_SLOT_5_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
   </div>
 </section>
 
