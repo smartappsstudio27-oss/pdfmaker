@@ -388,6 +388,13 @@ gtag('config', 'G-TNBKQNNTMY');
     padding:14px 18px;margin-bottom:14px;min-height:120px;
   }
   .bz-panel .panel-label{font-size:10px;text-transform:uppercase;letter-spacing:0.7px;font-weight:600;color:var(--brass-deep);margin-bottom:6px;}
+  .bz-typed-panel{background:var(--ink-softer);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px 18px;margin-bottom:14px;min-height:70px;}
+  .bz-typed-panel .panel-label{color:var(--brass);}
+  .bz-typed{font-family:'JetBrains Mono',monospace;font-size:17px;line-height:2.1;white-space:pre-wrap;word-break:break-word;color:var(--off-white);}
+  .bz-typed.mr-text{font-size:19px;line-height:2.3;}
+  .bz-typed .ch.correct{color:var(--off-white);}
+  .bz-typed .ch.incorrect{color:var(--ribbon-red);background:rgba(194,92,83,0.15);border-radius:2px;}
+  .bz-caret{display:inline-block;width:2px;height:1.1em;background:var(--brass);vertical-align:middle;animation:blink 1s step-start infinite;}
   .bz-passage{font-family:'JetBrains Mono',monospace;font-size:17px;line-height:2.1;}
   .bz-passage.mr-text{font-size:19px;line-height:2.3;}
   .bz-passage .ch.correct{color:var(--success);}
@@ -400,7 +407,7 @@ gtag('config', 'G-TNBKQNNTMY');
   .bz-hint{text-align:center;font-size:11px;color:var(--muted);margin-top:10px;}
 
   /* On-screen full QWERTY keyboard used only in the Beginner zone */
-  .bz-keyboard-wrap{position:relative;background:var(--ink-softer);border-radius:12px;padding:22px 16px 16px;}
+  .bz-keyboard-wrap{position:relative;background:var(--ink-softer);border-radius:12px;padding:22px 16px 16px;margin-top:22px;}
   .bz-kb-row{display:flex;gap:6px;margin-bottom:6px;justify-content:center;flex-wrap:wrap;}
   .bz-key{
     min-width:34px;height:38px;flex:1 1 34px;max-width:46px;border-radius:6px;
@@ -686,6 +693,11 @@ gtag('config', 'G-TNBKQNNTMY');
         <div class="bz-panel">
           <div class="panel-label">Practice text — <span id="bzPassageLabel">Ready</span></div>
           <div class="bz-passage" id="bzPassageText">Press <strong>Start</strong> to begin this drill.</div>
+        </div>
+
+        <div class="bz-typed-panel" id="bzTypedPanel">
+          <div class="panel-label">Your Typing</div>
+          <div class="bz-typed" id="bzTypedText"></div>
         </div>
 
         <div class="bz-keyboard-wrap" id="bzKeyboardWrap">
@@ -1385,6 +1397,7 @@ gtag('config', 'G-TNBKQNNTMY');
   const dayVal = document.getElementById('bzDayVal');
   const passageLabel = document.getElementById('bzPassageLabel');
   const passageText = document.getElementById('bzPassageText');
+  const typedText = document.getElementById('bzTypedText');
   const hint = document.getElementById('bzHint');
   const hiddenInput = document.getElementById('bzHiddenInput');
   const kbRows = document.getElementById('bzKbRows');
@@ -1522,6 +1535,18 @@ gtag('config', 'G-TNBKQNNTMY');
     passageText.innerHTML = html;
   }
 
+  function renderBzTyped(){
+    const text = bz.currentPassage.text;
+    const typed = bz.typed;
+    let html = '';
+    for(let i=0;i<typed.length;i++){
+      const cls = typed[i] === text[i] ? 'correct' : 'incorrect';
+      html += '<span class="ch ' + cls + '">' + typed[i].replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;') + '</span>';
+    }
+    html += '<span class="bz-caret"></span>';
+    typedText.innerHTML = html;
+  }
+
   function loadBzPassage(){
     bz.currentPassage = pickPassage();
     bz.typed = '';
@@ -1529,7 +1554,9 @@ gtag('config', 'G-TNBKQNNTMY');
     dayVal.textContent = bz.currentPassage.stage;
     const isMr = bzLang() === 'mr';
     passageText.className = 'bz-passage' + (isMr ? ' mr-text' : '');
+    typedText.className = 'bz-typed' + (isMr ? ' mr-text' : '');
     renderBzPassage();
+    renderBzTyped();
     glowNextKey();
   }
 
@@ -1610,6 +1637,7 @@ gtag('config', 'G-TNBKQNNTMY');
     bz.totalCorrect = correct;
 
     renderBzPassage();
+    renderBzTyped();
     refreshBzStats();
     glowNextKey();
 
@@ -1621,6 +1649,7 @@ gtag('config', 'G-TNBKQNNTMY');
   hiddenInput.addEventListener('paste', function(e){ e.preventDefault(); });
   document.getElementById('bzKeyboardWrap').addEventListener('click', function(){ if(bz.running) hiddenInput.focus(); });
   document.querySelector('.bz-panel').addEventListener('click', function(){ if(bz.running) hiddenInput.focus(); });
+  document.getElementById('bzTypedPanel').addEventListener('click', function(){ if(bz.running) hiddenInput.focus(); });
 
   startBtn.addEventListener('click', startBzSession);
   stopBtn.addEventListener('click', function(){ stopBzSession(false); });
