@@ -107,9 +107,6 @@ gtag('config', 'G-TNBKQNNTMY');
 }
 </script>
 
-<!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with YOUR publisher ID -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -155,31 +152,18 @@ gtag('config', 'G-TNBKQNNTMY');
     border-bottom:1px solid var(--border);
   }
   .header-inner{
-    max-width:1320px;margin:0 auto;padding:16px 24px;
+    max-width:1320px;margin:0 auto;padding:18px 24px;
     display:flex;align-items:center;justify-content:space-between;
   }
   .logo{
-    display:flex;align-items:center;gap:14px;
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--font-display);font-weight:700;font-size:1.45rem;
     text-decoration:none;color:var(--text);
   }
   .logo-mark{
-    width:56px;height:56px;
+    width:70px;height:70px;border-radius:12px;
     display:block;
     object-fit:contain;
-    flex-shrink:0;
-  }
-  .logo-text{display:flex;flex-direction:column;line-height:1.25;}
-  .logo-title{
-    font-family:var(--font-display);font-weight:700;font-size:1.55rem;
-    color:var(--text);
-  }
-  .logo-tagline{
-    font-size:.82rem;color:var(--muted);font-weight:500;
-    letter-spacing:.01em;
-  }
-  @media (max-width:520px){
-    .logo-title{font-size:1.2rem;}
-    .logo-tagline{display:none;}
   }
   nav.site-nav a{
     text-decoration:none;color:var(--muted);font-weight:600;font-size:.92rem;
@@ -190,18 +174,23 @@ gtag('config', 'G-TNBKQNNTMY');
   /* Layout with ad rails */
   .page-shell{
     max-width:1600px;margin:0 auto;
+    display:grid;
+    grid-template-columns:160px minmax(0,1fr) 160px;
+    gap:20px;
     padding:0 16px;
   }
   .ad-rail{
-    position:fixed;top:88px;
+    position:sticky;top:78px;align-self:start;
     width:160px;height:600px;
+    background:var(--surface);
+    border:1px dashed var(--border);
+    border-radius:10px;
     display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-    z-index:20;
+    color:var(--muted);font-size:.72rem;font-family:var(--font-mono);
+    text-align:center;padding:8px;
   }
-  #ad-rail-left{left:12px;}
-  #ad-rail-right{right:12px;}
-  @media (max-width:1180px){
+  @media (max-width:1400px){
+    .page-shell{grid-template-columns:1fr;}
     .ad-rail{display:none;}
   }
   main.content{min-width:0;}
@@ -209,8 +198,11 @@ gtag('config', 'G-TNBKQNNTMY');
   .ad-inline{
     max-width:900px;margin:36px auto;
     min-height:100px;
+    background:var(--surface);
+    border:1px dashed var(--border);
+    border-radius:10px;
     display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
+    color:var(--muted);font-size:.75rem;font-family:var(--font-mono);
   }
 
   /* Hero */
@@ -391,36 +383,10 @@ gtag('config', 'G-TNBKQNNTMY');
   .privacy-banner p{margin:0;font-size:.88rem;color:#0B655F;}
 
   footer.site-footer{
-    border-top:1px solid var(--border);margin-top:60px;
-    background:var(--surface);color:var(--muted);font-size:.88rem;
+    border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;
+    text-align:center;color:var(--muted);font-size:.82rem;
   }
-  .footer-inner{
-    max-width:1100px;margin:0 auto;padding:48px 24px 24px;
-    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;
-  }
-  @media (max-width:760px){
-    .footer-inner{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:480px){
-    .footer-inner{grid-template-columns:1fr;}
-  }
-  .footer-brand{display:flex;flex-direction:column;gap:12px;}
-  .footer-brand img{width:44px;height:44px;object-fit:contain;}
-  .footer-brand h3{
-    font-family:var(--font-display);font-size:1.15rem;margin:0;color:var(--text);
-  }
-  .footer-brand p{margin:0;font-size:.85rem;line-height:1.55;max-width:32ch;}
-  .footer-col h4{
-    font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;
-    text-transform:uppercase;color:var(--text);margin:0 0 14px;
-  }
-  .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
-  footer.site-footer a{color:var(--muted);text-decoration:none;font-size:.86rem;}
-  footer.site-footer a:hover{color:var(--primary);}
-  .footer-bottom{
-    border-top:1px solid var(--border);
-    padding:18px 24px;text-align:center;font-size:.8rem;
-  }
+  footer.site-footer a{color:var(--primary);text-decoration:none;font-weight:600;}
 </style>
 </head>
 <body>
@@ -430,11 +396,7 @@ gtag('config', 'G-TNBKQNNTMY');
 <header class="site-header">
   <div class="header-inner">
     <a href="https://smartappsstudio.in/" class="logo">
-      <img src="logo.png" alt="SmartApps Studio" class="logo-mark">
-      <span class="logo-text">
-        <span class="logo-title">SmartApps Studio</span>
-        <span class="logo-tagline">Apps • Games • Innovation</span>
-      </span>
+      <img src="smartapps.png" alt="SmartApps Studio" class="logo-mark"> SmartApps Studio
     </a>
     <nav class="site-nav">
       <a href="https://smartappsstudio.in/">Home</a>
@@ -447,12 +409,8 @@ gtag('config', 'G-TNBKQNNTMY');
 <div class="page-shell">
   <!-- Left vertical ad rail -->
   <aside class="ad-rail" id="ad-rail-left">
-    <!-- Replace ca-pub-XXXX and data-ad-slot with YOUR values from AdSense -->
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:160px;height:600px"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="0000000001"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- TODO: replace with real AdSense <ins class="adsbygoogle"> 160x600 unit -->
+    Advertisement<br>160×600
   </aside>
 
   <main class="content" id="main">
@@ -537,16 +495,10 @@ gtag('config', 'G-TNBKQNNTMY');
       </div>
     </section>
 
-      <div class="ad-inline">
-        <!-- Replace ca-pub-XXXX and data-ad-slot with YOUR values from AdSense -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="0000000003"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
 
     <section class="info">
       <h2>How it works</h2>
@@ -599,16 +551,10 @@ gtag('config', 'G-TNBKQNNTMY');
       </div>
     </section>
 
-      <div class="ad-inline">
-        <!-- Replace ca-pub-XXXX and data-ad-slot with YOUR values from AdSense -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="0000000004"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
 
     <section class="info">
       <h2>MP4 vs MP3 — what's the difference</h2>
@@ -634,16 +580,10 @@ gtag('config', 'G-TNBKQNNTMY');
       </div>
     </section>
 
-      <div class="ad-inline">
-        <!-- Replace ca-pub-XXXX and data-ad-slot with YOUR values from AdSense -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="0000000005"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
+    <div class="ad-inline">
+      <!-- TODO: replace with real AdSense responsive banner unit -->
+      Advertisement
+    </div>
 
     <section class="info">
       <h2>Frequently asked questions</h2>
@@ -675,51 +615,13 @@ gtag('config', 'G-TNBKQNNTMY');
 
   <!-- Right vertical ad rail -->
   <aside class="ad-rail" id="ad-rail-right">
-    <!-- Replace ca-pub-XXXX and data-ad-slot with YOUR values from AdSense -->
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:160px;height:600px"
-         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-         data-ad-slot="0000000002"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- TODO: replace with real AdSense <ins class="adsbygoogle"> 160x600 unit -->
+    Advertisement<br>160×600
   </aside>
 </div>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="logo.png" alt="SmartApps Studio">
-      <h3>SmartApps Studio</h3>
-      <p>Creating useful Android apps and handy browser tools with modern design and excellent user experience.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="https://smartappsstudio.in/index.html">Home</a></li>
-        <li><a href="https://smartappsstudio.in/apps.html">Apps &amp; Games</a></li>
-        <li><a href="https://smartappsstudio.in/typing.html">Smart Typing</a></li>
-        <li><a href="https://smartappsstudio.in/mp4-to-mp3.html">MP4 to MP3</a></li>
-        <li><a href="https://smartappsstudio.in/about.html">About</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="https://smartappsstudio.in/privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="https://smartappsstudio.in/terms.html">Terms &amp; Conditions</a></li>
-        <li><a href="https://smartappsstudio.in/sitemap.html">HTML Sitemap</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:smartapps.studio27@gmail.com">smartapps.studio27@gmail.com</a></li>
-        <li><a href="https://smartappsstudio.in/contact.html">Contact Page</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2026 SmartApps Studio. All Rights Reserved.
-  </div>
+  <p>&copy; 2026 SmartApps Studio · <a href="https://smartappsstudio27-oss.github.io/pdfmaker/privacy-policy.html">Privacy Policy</a> · <a href="mailto:smartapps.studio27@gmail.com">Contact</a></p>
 </footer>
 
 <!-- ffmpeg.wasm (single-thread build, works without special server headers) -->
