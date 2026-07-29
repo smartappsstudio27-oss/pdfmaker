@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  1
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Typing | SmartApps Studio</title>
@@ -130,8 +129,35 @@ gtag('config', 'G-TNBKQNNTMY');
     flex-direction:column;
     min-height:100vh;
     overflow-x:hidden;
+    /* Room for the two fixed side-ad rails so real content never
+       sits underneath them (see .global-ad-rail below) */
+    padding-left:var(--ad-rail-w,170px);
+    padding-right:var(--ad-rail-w,170px);
   }
   .mr-text{font-family:'Noto Sans Devanagari','JetBrains Mono',sans-serif;}
+
+  /* ===== Global fixed side-ad rails =====
+     These stay pinned to the viewport top-to-bottom the whole time —
+     only the middle content (everything inside <body>'s normal flow)
+     scrolls underneath them. There is no user-facing control to hide
+     or dismiss these; they are plain fixed-position elements. */
+  :root{ --ad-rail-w:170px; }
+  .global-ad-rail{
+    position:fixed;top:0;bottom:0;width:var(--ad-rail-w,170px);
+    background:var(--ink-softer);
+    display:flex;align-items:center;justify-content:center;
+    writing-mode:vertical-rl;color:var(--muted);
+    font-size:11px;letter-spacing:0.5px;text-transform:uppercase;
+    z-index:40;
+  }
+  .global-ad-rail.left{left:0;border-right:1px dashed rgba(255,255,255,0.15);}
+  .global-ad-rail.right{right:0;border-left:1px dashed rgba(255,255,255,0.15);}
+  @media (max-width:860px){
+    /* Narrower on small screens, but never hidden — the rails stay
+       visible and fixed at every viewport size. */
+    :root{ --ad-rail-w:56px; }
+    .global-ad-rail{font-size:9px;}
+  }
 
   /* ===== Header / Toolbar (compact single row) ===== */
   .app-header{
@@ -355,16 +381,9 @@ gtag('config', 'G-TNBKQNNTMY');
   .faq-item summary{font-size:13px;font-weight:600;color:var(--off-white);cursor:pointer;}
   .faq-item p{margin-top:8px;}
 
-  /* ===== Advanced workspace: narrower/taller panels + side ads ===== */
-  .advanced-zone{display:flex;gap:14px;padding:14px 16px;align-items:stretch;}
-  .advanced-zone .workspace{flex:1 1 auto;padding:0;min-width:0;}
-  .vert-ad{
-    flex:0 0 160px;min-height:520px;
-    background:var(--ink-softer);border:1px dashed rgba(255,255,255,0.15);border-radius:10px;
-    display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;
-    color:var(--muted);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;
-  }
-  @media (max-width:860px){ .vert-ad{display:none;} }
+  /* ===== Advanced workspace: narrower/taller panels ===== */
+  .advanced-zone{padding:14px 16px;}
+  .advanced-zone .workspace{padding:0;}
   .advanced-zone .panel{min-width:220px;min-height:460px;}
   .advanced-zone .passage-text,
   .advanced-zone .typed-wrap{min-height:400px;max-height:520px;}
@@ -382,7 +401,7 @@ gtag('config', 'G-TNBKQNNTMY');
     background:var(--ink);border:1px solid rgba(255,255,255,0.1);color:var(--off-white);
     border-radius:6px;padding:7px 9px;font-family:'Poppins',sans-serif;
   }
-  .bz-layout{display:flex;gap:14px;align-items:flex-start;}
+  .bz-layout{display:block;}
   .bz-main{flex:1 1 auto;min-width:0;}
   .bz-panel{
     background:var(--paper);color:var(--paper-text);border-radius:12px;
@@ -461,6 +480,12 @@ gtag('config', 'G-TNBKQNNTMY');
 </head>
 <body>
 
+<!-- Persistent side-ad rails: fixed to the viewport, top to bottom,
+     for the entire page. They never scroll away and there is no
+     button or control anywhere that hides them. -->
+<div class="global-ad-rail left"><!-- ADSENSE PLACEHOLDER: LEFT RAIL --> Ad space</div>
+<div class="global-ad-rail right"><!-- ADSENSE PLACEHOLDER: RIGHT RAIL --> Ad space</div>
+
 <header class="app-header">
   <div class="header-row">
     <a class="brand-mini" href="index.html">
@@ -530,8 +555,6 @@ gtag('config', 'G-TNBKQNNTMY');
 </header>
 
 <div class="advanced-zone">
-  <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 1 --> Ad space</div>
-
   <main class="workspace" id="workspace" data-layout="row">
     <section class="panel passage-panel">
       <div class="panel-label">Passage — <span id="passageTopic">Ready</span></div>
@@ -548,8 +571,6 @@ gtag('config', 'G-TNBKQNNTMY');
       <div class="hint" id="hint">Enter your name and click Start. Pasting is disabled — this is a typing test!</div>
     </section>
   </main>
-
-  <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 2 --> Ad space</div>
 </div>
 
 <!-- Result section: appears inline in the page (not a full overlay)
@@ -681,8 +702,6 @@ gtag('config', 'G-TNBKQNNTMY');
     </div>
 
     <div class="bz-layout">
-      <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 8 --> Ad space</div>
-
       <div class="bz-main">
         <div class="bz-stats">
           <div class="stat"><span class="val" id="bzTimeVal">00:00</span><span class="lbl">Time</span></div>
@@ -721,8 +740,6 @@ gtag('config', 'G-TNBKQNNTMY');
 
         <div class="bz-hint" id="bzHint">Choose a day and time above, then press Start.</div>
       </div>
-
-      <div class="vert-ad"><!-- ADSENSE PLACEHOLDER 9 --> Ad space</div>
     </div>
   </div>
 </section>
