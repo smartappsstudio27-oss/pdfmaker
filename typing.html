@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  2
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Typing | SmartApps Studio</title>
@@ -154,9 +153,10 @@ gtag('config', 'G-TNBKQNNTMY');
   .global-ad-rail.left{left:0;border-right:1px dashed rgba(255,255,255,0.15);}
   .global-ad-rail.right{right:0;border-left:1px dashed rgba(255,255,255,0.15);}
   @media (max-width:860px){
-    /* Narrower on small screens, but never hidden — the rails stay
-       visible and fixed at every viewport size. */
-    :root{ --ad-rail-w:56px; }
+    /* Narrower on small screens, but never hidden — and kept above
+       Google's practical minimum fill-width (~120px) so the ad still
+       actually renders instead of coming back blank. */
+    :root{ --ad-rail-w:130px; }
     .global-ad-rail{font-size:9px;}
   }
 
