@@ -179,7 +179,7 @@ gtag('config', 'G-TNBKQNNTMY');
   .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--ink-soft);padding-bottom:4px;border-bottom:2px solid transparent;}
   .navbar a:hover, .navbar a.active{color:var(--ink);border-bottom-color:var(--stamp);}
   .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
-  .navbar .caret{font-size:10px;transition:transform .15s ease;display:inline-block;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
   .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
   .dropdown-menu{
     list-style:none;margin:0;padding:8px;padding-top:14px;
@@ -198,7 +198,7 @@ gtag('config', 'G-TNBKQNNTMY');
   .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
   .dropdown-menu a:hover, .dropdown-menu a.active{background:var(--paper);color:var(--ink);}
   .header-buttons{display:flex;gap:8px;}
-  #themeBtn, .menuBtn{
+  .menuBtn{
     width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:var(--paper-card);cursor:pointer;font-size:16px;
   }
   .menuBtn{display:none;}
@@ -388,7 +388,9 @@ gtag('config', 'G-TNBKQNNTMY');
   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
   @media (max-width:800px){ .footer-grid{grid-template-columns:1fr 1fr;} }
   @media (max-width:520px){ .footer-grid{grid-template-columns:1fr;} }
-  .footer-logo{width:34px;height:34px;border-radius:8px;margin-bottom:10px;}
+  .footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;}
+  .footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
   footer h2{color:#fff;font-size:16px;}
   footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;}
   footer p{color:rgba(255,255,255,0.55);font-size:13.5px;}
@@ -452,7 +454,6 @@ gtag('config', 'G-TNBKQNNTMY');
 </ul>
 </nav>
 <div class="header-buttons">
-<button id="themeBtn">🌙</button>
 <button class="menuBtn">☰</button>
 </div>
 </div>
@@ -654,8 +655,9 @@ Kuch bhi upload nahi hota — sab kuch aapke device par hi process hota hai.
 <footer>
 <div class="container footer-grid">
 <div>
-<img src="smartapps.png" class="footer-logo" width="512" height="512">
-<h2>SmartApps Studio</h2>
+<img src="smartapps.png" class="footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="footer-brand-title">Online PDF</div>
+<p class="footer-brand-sub">SmartApps Studio</p>
 <p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
 </div>
 <div>
