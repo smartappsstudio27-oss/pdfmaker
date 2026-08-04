@@ -175,8 +175,28 @@ gtag('config', 'G-TNBKQNNTMY');
   .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:var(--ink);letter-spacing:.01em;line-height:1.15;}
   .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
   .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
   .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--ink-soft);padding-bottom:4px;border-bottom:2px solid transparent;}
   .navbar a:hover, .navbar a.active{color:var(--ink);border-bottom-color:var(--stamp);}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:10px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
+    position:absolute;top:100%;left:0;min-width:180px;
+    background:var(--paper-card);border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:var(--paper);color:var(--ink);}
   .header-buttons{display:flex;gap:8px;}
   #themeBtn, .menuBtn{
     width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:var(--paper-card);cursor:pointer;font-size:16px;
@@ -411,19 +431,24 @@ gtag('config', 'G-TNBKQNNTMY');
 <a href="index.html" class="brand">
 <img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
 <div>
-<div class="brand-title">Online PDF Maker</div>
+<div class="brand-title">Online PDF</div>
 <p class="brand-sub">SmartApps Studio</p>
 </div>
 </a>
 <nav class="navbar">
 <ul>
 <li><a href="index.html">Home</a></li>
-<li><a href="apps.html">Apps & Games</a></li>
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
 <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-<li><a href="pdf-maker.html" class="active">PDF Maker</a></li>
+<li><a href="pdf-maker.html" class="active">Online PDF</a></li>
+</ul>
+</li>
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
 </ul>
 </nav>
 <div class="header-buttons">
