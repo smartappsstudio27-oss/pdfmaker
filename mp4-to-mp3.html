@@ -349,26 +349,26 @@ gtag('config', 'G-TNBKQNNTMY');
     body{padding-left:0;padding-right:0;}
   }
 
-  .sas-header{
+  .site-header{
     position:sticky;top:0;z-index:200;
     background:rgba(248,249,251,0.92);
     backdrop-filter:blur(10px);
     border-bottom:1px solid #E4E7EC;
     font-family:'Inter',sans-serif;
   }
-  .sas-header-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
-  .sas-brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
-  .sas-brand img{width:110px;height:110px;border-radius:30px;display:block;object-fit:contain;}
-  .sas-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:20px;margin:0;color:#16233C;line-height:1.15;}
-  .sas-brand-sub{font-size:12px;margin:0;color:#777;font-weight:500;}
-  .sas-nav ul{list-style:none;display:flex;gap:24px;margin:0;padding:0;}
-  .sas-nav li{position:relative;}
-  .sas-nav a{text-decoration:none;font-size:14px;font-weight:600;color:#667085;padding-bottom:4px;border-bottom:2px solid transparent;}
-  .sas-nav a:hover, .sas-nav a.active{color:#16233C;border-bottom-color:#B4402C;}
-  .sas-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
-  .sas-caret{font-size:15px;display:inline-block;transition:transform .15s ease;}
-  .sas-nav li:hover .sas-caret{transform:rotate(180deg);}
-  .sas-dropdown-menu{
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;display:block;object-fit:contain;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
     list-style:none;margin:0;padding:8px;padding-top:14px;
     position:absolute;top:100%;left:0;min-width:180px;
     background:#fff;border:1px solid #E4E7EC;border-radius:10px;
@@ -377,16 +377,20 @@ gtag('config', 'G-TNBKQNNTMY');
     transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
     z-index:210;
   }
-  .sas-nav li:hover .sas-dropdown-menu, .sas-nav li:focus-within .sas-dropdown-menu{
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
     opacity:1;visibility:visible;transform:translateY(0);
   }
-  .sas-dropdown-menu li{padding:0;}
-  .sas-dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
-  .sas-dropdown-menu a:hover, .sas-dropdown-menu a.active{background:#F4F6F8;color:#16233C;}
-  .sas-menu-btn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{
+    width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;
+  }
   @media (max-width:860px){
-    .sas-nav{display:none;}
-    .sas-menu-btn{display:block;}
+    .navbar{display:none;}
+    .menuBtn{display:block;}
   }
 
   .sas-ad-inline{max-width:900px;margin:36px auto;padding:0 24px;}
@@ -428,24 +432,24 @@ gtag('config', 'G-TNBKQNNTMY');
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<header class="sas-header">
-<div class="sas-header-inner">
-<a href="index.html" class="sas-brand">
+<header class="site-header">
+<div class="container">
+<a href="index.html" class="brand">
 <img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
 <div>
-<div class="sas-brand-title">Online PDF</div>
-<p class="sas-brand-sub">SmartApps Studio</p>
+<div class="brand-title">Online PDF</div>
+<p class="brand-sub">SmartApps Studio</p>
 </div>
 </a>
-<nav class="sas-nav">
+<nav class="navbar">
 <ul>
 <li><a href="index.html">Home</a></li>
-<li>
-<a href="apps.html" class="sas-dropdown-trigger">Apps &amp; Games <span class="sas-caret">▾</span></a>
-<ul class="sas-dropdown-menu">
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
-<li><a href="mp4-to-mp3.html" class="active">MP4 → MP3</a></li>
-<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
+<li><a href="pdf-maker.html" class="active">Online PDF</a></li>
 </ul>
 </li>
 <li><a href="about.html">About</a></li>
@@ -453,7 +457,9 @@ gtag('config', 'G-TNBKQNNTMY');
 <li><a href="privacy-policy.html">Privacy</a></li>
 </ul>
 </nav>
-<button class="sas-menu-btn">☰</button>
+<div class="header-buttons">
+<button class="menuBtn">☰</button>
+</div>
 </div>
 </header>
 
