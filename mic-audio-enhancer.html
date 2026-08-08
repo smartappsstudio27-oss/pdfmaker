@@ -170,6 +170,27 @@ gtag('config', 'G-TNBKQNNTMY');
   .trust-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);font-weight:600;}
   .trust-item svg{width:18px;height:18px;color:var(--success);flex-shrink:0;}
 
+  /* Hero CTA buttons */
+  .hero-cta-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .hero-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 20px;border-radius:12px;
+    font-family:var(--font-body);font-weight:700;font-size:.92rem;
+    text-decoration:none;border:none;cursor:pointer;
+    background:#16233C;color:#fff;
+    transition:background .15s ease, opacity .15s ease;
+  }
+  .hero-btn:hover{background:#0F1830;}
+  .hero-btn.soon{
+    background:#16233C;opacity:.55;cursor:not-allowed;
+    position:relative;
+  }
+  .hero-btn.soon:hover{background:#16233C;}
+  .hero-btn .play-ic{width:18px;height:18px;flex-shrink:0;}
+  .hero-btn .btn-text{display:flex;flex-direction:column;line-height:1.25;}
+  .hero-btn .btn-text .small{font-size:.66rem;font-weight:600;letter-spacing:.04em;opacity:.75;text-transform:uppercase;}
+  .hero-btn .btn-text .big{font-size:.92rem;font-weight:700;}
+
   /* Signature scope visual */
   .scope-wrap{display:flex;justify-content:center;}
   .scope-card{
@@ -456,7 +477,7 @@ gtag('config', 'G-TNBKQNNTMY');
 <ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
 <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-<li><a href="onlinepdf.html">Online PDF</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
 <li><a href="mic-audio-enhancer.html" class="active">Mic Enhancer</a></li>
 </ul>
 </li>
@@ -478,6 +499,18 @@ gtag('config', 'G-TNBKQNNTMY');
       <span class="eyebrow"><span class="dot"></span> 100% browser-based · nothing uploaded</span>
       <h1>Turn a cheap mic into a clean, studio-ready sound</h1>
       <p class="lead">Drop in your video or audio, pick a strength, and pull out clear, noise-free audio — right here on this page. No installs, no accounts, no waiting on uploads.</p>
+      <div class="hero-cta-row">
+        <a href="#converter" class="hero-btn">
+          <span class="btn-text"><span class="big">Try the Online Tool</span></span>
+        </a>
+        <button type="button" class="hero-btn soon" disabled aria-disabled="true">
+          <svg class="play-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="btn-text">
+            <span class="small">Android App</span>
+            <span class="big">Coming Soon</span>
+          </span>
+        </button>
+      </div>
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -511,7 +544,7 @@ gtag('config', 'G-TNBKQNNTMY');
     </div>
   </section>
 
-  <section class="converter-section">
+  <section class="converter-section" id="converter">
     <div class="converter-card">
       <h2>1. Choose a file</h2>
       <p class="card-sub">Video (MP4, MOV, WEBM) or audio (MP3, WAV, M4A) — both work.</p>
