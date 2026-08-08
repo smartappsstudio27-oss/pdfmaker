@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>About | SmartApps Studio</title>
-
-<meta name="description"
-content="Learn about SmartApps Studio, our mission, vision, and commitment to building high-quality Android apps, games, and innovative digital solutions for users worldwide.">
-
+<meta name="description" content="Learn about SmartApps Studio, our mission, vision, and commitment to building useful Android apps and privacy-first browser tools.">
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://smartappsstudio.in/about.html">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SmartApps Studio">
 <meta property="og:title" content="About | SmartApps Studio">
-<meta property="og:description" content="Learn more about SmartApps Studio, our mission, vision, and Android app development journey.">
+<meta property="og:description" content="Learn about SmartApps Studio, our mission, vision, and Android app &amp; browser tool development journey.">
 <meta property="og:url" content="https://smartappsstudio.in/about.html">
 <meta property="og:image" content="https://smartappsstudio.in/og-image.png">
-
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About | SmartApps Studio">
-<meta name="twitter:description" content="Learn more about SmartApps Studio, our mission, vision, and Android app development journey.">
+<meta name="twitter:description" content="Learn about SmartApps Studio, our mission, vision, and Android app &amp; browser tool development journey.">
 <meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-
 gtag('config', 'G-TNBKQNNTMY');
 </script>
+
 <!-- Organization Schema -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type: "Organization",
-  "name": "SmartApps Studio",
-  "url": "https://smartappsstudio.in/",
-  "logo": "https://smartappsstudio.in/smartapps.png",
-  "email": "smartapps.studio27@gmail.com"
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
 }
 </script>
 <!-- WebSite Schema -->
@@ -65,15 +54,14 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-
-<!-- WebPage Schema -->
+<!-- AboutPage Schema -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"AboutPage",
   "name":"About | SmartApps Studio",
   "url":"https://smartappsstudio.in/about.html",
-  "description":"Learn more about SmartApps Studio, our mission, vision and Android app development journey.",
+  "description":"Learn about SmartApps Studio, our mission, vision and Android app & browser tool development journey.",
   "inLanguage":"en",
   "isPartOf":{
     "@type":"WebSite",
@@ -86,68 +74,214 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-  <!-- Breadcrumb Schema -->
+<!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"BreadcrumbList",
   "itemListElement":[
-    {
-      "@type":"ListItem",
-      "position":1,
-      "name":"Home",
-      "item":"https://smartappsstudio.in/"
-    },
-    {
-      "@type":"ListItem",
-      "position":2,
-      "name":"About",
-      "item":"https://smartappsstudio.in/about.html"
-    }
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"About","item":"https://smartappsstudio.in/about.html"}
   ]
 }
 </script>
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" href="smartapps.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
 
-<!-- Fixed side-ad rails: same pattern as Home/Typing pages -->
 <style>
-  :root{ --ad-rail-w:170px; }
-  body{
-    padding-left:var(--ad-rail-w,170px);
-    padding-right:var(--ad-rail-w,170px);
+  :root{
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --success:#16A34A;
+    --danger:#DC2626;
+    --radius:14px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
   }
-  .global-ad-rail{
-    position:fixed;top:0;bottom:0;width:var(--ad-rail-w,170px);
-    background:rgba(128,128,128,0.08);
-    border-right:1px dashed rgba(128,128,128,0.3);
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+
+  main.content{min-width:0;}
+
+  /* Hero */
+  .hero{
+    max-width:900px;margin:0 auto;padding:56px 24px 20px;text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  h1{
+    font-family:var(--font-display);font-size:2.5rem;line-height:1.15;
+    margin:18px auto 14px;font-weight:700;max-width:20ch;
+  }
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:56ch;margin:0 auto;}
+
+  /* Sections */
+  section.info{max-width:1000px;margin:64px auto;padding:0 24px;}
+  section.info.narrow{max-width:760px;}
+  section.info .section-head{margin-bottom:28px;}
+  section.info h2{font-family:var(--font-display);font-size:1.7rem;margin:0 0 10px;}
+  section.info p.section-sub{color:var(--muted);margin:0;max-width:60ch;}
+  .section-tag{font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;display:block;}
+
+  .story-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    padding:32px;
+  }
+  .story-card p{color:var(--muted);font-size:.98rem;margin:0 0 16px;}
+  .story-card p:last-child{margin-bottom:0;}
+  .story-card p strong{color:var(--text);}
+
+  /* Mission/vision cards */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:860px){.why-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;}
+  .why-card .why-ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .why-card .why-ic svg{width:21px;height:21px;}
+  .why-card h3{font-family:var(--font-display);font-size:1rem;margin:0 0 8px;}
+  .why-card p{color:var(--muted);font-size:.87rem;margin:0;}
+  .icon-red{background:#FCE9E8;color:var(--primary);}
+  .icon-teal{background:#EAF6F5;color:var(--teal);}
+  .icon-amber{background:#FDF3E4;color:#B4790A;}
+  .icon-navy{background:#E9EBF3;color:#16233C;}
+
+  /* Timeline / roadmap */
+  .roadmap-card{
+    background:#16233C;border-radius:22px;padding:40px 32px;text-align:center;color:#fff;
+  }
+  .roadmap-card h2{font-family:var(--font-display);font-size:1.6rem;margin:0 0 12px;color:#fff;}
+  .roadmap-card p{color:rgba(255,255,255,.72);font-size:.98rem;max-width:56ch;margin:0 auto 24px;}
+  .roadmap-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--primary);color:#fff;text-decoration:none;
+    padding:13px 24px;border-radius:12px;font-weight:700;font-size:.92rem;
+    transition:background .15s ease;
+  }
+  .roadmap-btn:hover{background:var(--primary-dark);}
+
+  /* Stats strip */
+  .stats-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:32px;}
+  .stat{text-align:center;}
+  .stat .num{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--primary);}
+  .stat .lbl{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-top:2px;}
+</style>
+
+<!-- ================= Shared header / footer / ad-rail system (matches Home / Mic Enhancer pages) ================= -->
+<style>
+  .sas-ad-rail{
+    position:fixed;top:0;bottom:0;width:170px;
+    background:rgba(22,35,60,0.03);
+    border-right:1px dashed rgba(22,35,60,0.15);
     display:flex;align-items:center;justify-content:center;overflow:hidden;
     z-index:999;
   }
-  .global-ad-rail.right{border-right:none;border-left:1px dashed rgba(128,128,128,0.3);}
-  .global-ad-rail.left{left:0;}
-  .global-ad-rail.right{right:0;}
+  .sas-ad-rail.right{border-right:none;border-left:1px dashed rgba(22,35,60,0.15);}
+  .sas-ad-rail.left{left:0;}
+  .sas-ad-rail.right{right:0;}
+  body{padding-left:170px;padding-right:170px;}
   @media (max-width:860px){
-    :root{ --ad-rail-w:130px; }
+    .sas-ad-rail{width:130px;}
+    body{padding-left:130px;padding-right:130px;}
   }
+  @media (max-width:640px){
+    .sas-ad-rail{display:none;}
+    body{padding-left:0;padding-right:0;}
+  }
+
+  .site-header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(248,249,251,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;
+    font-family:'Inter',sans-serif;
+  }
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
+    position:absolute;top:100%;left:0;min-width:180px;
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  @media (max-width:860px){
+    .navbar{display:none;}
+    .menuBtn{display:block;}
+  }
+
+  .sas-ad-inline{max-width:900px;margin:36px auto;padding:0 24px;}
+
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);margin-top:40px;font-family:'Inter',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;display:block;}
+  .sas-footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13.5px;margin:0;}
+  .sas-footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13.5px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:18px 24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,0.45);}
 </style>
-
 </head>
-
 <body>
 
-<!-- Persistent side-ad rails (same slot IDs as Home/Typing pages) -->
-<div class="global-ad-rail left">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Persistent side-ad rails (same slots as other SmartApps Studio pages) -->
+<div class="sas-ad-rail left">
   <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
        data-ad-client="ca-pub-1124864848953243"
        data-ad-slot="5989140493"
@@ -155,7 +289,7 @@ gtag('config', 'G-TNBKQNNTMY');
        data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<div class="global-ad-rail right">
+<div class="sas-ad-rail right">
   <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
        data-ad-client="ca-pub-1124864848953243"
        data-ad-slot="7154882503"
@@ -164,286 +298,155 @@ gtag('config', 'G-TNBKQNNTMY');
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<header class="header">
-
+<header class="site-header">
 <div class="container">
-
 <a href="index.html" class="brand">
-
-<img src="smartapps.png" alt="Logo" width="512" height="512">
-
+<img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
 <div>
-
-<h2>SmartApps Studio</h2>
-
-<p>Apps • Games • Innovation</p>
-
+<div class="brand-title">SmartApps Studio</div>
+<p class="brand-sub">Apps &amp; Tools that just work</p>
 </div>
-
 </a>
-
 <nav class="navbar">
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
-<li><a href="apps.html">Apps & Games</a></li>
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
 <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-<li><a href="about.html" class="active">About</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-<li><a href="privacy-policy.html">Privacy</a></li>
-
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
 </ul>
-
+</li>
+<li><a href="about.html" class="active">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+</ul>
 </nav>
-
 <div class="header-buttons">
-
-<button id="themeBtn">🌙</button>
-
 <button class="menuBtn">☰</button>
-
 </div>
-
 </div>
-
 </header>
 
-<section class="hero">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>ABOUT US</span>
-
-<h2>Who We Are</h2>
-
-<p>
-
-SmartApps Studio develops modern Android Apps and Games with a focus on quality, simplicity and innovation.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="about-home">
-
-<div class="container">
-
-<h2>Our Story</h2>
-
-<p>
-
-SmartApps Studio was created with a vision to build useful Android applications and enjoyable mobile games for users around the world. We focus on clean design, smooth performance and reliable user experiences.
-
-</p>
-
-<p style="margin-top:25px;">
-
-Our first project is <strong>PDF Maker</strong>, and many more utility apps and Android games are already planned for the future.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- In-content ad (reusing Result Side slot ID) -->
-<div class="container" style="margin:24px auto;">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
-<section class="why-us">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>OUR MISSION</span>
-
-<h2>What Drives Us</h2>
-
-<p>
-
-Our mission is to build Android Apps and Games that are useful, fast, secure and enjoyable for everyone.
-
-</p>
-
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-
-<div class="icon">🎯</div>
-
-<h3>Mission</h3>
-
-<p>
-
-Create high-quality Android Apps that solve real-world problems.
-
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="icon">👁️</div>
-
-<h3>Vision</h3>
-
-<p>
-
-Become a trusted global Android App & Game development studio.
-
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="icon">💎</div>
-
-<h3>Quality</h3>
-
-<p>
-
-Every app is designed with performance, simplicity and reliability.
-
-</p>
-
-</div>
-
-<div class="why-card">
-
-<div class="icon">🚀</div>
-
-<h3>Innovation</h3>
-
-<p>
-
-We continuously improve our products with new technologies.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="cta">
-
-<div class="container">
-
-<h2>Our Future Roadmap</h2>
-
-<p>
-
-SmartApps Studio plans to launch Utility Apps, AI Apps, Productivity Tools and exciting Android Games in the coming years.
-
-</p>
-
-<a href="apps.html" class="btn btn-primary">
-
-Explore Our Apps
-
-</a>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<div class="container footer-grid">
-
+<main class="content" id="main">
+
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span> About Us</span>
+    <h1>One small studio, building things people actually use</h1>
+    <p class="lead">SmartApps Studio makes Android apps and free browser tools with a simple rule: solve one real problem well, respect people's privacy, and don't add clutter nobody asked for.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="num">3+</div><div class="lbl">Live web tools</div></div>
+      <div class="stat"><div class="num">100%</div><div class="lbl">Browser-side processing</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">Independent developer</div></div>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info narrow">
+    <div class="section-head">
+      <span class="section-tag">Our Story</span>
+      <h2>How it started</h2>
+    </div>
+    <div class="story-card">
+      <p>SmartApps Studio started with a simple goal: build Android apps and browser tools that are genuinely useful, without the bloat, clutter or invasive permissions that most apps come with today.</p>
+      <p>The first release was <strong>PDF Maker</strong> — a straightforward tool for turning photos into clean, private PDFs. Since then the studio has grown to include free browser-based tools like <strong>MP4 to MP3 Converter</strong> and <strong>Mic Audio Enhancer</strong>, all built around the same idea: your files stay on your device, and the tool does one job really well.</p>
+      <p>It's a small, independent operation — one developer designing, building and shipping every app and tool on this site. That keeps things focused: no growth hacks, no dark patterns, just steady, useful updates.</p>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="section-head">
+      <span class="section-tag">Our Mission</span>
+      <h2>What drives us</h2>
+      <p class="section-sub">Four principles that shape every app and tool we build.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-ic icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5" fill="currentColor"/></svg></div>
+        <h3>Mission</h3>
+        <p>Build Android apps and tools that solve real, everyday problems — not ones nobody asked for.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-ic icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Vision</h3>
+        <p>Become a small studio people trust — known for apps and tools that just work, every time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-ic icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M11 3L8 9l4 12 4-12-3-6M2 9h20"/></svg></div>
+        <h3>Quality</h3>
+        <p>Every release is designed around performance, simplicity and reliability first.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-ic icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <h3>Privacy</h3>
+        <p>Browser tools run entirely on-device. What's yours stays yours — nothing gets uploaded.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info narrow">
+    <div class="roadmap-card">
+      <h2>What's next</h2>
+      <p>More utility apps, productivity tools and browser-based tools are already in progress — with a focus on the same privacy-first, no-clutter approach behind everything SmartApps Studio has shipped so far.</p>
+      <a href="apps.html" class="roadmap-btn">
+        Explore Our Apps
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sas-footer">
+<div class="sas-footer-grid">
 <div>
-
-<img src="smartapps.png" class="footer-logo" width="512" height="512">
-
-<h2>SmartApps Studio</h2>
-
-<p>
-
-Building Smart Apps & Amazing Games for Everyone.
-
-</p>
-
+<img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="sas-footer-brand-title">SmartApps Studio</div>
+<p class="sas-footer-brand-sub">Apps &amp; Tools that just work</p>
+<p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
 </div>
-
 <div>
-
 <h3>Quick Links</h3>
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
 <li><a href="apps.html">Apps & Games</a></li>
-
+<li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li><a href="typing.html">Smart Typing</a></li>
-<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
 </ul>
-
 </div>
-
 <div>
-
-<h3>Legal</h3>
-
+<h3>Web Tools</h3>
 <ul>
-
+<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
+</ul>
+</div>
+<div>
+<h3>Legal</h3>
+<ul>
 <li><a href="privacy-policy.html">Privacy Policy</a></li>
-
 <li><a href="terms.html">Terms & Conditions</a></li>
 <li><a href="sitemap.html">HTML Sitemap</a></li>
 </ul>
-
+<p style="margin-top:14px;">smartapps.studio27@gmail.com</p>
 </div>
-
-<div>
-
-<h3>Email</h3>
-
-<p>smartapps.studio27@gmail.com</p>
-
 </div>
-
+<div class="sas-copyright">
+<p>© 2026 SmartApps Studio. All Rights Reserved.</p>
 </div>
-
-<div class="copyright">
-
-<p>
-
-© 2026 SmartApps Studio. All Rights Reserved.
-
-</p>
-
-</div>
-
 </footer>
 
-<button id="topBtn">↑</button>
-
-<script src="script.js"></script>
-
 </body>
-
 </html>
