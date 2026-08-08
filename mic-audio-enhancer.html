@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  1
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mic Audio Enhancer | SmartApps Studio</title>
@@ -855,6 +854,15 @@ gtag('config', 'G-TNBKQNNTMY');
   function showError(msg){ errorBox.textContent = msg; errorBox.classList.add('show'); }
   function clearError(){ errorBox.classList.remove('show'); errorBox.textContent = ''; }
 
+  // Warn before leaving the tab/page while ffmpeg is actively processing —
+  // navigating away mid-run kills the WebAssembly work and the user loses
+  // whatever progress was made.
+  function beforeUnloadGuard(e){
+    e.preventDefault();
+    e.returnValue = 'Processing is still running — leaving now will lose it. Wait for it to finish?';
+    return e.returnValue;
+  }
+
   function setSwitchGroup(container, value){
     container.querySelectorAll('.switch').forEach(el=>{
       const active = el.dataset.value === value;
@@ -981,6 +989,7 @@ gtag('config', 'G-TNBKQNNTMY');
     processBtn.classList.add('processing');
     processBtn.querySelector('.btn-label').textContent = 'Processing…';
     document.body.classList.add('is-processing');
+    window.addEventListener('beforeunload', beforeUnloadGuard);
 
     progressWrap.classList.add('show');
     progressTrack.classList.add('indeterminate');
@@ -1061,6 +1070,7 @@ gtag('config', 'G-TNBKQNNTMY');
       showError('Something went wrong while processing: ' + reason);
     }finally{
       if(engine){ try{ engine.exit(); }catch(e){} }
+      window.removeEventListener('beforeunload', beforeUnloadGuard);
       processBtn.disabled = false;
       processBtn.classList.remove('processing');
       processBtn.querySelector('.btn-label').textContent = 'Enhance Audio';
