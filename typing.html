@@ -171,7 +171,13 @@ gtag('config', 'G-TNBKQNNTMY');
     display:flex;
     align-items:center;
     flex-wrap:wrap;
-    gap:10px;
+    gap:12px;
+  }
+  .page-title-chip{
+    flex-shrink:0;
+    font-size:13px;font-weight:700;color:var(--brass);
+    background:var(--ink-softer);border:1px solid rgba(255,255,255,0.08);
+    padding:8px 12px;border-radius:8px;white-space:nowrap;
   }
   .brand-mini{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none;color:inherit;cursor:pointer;}
   .logo-mark{
@@ -478,87 +484,60 @@ gtag('config', 'G-TNBKQNNTMY');
     .r-actions{display:none;}
   }
 
-  /* ===== Site nav bar (added — sits above the app toolbar) ===== */
-  .site-nav-bar{
-    background:var(--ink);
-    border-bottom:1px solid var(--ink-softer);
-    padding:0 16px;
+  /* ===== Standard site header (matches Home / About / Contact pages) ===== */
+  .site-header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(248,249,251,0.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;
+    font-family:'Poppins',sans-serif;
   }
-  .site-nav-row{
-    max-width:1200px;margin:0 auto;
-    display:flex;align-items:center;justify-content:flex-end;
-    min-height:42px;flex-wrap:wrap;gap:4px;
-  }
-  .site-nav-row ul{list-style:none;display:flex;gap:4px;margin:0;padding:0;flex-wrap:wrap;}
-  .site-nav-row li{position:relative;}
-  .site-nav-row a{
-    text-decoration:none;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;
-    color:var(--muted);padding:9px 11px;display:inline-block;border-radius:6px;
-    transition:color .15s ease, background .15s ease;
-  }
-  .site-nav-row a:hover, .site-nav-row a.active{color:var(--brass);background:rgba(201,151,63,0.08);}
-  .site-nav-row .caret{font-size:12px;margin-left:2px;display:inline-block;}
-  .site-dropdown{
-    list-style:none;margin:0;padding:6px;
+  .site-header .container{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+  .site-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#222;}
+  .site-brand img{width:52px;height:52px;border-radius:13px;}
+  .site-brand-title{font-weight:700;font-size:19px;margin:0;color:#16233C;line-height:1.15;}
+  .site-brand-sub{font-size:11.5px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .site-navbar ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;}
+  .site-navbar li{position:relative;}
+  .site-navbar a{text-decoration:none;font-size:13.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .site-navbar a:hover, .site-navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .site-navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .site-navbar .caret{font-size:15px;transition:transform .15s ease;display:inline-block;}
+  .site-navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .site-dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
     position:absolute;top:100%;left:0;min-width:170px;
-    background:var(--ink-softer);border:1px solid rgba(255,255,255,0.1);border-radius:9px;
-    box-shadow:0 14px 28px -10px rgba(0,0,0,0.5);
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
     opacity:0;visibility:hidden;transform:translateY(4px);
     transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
-    z-index:60;
+    z-index:210;
   }
-  .site-nav-row li.has-dd:hover .site-dropdown,
-  .site-nav-row li.has-dd:focus-within .site-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
-  .site-dropdown li{padding:0;}
-  .site-dropdown a{display:block;font-size:12.5px;padding:8px 10px;}
+  .site-navbar li.has-dropdown:hover .site-dropdown-menu,
+  .site-navbar li.has-dropdown:focus-within .site-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .site-dropdown-menu li{padding:0;}
+  .site-dropdown-menu a{display:block;padding:8px 11px;border-radius:7px;border-bottom:none;font-size:13px;color:#4B5C78;}
+  .site-dropdown-menu a:hover, .site-dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .site-menu-btn{width:36px;height:36px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:15px;display:none;}
   @media (max-width:760px){
-    .site-nav-row{justify-content:center;}
+    .site-navbar{display:none;}
+    .site-menu-btn{display:block;}
   }
 
-  /* ===== Collapsible footer + toggle arrow (added) ===== */
-  .footer-toggle-wrap{
-    display:flex;justify-content:center;padding:18px 16px;
-    background:var(--ink-soft);border-top:1px solid var(--ink-softer);
-  }
-  .footer-toggle{
-    width:42px;height:42px;border-radius:50%;
-    background:var(--ink-softer);border:1px solid rgba(255,255,255,0.12);
-    color:var(--brass);cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:transform .25s ease, background .15s ease;
-  }
-  .footer-toggle:hover{background:var(--ink);}
-  .footer-toggle svg{width:18px;height:18px;transition:transform .25s ease;}
-  .footer-toggle[aria-expanded="true"] svg{transform:rotate(180deg);}
-  .footer-toggle-label{
-    position:absolute;margin-top:56px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--muted);pointer-events:none;
-  }
-
-  .site-footer-dark{
-    max-height:0;overflow:hidden;
-    background:var(--ink);
-    transition:max-height .35s ease;
-  }
-  .site-footer-dark.open{max-height:900px;}
-  .site-footer-grid{
-    max-width:1080px;margin:0 auto;padding:36px 24px 22px;
-    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;
-  }
-  @media (max-width:800px){.site-footer-grid{grid-template-columns:1fr 1fr;}}
-  @media (max-width:520px){.site-footer-grid{grid-template-columns:1fr;}}
-  .site-footer-dark .f-logo{width:74px;height:74px;border-radius:18px;margin-bottom:12px;display:block;}
-  .site-footer-dark .f-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:var(--off-white);margin:0 0 4px;}
-  .site-footer-dark .f-sub{font-size:12px;color:var(--muted);margin:0 0 12px;}
-  .site-footer-dark p{color:var(--muted);font-size:13px;margin:0;line-height:1.7;}
-  .site-footer-dark h3{color:var(--brass);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px;}
-  .site-footer-dark ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
-  .site-footer-dark a{color:var(--muted);text-decoration:none;font-size:13px;}
-  .site-footer-dark a:hover{color:var(--brass);}
-  .site-footer-copyright{
-    border-top:1px solid var(--ink-softer);padding:14px 24px;text-align:center;
-    font-size:11.5px;color:var(--muted);
-  }
+  /* ===== Standard site footer (matches Home / About / Contact pages) ===== */
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);font-family:'Poppins',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;padding:44px 24px 22px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:70px;height:70px;border-radius:16px;margin-bottom:12px;display:block;}
+  .sas-footer-brand-title{font-weight:700;font-size:19px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:12px;color:rgba(255,255,255,0.55);margin:0 0 12px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13px;margin:0;line-height:1.7;}
+  .sas-footer h3{color:#fff;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:16px 24px;text-align:center;font-size:11.5px;color:rgba(255,255,255,0.45);}
 </style>
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
@@ -585,35 +564,39 @@ gtag('config', 'G-TNBKQNNTMY');
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<nav class="site-nav-bar">
-  <div class="site-nav-row">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li class="has-dd">
-        <a href="apps.html">Apps &amp; Games <span class="caret">▾</span></a>
-        <ul class="site-dropdown">
-          <li><a href="typing.html" class="active">Smart Typing</a></li>
-          <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-          <li><a href="pdf-maker.html">Online PDF</a></li>
-          <li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
-        </ul>
-      </li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="privacy-policy.html">Privacy</a></li>
-    </ul>
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="site-brand">
+      <img src="smartapps.png" alt="SmartApps Studio">
+      <div>
+        <div class="site-brand-title">SmartApps Studio</div>
+        <p class="site-brand-sub">Apps &amp; Tools that just work</p>
+      </div>
+    </a>
+    <nav class="site-navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+          <ul class="site-dropdown-menu">
+            <li><a href="typing.html" class="active">Smart Typing</a></li>
+            <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
+            <li><a href="pdf-maker.html">Online PDF</a></li>
+            <li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy</a></li>
+      </ul>
+    </nav>
+    <button class="site-menu-btn">☰</button>
   </div>
-</nav>
+</header>
 
 <header class="app-header">
   <div class="header-row">
-    <a class="brand-mini" href="index.html">
-      <div class="logo-mark"><img src="smartapps.png" alt="SmartApps Studio logo"></div>
-      <div>
-        <h1>Smart Typing</h1>
-        <p>SmartApps Studio</p>
-      </div>
-    </a>
+    <span class="page-title-chip">⌨ Smart Typing</span>
 
     <div class="ribbon">
       <div class="ribbon-group">
@@ -1813,19 +1796,12 @@ gtag('config', 'G-TNBKQNNTMY');
 })();
 </script>
 
-<!-- ===== Collapsible footer + toggle arrow (added) ===== -->
-<div class="footer-toggle-wrap">
-  <button class="footer-toggle" id="footerToggle" aria-expanded="false" aria-controls="siteFooterDark" aria-label="Show footer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-  </button>
-</div>
-
-<footer class="site-footer-dark" id="siteFooterDark">
-  <div class="site-footer-grid">
+<footer class="sas-footer">
+  <div class="sas-footer-grid">
     <div>
-      <img src="smartapps.png" class="f-logo" alt="SmartApps Studio">
-      <div class="f-title">SmartApps Studio</div>
-      <p class="f-sub">Apps &amp; Tools that just work</p>
+      <img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio">
+      <div class="sas-footer-brand-title">SmartApps Studio</div>
+      <p class="sas-footer-brand-sub">Apps &amp; Tools that just work</p>
       <p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
     </div>
     <div>
@@ -1855,25 +1831,10 @@ gtag('config', 'G-TNBKQNNTMY');
       <p style="margin-top:12px;">smartapps.studio27@gmail.com</p>
     </div>
   </div>
-  <div class="site-footer-copyright">
+  <div class="sas-copyright">
     <p>© 2026 SmartApps Studio. All Rights Reserved.</p>
   </div>
 </footer>
-
-<script>
-  (function(){
-    var toggle = document.getElementById('footerToggle');
-    var footer = document.getElementById('siteFooterDark');
-    toggle.addEventListener('click', function(){
-      var isOpen = footer.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      toggle.setAttribute('aria-label', isOpen ? 'Hide footer' : 'Show footer');
-      if(isOpen){
-        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  })();
-</script>
 
 <!-- ================================================================
      ADSENSE SETUP (do this once your site is approved)
