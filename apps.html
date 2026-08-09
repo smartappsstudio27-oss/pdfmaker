@@ -1,53 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Apps & Games | SmartApps Studio</title>
-
-<meta name="description"
-content="Explore Android apps, mobile games, PDF Maker, Smart Typing, and upcoming productivity tools developed by SmartApps Studio for everyday users.">
-
+<title>Apps &amp; Games | SmartApps Studio</title>
+<meta name="description" content="Explore Android apps, browser tools and upcoming games from SmartApps Studio — PDF Maker, Smart Typing, MP4 to MP3, Mic Audio Enhancer and more.">
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://smartappsstudio.in/apps.html">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SmartApps Studio">
 <meta property="og:title" content="Apps & Games | SmartApps Studio">
-<meta property="og:description" content="Discover Android Apps and Games by SmartApps Studio, including PDF Maker and upcoming innovative mobile applications.">
+<meta property="og:description" content="Explore Android apps, browser tools and upcoming games from SmartApps Studio.">
 <meta property="og:url" content="https://smartappsstudio.in/apps.html">
 <meta property="og:image" content="https://smartappsstudio.in/og-image.png">
-
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Apps & Games | SmartApps Studio">
-<meta name="twitter:description" content="Discover Android Apps and Games by SmartApps Studio, including PDF Maker and upcoming innovative mobile applications.">
+<meta name="twitter:description" content="Explore Android apps, browser tools and upcoming games from SmartApps Studio.">
 <meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-
 gtag('config', 'G-TNBKQNNTMY');
 </script>
+
 <!-- Organization Schema -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type: "Organization",
-  "name": "SmartApps Studio",
-  "url": "https://smartappsstudio.in/",
-  "logo": "https://smartappsstudio.in/smartapps.png",
-  "email": "smartapps.studio27@gmail.com"
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
 }
 </script>
 <!-- WebSite Schema -->
@@ -66,15 +54,14 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-
-<!-- WebPage Schema -->
+<!-- CollectionPage Schema -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"CollectionPage",
   "name":"Apps & Games | SmartApps Studio",
   "url":"https://smartappsstudio.in/apps.html",
-  "description":"Explore Android apps and games developed by SmartApps Studio.",
+  "description":"Explore Android apps, browser tools and games developed by SmartApps Studio.",
   "inLanguage":"en",
   "isPartOf":{
     "@type":"WebSite",
@@ -83,68 +70,210 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-  <!-- Breadcrumb Schema -->
+<!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"BreadcrumbList",
   "itemListElement":[
-    {
-      "@type":"ListItem",
-      "position":1,
-      "name":"Home",
-      "item":"https://smartappsstudio.in/"
-    },
-    {
-      "@type":"ListItem",
-      "position":2,
-      "name":"Apps & Games",
-      "item":"https://smartappsstudio.in/apps.html"
-    }
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"Apps & Games","item":"https://smartappsstudio.in/apps.html"}
   ]
 }
 </script>
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" href="smartapps.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
 
-<!-- Fixed side-ad rails: same pattern as Home/About/Typing pages -->
 <style>
-  :root{ --ad-rail-w:170px; }
-  body{
-    padding-left:var(--ad-rail-w,170px);
-    padding-right:var(--ad-rail-w,170px);
+  :root{
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --success:#16A34A;
+    --danger:#DC2626;
+    --radius:14px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
   }
-  .global-ad-rail{
-    position:fixed;top:0;bottom:0;width:var(--ad-rail-w,170px);
-    background:rgba(128,128,128,0.08);
-    border-right:1px dashed rgba(128,128,128,0.3);
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+
+  main.content{min-width:0;}
+
+  /* Hero */
+  .hero{max-width:900px;margin:0 auto;padding:56px 24px 20px;text-align:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;
+    letter-spacing:.03em;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  h1{font-family:var(--font-display);font-size:2.5rem;line-height:1.15;margin:18px auto 14px;font-weight:700;max-width:22ch;}
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:56ch;margin:0 auto;}
+
+  /* Sections */
+  section.info{max-width:1080px;margin:60px auto;padding:0 24px;}
+  section.info .section-head{margin-bottom:28px;}
+  section.info h2{font-family:var(--font-display);font-size:1.6rem;margin:0 0 8px;}
+  section.info p.section-sub{color:var(--muted);margin:0;max-width:60ch;}
+  .section-tag{font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;display:block;}
+
+  /* Cards */
+  .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media (max-width:960px){.card-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.card-grid{grid-template-columns:1fr;}}
+
+  .tool-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    padding:24px;display:flex;flex-direction:column;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+    text-decoration:none;
+  }
+  .tool-card:hover{border-color:#c9cfd9;transform:translateY(-3px);box-shadow:0 16px 32px -22px rgba(20,23,31,.3);}
+  .tool-card.disabled{cursor:default;}
+  .tool-card.disabled:hover{transform:none;box-shadow:none;border-color:var(--border);}
+  .tool-card .card-ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .tool-card .card-ic svg{width:22px;height:22px;}
+  .tool-card h3{font-family:var(--font-display);font-size:1.02rem;margin:0 0 8px;}
+  .tool-card p{color:var(--muted);font-size:.85rem;margin:0 0 16px;flex-grow:1;}
+  .tool-card .card-cta{font-size:.82rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;color:var(--primary);}
+  .tool-card .card-cta svg{width:14px;height:14px;}
+  .tool-card .badge-live{display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.05em;background:#EAF6F5;color:var(--teal);padding:3px 9px;border-radius:20px;margin-bottom:14px;width:fit-content;}
+  .tool-card .badge-soon{display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.05em;background:#F1F2F5;color:var(--muted);padding:3px 9px;border-radius:20px;margin-bottom:14px;width:fit-content;}
+
+  .icon-red{background:#FCE9E8;color:var(--primary);}
+  .icon-teal{background:#EAF6F5;color:var(--teal);}
+  .icon-amber{background:#FDF3E4;color:#B4790A;}
+  .icon-navy{background:#E9EBF3;color:#16233C;}
+  .icon-purple{background:#F1EAFB;color:#7C3AED;}
+  .icon-muted{background:#F1F2F5;color:var(--muted);}
+
+  /* CTA band */
+  .cta-band{
+    background:#16233C;border-radius:22px;padding:44px 32px;text-align:center;color:#fff;
+  }
+  .cta-band h2{font-family:var(--font-display);font-size:1.5rem;margin:0 0 10px;color:#fff;}
+  .cta-band p{color:rgba(255,255,255,.72);font-size:.95rem;max-width:52ch;margin:0 auto 22px;}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--primary);color:#fff;text-decoration:none;
+    padding:13px 24px;border-radius:12px;font-weight:700;font-size:.92rem;
+    transition:background .15s ease;
+  }
+  .cta-btn:hover{background:var(--primary-dark);}
+</style>
+
+<!-- ================= Shared header / footer / ad-rail system (matches Home / About / Mic Enhancer pages) ================= -->
+<style>
+  .sas-ad-rail{
+    position:fixed;top:0;bottom:0;width:170px;
+    background:rgba(22,35,60,0.03);
+    border-right:1px dashed rgba(22,35,60,0.15);
     display:flex;align-items:center;justify-content:center;overflow:hidden;
     z-index:999;
   }
-  .global-ad-rail.right{border-right:none;border-left:1px dashed rgba(128,128,128,0.3);}
-  .global-ad-rail.left{left:0;}
-  .global-ad-rail.right{right:0;}
+  .sas-ad-rail.right{border-right:none;border-left:1px dashed rgba(22,35,60,0.15);}
+  .sas-ad-rail.left{left:0;}
+  .sas-ad-rail.right{right:0;}
+  body{padding-left:170px;padding-right:170px;}
   @media (max-width:860px){
-    :root{ --ad-rail-w:130px; }
+    .sas-ad-rail{width:130px;}
+    body{padding-left:130px;padding-right:130px;}
   }
+  @media (max-width:640px){
+    .sas-ad-rail{display:none;}
+    body{padding-left:0;padding-right:0;}
+  }
+
+  .site-header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(248,249,251,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;
+    font-family:'Inter',sans-serif;
+  }
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
+    position:absolute;top:100%;left:0;min-width:180px;
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  @media (max-width:860px){
+    .navbar{display:none;}
+    .menuBtn{display:block;}
+  }
+
+  .sas-ad-inline{max-width:900px;margin:36px auto;padding:0 24px;}
+
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);margin-top:40px;font-family:'Inter',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;display:block;}
+  .sas-footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13.5px;margin:0;}
+  .sas-footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13.5px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:18px 24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,0.45);}
 </style>
-
 </head>
-
 <body>
 
-<!-- Persistent side-ad rails (same slot IDs as other pages) -->
-<div class="global-ad-rail left">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Persistent side-ad rails (same slots as other SmartApps Studio pages) -->
+<div class="sas-ad-rail left">
   <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
        data-ad-client="ca-pub-1124864848953243"
        data-ad-slot="5989140493"
@@ -152,7 +281,7 @@ gtag('config', 'G-TNBKQNNTMY');
        data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-<div class="global-ad-rail right">
+<div class="sas-ad-rail right">
   <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
        data-ad-client="ca-pub-1124864848953243"
        data-ad-slot="7154882503"
@@ -161,333 +290,195 @@ gtag('config', 'G-TNBKQNNTMY');
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<header class="header">
-
+<header class="site-header">
 <div class="container">
-
 <a href="index.html" class="brand">
-
-<img src="smartapps.png" alt="Logo" width="512" height="512">
-     
+<img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
 <div>
-
-<h2>SmartApps Studio</h2>
-
-<p>Apps • Games • Innovation</p>
-
+<div class="brand-title">SmartApps Studio</div>
+<p class="brand-sub">Apps &amp; Tools that just work</p>
 </div>
-
 </a>
-
 <nav class="navbar">
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
-<li><a href="apps.html" class="active">Apps & Games</a></li>
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger active">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
 <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-<li><a href="about.html">About</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-<li><a href="privacy-policy.html">Privacy</a></li>
-
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
 </ul>
-
+</li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+</ul>
 </nav>
-
 <div class="header-buttons">
-
-<button id="themeBtn">🌙</button>
-
 <button class="menuBtn">☰</button>
-
 </div>
-
 </div>
-
 </header>
 
-
-<section class="hero">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>OUR COLLECTION</span>
-
-<h2>Android Apps & Games</h2>
-
-<p>
-
-Explore useful Android Apps and exciting Mobile Games developed by SmartApps Studio.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="apps-preview">
-
-<div class="container">
-
-<div class="apps-grid">
-
-<div class="app-card">
-
-<img src="pdfmaker.png" alt="PDF Maker">
-
-<h3>PDF Maker</h3>
-
-<p>
-
-Convert Images into professional PDF documents in seconds.
-
-</p>
-
-<a href="pdf-maker.html">Available</a>
-
-</div>
-<div class="app-card">
-
-<div class="coming-icon">
-
-⌨️
-
-</div>
-
-<h3>Smart Typing</h3>
-
-<p>
-
-Professional typing practice platform with lessons, typing tests, speed tracking and accuracy improvement.
-
-</p>
-
-<a href="typing.html">
-
-Available
-
-</a>
-
-</div>
-<div class="app-card">
-
-<div class="coming-icon">🎵</div>
-
-<h3>MP4 to MP3 Converter</h3>
-
-<p>
-
-Convert MP4 video to MP3 audio free, right in your browser — no upload, no signup.
-
-</p>
-
-<a href="mp4-to-mp3.html">Available</a>
-
-</div>
-
-<div class="app-card">
-
-<div class="coming-icon">🎮</div>
-
-<h3>Puzzle Game</h3>
-
-<p>
-
-A fun and addictive puzzle game coming soon.
-
-</p>
-
-<a href="#">Coming Soon</a>
-
-</div>
-
-<div class="app-card">
-
-<div class="coming-icon">🚗</div>
-
-<h3>Racing Game</h3>
-
-<p>
-
-Enjoy fast-paced racing action.
-
-</p>
-
-<a href="#">Coming Soon</a>
-
-</div>
-<div class="app-card">
-
-<div class="coming-icon">🤖</div>
-
-<h3>AI Utility</h3>
-
-<p>
-
-Smart AI tools for productivity and everyday use.
-
-</p>
-
-<a href="#">Coming Soon</a>
-
-</div>
-
-<div class="app-card">
-
-<div class="coming-icon">📷</div>
-
-<h3>Photo Editor</h3>
-
-<p>
-
-Easy-to-use photo editing app with modern features.
-
-</p>
-
-<a href="#">Coming Soon</a>
-
-</div>
-
-<div class="app-card">
-
-<div class="coming-icon">📱</div>
-
-<h3>QR Scanner</h3>
-
-<p>
-
-Fast QR & Barcode Scanner with offline support.
-
-</p>
-
-<a href="#">Coming Soon</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- In-content ad (reusing Guide Slot 4) -->
-<div class="container" style="margin:24px auto;">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="2214115238" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
-<section class="cta">
-
-<div class="container">
-
-<h2>
-
-More Amazing Apps & Games Are Coming
-
-</h2>
-
-<p>
-
-SmartApps Studio is continuously working on new Android Apps and Mobile Games.
-Stay connected for exciting updates.
-
-</p>
-
-<a href="contact.html" class="btn btn-primary">
-
-Contact Us
-
-</a>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<div class="container footer-grid">
-
+<main class="content" id="main">
+
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span> Our Collection</span>
+    <h1>Android apps &amp; browser tools, all in one place</h1>
+    <p class="lead">A growing collection of useful apps and free browser tools — with a few games and utilities in the works too.</p>
+  </section>
+
+  <!-- Available now -->
+  <section class="info">
+    <div class="section-head">
+      <span class="section-tag">Available Now</span>
+      <h2>Ready to use today</h2>
+      <p class="section-sub">Android apps and browser tools you can start using right away — no waiting.</p>
+    </div>
+    <div class="card-grid">
+      <a href="pdf-maker.html" class="tool-card">
+        <span class="badge-live">AVAILABLE</span>
+        <div class="card-ic icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M6 3h8l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg></div>
+        <h3>PDF Maker</h3>
+        <p>Convert photos and documents into clean, professional PDFs in seconds.</p>
+        <span class="card-cta">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="typing.html" class="tool-card">
+        <span class="badge-live">AVAILABLE</span>
+        <div class="card-ic icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h12"/></svg></div>
+        <h3>Smart Typing</h3>
+        <p>Typing practice with lessons, speed tests and accuracy tracking.</p>
+        <span class="card-cta">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="mp4-to-mp3.html" class="tool-card">
+        <span class="badge-live">AVAILABLE</span>
+        <div class="card-ic icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>MP4 to MP3 Converter</h3>
+        <p>Pull audio from any video as an MP3 — free, right in your browser, no upload.</p>
+        <span class="card-cta">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="mic-audio-enhancer.html" class="tool-card">
+        <span class="badge-live">AVAILABLE</span>
+        <div class="card-ic icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 00-3 3v7a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v1a7 7 0 01-14 0v-1M12 18v4M9 22h6"/></svg></div>
+        <h3>Mic Audio Enhancer</h3>
+        <p>Clean up noisy mic audio in videos — remove background noise, boost clarity.</p>
+        <span class="card-cta">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Coming soon -->
+  <section class="info">
+    <div class="section-head">
+      <span class="section-tag">In The Works</span>
+      <h2>Coming soon</h2>
+      <p class="section-sub">New games, utilities and productivity tools currently in development.</p>
+    </div>
+    <div class="card-grid">
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 11c-.5-1.5-2-2-3-1-.7.7-2 .5-2.5-.5-.5-1 0-2 1-2.5 1-.5 1.5-2-1-3-2 .5-2 2-2.5 2.5-.5.5-2 .5-2.5-.5-.5-1 .3-2 1-2.5-1-1-2.5-1-3 .5-.5 1.5-2 1-2.5.5-.5-1.5.5-2.5 2-3 1-2.5 3.5-4.5 6-4"/></svg></div>
+        <h3>Puzzle Game</h3>
+        <p>A fun, addictive puzzle game — light on data, easy to pick up.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13l2-6h14l2 6M5 13h14v5H5z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg></div>
+        <h3>Racing Game</h3>
+        <p>Fast-paced arcade racing, built for quick, casual sessions.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg></div>
+        <h3>Photo Editor</h3>
+        <p>Easy, modern photo editing app for everyday touch-ups.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-muted"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M17 20v.01M20 20v.01"/></svg></div>
+        <h3>QR Scanner</h3>
+        <p>Fast QR &amp; barcode scanner that works offline.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>AI Utility</h3>
+        <p>Smart, everyday AI-assisted tools for productivity.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+      <div class="tool-card disabled">
+        <span class="badge-soon">COMING SOON</span>
+        <div class="card-ic icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h11"/></svg></div>
+        <h3>New Business App</h3>
+        <p>A simple ledger app for small businesses. Name and details to be announced closer to launch.</p>
+        <span class="card-cta" style="color:var(--muted);">In development</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="cta-band">
+      <h2>More apps &amp; games are on the way</h2>
+      <p>SmartApps Studio is continuously working on new Android apps, browser tools and games. Stay connected for updates.</p>
+      <a href="contact.html" class="cta-btn">
+        Contact Us
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sas-footer">
+<div class="sas-footer-grid">
 <div>
-
-<img src="smartapps.png" class="footer-logo" width="512" height="512">
-
-<h2>SmartApps Studio</h2>
-
-<p>
-
-Building Smart Apps & Amazing Games for Everyone.
-
-</p>
-
+<img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="sas-footer-brand-title">SmartApps Studio</div>
+<p class="sas-footer-brand-sub">Apps &amp; Tools that just work</p>
+<p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
 </div>
-
 <div>
-
 <h3>Quick Links</h3>
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
 <li><a href="about.html">About</a></li>
-
 <li><a href="contact.html">Contact</a></li>
-<li><a href="typing.html">Smart Typing</a></li>
-<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
 </ul>
-
 </div>
-
 <div>
-
-<h3>Legal</h3>
-
+<h3>Web Tools</h3>
 <ul>
-
+<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="typing.html">Smart Typing</a></li>
+</ul>
+</div>
+<div>
+<h3>Legal</h3>
+<ul>
 <li><a href="privacy-policy.html">Privacy Policy</a></li>
-
 <li><a href="terms.html">Terms & Conditions</a></li>
 <li><a href="sitemap.html">HTML Sitemap</a></li>
 </ul>
-
+<p style="margin-top:14px;">smartapps.studio27@gmail.com</p>
 </div>
-
-<div>
-
-<h3>Email</h3>
-
-<p>smartapps.studio27@gmail.com</p>
-
 </div>
-
+<div class="sas-copyright">
+<p>© 2026 SmartApps Studio. All Rights Reserved.</p>
 </div>
-
-<div class="copyright">
-
-<p>
-
-© 2026 SmartApps Studio. All Rights Reserved.
-
-</p>
-
-</div>
-
 </footer>
 
-<button id="topBtn">↑</button>
-
-<script src="script.js"></script>
-
 </body>
-
 </html>
