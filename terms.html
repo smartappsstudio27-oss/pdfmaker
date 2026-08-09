@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Terms & Conditions | SmartApps Studio</title>
-
-<meta name="description"
-content="Read the official Terms and Conditions for using the SmartApps Studio website, Android applications, games, and digital services.">
-
+<meta name="description" content="Read the official Terms and Conditions for using the SmartApps Studio website, browser-based tools, Android applications and games.">
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://smartappsstudio.in/terms.html">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SmartApps Studio">
 <meta property="og:title" content="Terms & Conditions | SmartApps Studio">
-<meta property="og:description" content="Read the official Terms & Conditions for using SmartApps Studio website, Android apps, and games.">
+<meta property="og:description" content="Read the official Terms & Conditions for using SmartApps Studio website, browser tools, and Android apps.">
 <meta property="og:url" content="https://smartappsstudio.in/terms.html">
 <meta property="og:image" content="https://smartappsstudio.in/og-image.png">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Terms & Conditions | SmartApps Studio">
-<meta name="twitter:description" content="Read the official Terms & Conditions for using SmartApps Studio website, Android apps, and games.">
+<meta name="twitter:description" content="Read the official Terms & Conditions for using SmartApps Studio website, browser tools, and Android apps.">
 <meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-
 gtag('config', 'G-TNBKQNNTMY');
 </script>
+
 <!-- Organization Schema -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type: "Organization",
-  "name": "SmartApps Studio",
-  "url": "https://smartappsstudio.in/",
-  "logo": "https://smartappsstudio.in/smartapps.png",
-  "email": "smartapps.studio27@gmail.com"
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
 }
 </script>
 <!-- WebSite Schema -->
@@ -65,7 +54,6 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-
 <!-- WebPage Schema -->
 <script type="application/ld+json">
 {
@@ -73,7 +61,7 @@ gtag('config', 'G-TNBKQNNTMY');
   "@type":"WebPage",
   "name":"Terms & Conditions | SmartApps Studio",
   "url":"https://smartappsstudio.in/terms.html",
-  "description":"Terms and Conditions for using SmartApps Studio website, applications and games.",
+  "description":"Terms and Conditions for using the SmartApps Studio website, browser tools, applications and games.",
   "inLanguage":"en",
   "isPartOf":{
     "@type":"WebSite",
@@ -82,282 +70,280 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
-  <!-- Breadcrumb Schema -->
+<!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"BreadcrumbList",
   "itemListElement":[
-    {
-      "@type":"ListItem",
-      "position":1,
-      "name":"Home",
-      "item":"https://smartappsstudio.in/"
-    },
-    {
-      "@type":"ListItem",
-      "position":2,
-      "name":"Terms & Conditions",
-      "item":"https://smartappsstudio.in/terms.html"
-    }
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"Terms & Conditions","item":"https://smartappsstudio.in/terms.html"}
   ]
 }
 </script>
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" href="smartapps.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+  main.content{min-width:0;}
 
+  .hero{max-width:760px;margin:0 auto;padding:52px 24px 8px;text-align:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;letter-spacing:.03em;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  h1{font-family:var(--font-display);font-size:2.2rem;line-height:1.15;margin:18px auto 10px;font-weight:700;}
+  .hero p.lead{color:var(--muted);font-size:1rem;max-width:50ch;margin:0 auto;}
+  .last-updated{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);margin-top:14px;}
+
+  .legal-wrap{max-width:900px;margin:44px auto 70px;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start;}
+  @media (max-width:800px){.legal-wrap{grid-template-columns:1fr;}}
+
+  .toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;}
+  @media (max-width:800px){.toc{position:static;}}
+  .toc-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:12px;}
+  .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .toc a{text-decoration:none;font-size:.85rem;color:var(--muted);font-weight:500;}
+  .toc a:hover{color:var(--primary);}
+
+  .legal-doc{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px;}
+  .legal-doc section{padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid var(--border);scroll-margin-top:88px;}
+  .legal-doc section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .legal-doc h2{font-family:var(--font-display);font-size:1.15rem;margin:0 0 12px;display:flex;align-items:center;gap:10px;}
+  .legal-doc h2 .n{font-family:var(--font-mono);color:var(--primary);font-size:.85rem;font-weight:700;}
+  .legal-doc p{color:var(--muted);font-size:.92rem;margin:0 0 12px;}
+  .legal-doc p:last-child{margin-bottom:0;}
+  .legal-doc strong{color:var(--text);}
+  .legal-doc a.inline-link{color:var(--primary);font-weight:600;text-decoration:none;}
+  .legal-doc a.inline-link:hover{text-decoration:underline;}
+  .note-box{background:#EAF6F5;border:1px solid #CFEDEA;border-radius:12px;padding:14px 16px;font-size:.85rem;color:#0B655F;margin-top:12px;}
+</style>
+
+<!-- ================= Shared header / footer (no ad rails on this page) ================= -->
+<style>
+  .site-header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(248,249,251,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;
+    font-family:'Inter',sans-serif;
+  }
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
+    position:absolute;top:100%;left:0;min-width:180px;
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  @media (max-width:860px){.navbar{display:none;} .menuBtn{display:block;}}
+
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);margin-top:40px;font-family:'Inter',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;display:block;}
+  .sas-footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13.5px;margin:0;}
+  .sas-footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13.5px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:18px 24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,0.45);}
+</style>
 </head>
-
 <body>
 
-<header class="header">
+<a href="#main" class="skip-link">Skip to content</a>
 
+<header class="site-header">
 <div class="container">
-
 <a href="index.html" class="brand">
-
-<img src="smartapps.png" alt="SmartApps Studio Logo">
-
+<img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
 <div>
-
-<h2>SmartApps Studio</h2>
-
-<p>Apps • Games • Innovation</p>
-
+<div class="brand-title">SmartApps Studio</div>
+<p class="brand-sub">Apps &amp; Tools that just work</p>
 </div>
-
 </a>
-
 <nav class="navbar">
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
-<li><a href="apps.html">Apps & Games</a></li>
-
-<li><a href="about.html">About</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-<li><a href="privacy-policy.html">Privacy</a></li>
-
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
+<li><a href="typing.html">Smart Typing</a></li>
+<li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
 </ul>
-
+</li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+</ul>
 </nav>
-
 <div class="header-buttons">
-
-<button id="themeBtn">🌙</button>
-
 <button class="menuBtn">☰</button>
-
 </div>
-
 </div>
-
 </header>
 
-<section class="hero">
+<main class="content" id="main">
 
-<div class="container">
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span> Legal</span>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="lead">Please read these terms carefully before using our website, browser-based tools, or Android apps.</p>
+    <div class="last-updated">Last updated: August 2026</div>
+  </section>
 
-<div class="section-title">
+  <div class="legal-wrap">
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-label">On this page</div>
+      <ul>
+        <li><a href="#acceptance">Acceptance of Terms</a></li>
+        <li><a href="#use">Use of Our Apps &amp; Tools</a></li>
+        <li><a href="#ip">Intellectual Property</a></li>
+        <li><a href="#liability">Limitation of Liability</a></li>
+        <li><a href="#third-party">Third-Party Services</a></li>
+        <li><a href="#law">Governing Law</a></li>
+        <li><a href="#changes">Changes to These Terms</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
 
-<span>LEGAL</span>
+    <article class="legal-doc">
+      <section id="acceptance">
+        <h2><span class="n">01</span> Acceptance of Terms</h2>
+        <p>By accessing or using any website, browser-based tool, application or service developed by SmartApps Studio, you agree to comply with these Terms &amp; Conditions. If you do not agree, please discontinue use of our products.</p>
+      </section>
 
-<h2>Terms & Conditions</h2>
+      <section id="use">
+        <h2><span class="n">02</span> Use of Our Apps &amp; Tools</h2>
+        <p>You agree to use our applications and browser-based tools only for lawful purposes and in accordance with applicable laws and regulations.</p>
+        <p>Browser-based tools (such as Mic Audio Enhancer, MP4 to MP3 Converter and Online PDF Maker) are provided <strong>"as is"</strong>, processing files entirely on your own device. We do not guarantee a specific output quality or that a tool will work with every file type, device or browser, and we recommend keeping a backup of your original files before processing.</p>
+      </section>
 
-<p>
+      <section id="ip">
+        <h2><span class="n">03</span> Intellectual Property</h2>
+        <p>All applications, website content, logos, graphics, text and software created by SmartApps Studio are protected by applicable intellectual property laws. You may not copy, redistribute or reverse-engineer any part of our products without permission.</p>
+      </section>
 
-Please read these Terms & Conditions carefully before using our website or applications.
+      <section id="liability">
+        <h2><span class="n">04</span> Limitation of Liability</h2>
+        <p>SmartApps Studio shall not be held liable for any direct or indirect damages, data loss, or other harm arising from the use of our applications, browser-based tools, or website.</p>
+      </section>
 
-</p>
+      <section id="third-party">
+        <h2><span class="n">05</span> Third-Party Services</h2>
+        <p>Some of our applications and website features may use third-party services such as Google Play Services, Google AdMob, Google AdSense, Google Analytics or Firebase. These services have their own terms and privacy policies that apply to your use of them.</p>
+      </section>
 
-</div>
+      <section id="law">
+        <h2><span class="n">06</span> Governing Law</h2>
+        <p>These Terms &amp; Conditions shall be governed by the applicable laws of India. Any disputes relating to these terms shall be subject to the jurisdiction of the appropriate courts.</p>
+      </section>
 
-</div>
+      <section id="changes">
+        <h2><span class="n">07</span> Changes to These Terms</h2>
+        <p>We may update these Terms &amp; Conditions at any time as we add new tools or apps. Updated versions will be published on this page with the latest revision date at the top.</p>
+      </section>
 
-</section>
+      <section id="contact">
+        <h2><span class="n">08</span> Contact Us</h2>
+        <p>If you have any questions regarding these Terms &amp; Conditions, please contact us at:</p>
+        <p><strong>Email:</strong> <a class="inline-link" href="mailto:smartapps.studio27@gmail.com">smartapps.studio27@gmail.com</a></p>
+      </section>
+    </article>
+  </div>
 
-<section class="about-home">
+</main>
 
-<div class="container">
-
-<h2>Acceptance of Terms</h2>
-
-<p>
-
-By accessing or using any application or service developed by SmartApps Studio, you agree to comply with these Terms & Conditions.
-
-</p>
-
-<br>
-
-<h3>Use of Our Apps</h3>
-
-<p>
-
-You agree to use our applications only for lawful purposes and in accordance with applicable laws and regulations.
-
-</p>
-
-<br>
-
-<h3>Intellectual Property</h3>
-
-<p>
-
-All applications, website content, logos, graphics, text and software created by SmartApps Studio are protected by applicable intellectual property laws.
-
-</p>
-
-<br>
-
-<h3>Limitation of Liability</h3>
-
-<p>
-
-SmartApps Studio shall not be held liable for any direct or indirect damages arising from the use of our applications or website.
-
-</p>
-<br>
-
-<h3>Changes to These Terms</h3>
-
-<p>
-
-We may update these Terms & Conditions at any time. Updated versions will be published on this page with the latest revision date.
-
-</p>
-
-<br>
-
-<h3>Third-Party Services</h3>
-
-<p>
-
-Some of our applications may use third-party services such as Google Play Services, Google AdMob or Firebase. These services have their own terms and privacy policies.
-
-</p>
-
-<br>
-
-<h3>Governing Law</h3>
-
-<p>
-
-These Terms & Conditions shall be governed by the applicable laws of India. Any disputes relating to these terms shall be subject to the jurisdiction of the appropriate courts.
-
-</p>
-
-<br>
-
-<h3>Contact Us</h3>
-
-<p>
-
-If you have any questions regarding these Terms & Conditions, please contact us at:
-
-<br><br>
-
-<strong>Email:</strong>
-
-smartapps.studio27@gmail.com
-
-</p>
-
-</div>
-
-</section>
-
-<footer>
-
-<div class="container footer-grid">
-
+<footer class="sas-footer">
+<div class="sas-footer-grid">
 <div>
-
-<img src="smartapps.png" class="footer-logo" alt="Logo">
-
-<h2>SmartApps Studio</h2>
-
-<p>
-
-Building Smart Apps & Amazing Games for Everyone.
-
-</p>
-
+<img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="sas-footer-brand-title">SmartApps Studio</div>
+<p class="sas-footer-brand-sub">Apps &amp; Tools that just work</p>
+<p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
 </div>
-
 <div>
-
 <h3>Quick Links</h3>
-
 <ul>
-
 <li><a href="index.html">Home</a></li>
-
 <li><a href="apps.html">Apps & Games</a></li>
-
 <li><a href="about.html">About</a></li>
-
 <li><a href="contact.html">Contact</a></li>
-
 </ul>
-
 </div>
-
 <div>
-
-<h3>Legal</h3>
-
+<h3>Web Tools</h3>
 <ul>
-
-<li><a href="privacy-policy.html">Privacy Policy</a></li>
-
-<li><a href="terms.html">Terms & Conditions</a></li>
-
+<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="typing.html">Smart Typing</a></li>
 </ul>
-
 </div>
-
 <div>
-
-<h3>Email</h3>
-
-<p>
-
-smartapps.studio27@gmail.com
-
-</p>
-
+<h3>Legal</h3>
+<ul>
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+<li><a href="terms.html">Terms & Conditions</a></li>
+<li><a href="sitemap.html">HTML Sitemap</a></li>
+</ul>
+<p style="margin-top:14px;">smartapps.studio27@gmail.com</p>
 </div>
-
 </div>
-
-<div class="copyright">
-
-<p>
-
-© 2026 SmartApps Studio. All Rights Reserved.
-
-</p>
-
+<div class="sas-copyright">
+<p>© 2026 SmartApps Studio. All Rights Reserved.</p>
 </div>
-
 </footer>
 
-<button id="topBtn">↑</button>
-
-<script src="script.js"></script>
-
 </body>
-
 </html>
