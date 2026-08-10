@@ -85,20 +85,53 @@
   .dropzone:hover, .dropzone.dragover{ border-color:var(--accent); background:rgba(232,163,61,.05); }
   .dropzone strong{ color:var(--text); }
 
-  .clips-strip{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
-  .clip-card{
-    display:grid; grid-template-columns:96px 1fr auto; gap:14px; align-items:center;
-    background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:10px;
-  }
-  .clip-thumb{ width:96px; height:54px; border-radius:6px; background:#000 center/cover no-repeat; border:1px solid var(--line); }
-  .clip-info{ min-width:0; }
-  .clip-name{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:6px; }
-  .trim-row{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--text-muted); font-family:'IBM Plex Mono',monospace; }
-  .trim-row input[type=range]{ flex:1; }
-  .trim-len{ color:var(--accent); }
-  .clip-actions{ display:flex; flex-direction:column; gap:6px; }
   .icon-btn{ background:var(--surface-3); border:1px solid var(--line); color:var(--text-muted); width:26px; height:26px; border-radius:5px; font-size:12px; display:flex; align-items:center; justify-content:center; }
   .icon-btn:hover{ color:var(--text); border-color:var(--text-muted); }
+
+  /* ---- Horizontal joined timeline (CapCut-style) ---- */
+  .timeline-scroll{ overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:8px; background:var(--surface-2); padding:0 0 10px; }
+  .timeline-inner{ position:relative; min-width:100%; padding-top:6px; }
+  .tl-ruler{ height:18px; position:relative; cursor:pointer; border-bottom:1px solid var(--line); margin-bottom:8px; }
+  .tl-track{ position:relative; height:64px; margin:0 2px; }
+  .tl-empty{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:12px; color:var(--text-muted); text-align:center; padding:0 16px; white-space:normal;
+  }
+  .tl-clip{
+    position:absolute; top:0; height:100%; border-radius:6px; overflow:hidden;
+    border:2px solid var(--line); background-color:#000; background-repeat:repeat-x; background-size:auto 100%;
+    cursor:grab; box-sizing:border-box;
+  }
+  .tl-clip.selected{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+  .tl-clip .tl-shade{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 100%); }
+  .tl-clip .tl-len{
+    position:absolute; left:6px; bottom:4px; font-size:10px; font-family:'IBM Plex Mono',monospace;
+    color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.8); pointer-events:none;
+  }
+  .tl-clip .tl-idx{
+    position:absolute; left:6px; top:4px; font-size:10px; font-family:'IBM Plex Mono',monospace;
+    color:#fff; background:rgba(0,0,0,.45); padding:1px 5px; border-radius:3px; pointer-events:none;
+  }
+  .tl-handle{
+    position:absolute; top:0; bottom:0; width:12px; cursor:ew-resize;
+    background:rgba(232,163,61,0.0); display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .tl-handle::after{ content:''; width:3px; height:60%; border-radius:3px; background:var(--accent); opacity:.85; }
+  .tl-handle-left{ left:0; }
+  .tl-handle-right{ right:0; }
+  .tl-clip.selected .tl-handle{ background:rgba(232,163,61,0.18); }
+  .tl-playhead{
+    position:absolute; top:0; bottom:10px; width:2px; background:var(--accent-2);
+    box-shadow:0 0 6px var(--accent-2); left:0; pointer-events:none; z-index:3; display:none;
+  }
+
+  .selected-panel{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    margin-top:12px; padding:10px 12px; background:var(--surface-2); border:1px solid var(--line); border-radius:8px;
+  }
+  .selected-name{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px; }
+  .selected-time{ font-size:11px; color:var(--accent); margin-top:3px; }
+  .selected-actions{ display:flex; gap:6px; flex-shrink:0; }
 
   /* ---- Sidebar ---- */
   .field{ margin-bottom:14px; }
@@ -124,7 +157,6 @@
   .range-field .label-row .val{ color:var(--accent); font-family:'IBM Plex Mono',monospace; }
   input[type=range]{ width:100%; }
 
-  .empty-msg{ font-size:12px; color:var(--text-muted); text-align:center; padding:12px 0; }
 
   @media (max-width:920px){
     .editor-grid{ grid-template-columns:1fr; }
@@ -174,14 +206,33 @@
       </div>
 
       <div class="panel">
-        <h3>Clips</h3>
+        <h3>Timeline</h3>
         <div class="dropzone" id="dropzone">
           <span>📁</span>
           <span><strong>Click karo</strong> ya video files yahan drag-drop karo (multiple allowed)</span>
         </div>
         <input type="file" id="fileInput" accept="video/*" multiple style="display:none;">
-        <div class="clips-strip" id="clipsStrip">
-          <div class="empty-msg" id="emptyMsg">Abhi koi clip add nahi hui</div>
+
+        <div class="timeline-scroll" id="timelineScroll">
+          <div class="timeline-inner" id="timelineInner">
+            <div class="tl-ruler" id="tlRuler"></div>
+            <div class="tl-track" id="tlTrack">
+              <div class="tl-empty" id="tlEmpty">Clips yahan joint hokar dikhengi — edges pe drag karke trim karo</div>
+            </div>
+            <div class="tl-playhead" id="tlPlayhead"></div>
+          </div>
+        </div>
+
+        <div class="selected-panel" id="selectedPanel" style="display:none;">
+          <div class="selected-info">
+            <div class="selected-name" id="selectedName">—</div>
+            <div class="selected-time mono" id="selectedTime">00.0s – 00.0s</div>
+          </div>
+          <div class="selected-actions">
+            <button class="icon-btn" id="moveLeftBtn" title="Peeche khisko">⟵</button>
+            <button class="icon-btn" id="moveRightBtn" title="Aage khisko">⟶</button>
+            <button class="icon-btn" id="deleteClipBtn" title="Delete" style="color:var(--accent-2);">✕</button>
+          </div>
         </div>
       </div>
     </div>
@@ -303,6 +354,11 @@
   let recordDest = null;
 
   let bgImage = null;      // loaded background Image for chroma-key mode
+  let selectedClipId = null;
+  const PX_PER_SEC = 45;
+  const MIN_BLOCK_WIDTH = 56;
+  let blockEls = [];       // DOM elements parallel to `clips`, rebuilt in renderTimeline()
+  let cumulativeLefts = []; // px offset of each clip's start within the joined timeline
 
   const canvas = document.getElementById('previewCanvas');
   const ctx = canvas.getContext('2d');
@@ -310,8 +366,14 @@
   const offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
   const placeholder = document.getElementById('canvasPlaceholder');
   const hiddenVideos = document.getElementById('hiddenVideos');
-  const clipsStrip = document.getElementById('clipsStrip');
-  const emptyMsg = document.getElementById('emptyMsg');
+  const timelineScroll = document.getElementById('timelineScroll');
+  const tlTrack = document.getElementById('tlTrack');
+  const tlRuler = document.getElementById('tlRuler');
+  const tlEmpty = document.getElementById('tlEmpty');
+  const tlPlayhead = document.getElementById('tlPlayhead');
+  const selectedPanel = document.getElementById('selectedPanel');
+  const selectedName = document.getElementById('selectedName');
+  const selectedTime = document.getElementById('selectedTime');
   const previewBtn = document.getElementById('previewBtn');
   const exportBtn = document.getElementById('exportBtn');
   const cancelBtn = document.getElementById('cancelBtn');
@@ -344,7 +406,7 @@
     previewBtn.disabled = !has || !supported;
     exportBtn.disabled = !has || !supported;
     placeholder.style.display = has ? 'none' : 'flex';
-    emptyMsg.style.display = has ? 'none' : 'block';
+    tlEmpty.style.display = has ? 'none' : 'flex';
   }
 
   // ---------- Adding clips ----------
@@ -364,7 +426,7 @@
 
       const clip = { id, file, url, videoEl, duration:0, inTime:0, outTime:0, thumb:null };
       clips.push(clip);
-      renderClips();
+      renderTimeline();
       updateProjectSummary();
 
       // route this clip's audio to speakers + recorder destination
@@ -389,7 +451,7 @@
             clip.thumb = tCanvas.toDataURL('image/jpeg', 0.7);
           }catch(e){}
           videoEl.currentTime = 0;
-          renderClips();
+          renderTimeline();
         };
         videoEl.addEventListener('seeked', onSeeked);
         videoEl.currentTime = Math.min(clip.duration/2, Math.max(clip.duration - 0.1, 0));
@@ -415,7 +477,8 @@
     URL.revokeObjectURL(clip.url);
     clip.videoEl.remove();
     clips.splice(idx,1);
-    renderClips();
+    if(selectedClipId === id) selectedClipId = null;
+    renderTimeline();
     updateProjectSummary();
   }
   function moveClip(id, dir){
@@ -423,74 +486,151 @@
     const newIdx = idx + dir;
     if(newIdx < 0 || newIdx >= clips.length) return;
     const tmp = clips[idx]; clips[idx] = clips[newIdx]; clips[newIdx] = tmp;
-    renderClips();
+    renderTimeline();
   }
 
-  function renderClips(){
-    clipsStrip.innerHTML = '';
+  function selectClip(id){
+    selectedClipId = id;
+    renderTimeline();
+    updateSelectedPanel();
+  }
+  function updateSelectedPanel(){
+    const clip = clips.find(c=>c.id===selectedClipId);
+    if(!clip){ selectedPanel.style.display = 'none'; return; }
+    selectedPanel.style.display = 'flex';
+    selectedName.textContent = clip.file.name;
+    selectedTime.textContent = clip.inTime.toFixed(1)+'s – '+clip.outTime.toFixed(1)+'s ('+(clip.outTime-clip.inTime).toFixed(1)+'s)';
+  }
+
+  // Recomputes each clip block's pixel width/position without rebuilding the DOM (cheap, used during live trim drag)
+  function layoutTimeline(){
+    let left = 0;
+    cumulativeLefts = [];
+    clips.forEach((clip, i)=>{
+      const w = Math.max(MIN_BLOCK_WIDTH, (clip.outTime - clip.inTime) * PX_PER_SEC);
+      cumulativeLefts.push(left);
+      const el = blockEls[i];
+      if(el){
+        el.style.left = left + 'px';
+        el.style.width = w + 'px';
+        const lenLabel = el.querySelector('.tl-len');
+        if(lenLabel) lenLabel.textContent = (clip.outTime-clip.inTime).toFixed(1)+'s';
+      }
+      left += w;
+    });
+    const totalW = Math.max(left, 100);
+    tlTrack.style.width = totalW + 'px';
+    tlRuler.style.width = totalW + 'px';
+    if(selectedClipId) updateSelectedPanel();
+  }
+
+  // Full rebuild: used whenever clips are added, removed, or reordered
+  function renderTimeline(){
+    tlTrack.innerHTML = '';
+    blockEls = [];
     if(clips.length === 0){
-      const msg = document.createElement('div');
-      msg.className = 'empty-msg';
-      msg.id = 'emptyMsg';
-      msg.textContent = 'Abhi koi clip add nahi hui';
-      clipsStrip.appendChild(msg);
+      tlTrack.appendChild(tlEmpty);
+      tlEmpty.style.display = 'flex';
+      tlTrack.style.width = '100%';
+      tlRuler.style.width = '100%';
+      selectedPanel.style.display = 'none';
       return;
     }
+    tlEmpty.style.display = 'none';
+
     clips.forEach((clip, i)=>{
-      const card = document.createElement('div');
-      card.className = 'clip-card';
+      const block = document.createElement('div');
+      block.className = 'tl-clip' + (clip.id === selectedClipId ? ' selected' : '');
+      if(clip.thumb){ block.style.backgroundImage = `url(${clip.thumb})`; block.style.backgroundSize = 'auto 100%'; }
 
-      const thumb = document.createElement('div');
-      thumb.className = 'clip-thumb';
-      if(clip.thumb){ thumb.style.backgroundImage = `url(${clip.thumb})`; }
+      block.innerHTML = `
+        <div class="tl-shade"></div>
+        <div class="tl-idx">${i+1}</div>
+        <div class="tl-len">${(clip.outTime-clip.inTime).toFixed(1)}s</div>
+        <div class="tl-handle tl-handle-left"></div>
+        <div class="tl-handle tl-handle-right"></div>`;
 
-      const info = document.createElement('div');
-      info.className = 'clip-info';
-      const dur = clip.duration || 0;
-      info.innerHTML = `
-        <div class="clip-name">${i+1}. ${clip.file.name}</div>
-        <div class="trim-row">
-          <span>Start</span>
-          <input type="range" min="0" max="${dur}" step="0.1" value="${clip.inTime}" data-role="in">
-          <span>End</span>
-          <input type="range" min="0" max="${dur}" step="0.1" value="${clip.outTime}" data-role="out">
-          <span class="trim-len">${(clip.outTime-clip.inTime).toFixed(1)}s</span>
-        </div>`;
-
-      const inRange = info.querySelector('[data-role="in"]');
-      const outRange = info.querySelector('[data-role="out"]');
-      const lenLabel = info.querySelector('.trim-len');
-      inRange.addEventListener('input', ()=>{
-        let v = parseFloat(inRange.value);
-        if(v >= clip.outTime) v = Math.max(0, clip.outTime - 0.1);
-        clip.inTime = v; inRange.value = v;
-        lenLabel.textContent = (clip.outTime-clip.inTime).toFixed(1)+'s';
-        updateProjectSummary();
-      });
-      outRange.addEventListener('input', ()=>{
-        let v = parseFloat(outRange.value);
-        if(v <= clip.inTime) v = Math.min(dur, clip.inTime + 0.1);
-        clip.outTime = v; outRange.value = v;
-        lenLabel.textContent = (clip.outTime-clip.inTime).toFixed(1)+'s';
-        updateProjectSummary();
+      block.addEventListener('click', (e)=>{
+        if(e.target.classList.contains('tl-handle')) return;
+        selectClip(clip.id);
       });
 
-      const actions = document.createElement('div');
-      actions.className = 'clip-actions';
-      actions.innerHTML = `
-        <button class="icon-btn" data-act="up" title="Upar">▲</button>
-        <button class="icon-btn" data-act="down" title="Neeche">▼</button>
-        <button class="icon-btn" data-act="del" title="Hatao">✕</button>`;
-      actions.querySelector('[data-act="up"]').addEventListener('click', ()=>moveClip(clip.id,-1));
-      actions.querySelector('[data-act="down"]').addEventListener('click', ()=>moveClip(clip.id,1));
-      actions.querySelector('[data-act="del"]').addEventListener('click', ()=>removeClip(clip.id));
+      // ---- Trim handles: drag left/right edges directly on the joined timeline ----
+      block.querySelectorAll('.tl-handle').forEach(handle=>{
+        handle.addEventListener('pointerdown', (e)=>{
+          e.stopPropagation();
+          e.preventDefault();
+          selectClip(clip.id);
+          const isLeft = handle.classList.contains('tl-handle-left');
+          const startX = e.clientX;
+          const startIn = clip.inTime, startOut = clip.outTime;
+          handle.setPointerCapture(e.pointerId);
 
-      card.appendChild(thumb);
-      card.appendChild(info);
-      card.appendChild(actions);
-      clipsStrip.appendChild(card);
+          function onMove(ev){
+            const dSec = (ev.clientX - startX) / PX_PER_SEC;
+            if(isLeft){
+              clip.inTime = Math.max(0, Math.min(startIn + dSec, clip.outTime - 0.2));
+            } else {
+              clip.outTime = Math.min(clip.duration, Math.max(startOut + dSec, clip.inTime + 0.2));
+            }
+            layoutTimeline();
+          }
+          function onUp(){
+            handle.removeEventListener('pointermove', onMove);
+            handle.removeEventListener('pointerup', onUp);
+            updateProjectSummary();
+          }
+          handle.addEventListener('pointermove', onMove);
+          handle.addEventListener('pointerup', onUp);
+        });
+      });
+
+      tlTrack.appendChild(block);
+      blockEls.push(block);
     });
+
+    layoutTimeline();
+    updateSelectedPanel();
   }
+
+  // ---- Ruler: click or drag to scrub the playhead and preview that exact frame ----
+  function scrubToPixel(px){
+    if(clips.length === 0) return;
+    let t = Math.max(0, px);
+    let idx = 0;
+    for(; idx < clips.length; idx++){
+      const w = Math.max(MIN_BLOCK_WIDTH, (clips[idx].outTime - clips[idx].inTime) * PX_PER_SEC);
+      if(t <= w || idx === clips.length - 1){ break; }
+      t -= w;
+    }
+    const clip = clips[idx];
+    const localSec = Math.min(clip.outTime - clip.inTime, Math.max(0, t / PX_PER_SEC));
+    tlPlayhead.style.display = 'block';
+    tlPlayhead.style.left = px + 'px';
+    const video = clip.videoEl;
+    const onSeeked = ()=>{
+      video.removeEventListener('seeked', onSeeked);
+      drawFrame(video);
+      placeholder.style.display = 'none';
+    };
+    video.addEventListener('seeked', onSeeked);
+    video.currentTime = clip.inTime + localSec;
+  }
+  tlRuler.addEventListener('pointerdown', (e)=>{
+    if(isRunning) return;
+    const rect = tlRuler.getBoundingClientRect();
+    const scrollLeft = timelineScroll.scrollLeft;
+    const move = (ev)=> scrubToPixel(ev.clientX - rect.left + scrollLeft);
+    move(e);
+    function onUp(){ document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', onUp); }
+    document.addEventListener('pointermove', move);
+    document.addEventListener('pointerup', onUp);
+  });
+
+  // ---- Selected-clip mini panel actions ----
+  document.getElementById('moveLeftBtn').addEventListener('click', ()=>{ if(selectedClipId) moveClip(selectedClipId, -1); });
+  document.getElementById('moveRightBtn').addEventListener('click', ()=>{ if(selectedClipId) moveClip(selectedClipId, 1); });
+  document.getElementById('deleteClipBtn').addEventListener('click', ()=>{ if(selectedClipId) removeClip(selectedClipId); });
 
   // ---------- Upload UI ----------
   const dropzone = document.getElementById('dropzone');
@@ -714,14 +854,19 @@
 
     const totalDur = totalTrimmedDuration();
     let elapsedBefore = 0;
+    tlPlayhead.style.display = 'block';
+    let clipIndex = 0;
     for(const clip of clips){
       if(cancelRequested) break;
+      const baseLeft = cumulativeLefts[clipIndex] || 0;
       await playClip(clip, (t)=>{
         const elapsed = elapsedBefore + t;
         timeReadout.textContent = fmtTime(elapsed) + ' / ' + fmtTime(totalDur);
         progressFill.style.width = Math.min(100, (elapsed/totalDur)*100) + '%';
+        tlPlayhead.style.left = (baseLeft + t * PX_PER_SEC) + 'px';
       });
       elapsedBefore += (clip.outTime - clip.inTime);
+      clipIndex++;
     }
 
     if(recorder){
