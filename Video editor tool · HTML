@@ -112,6 +112,12 @@
     position:absolute; left:6px; top:4px; font-size:10px; font-family:'IBM Plex Mono',monospace;
     color:#fff; background:rgba(0,0,0,.45); padding:1px 5px; border-radius:3px; pointer-events:none;
   }
+  .tl-mute{
+    position:absolute; right:4px; top:4px; width:20px; height:20px; border-radius:4px;
+    background:rgba(0,0,0,.45); border:none; color:#fff; font-size:11px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; padding:0;
+  }
+  .tl-mute:hover{ background:rgba(0,0,0,.7); }
   .tl-handle{
     position:absolute; top:0; bottom:0; width:12px; cursor:ew-resize;
     background:rgba(232,163,61,0.0); display:flex; align-items:center; justify-content:center; z-index:2;
@@ -132,6 +138,8 @@
   .selected-name{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px; }
   .selected-time{ font-size:11px; color:var(--accent); margin-top:3px; }
   .selected-actions{ display:flex; gap:6px; flex-shrink:0; }
+  .selected-audio{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .selected-audio input[type=range]{ width:90px; }
 
   /* ---- Sidebar ---- */
   .field{ margin-bottom:14px; }
@@ -227,6 +235,10 @@
           <div class="selected-info">
             <div class="selected-name" id="selectedName">—</div>
             <div class="selected-time mono" id="selectedTime">00.0s – 00.0s</div>
+          </div>
+          <div class="selected-audio">
+            <button class="icon-btn" id="muteToggleBtn" title="Mute/Unmute">🔊</button>
+            <input type="range" id="volumeSlider" min="0" max="100" value="100" title="Volume">
           </div>
           <div class="selected-actions">
             <button class="icon-btn" id="moveLeftBtn" title="Peeche khisko">⟵</button>
@@ -374,6 +386,8 @@
   const selectedPanel = document.getElementById('selectedPanel');
   const selectedName = document.getElementById('selectedName');
   const selectedTime = document.getElementById('selectedTime');
+  const muteToggleBtn = document.getElementById('muteToggleBtn');
+  const volumeSlider = document.getElementById('volumeSlider');
   const previewBtn = document.getElementById('previewBtn');
   const exportBtn = document.getElementById('exportBtn');
   const cancelBtn = document.getElementById('cancelBtn');
@@ -385,6 +399,14 @@
   const projectSummary = document.getElementById('projectSummary');
 
   // ---------- Helpers ----------
+  const MAX_SIZE_WARN = 500 * 1024 * 1024; // 500MB soft warning threshold
+  let flashTimer = null;
+  function flashStatus(msg, isError){
+    statusText.textContent = msg;
+    statusText.style.color = isError ? 'var(--accent-2)' : '';
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(()=>{ statusText.textContent = 'Ready'; statusText.style.color = ''; }, 4000);
+  }
   function fmtTime(s){
     s = Math.max(0, s || 0);
     const m = Math.floor(s/60), sec = Math.floor(s%60);
@@ -412,7 +434,13 @@
   // ---------- Adding clips ----------
   function addFiles(fileList){
     Array.from(fileList).forEach(file=>{
-      if(!file.type.startsWith('video/')) return;
+      if(!file.type.startsWith('video/')){
+        flashStatus(`"${file.name}" ek video file nahi hai — skip kar diya`, true);
+        return;
+      }
+      if(file.size > MAX_SIZE_WARN){
+        flashStatus(`"${file.name}" bahut badi file hai (${(file.size/1024/1024).toFixed(0)}MB) — processing slow ho sakti hai`, false);
+      }
       ensureAudioContext();
 
       const id = 'clip_' + (clipCounter++);
@@ -424,17 +452,25 @@
       videoEl.crossOrigin = 'anonymous';
       hiddenVideos.appendChild(videoEl);
 
-      const clip = { id, file, url, videoEl, duration:0, inTime:0, outTime:0, thumb:null };
+      const clip = { id, file, url, videoEl, duration:0, inTime:0, outTime:0, thumb:null, volume:1, muted:false, gainNode:null };
       clips.push(clip);
       renderTimeline();
       updateProjectSummary();
 
-      // route this clip's audio to speakers + recorder destination
+      // route this clip's audio through a per-clip GainNode (controls mute/volume) to speakers + recorder destination
       try{
         const src = audioCtx.createMediaElementSource(videoEl);
-        src.connect(audioCtx.destination);
-        src.connect(recordDest);
+        const gainNode = audioCtx.createGain();
+        src.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        gainNode.connect(recordDest);
+        clip.gainNode = gainNode;
       }catch(e){ /* some browsers restrict this until user gesture; ignored, export audio may be silent for this clip */ }
+
+      videoEl.addEventListener('error', function(){
+        flashStatus(`"${file.name}" load nahi ho payi — file corrupt hai ya format unsupported hai`, true);
+        removeClip(clip.id);
+      });
 
       videoEl.addEventListener('loadedmetadata', function(){
         clip.duration = videoEl.duration || 0;
@@ -500,7 +536,35 @@
     selectedPanel.style.display = 'flex';
     selectedName.textContent = clip.file.name;
     selectedTime.textContent = clip.inTime.toFixed(1)+'s – '+clip.outTime.toFixed(1)+'s ('+(clip.outTime-clip.inTime).toFixed(1)+'s)';
+    muteToggleBtn.textContent = clip.muted ? '🔇' : '🔊';
+    volumeSlider.value = Math.round(clip.volume * 100);
   }
+
+  function applyClipGain(clip){
+    if(clip.gainNode){ clip.gainNode.gain.value = clip.muted ? 0 : clip.volume; }
+  }
+  function updateBlockMuteIcon(clip){
+    const idx = clips.findIndex(c=>c.id===clip.id);
+    const btn = blockEls[idx] && blockEls[idx].querySelector('.tl-mute');
+    if(btn) btn.textContent = clip.muted ? '🔇' : '🔊';
+  }
+  muteToggleBtn.addEventListener('click', ()=>{
+    const clip = clips.find(c=>c.id===selectedClipId);
+    if(!clip) return;
+    clip.muted = !clip.muted;
+    applyClipGain(clip);
+    updateBlockMuteIcon(clip);
+    updateSelectedPanel();
+  });
+  volumeSlider.addEventListener('input', ()=>{
+    const clip = clips.find(c=>c.id===selectedClipId);
+    if(!clip) return;
+    clip.volume = parseInt(volumeSlider.value, 10) / 100;
+    if(clip.muted && clip.volume > 0){ clip.muted = false; }
+    applyClipGain(clip);
+    updateBlockMuteIcon(clip);
+    muteToggleBtn.textContent = clip.muted ? '🔇' : '🔊';
+  });
 
   // Recomputes each clip block's pixel width/position without rebuilding the DOM (cheap, used during live trim drag)
   function layoutTimeline(){
@@ -546,6 +610,7 @@
       block.innerHTML = `
         <div class="tl-shade"></div>
         <div class="tl-idx">${i+1}</div>
+        <button type="button" class="tl-mute" title="Mute/Unmute audio">${clip.muted ? '🔇' : '🔊'}</button>
         <div class="tl-len">${(clip.outTime-clip.inTime).toFixed(1)}s</div>
         <div class="tl-handle tl-handle-left"></div>
         <div class="tl-handle tl-handle-right"></div>`;
@@ -553,6 +618,14 @@
       block.addEventListener('click', (e)=>{
         if(e.target.classList.contains('tl-handle')) return;
         selectClip(clip.id);
+      });
+
+      block.querySelector('.tl-mute').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        clip.muted = !clip.muted;
+        applyClipGain(clip);
+        e.target.textContent = clip.muted ? '🔇' : '🔊';
+        if(selectedClipId === clip.id) updateSelectedPanel();
       });
 
       // ---- Trim handles: drag left/right edges directly on the joined timeline ----
