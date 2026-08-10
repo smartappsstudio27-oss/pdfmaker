@@ -302,8 +302,12 @@
   let audioCtx = null;
   let recordDest = null;
 
+  let bgImage = null;      // loaded background Image for chroma-key mode
+
   const canvas = document.getElementById('previewCanvas');
   const ctx = canvas.getContext('2d');
+  const offCanvas = document.createElement('canvas');
+  const offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
   const placeholder = document.getElementById('canvasPlaceholder');
   const hiddenVideos = document.getElementById('hiddenVideos');
   const clipsStrip = document.getElementById('clipsStrip');
@@ -400,6 +404,8 @@
     const scale = Math.min(1, maxW / vw);
     canvas.width = Math.round(vw * scale);
     canvas.height = Math.round(vh * scale);
+    offCanvas.width = canvas.width;
+    offCanvas.height = canvas.height;
   }
 
   function removeClip(id){
@@ -530,6 +536,78 @@
     return `brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
   }
 
+  // ---------- Chroma key (background remover) state ----------
+  const chromaEnable = document.getElementById('chromaEnable');
+  const keyColor = document.getElementById('keyColor');
+  const tolerance = document.getElementById('tolerance');
+  const toleranceVal = document.getElementById('toleranceVal');
+  const bgMode = document.getElementById('bgMode');
+  const bgColor = document.getElementById('bgColor');
+  const bgColorField = document.getElementById('bgColorField');
+  const bgImageField = document.getElementById('bgImageField');
+  const bgImageInput = document.getElementById('bgImageInput');
+
+  tolerance.addEventListener('input', ()=> toleranceVal.textContent = tolerance.value);
+  document.querySelectorAll('[data-swatch]').forEach(btn=>{
+    btn.addEventListener('click', ()=> { keyColor.value = btn.getAttribute('data-swatch'); });
+  });
+  bgMode.addEventListener('change', ()=>{
+    const isImage = bgMode.value === 'image';
+    bgImageField.style.display = isImage ? 'block' : 'none';
+    bgColorField.style.display = isImage ? 'none' : 'block';
+  });
+  bgImageInput.addEventListener('change', (e)=>{
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    const img = new Image();
+    img.onload = ()=> { bgImage = img; };
+    img.src = URL.createObjectURL(file);
+  });
+
+  function hexToRgb(hex){
+    const clean = hex.replace('#','');
+    return {
+      r: parseInt(clean.substring(0,2),16),
+      g: parseInt(clean.substring(2,4),16),
+      b: parseInt(clean.substring(4,6),16)
+    };
+  }
+
+  // Removes pixels close to keyRgb from imageData, with a soft-edge falloff band
+  function removeColorFromImageData(imageData, keyRgb, toleranceVal){
+    const data = imageData.data;
+    const threshold = toleranceVal * 4.4;      // ~0-352, RGB distance can reach ~441
+    const edge = Math.max(threshold * 0.25, 6);
+    const inner = threshold - edge;
+    for(let i=0; i<data.length; i+=4){
+      if(data[i+3] === 0) continue;
+      const dr = data[i]-keyRgb.r, dg = data[i+1]-keyRgb.g, db = data[i+2]-keyRgb.b;
+      const dist = Math.sqrt(dr*dr + dg*dg + db*db);
+      if(dist < inner){
+        data[i+3] = 0;
+      } else if(dist < threshold){
+        data[i+3] = Math.round(data[i+3] * ((dist - inner) / edge));
+      }
+    }
+  }
+
+  // Draws an image covering the full canvas (crop to fill, like CSS background-size:cover)
+  function drawImageCover(targetCtx, img, cw, ch){
+    const scale = Math.max(cw / img.width, ch / img.height);
+    const w = img.width * scale, h = img.height * scale;
+    const x = (cw - w) / 2, y = (ch - h) / 2;
+    targetCtx.drawImage(img, x, y, w, h);
+  }
+
+  function drawBackgroundLayer(){
+    if(bgMode.value === 'image' && bgImage){
+      drawImageCover(ctx, bgImage, canvas.width, canvas.height);
+    } else {
+      ctx.fillStyle = bgColor.value;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
   function drawTextOverlay(){
     const text = textInput.value.trim();
     if(!textEnable.checked || !text) return;
@@ -551,16 +629,33 @@
   }
 
   function drawFrame(video){
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
     const vw = video.videoWidth || canvas.width, vh = video.videoHeight || canvas.height;
     const scale = Math.min(canvas.width/vw, canvas.height/vh);
-    const w = vw*scale, h = vh*scale;
-    const x = (canvas.width - w)/2, y = (canvas.height - h)/2;
-    ctx.save();
-    ctx.filter = currentFilterString();
-    ctx.drawImage(video, x, y, w, h);
-    ctx.restore();
+    const w = Math.round(vw*scale), h = Math.round(vh*scale);
+    const x = Math.round((canvas.width - w)/2), y = Math.round((canvas.height - h)/2);
+
+    if(chromaEnable.checked){
+      // 1) paint the replacement background first
+      drawBackgroundLayer();
+      // 2) draw the video frame into an offscreen canvas, then punch out the key color
+      offCtx.clearRect(0, 0, offCanvas.width, offCanvas.height);
+      offCtx.save();
+      offCtx.filter = currentFilterString();
+      offCtx.drawImage(video, x, y, w, h);
+      offCtx.restore();
+      const region = offCtx.getImageData(x, y, w, h);
+      removeColorFromImageData(region, hexToRgb(keyColor.value), parseInt(tolerance.value, 10));
+      offCtx.putImageData(region, x, y);
+      // 3) composite the cut-out foreground on top of the background
+      ctx.drawImage(offCanvas, 0, 0);
+    } else {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.save();
+      ctx.filter = currentFilterString();
+      ctx.drawImage(video, x, y, w, h);
+      ctx.restore();
+    }
     drawTextOverlay();
   }
 
