@@ -485,22 +485,16 @@ gtag('config', 'G-TNBKQNNTMY');
 
   }
   .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
-
   .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
-
   .brand img{width:110px;height:110px;border-radius:30px;}
-
   .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
-
   .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
-
   .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
-
   .navbar li{position:relative;}
-  .navbar a{text-decoration:none;font-size:13.5px;font-weight:600;color:var(--muted);padding-bottom:4px;border-bottom:2px solid transparent;}
-  .navbar a:hover, .navbar a.active{color:var(--ink);border-bottom-color:var(--ribbon-red);}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
   .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
-  .navbar .caret{font-size:15px;transition:transform .15s ease;display:inline-block;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
   .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
 
   .dropdown-menu{
@@ -650,8 +644,8 @@ gtag('config', 'G-TNBKQNNTMY');
              switches a mode here — it just scrolls down to the
              standalone Beginner Practice Zone at the bottom of the
              page, which has its own Start/Stop and Day/Time controls. -->
-      
-        <button class="btn btn-ghost active" id="beginnerModeBtn" title="Jump to the Beginner Practice Zone">↓ Beginner</button>
+        <button class="btn btn-ghost active" id="advancedModeBtn" title="You're in Advanced mode">Advanced</button>
+        <button class="btn btn-ghost" id="beginnerModeBtn" title="Jump to the Beginner Practice Zone">↓ Beginner</button>
         <select id="levelSelect">
           <option value="all">All levels</option>
           <option value="Easy">Easy</option>
