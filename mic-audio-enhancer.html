@@ -961,9 +961,9 @@ gtag('config', 'G-TNBKQNNTMY');
 
   function buildFilterChain(strength){
     const chains = {
-      light: "highpass=f=80,afftdn=nf=-20,equalizer=f=3000:t=q:w=1:g=3,acompressor=threshold=-20dB:ratio=2:attack=10:release=100,loudnorm=I=-14:TP=-1:LRA=11",
-      medium: "highpass=f=90,afftdn=nf=-25,equalizer=f=200:t=q:w=1:g=-3,equalizer=f=3000:t=q:w=1:g=4,acompressor=threshold=-18dB:ratio=3:attack=5:release=80,loudnorm=I=-14:TP=-1:LRA=11",
-      strong: "highpass=f=100,afftdn=nf=-30,agate=threshold=-40dB:ratio=3:attack=20:release=250,equalizer=f=200:t=q:w=1:g=-4,equalizer=f=3000:t=q:w=1:g=5,acompressor=threshold=-16dB:ratio=4:attack=5:release=60,loudnorm=I=-14:TP=-1:LRA=11"
+      light: "highpass=f=80,afftdn=nf=-22:nr=12,equalizer=f=3000:t=q:w=1:g=4,acompressor=threshold=-20dB:ratio=2.5:attack=10:release=100,loudnorm=I=-14:TP=-1:LRA=11",
+      medium: "highpass=f=90,afftdn=nf=-28:nr=20,equalizer=f=200:t=q:w=1:g=-4,equalizer=f=3000:t=q:w=1:g=5,acompressor=threshold=-18dB:ratio=3.5:attack=5:release=80,loudnorm=I=-14:TP=-1:LRA=11",
+      strong: "highpass=f=100,afftdn=nf=-32:nr=30,agate=threshold=-40dB:ratio=3:attack=20:release=250,equalizer=f=200:t=q:w=1:g=-5,equalizer=f=3000:t=q:w=1:g=6,acompressor=threshold=-16dB:ratio=4:attack=5:release=60,loudnorm=I=-14:TP=-1:LRA=11"
     };
     return chains[strength] || chains.medium;
   }
@@ -1028,6 +1028,7 @@ gtag('config', 'G-TNBKQNNTMY');
       const inExt = (selectedFile.name.split('.').pop() || 'input').toLowerCase();
       const inName = 'input.' + inExt;
       engine.FS('writeFile', inName, await FFmpeg.fetchFile(selectedFile));
+      console.log('[MicEnhancer] strength:', strength, '| filters:', filters);
 
       let outName;
       if(outputChoice === 'video'){
@@ -1042,9 +1043,25 @@ gtag('config', 'G-TNBKQNNTMY');
       progressBar.style.width = '100%';
       progressPct.textContent = '100%';
 
+      // The ffmpeg.wasm run() promise resolves as soon as it sees the
+      // "FFMPEG_END" log line — it does NOT check whether ffmpeg actually
+      // succeeded. So we scan the recent log ourselves for real failure
+      // signs (bad filter graph, missing filter, etc.) and treat those as
+      // errors instead of silently returning an unprocessed/empty file.
+      const failureLine = recentLog.find(l =>
+        /No such filter|Error initializing filter|Invalid argument|Unable to find a suitable output format|Error opening filters/i.test(l)
+      );
+      if (failureLine) {
+        throw new Error('FFmpeg filter chain failed: ' + failureLine);
+      }
+
       const data = engine.FS('readFile', outName);
+      if (!data || data.length < 256) {
+        throw new Error('Output file came out empty — processing likely failed silently.');
+      }
       const mime = outputChoice === 'video' ? (inExt === 'mov' ? 'video/mp4' : (selectedFile.type || 'video/mp4')) : 'audio/mpeg';
       const blob = new Blob([data.buffer], { type: mime });
+      console.log('[MicEnhancer] input bytes:', selectedFile.size, '| output bytes:', data.length);
 
       if(outputObjectURL) URL.revokeObjectURL(outputObjectURL);
       outputObjectURL = URL.createObjectURL(blob);
