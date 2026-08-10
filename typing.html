@@ -497,44 +497,27 @@ gtag('config', 'G-TNBKQNNTMY');
   .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
   .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
 
-  .dropdown-menu{
-
+ .dropdown-menu{
     list-style:none;margin:0;padding:8px;padding-top:14px;
-
     position:absolute;top:100%;left:0;min-width:180px;
-
     background:#fff;border:1px solid #E4E7EC;border-radius:10px;
-
     box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
-
     opacity:0;visibility:hidden;transform:translateY(4px);
-
     transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
-
     z-index:210;
-
   }
-
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
   .dropdown-menu li{padding:0;}
-
   .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
-
   .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
-
   .header-buttons{display:flex;gap:8px;}
-
-  .menuBtn{
-
-    width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;
-
-  }
-
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
   @media (max-width:860px){
-
     .navbar{display:none;}
-
     .menuBtn{display:block;}
-
   }
 
   /* ===== Footer (exact match with pdf-maker.html / other pages) ===== */
@@ -644,8 +627,8 @@ gtag('config', 'G-TNBKQNNTMY');
              switches a mode here — it just scrolls down to the
              standalone Beginner Practice Zone at the bottom of the
              page, which has its own Start/Stop and Day/Time controls. -->
-        <button class="btn btn-ghost active" id="advancedModeBtn" title="You're in Advanced mode">Advanced</button>
-        <button class="btn btn-ghost" id="beginnerModeBtn" title="Jump to the Beginner Practice Zone">↓ Beginner</button>
+        
+        <button class="btn btn-ghost active" id="beginnerModeBtn" title="Jump to the Beginner Practice Zone">↓ Beginner</button>
         <select id="levelSelect">
           <option value="all">All levels</option>
           <option value="Easy">Easy</option>
