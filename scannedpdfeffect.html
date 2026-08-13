@@ -177,7 +177,7 @@ gtag('config', 'G-TNBKQNNTMY');
   .morph-wrap svg{width:100%;max-width:340px;height:auto;}
 
   /* Converter card */
-  .converter-section{max-width:900px;margin:10px auto 0;padding:0 24px;}
+  .converter-section{max-width:1040px;margin:10px auto 0;padding:0 24px;}
   .converter-card{
     background:var(--surface);
     border:1px solid var(--border);
@@ -185,6 +185,26 @@ gtag('config', 'G-TNBKQNNTMY');
     padding:28px;
     box-shadow:0 1px 2px rgba(20,23,31,.04),0 10px 30px -18px rgba(20,23,31,.15);
   }
+  .converter-grid{display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:start;}
+  @media (max-width:760px){.converter-grid{grid-template-columns:1fr;}}
+  .preview-col{position:sticky;top:90px;}
+  @media (max-width:760px){.preview-col{position:static;}}
+  .preview-col .preview-label{
+    font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+  }
+  .preview-col .preview-label .live-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--primary);
+    animation:pulseDot 1.4s ease-in-out infinite;
+  }
+  @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .live-preview-box{
+    position:relative;border:1px solid var(--border);border-radius:14px;
+    background:var(--bg);min-height:260px;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;padding:14px;
+  }
+  .live-preview-box canvas{max-width:100%;max-height:440px;display:none;box-shadow:0 6px 20px rgba(20,23,31,.18);border-radius:2px;}
+  .preview-placeholder{color:var(--muted);font-size:.82rem;text-align:center;padding:10px;}
   .quality-row{
     display:flex;align-items:center;justify-content:space-between;
     gap:14px;flex-wrap:wrap;margin-bottom:18px;
@@ -258,6 +278,13 @@ gtag('config', 'G-TNBKQNNTMY');
   .slider-field label span.val{font-family:var(--font-mono);color:var(--primary);font-weight:700;}
   input[type=range]{width:100%;accent-color:var(--primary);}
 
+  .margin-row{margin-top:14px;}
+  .margin-row label{display:block;font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+  .margin-row select{
+    width:100%;font-family:var(--font-mono);font-size:.85rem;font-weight:600;
+    padding:9px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);
+  }
   .toggle-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;}
   .toggle-item{
     display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;
@@ -523,6 +550,9 @@ gtag('config', 'G-TNBKQNNTMY');
 
   <section class="converter-section" id="converter">
     <div class="converter-card">
+      <div class="converter-grid">
+
+      <div class="controls-col">
 
       <div class="quality-row">
         <div>
@@ -568,9 +598,17 @@ gtag('config', 'G-TNBKQNNTMY');
           </div>
         </div>
 
+        <div class="margin-row">
+          <label for="marginMode">Page margin (background around the tilted page)</label>
+          <select id="marginMode">
+            <option value="black" selected>Black — scanner-bed look</option>
+            <option value="white">White — plain paper edge</option>
+            <option value="none">None — no margin at all</option>
+          </select>
+        </div>
+
         <div class="toggle-row">
           <label class="toggle-item"><input type="checkbox" id="vignette" checked> Edge shadow</label>
-          <label class="toggle-item"><input type="checkbox" id="darkBed" checked> Scanner-bed margin</label>
           <label class="toggle-item"><input type="checkbox" id="blur" checked> Lens softness</label>
           <label class="toggle-item"><input type="checkbox" id="preserveWatermark" checked> Preserve watermark</label>
         </div>
@@ -579,9 +617,21 @@ gtag('config', 'G-TNBKQNNTMY');
       <p class="status-msg" id="statusMsg"></p>
 
       <div class="action-row" id="actionRow" style="display:none;">
-        <button class="btn btn-primary" id="processBtn">Apply Scan Effect</button>
+        <button class="btn btn-primary" id="processBtn">Apply to Full PDF</button>
         <button class="btn btn-ghost" id="clearBtn">Clear</button>
         <button class="btn btn-zip" id="downloadBtn">Download Scanned PDF</button>
+      </div>
+
+      </div>
+
+      <div class="preview-col">
+        <div class="preview-label"><span class="live-dot"></span> Live preview — page 1</div>
+        <div class="live-preview-box">
+          <p class="preview-placeholder" id="previewPlaceholder">PDF select karo — effect turant yahan dikhega, sliders move karte hi update hoga.</p>
+          <canvas id="livePreviewCanvas"></canvas>
+        </div>
+      </div>
+
       </div>
 
       <div class="page-grid" id="grid"></div>
@@ -742,10 +792,16 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
   const statusEl    = document.getElementById('statusMsg');
   const grid        = document.getElementById('grid');
   const modeSeg     = document.getElementById('modeSeg');
+  const marginMode  = document.getElementById('marginMode');
+  const livePreviewCanvas = document.getElementById('livePreviewCanvas');
+  const previewPlaceholder = document.getElementById('previewPlaceholder');
 
   let currentFile = null;
   let processedCanvases = [];
   let mode = 'bw';
+  let rawPreviewCanvas = null;
+  let previewAngleSign = 1;
+  let previewDebounce = null;
 
   browseBtn.addEventListener('click', () => fileInput.click());
   dropzone.addEventListener('click', (e) => { if(e.target === dropzone) fileInput.click(); });
@@ -771,13 +827,76 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
     modeSeg.querySelectorAll('button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     mode = btn.dataset.mode;
+    schedulePreview();
   });
 
   ['noise','contrast','skew'].forEach(id => {
     const input = document.getElementById(id);
     const val = document.getElementById(id+'Val');
-    input.addEventListener('input', () => val.textContent = input.value);
+    input.addEventListener('input', () => { val.textContent = input.value; schedulePreview(); });
   });
+
+  ['vignette','blur','preserveWatermark'].forEach(id => {
+    document.getElementById(id).addEventListener('change', schedulePreview);
+  });
+  marginMode.addEventListener('change', schedulePreview);
+
+  function schedulePreview(){
+    clearTimeout(previewDebounce);
+    previewDebounce = setTimeout(renderLivePreview, 120);
+  }
+
+  function gatherOpts(){
+    return {
+      mode,
+      noiseAmt: +document.getElementById('noise').value,
+      contrastAmt: +document.getElementById('contrast').value,
+      skewAmt: +document.getElementById('skew').value,
+      vignetteOn: document.getElementById('vignette').checked,
+      marginMode: marginMode.value,
+      blurOn: document.getElementById('blur').checked,
+      preserveWatermark: document.getElementById('preserveWatermark').checked
+    };
+  }
+
+  async function loadPreviewSource(file){
+    previewPlaceholder.style.display = 'block';
+    previewPlaceholder.textContent = 'Preview load ho raha hai...';
+    livePreviewCanvas.style.display = 'none';
+    rawPreviewCanvas = null;
+    try{
+      const buf = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({data: buf}).promise;
+      const page = await pdf.getPage(1);
+      const baseViewport = page.getViewport({scale: 1});
+      const targetWidth = 480;
+      const scale = Math.min(2, targetWidth / baseViewport.width);
+      const viewport = page.getViewport({scale});
+      const c = document.createElement('canvas');
+      c.width = viewport.width;
+      c.height = viewport.height;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0,0,c.width,c.height);
+      await page.render({canvasContext: ctx, viewport}).promise;
+      rawPreviewCanvas = c;
+      previewAngleSign = Math.random() < 0.5 ? -1 : 1;
+      renderLivePreview();
+    }catch(err){
+      console.error(err);
+      previewPlaceholder.textContent = 'Preview load nahi ho saka.';
+    }
+  }
+
+  function renderLivePreview(){
+    if(!rawPreviewCanvas) return;
+    const result = applyScanEffect(rawPreviewCanvas, gatherOpts(), previewAngleSign);
+    livePreviewCanvas.width = result.width;
+    livePreviewCanvas.height = result.height;
+    livePreviewCanvas.getContext('2d').drawImage(result,0,0);
+    previewPlaceholder.style.display = 'none';
+    livePreviewCanvas.style.display = 'block';
+  }
 
   function setStatus(msg, cls){
     statusEl.textContent = msg || '';
@@ -798,23 +917,28 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
     grid.innerHTML = '';
     processedCanvases = [];
     setStatus('');
+    loadPreviewSource(file);
   }
 
   clearBtn.addEventListener('click', () => {
     currentFile = null;
     processedCanvases = [];
+    rawPreviewCanvas = null;
     fileNamePill.style.display = 'none';
     fileCounter.textContent = 'No file selected';
     actionRow.style.display = 'none';
     downloadBtn.style.display = 'none';
     grid.innerHTML = '';
     setStatus('');
+    livePreviewCanvas.style.display = 'none';
+    previewPlaceholder.style.display = 'block';
+    previewPlaceholder.textContent = 'PDF select karo — effect turant yahan dikhega, sliders move karte hi update hoga.';
   });
 
   function clamp(v){ return v<0?0:(v>255?255:v); }
 
-  function applyScanEffect(srcCanvas, opts){
-    const {mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn, preserveWatermark} = opts;
+  function applyScanEffect(srcCanvas, opts, angleSign){
+    const {mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, marginMode, blurOn, preserveWatermark} = opts;
 
     const work = document.createElement('canvas');
     work.width = srcCanvas.width;
@@ -882,10 +1006,11 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
     }
 
     const maxAngle = (skewAmt/100) * 2.2;
-    const angle = (Math.random()*2 - 1) * maxAngle;
+    const angle = angleSign !== undefined ? angleSign * maxAngle : (Math.random()*2 - 1) * maxAngle;
     const rad = angle * Math.PI/180;
 
-    const pad = Math.ceil(Math.max(w,h) * 0.06) + 30;
+    const hasMargin = marginMode === 'black' || marginMode === 'white';
+    const pad = hasMargin ? Math.ceil(Math.max(w,h) * 0.06) + 30 : 0;
     const outW = w + pad*2;
     const outH = h + pad*2;
     const out = document.createElement('canvas');
@@ -893,8 +1018,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
     out.height = outH;
     const octx = out.getContext('2d');
 
-    octx.fillStyle = darkBedOn ? '#050505' : '#ffffff';
-    octx.fillRect(0,0,outW,outH);
+    if(hasMargin){
+      octx.fillStyle = marginMode === 'black' ? '#050505' : '#ffffff';
+      octx.fillRect(0,0,outW,outH);
+    }
 
     octx.save();
     octx.translate(outW/2, outH/2);
@@ -916,13 +1043,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
     try{
       const buf = await currentFile.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({data: buf}).promise;
-      const noiseAmt = +document.getElementById('noise').value;
-      const contrastAmt = +document.getElementById('contrast').value;
-      const skewAmt = +document.getElementById('skew').value;
-      const vignetteOn = document.getElementById('vignette').checked;
-      const darkBedOn = document.getElementById('darkBed').checked;
-      const blurOn = document.getElementById('blur').checked;
-      const preserveWatermark = document.getElementById('preserveWatermark').checked;
+      const opts = gatherOpts();
 
       for(let i=1; i<=pdf.numPages; i++){
         setStatus(`Page ${i} / ${pdf.numPages} process ho raha hai...`, 'busy');
@@ -947,9 +1068,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
         rctx.fillRect(0,0,renderCanvas.width, renderCanvas.height);
         await page.render({canvasContext: rctx, viewport}).promise;
 
-        const finalCanvas = applyScanEffect(renderCanvas, {
-          mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn, preserveWatermark
-        });
+        const finalCanvas = applyScanEffect(renderCanvas, opts);
 
         canvasHolder.width = finalCanvas.width;
         canvasHolder.height = finalCanvas.height;
