@@ -1,538 +1,1007 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scan Effect — PDF ko scanned jaisa banao</title>
+<title>PDF Scan Effect Tool | SmartApps Studio</title>
+<meta name="description" content="Turn a clean PDF into a scanned-looking document, free, online, right in your browser. Grain, paper tone, tilt and edge shadow — no upload to any server, no signup, instant download.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://smartappsstudio.in/pdf-scan-effect.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SmartApps Studio">
+<meta property="og:title" content="PDF Scan Effect Tool | SmartApps Studio">
+<meta property="og:description" content="Turn a clean PDF into a scanned-looking document, free, online, right in your browser. Grain, paper tone, tilt and edge shadow — no upload to any server, no signup, instant download.">
+<meta property="og:url" content="https://smartappsstudio.in/pdf-scan-effect.html">
+<meta property="og:image" content="https://smartappsstudio.in/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Scan Effect Tool | SmartApps Studio">
+<meta name="twitter:description" content="Turn a clean PDF into a scanned-looking document, free, online, right in your browser. Grain, paper tone, tilt and edge shadow — no upload to any server, no signup, instant download.">
+<meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNBKQNNTMY');
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
+}
+</script>
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "description":"Official website of SmartApps Studio, developing Android apps, games, PDF tools and Smart Typing.",
+  "inLanguage":"en",
+  "publisher":{
+    "@type":"Organization",
+    "name":"SmartApps Studio",
+    "url":"https://smartappsstudio.in/"
+  }
+}
+</script>
+<!-- WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"PDF Scan Effect Tool | SmartApps Studio",
+  "url":"https://smartappsstudio.in/pdf-scan-effect.html",
+  "description":"Free browser-based tool that makes a clean PDF look like a scanned document — grain, tilt, paper tone and edge shadow, applied entirely on your device.",
+  "inLanguage":"en",
+  "isPartOf":{
+    "@type":"WebSite",
+    "name":"SmartApps Studio",
+    "url":"https://smartappsstudio.in/"
+  },
+  "about":{
+    "@type":"SoftwareApplication",
+    "name":"PDF Scan Effect Tool",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Any (Web Browser)",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"INR"
+    }
+  }
+}
+</script>
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"PDF Scan Effect Tool","item":"https://smartappsstudio.in/pdf-scan-effect.html"}
+  ]
+}
+</script>
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is this PDF scan effect tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It's completely free to use with no signup and no page limits."}},
+    {"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Every page is rendered and processed inside your browser. Your file never leaves your device."}},
+    {"@type":"Question","name":"Will it remove watermarks or light text?","acceptedAnswer":{"@type":"Answer","text":"No, the tool has a built-in setting that protects faint watermarks and light text from being washed out by the contrast effect."}},
+    {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, it works on any modern mobile or desktop browser, including Chrome, Edge and Safari."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
+
+<!-- PDF rendering + PDF export engines -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
   :root{
-    --bg:#15181c;
-    --panel:#1e2227;
-    --panel-2:#262b31;
-    --line:#343a41;
-    --text:#e7e6e1;
-    --muted:#9aa1a9;
-    --accent:#3ddc97;
-    --accent-dim:#1f5c43;
-    --warn:#f2b134;
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --success:#16A34A;
+    --danger:#DC2626;
+    --radius:14px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--bg);
     color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    min-height:100vh;
+    font-family:var(--font-body);
+    line-height:1.6;
   }
-  .top{
-    border-bottom:1px solid var(--line);
-    padding:22px 24px 18px;
-    background:linear-gradient(180deg,#181b1f,#15181c);
-    position:relative;
-    overflow:hidden;
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+
+  main.content{min-width:0;}
+
+  /* Hero */
+  .hero{
+    max-width:1100px;margin:0 auto;padding:56px 24px 20px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
   }
-  .top::after{
-    content:"";
-    position:absolute;
-    left:0; right:0; top:0;
-    height:2px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    animation:sweep 3.5s linear infinite;
-    opacity:.7;
+  @media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:36px;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;
+    letter-spacing:.03em;
   }
-  @keyframes sweep{
-    0%{transform:translateX(-100%);}
-    100%{transform:translateX(100%);}
-  }
-  .brand{
-    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
-    font-size:12px;
-    letter-spacing:.14em;
-    color:var(--accent);
-    text-transform:uppercase;
-  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
   h1{
-    margin:6px 0 4px;
-    font-size:22px;
-    font-weight:650;
+    font-family:var(--font-display);font-size:2.6rem;line-height:1.1;
+    margin:18px 0 14px;font-weight:700;
   }
-  .sub{
-    color:var(--muted);
-    font-size:13.5px;
-    margin:0;
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:46ch;}
+  .trust-row{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);font-weight:600;}
+  .trust-item svg{width:18px;height:18px;color:var(--success);flex-shrink:0;}
+
+  .morph-wrap{display:flex;justify-content:center;}
+  .morph-wrap svg{width:100%;max-width:340px;height:auto;}
+
+  /* Converter card */
+  .converter-section{max-width:900px;margin:10px auto 0;padding:0 24px;}
+  .converter-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 1px 2px rgba(20,23,31,.04),0 10px 30px -18px rgba(20,23,31,.15);
   }
-  .wrap{
-    max-width:980px;
-    margin:0 auto;
-    padding:22px 24px 60px;
+  .quality-row{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:14px;flex-wrap:wrap;margin-bottom:18px;
   }
-  .panel{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:18px;
-    margin-bottom:18px;
+  .quality-row label{font-weight:600;font-size:.88rem;color:var(--text);}
+  select.quality-select{
+    font-family:var(--font-mono);font-size:.85rem;font-weight:600;
+    padding:8px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);
   }
-  .panel h2{
-    font-family:"SFMono-Regular",Consolas,monospace;
-    font-size:11px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--muted);
-    margin:0 0 14px;
+  .counter-pill{
+    font-family:var(--font-mono);font-size:.78rem;font-weight:600;
+    color:var(--muted);background:var(--bg);border:1px solid var(--border);
+    padding:5px 10px;border-radius:20px;
   }
-  .drop{
-    border:1.5px dashed var(--line);
-    border-radius:8px;
-    padding:28px 16px;
+
+  .dropzone{
+    border:2px dashed var(--border);
+    border-radius:16px;
+    padding:44px 20px;
     text-align:center;
     cursor:pointer;
-    transition:.15s;
-    background:var(--panel-2);
+    transition:border-color .15s ease, background .15s ease;
+    background:linear-gradient(180deg,#FAFBFC,#FFFFFF);
   }
-  .drop:hover, .drop.drag{
-    border-color:var(--accent);
-    background:#20281f;
+  .dropzone.dragover{border-color:var(--primary);background:#FCF2F1;}
+  .dropzone .dz-icon{width:56px;height:56px;margin:0 auto 14px;color:var(--primary);}
+  .dropzone h3{font-family:var(--font-display);margin:0 0 6px;font-size:1.15rem;}
+  .dropzone p{margin:0;color:var(--muted);font-size:.9rem;}
+  .browse-btn{
+    display:inline-block;margin-top:16px;
+    background:var(--primary);color:#fff;border:none;
+    padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;
+    cursor:pointer;font-family:var(--font-body);
   }
-  .drop input{display:none;}
-  .drop .icon{font-size:26px; margin-bottom:8px;}
-  .drop .fname{color:var(--accent); font-size:13px; margin-top:6px; word-break:break-all;}
-  .row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:16px;
+  .browse-btn:hover{background:var(--primary-dark);}
+  input[type=file]{display:none;}
+
+  .status-msg{font-size:.82rem;margin-top:10px;text-align:center;min-height:18px;}
+  .status-msg.error{color:var(--danger);font-weight:600;}
+  .status-msg.busy{color:var(--primary);font-weight:600;}
+  .status-msg.done{color:var(--success);font-weight:600;}
+
+  .file-name-pill{
+    display:flex;align-items:center;gap:10px;
+    border:1px solid var(--border);border-radius:12px;padding:12px 14px;
+    background:var(--bg);margin-top:16px;font-size:.85rem;
   }
-  .field{
-    flex:1;
-    min-width:210px;
-  }
-  .field label{
-    display:flex;
-    justify-content:space-between;
-    font-size:12.5px;
-    color:var(--muted);
-    margin-bottom:6px;
-  }
-  .field label span.val{color:var(--accent); font-family:monospace;}
-  input[type=range]{
-    width:100%;
-    accent-color:var(--accent);
-  }
+  .file-name-pill svg{width:20px;height:20px;color:var(--primary);flex-shrink:0;}
+  .file-name-pill span{font-weight:600;word-break:break-all;}
+
+  /* Scan-style controls */
+  .controls-block{margin-top:22px;}
   .seg{
-    display:flex;
-    gap:6px;
-    background:var(--panel-2);
-    border:1px solid var(--line);
-    border-radius:8px;
-    padding:4px;
+    display:flex;gap:6px;background:var(--bg);border:1px solid var(--border);
+    border-radius:10px;padding:4px;
   }
   .seg button{
-    flex:1;
-    padding:8px 6px;
-    background:transparent;
-    border:none;
-    color:var(--muted);
-    font-size:12.5px;
-    border-radius:6px;
-    cursor:pointer;
-    transition:.15s;
+    flex:1;padding:9px 8px;background:transparent;border:none;
+    color:var(--muted);font-size:.8rem;font-weight:700;border-radius:7px;
+    cursor:pointer;font-family:var(--font-body);transition:.15s;
   }
-  .seg button.active{
-    background:var(--accent-dim);
-    color:var(--accent);
-    font-weight:600;
+  .seg button.active{background:var(--primary);color:#fff;}
+
+  .slider-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:18px;}
+  @media (max-width:640px){.slider-grid{grid-template-columns:1fr;}}
+  .slider-field label{
+    display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;
+    color:var(--text);margin-bottom:6px;
   }
-  .toggles{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-top:14px;
+  .slider-field label span.val{font-family:var(--font-mono);color:var(--primary);font-weight:700;}
+  input[type=range]{width:100%;accent-color:var(--primary);}
+
+  .toggle-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;}
+  .toggle-item{
+    display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;
+    color:var(--text);cursor:pointer;user-select:none;
   }
-  .toggle{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-size:13px;
-    color:var(--text);
-    cursor:pointer;
-    user-select:none;
+  .toggle-item input{accent-color:var(--primary);width:16px;height:16px;}
+
+  .action-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body);font-weight:700;font-size:.92rem;
+    padding:12px 22px;border-radius:10px;border:none;cursor:pointer;
   }
-  .toggle input{accent-color:var(--accent);}
-  .actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:18px;
-  }
-  button.primary, button.secondary{
-    border:none;
-    border-radius:8px;
-    padding:12px 20px;
-    font-size:14px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.15s;
-  }
-  button.primary{
-    background:var(--accent);
-    color:#0c1310;
-  }
-  button.primary:hover{filter:brightness(1.08);}
-  button.primary:disabled{
-    background:#2b3d35;
-    color:#6b7a72;
-    cursor:not-allowed;
-  }
-  button.secondary{
-    background:var(--panel-2);
-    border:1px solid var(--line);
-    color:var(--text);
-  }
-  button.secondary:hover{border-color:var(--accent);}
-  .status{
-    font-size:13px;
-    color:var(--muted);
-    margin-top:12px;
-    font-family:monospace;
-  }
-  .status.busy{color:var(--warn);}
-  .status.done{color:var(--accent);}
-  #grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-    gap:14px;
-    margin-top:16px;
+  .btn-primary{background:var(--primary);color:#fff;flex:1;min-width:200px;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-primary:disabled{background:#E4A9A8;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+  .btn-zip{background:var(--teal);color:#fff;display:none;}
+  .btn-zip:hover{background:#0C8B87;}
+
+  /* Page preview grid */
+  .page-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:14px;margin-top:22px;
   }
   .page-card{
-    background:var(--panel-2);
-    border:1px solid var(--line);
-    border-radius:8px;
-    overflow:hidden;
+    background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;position:relative;
   }
-  .page-card canvas{
-    width:100%;
-    display:block;
-    background:#000;
-  }
+  .page-card canvas{width:100%;display:block;background:#000;}
   .page-card .label{
-    padding:7px 10px;
-    font-size:11.5px;
-    color:var(--muted);
-    font-family:monospace;
-    border-top:1px solid var(--line);
+    padding:7px 10px;font-size:.72rem;color:var(--muted);
+    font-family:var(--font-mono);border-top:1px solid var(--border);
   }
-  .scanning-overlay{
-    position:relative;
+  .page-card.scanning::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:3px;
+    background:var(--primary);box-shadow:0 0 10px 2px var(--primary);
+    animation:scandown 1.3s linear infinite;
   }
-  .scanning-overlay::before{
-    content:"";
-    position:absolute;
-    left:0; right:0; top:0;
-    height:3px;
-    background:var(--accent);
-    box-shadow:0 0 10px 2px var(--accent);
-    animation:scandown 1.4s linear infinite;
+  @keyframes scandown{0%{top:0;}100%{top:100%;}}
+
+  /* Sections */
+  section.info{max-width:900px;margin:64px auto;padding:0 24px;}
+  section.info h2{font-family:var(--font-display);font-size:1.7rem;margin-bottom:10px;}
+  section.info p.section-sub{color:var(--muted);margin-bottom:28px;max-width:60ch;}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:640px){.grid-2{grid-template-columns:1fr;}}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;}
+  .info-card h3{font-family:var(--font-display);font-size:1.05rem;margin:0 0 8px;color:var(--primary);}
+  .info-card p{margin:0;color:var(--muted);font-size:.9rem;}
+
+  .steps{counter-reset:step;display:flex;flex-direction:column;gap:0;}
+  .step{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--border);}
+  .step:first-child{border-top:none;}
+  .step-num{
+    counter-increment:step;font-family:var(--font-mono);font-weight:700;
+    color:var(--primary);font-size:.85rem;flex-shrink:0;width:32px;
   }
-  @keyframes scandown{
-    0%{top:0;}
-    100%{top:100%;}
+  .step-num::before{content:"0" counter(step);}
+  .step-body h4{margin:0 0 4px;font-family:var(--font-display);font-size:1rem;}
+  .step-body p{margin:0;color:var(--muted);font-size:.88rem;}
+
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;
+    padding:18px 0;font-family:var(--font-body);font-weight:600;font-size:.95rem;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);
   }
-  footer{
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-    margin-top:30px;
+  .faq-q .plus{font-family:var(--font-mono);color:var(--primary);font-size:1.1rem;transition:transform .15s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;}
+  .faq-a p{margin:0 0 18px;color:var(--muted);font-size:.9rem;}
+
+  .privacy-banner{
+    display:flex;gap:14px;align-items:flex-start;
+    background:#EAF6F5;border:1px solid #CFEDEA;border-radius:14px;padding:18px 20px;
   }
+  .privacy-banner svg{width:24px;height:24px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+  .privacy-banner p{margin:0;font-size:.88rem;color:#0B655F;}
+</style>
+
+<!-- ================= Shared header / footer / ad-rail system (matches other SmartApps Studio pages) ================= -->
+<style>
+  .sas-ad-rail{
+    position:fixed;top:0;bottom:0;width:170px;
+    background:rgba(22,35,60,0.03);
+    border-right:1px dashed rgba(22,35,60,0.15);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    z-index:999;
+  }
+  .sas-ad-rail.right{border-right:none;border-left:1px dashed rgba(22,35,60,0.15);}
+  .sas-ad-rail.left{left:0;}
+  .sas-ad-rail.right{right:0;}
+  body{padding-left:170px;padding-right:170px;}
+  @media (max-width:860px){
+    .sas-ad-rail{width:130px;}
+    body{padding-left:130px;padding-right:130px;}
+  }
+  @media (max-width:640px){
+    .sas-ad-rail{display:none;}
+    body{padding-left:0;padding-right:0;}
+  }
+
+  .site-header{
+    position:sticky;top:0;z-index:200;
+    background:rgba(248,249,251,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;
+    font-family:'Inter',sans-serif;
+  }
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;
+    position:absolute;top:100%;left:0;min-width:190px;
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;
+    box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu,
+  .navbar li.has-dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  @media (max-width:860px){
+    .navbar{display:none;}
+    .menuBtn{display:block;}
+  }
+
+  .sas-ad-inline{max-width:900px;margin:36px auto;padding:0 24px;}
+
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);margin-top:40px;font-family:'Inter',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;display:block;}
+  .sas-footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13.5px;margin:0;}
+  .sas-footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13.5px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:18px 24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,0.45);}
 </style>
 </head>
 <body>
 
-<div class="top">
-  <div class="brand">◈ scan-effect.local</div>
-  <h1>PDF ko scanned page jaisa banao</h1>
-  <p class="sub">Ek clean PDF upload karo — noise, halka tilt, aur paper tone add karke woh photocopier/scanner se nikla hua lagega.</p>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Persistent side-ad rails (same slots as other tool pages) -->
+<div class="sas-ad-rail left">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
+       data-ad-client="ca-pub-1124864848953243"
+       data-ad-slot="5989140493"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="sas-ad-rail right">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
+       data-ad-client="ca-pub-1124864848953243"
+       data-ad-slot="7154882503"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="wrap">
-
-  <div class="panel">
-    <h2>1 — PDF Upload</h2>
-    <label class="drop" id="dropZone">
-      <input type="file" id="fileInput" accept="application/pdf">
-      <div class="icon">📄</div>
-      <div>Yahan click karo ya PDF file drag-drop karo</div>
-      <div class="fname" id="fileName"></div>
-    </label>
-  </div>
-
-  <div class="panel">
-    <h2>2 — Scan Style</h2>
-    <div class="seg" id="modeSeg">
-      <button data-mode="bw" class="active">Black &amp; White photocopy</button>
-      <button data-mode="sepia">Purana / Sepia paper</button>
-      <button data-mode="color">Color scan</button>
-    </div>
-
-    <div class="row" style="margin-top:16px;">
-      <div class="field">
-        <label>Noise / Graininess <span class="val" id="noiseVal">45</span></label>
-        <input type="range" id="noise" min="0" max="100" value="45">
-      </div>
-      <div class="field">
-        <label>Contrast <span class="val" id="contrastVal">55</span></label>
-        <input type="range" id="contrast" min="0" max="100" value="55">
-      </div>
-      <div class="field">
-        <label>Tilt / Skew <span class="val" id="skewVal">40</span></label>
-        <input type="range" id="skew" min="0" max="100" value="40">
-      </div>
-    </div>
-
-    <div class="toggles">
-      <label class="toggle"><input type="checkbox" id="vignette" checked> Edge shadow (corners dark)</label>
-      <label class="toggle"><input type="checkbox" id="darkBed" checked> Scanner-bed black margin</label>
-      <label class="toggle"><input type="checkbox" id="blur" checked> Halka blur (lens softness)</label>
-    </div>
-
-    <div class="actions">
-      <button class="primary" id="processBtn" disabled>Scan Effect Apply Karo</button>
-      <button class="secondary" id="downloadBtn" style="display:none;">⬇ Scanned PDF Download Karo</button>
-    </div>
-    <div class="status" id="status"></div>
-  </div>
-
-  <div class="panel" id="resultsPanel" style="display:none;">
-    <h2>3 — Preview</h2>
-    <div id="grid"></div>
-  </div>
-
-  <footer>Sab kuch aapke browser ke andar hi process hota hai — koi file kahin upload nahi hoti.</footer>
+<header class="site-header">
+<div class="container">
+<a href="index.html" class="brand">
+<img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
+<div>
+<div class="brand-title">PDF Scan Effect</div>
+<p class="brand-sub">SmartApps Studio</p>
 </div>
+</a>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
+<li><a href="typing.html">Smart Typing</a></li>
+<li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
+<li><a href="onlinepdf.html">Online PDF</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+<li><a href="pdf-scan-effect.html" class="active">PDF Scan Effect</a></li>
+</ul>
+</li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+</ul>
+</nav>
+<div class="header-buttons">
+<button class="menuBtn">☰</button>
+</div>
+</div>
+</header>
+
+<main class="content" id="main">
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> 100% browser-based · nothing uploaded</span>
+      <h1>Make your PDF look like a scanned copy</h1>
+      <p class="lead">Add grain, a paper tone, a light tilt and edge shadow — turn a clean PDF into something that looks like it just came out of a photocopier or flatbed scanner.</p>
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Free, no limits
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          File stays on your device
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Works with multi-page PDFs
+        </div>
+      </div>
+    </div>
+    <div class="morph-wrap" aria-hidden="true">
+      <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="24" y="30" width="130" height="165" rx="10" fill="#FCE9E8" stroke="#D32F2D" stroke-width="2"/>
+        <line x1="42" y1="65" x2="136" y2="65" stroke="#D32F2D" stroke-width="3" stroke-linecap="round"/>
+        <line x1="42" y1="85" x2="118" y2="85" stroke="#D32F2D" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+        <line x1="42" y1="105" x2="128" y2="105" stroke="#D32F2D" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+        <path d="M170 112 H210" stroke="#C7CCD4" stroke-width="2" stroke-dasharray="4 5"/>
+        <polygon points="210,106 222,112 210,118" fill="#C7CCD4"/>
+        <g transform="rotate(-3 275 112)">
+          <rect x="215" y="35" width="120" height="155" rx="10" fill="#0F1830"/>
+          <rect x="224" y="44" width="102" height="137" rx="4" fill="#EAF6F5"/>
+          <line x1="234" y1="70" x2="308" y2="70" stroke="#0EA5A0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="234" y1="90" x2="290" y2="90" stroke="#0EA5A0" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+          <line x1="234" y1="110" x2="300" y2="110" stroke="#0EA5A0" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+          <circle cx="240" cy="145" r="1.6" fill="#0EA5A0"/>
+          <circle cx="255" cy="150" r="1.4" fill="#0EA5A0" opacity=".6"/>
+          <circle cx="270" cy="142" r="1.5" fill="#0EA5A0" opacity=".8"/>
+          <circle cx="285" cy="148" r="1.3" fill="#0EA5A0" opacity=".5"/>
+          <circle cx="298" cy="143" r="1.5" fill="#0EA5A0" opacity=".7"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="converter-section" id="converter">
+    <div class="converter-card">
+
+      <div class="quality-row">
+        <div>
+          <label for="modeSeg">Scan style</label>
+        </div>
+        <span class="counter-pill" id="fileCounter">No file selected</span>
+      </div>
+      <div class="seg" id="modeSeg">
+        <button data-mode="bw" class="active">Black &amp; White</button>
+        <button data-mode="sepia">Sepia / Old paper</button>
+        <button data-mode="color">Color scan</button>
+      </div>
+
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Drag and drop a PDF file here, or click to browse">
+        <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+          <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+        </svg>
+        <h3>Drag &amp; drop your PDF here</h3>
+        <p>or click to browse from your device</p>
+        <button type="button" class="browse-btn" id="browseBtn">Choose PDF</button>
+        <input type="file" id="fileInput" accept="application/pdf">
+      </div>
+
+      <div class="file-name-pill" id="fileNamePill" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        <span id="fileNameText"></span>
+      </div>
+
+      <div class="controls-block">
+        <div class="slider-grid">
+          <div class="slider-field">
+            <label>Noise / Grain <span class="val" id="noiseVal">45</span></label>
+            <input type="range" id="noise" min="0" max="100" value="45">
+          </div>
+          <div class="slider-field">
+            <label>Contrast <span class="val" id="contrastVal">55</span></label>
+            <input type="range" id="contrast" min="0" max="100" value="55">
+          </div>
+          <div class="slider-field">
+            <label>Tilt / Skew <span class="val" id="skewVal">40</span></label>
+            <input type="range" id="skew" min="0" max="100" value="40">
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <label class="toggle-item"><input type="checkbox" id="vignette" checked> Edge shadow</label>
+          <label class="toggle-item"><input type="checkbox" id="darkBed" checked> Scanner-bed margin</label>
+          <label class="toggle-item"><input type="checkbox" id="blur" checked> Lens softness</label>
+          <label class="toggle-item"><input type="checkbox" id="preserveWatermark" checked> Preserve watermark</label>
+        </div>
+      </div>
+
+      <p class="status-msg" id="statusMsg"></p>
+
+      <div class="action-row" id="actionRow" style="display:none;">
+        <button class="btn btn-primary" id="processBtn">Apply Scan Effect</button>
+        <button class="btn btn-ghost" id="clearBtn">Clear</button>
+        <button class="btn btn-zip" id="downloadBtn">Download Scanned PDF</button>
+      </div>
+
+      <div class="page-grid" id="grid"></div>
+
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info">
+    <h2>How it works</h2>
+    <p class="section-sub">Three steps, all running locally in your browser tab.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Add your PDF</h4>
+          <p>Drag and drop a PDF onto the drop zone, or click Choose PDF to browse your device.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Pick a style and tweak the sliders</h4>
+          <p>Choose black &amp; white, sepia or color, then adjust grain, contrast and tilt until it looks right.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Download your scanned-look PDF</h4>
+          <p>Every page is rebuilt into a fresh PDF you can save straight to your device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>Why give a PDF a scanned look</h2>
+    <p class="section-sub">A few common reasons people reach for this effect.</p>
+    <div class="grid-2">
+      <div class="info-card">
+        <h3>Matching archived paperwork</h3>
+        <p>Blend a freshly typed page in with older documents that were genuinely scanned or photocopied.</p>
+      </div>
+      <div class="info-card">
+        <h3>Design &amp; mockups</h3>
+        <p>Give a poster, prop or presentation slide an authentic "paper" texture instead of a flat digital look.</p>
+      </div>
+      <div class="info-card">
+        <h3>Testing document tools</h3>
+        <p>Generate realistic scan-style samples to test OCR, archiving or document-management software.</p>
+      </div>
+      <div class="info-card">
+        <h3>Creative &amp; print projects</h3>
+        <p>Add a worn, analog feel to zines, collages or vintage-styled layouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info">
+    <div class="privacy-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+      <p><strong>Your privacy is respected.</strong> Every page is rendered and processed entirely inside your browser — your PDF is never uploaded or sent to any server.</p>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">Is this PDF scan effect tool free? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. It's free to use with no signup and no page limits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my PDF uploaded to a server? <span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Every page is rendered and processed inside your browser, so your file never leaves your device.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will it remove watermarks or light text? <span class="plus">+</span></button>
+        <div class="faq-a"><p>No — the "Preserve watermark" setting stops the contrast effect from washing out faint watermarks or light text. You can turn it off if you don't need it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does this work on mobile phones? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, it works on any modern mobile or desktop browser, including Chrome, Edge and Safari.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sas-footer">
+<div class="sas-footer-grid">
+<div>
+<img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="sas-footer-brand-title">PDF Scan Effect</div>
+<p class="sas-footer-brand-sub">SmartApps Studio</p>
+<p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
+</div>
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="apps.html">Apps & Games</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="typing.html">Smart Typing</a></li>
+<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+<li><a href="pdf-scan-effect.html">PDF Scan Effect</a></li>
+</ul>
+</div>
+<div>
+<h3>Legal</h3>
+<ul>
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+<li><a href="terms.html">Terms & Conditions</a></li>
+<li><a href="sitemap.html">HTML Sitemap</a></li>
+</ul>
+</div>
+<div>
+<h3>Email</h3>
+<p>smartapps.studio27@gmail.com</p>
+</div>
+</div>
+<div class="sas-copyright">
+<p>© 2026 SmartApps Studio. All Rights Reserved.</p>
+</div>
+</footer>
 
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-const fileInput = document.getElementById('fileInput');
-const dropZone = document.getElementById('dropZone');
-const fileName = document.getElementById('fileName');
-const processBtn = document.getElementById('processBtn');
-const downloadBtn = document.getElementById('downloadBtn');
-const statusEl = document.getElementById('status');
-const grid = document.getElementById('grid');
-const resultsPanel = document.getElementById('resultsPanel');
+(function(){
+  const fileInput   = document.getElementById('fileInput');
+  const dropzone    = document.getElementById('dropzone');
+  const browseBtn   = document.getElementById('browseBtn');
+  const fileNamePill= document.getElementById('fileNamePill');
+  const fileNameText= document.getElementById('fileNameText');
+  const fileCounter = document.getElementById('fileCounter');
+  const processBtn  = document.getElementById('processBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const clearBtn    = document.getElementById('clearBtn');
+  const actionRow   = document.getElementById('actionRow');
+  const statusEl    = document.getElementById('statusMsg');
+  const grid        = document.getElementById('grid');
+  const modeSeg     = document.getElementById('modeSeg');
 
-let currentFile = null;
-let processedCanvases = []; // {canvas, w, h}
-let mode = 'bw';
+  let currentFile = null;
+  let processedCanvases = [];
+  let mode = 'bw';
 
-document.getElementById('modeSeg').addEventListener('click', (e)=>{
-  const btn = e.target.closest('button');
-  if(!btn) return;
-  document.querySelectorAll('#modeSeg button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  mode = btn.dataset.mode;
-});
+  browseBtn.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('click', (e) => { if(e.target === dropzone) fileInput.click(); });
+  dropzone.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
 
-['noise','contrast','skew'].forEach(id=>{
-  const input = document.getElementById(id);
-  const val = document.getElementById(id+'Val');
-  input.addEventListener('input', ()=> val.textContent = input.value);
-});
-
-dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('drag'); });
-dropZone.addEventListener('dragleave', ()=> dropZone.classList.remove('drag'));
-dropZone.addEventListener('drop', e=>{
-  e.preventDefault();
-  dropZone.classList.remove('drag');
-  if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-});
-fileInput.addEventListener('change', e=>{
-  if(e.target.files.length) handleFile(e.target.files[0]);
-});
-
-function handleFile(file){
-  if(file.type !== 'application/pdf'){
-    alert('Sirf PDF file upload karo.');
-    return;
-  }
-  currentFile = file;
-  fileName.textContent = file.name;
-  processBtn.disabled = false;
-  downloadBtn.style.display = 'none';
-  resultsPanel.style.display = 'none';
-  grid.innerHTML = '';
-  statusEl.textContent = '';
-  statusEl.className = 'status';
-}
-
-processBtn.addEventListener('click', async ()=>{
-  if(!currentFile) return;
-  processBtn.disabled = true;
-  downloadBtn.style.display = 'none';
-  grid.innerHTML = '';
-  processedCanvases = [];
-  resultsPanel.style.display = 'block';
-  statusEl.className = 'status busy';
-  statusEl.textContent = 'PDF load ho raha hai...';
-
-  try{
-    const buf = await currentFile.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data: buf}).promise;
-    const noiseAmt = +document.getElementById('noise').value;
-    const contrastAmt = +document.getElementById('contrast').value;
-    const skewAmt = +document.getElementById('skew').value;
-    const vignetteOn = document.getElementById('vignette').checked;
-    const darkBedOn = document.getElementById('darkBed').checked;
-    const blurOn = document.getElementById('blur').checked;
-
-    for(let i=1; i<=pdf.numPages; i++){
-      statusEl.textContent = `Page ${i} / ${pdf.numPages} process ho raha hai...`;
-      const card = document.createElement('div');
-      card.className = 'page-card scanning-overlay';
-      const label = document.createElement('div');
-      label.className = 'label';
-      label.textContent = `Page ${i}`;
-      const canvasHolder = document.createElement('canvas');
-      card.appendChild(canvasHolder);
-      card.appendChild(label);
-      grid.appendChild(card);
-
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({scale: 2.0});
-      const renderCanvas = document.createElement('canvas');
-      renderCanvas.width = viewport.width;
-      renderCanvas.height = viewport.height;
-      const rctx = renderCanvas.getContext('2d');
-      rctx.fillStyle = '#ffffff';
-      rctx.fillRect(0,0,renderCanvas.width, renderCanvas.height);
-      await page.render({canvasContext: rctx, viewport}).promise;
-
-      const finalCanvas = applyScanEffect(renderCanvas, {
-        mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn
-      });
-
-      canvasHolder.width = finalCanvas.width;
-      canvasHolder.height = finalCanvas.height;
-      canvasHolder.getContext('2d').drawImage(finalCanvas,0,0);
-      card.classList.remove('scanning-overlay');
-
-      processedCanvases.push(finalCanvas);
-      await new Promise(r=>setTimeout(r,10)); // let UI breathe/paint
-    }
-
-    statusEl.className = 'status done';
-    statusEl.textContent = `Done — ${pdf.numPages} page(s) ready.`;
-    downloadBtn.style.display = 'inline-block';
-  }catch(err){
-    console.error(err);
-    statusEl.className = 'status';
-    statusEl.textContent = 'Error: ' + err.message;
-  }finally{
-    processBtn.disabled = false;
-  }
-});
-
-function clamp(v){ return v<0?0:(v>255?255:v); }
-
-function applyScanEffect(srcCanvas, opts){
-  const {mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn} = opts;
-
-  // Step 1: tone + noise on a working canvas same size as source
-  const work = document.createElement('canvas');
-  work.width = srcCanvas.width;
-  work.height = srcCanvas.height;
-  const wctx = work.getContext('2d');
-  if(blurOn) wctx.filter = 'blur(0.6px)';
-  wctx.drawImage(srcCanvas,0,0);
-  wctx.filter = 'none';
-
-  const w = work.width, h = work.height;
-  const imgData = wctx.getImageData(0,0,w,h);
-  const d = imgData.data;
-
-  const contrastFactor = 1 + (contrastAmt/100)*0.9; // up to ~1.9
-  const noiseStrength = (noiseAmt/100) * 55;
-
-  for(let i=0;i<d.length;i+=4){
-    let r=d[i], g=d[i+1], b=d[i+2];
-
-    if(mode==='bw'){
-      const gray = 0.299*r + 0.587*g + 0.114*b;
-      r = g = b = gray;
-    } else if(mode==='sepia'){
-      const gray = 0.299*r + 0.587*g + 0.114*b;
-      r = gray + 28;
-      g = gray + 12;
-      b = gray - 22;
-    }
-
-    r = (r-128)*contrastFactor + 128;
-    g = (g-128)*contrastFactor + 128;
-    b = (b-128)*contrastFactor + 128;
-
-    if(noiseStrength > 0){
-      const n = (Math.random()-0.5) * noiseStrength;
-      r += n; g += n; b += n;
-    }
-
-    d[i]   = clamp(r);
-    d[i+1] = clamp(g);
-    d[i+2] = clamp(b);
-  }
-  wctx.putImageData(imgData,0,0);
-
-  // Step 2: vignette (corner darkening)
-  if(vignetteOn){
-    const grad = wctx.createRadialGradient(w/2,h/2, Math.min(w,h)*0.35, w/2,h/2, Math.max(w,h)*0.72);
-    grad.addColorStop(0,'rgba(0,0,0,0)');
-    grad.addColorStop(1,'rgba(0,0,0,0.35)');
-    wctx.fillStyle = grad;
-    wctx.globalCompositeOperation = 'multiply';
-    wctx.fillRect(0,0,w,h);
-    wctx.globalCompositeOperation = 'source-over';
-  }
-
-  // Step 3: skew/rotate onto a bigger canvas with black scanner-bed margin
-  const maxAngle = (skewAmt/100) * 2.2; // degrees, up to ~2.2
-  const angle = (Math.random()*2 - 1) * maxAngle;
-  const rad = angle * Math.PI/180;
-
-  const pad = Math.ceil(Math.max(w,h) * 0.06) + 30;
-  const outW = w + pad*2;
-  const outH = h + pad*2;
-  const out = document.createElement('canvas');
-  out.width = outW;
-  out.height = outH;
-  const octx = out.getContext('2d');
-
-  octx.fillStyle = darkBedOn ? '#050505' : '#ffffff';
-  octx.fillRect(0,0,outW,outH);
-
-  octx.save();
-  octx.translate(outW/2, outH/2);
-  octx.rotate(rad);
-  octx.drawImage(work, -w/2, -h/2, w, h);
-  octx.restore();
-
-  return out;
-}
-
-downloadBtn.addEventListener('click', ()=>{
-  if(!processedCanvases.length) return;
-  const { jsPDF } = window.jspdf;
-  const first = processedCanvases[0];
-  const doc = new jsPDF({unit:'px', format:[first.width, first.height]});
-
-  processedCanvases.forEach((canvas, idx)=>{
-    if(idx>0) doc.addPage([canvas.width, canvas.height]);
-    const imgData = canvas.toDataURL('image/jpeg', 0.87);
-    doc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
+  ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); dropzone.classList.add('dragover');
+  }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, (e) => {
+    e.preventDefault(); dropzone.classList.remove('dragover');
+  }));
+  dropzone.addEventListener('drop', (e) => {
+    if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', (e) => {
+    if(e.target.files.length) handleFile(e.target.files[0]);
+    fileInput.value = '';
   });
 
-  doc.save('scanned-' + (currentFile ? currentFile.name.replace(/\.pdf$/i,'') : 'document') + '.pdf');
-});
+  modeSeg.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    modeSeg.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+  });
+
+  ['noise','contrast','skew'].forEach(id => {
+    const input = document.getElementById(id);
+    const val = document.getElementById(id+'Val');
+    input.addEventListener('input', () => val.textContent = input.value);
+  });
+
+  function setStatus(msg, cls){
+    statusEl.textContent = msg || '';
+    statusEl.className = 'status-msg' + (cls ? ' ' + cls : '');
+  }
+
+  function handleFile(file){
+    if(file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')){
+      setStatus('Please choose a PDF file.', 'error');
+      return;
+    }
+    currentFile = file;
+    fileNameText.textContent = file.name;
+    fileNamePill.style.display = 'flex';
+    fileCounter.textContent = file.name;
+    actionRow.style.display = 'flex';
+    downloadBtn.style.display = 'none';
+    grid.innerHTML = '';
+    processedCanvases = [];
+    setStatus('');
+  }
+
+  clearBtn.addEventListener('click', () => {
+    currentFile = null;
+    processedCanvases = [];
+    fileNamePill.style.display = 'none';
+    fileCounter.textContent = 'No file selected';
+    actionRow.style.display = 'none';
+    downloadBtn.style.display = 'none';
+    grid.innerHTML = '';
+    setStatus('');
+  });
+
+  function clamp(v){ return v<0?0:(v>255?255:v); }
+
+  function applyScanEffect(srcCanvas, opts){
+    const {mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn, preserveWatermark} = opts;
+
+    const work = document.createElement('canvas');
+    work.width = srcCanvas.width;
+    work.height = srcCanvas.height;
+    const wctx = work.getContext('2d');
+    if(blurOn) wctx.filter = 'blur(0.6px)';
+    wctx.drawImage(srcCanvas,0,0);
+    wctx.filter = 'none';
+
+    const w = work.width, h = work.height;
+    const imgData = wctx.getImageData(0,0,w,h);
+    const d = imgData.data;
+
+    const contrastFactor = 1 + (contrastAmt/100)*0.65;
+    const noiseStrength = (noiseAmt/100) * 55;
+    const protectThreshold = 185;
+    const protectStrength = 0.6;
+
+    function contrastWithRolloff(v, orig){
+      let nv = (orig-128)*contrastFactor + 128;
+      if(preserveWatermark && orig > protectThreshold){
+        const t = (orig - protectThreshold) / (255 - protectThreshold);
+        nv = nv*(1 - protectStrength*t) + orig*(protectStrength*t);
+      }
+      return nv;
+    }
+
+    for(let i=0;i<d.length;i+=4){
+      let r=d[i], g=d[i+1], b=d[i+2];
+
+      if(mode==='bw'){
+        const gray = 0.299*r + 0.587*g + 0.114*b;
+        r = g = b = gray;
+      } else if(mode==='sepia'){
+        const gray = 0.299*r + 0.587*g + 0.114*b;
+        r = gray + 28;
+        g = gray + 12;
+        b = gray - 22;
+      }
+
+      const origR = r, origG = g, origB = b;
+      r = contrastWithRolloff(r, origR);
+      g = contrastWithRolloff(g, origG);
+      b = contrastWithRolloff(b, origB);
+
+      if(noiseStrength > 0){
+        const n = (Math.random()-0.5) * noiseStrength;
+        r += n; g += n; b += n;
+      }
+
+      d[i]   = clamp(r);
+      d[i+1] = clamp(g);
+      d[i+2] = clamp(b);
+    }
+    wctx.putImageData(imgData,0,0);
+
+    if(vignetteOn){
+      const grad = wctx.createRadialGradient(w/2,h/2, Math.min(w,h)*0.35, w/2,h/2, Math.max(w,h)*0.72);
+      grad.addColorStop(0,'rgba(0,0,0,0)');
+      grad.addColorStop(1,'rgba(0,0,0,0.35)');
+      wctx.fillStyle = grad;
+      wctx.globalCompositeOperation = 'multiply';
+      wctx.fillRect(0,0,w,h);
+      wctx.globalCompositeOperation = 'source-over';
+    }
+
+    const maxAngle = (skewAmt/100) * 2.2;
+    const angle = (Math.random()*2 - 1) * maxAngle;
+    const rad = angle * Math.PI/180;
+
+    const pad = Math.ceil(Math.max(w,h) * 0.06) + 30;
+    const outW = w + pad*2;
+    const outH = h + pad*2;
+    const out = document.createElement('canvas');
+    out.width = outW;
+    out.height = outH;
+    const octx = out.getContext('2d');
+
+    octx.fillStyle = darkBedOn ? '#050505' : '#ffffff';
+    octx.fillRect(0,0,outW,outH);
+
+    octx.save();
+    octx.translate(outW/2, outH/2);
+    octx.rotate(rad);
+    octx.drawImage(work, -w/2, -h/2, w, h);
+    octx.restore();
+
+    return out;
+  }
+
+  processBtn.addEventListener('click', async () => {
+    if(!currentFile) return;
+    processBtn.disabled = true;
+    downloadBtn.style.display = 'none';
+    grid.innerHTML = '';
+    processedCanvases = [];
+    setStatus('PDF load ho raha hai...', 'busy');
+
+    try{
+      const buf = await currentFile.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({data: buf}).promise;
+      const noiseAmt = +document.getElementById('noise').value;
+      const contrastAmt = +document.getElementById('contrast').value;
+      const skewAmt = +document.getElementById('skew').value;
+      const vignetteOn = document.getElementById('vignette').checked;
+      const darkBedOn = document.getElementById('darkBed').checked;
+      const blurOn = document.getElementById('blur').checked;
+      const preserveWatermark = document.getElementById('preserveWatermark').checked;
+
+      for(let i=1; i<=pdf.numPages; i++){
+        setStatus(`Page ${i} / ${pdf.numPages} process ho raha hai...`, 'busy');
+
+        const card = document.createElement('div');
+        card.className = 'page-card scanning';
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.textContent = `Page ${i}`;
+        const canvasHolder = document.createElement('canvas');
+        card.appendChild(canvasHolder);
+        card.appendChild(label);
+        grid.appendChild(card);
+
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({scale: 2.0});
+        const renderCanvas = document.createElement('canvas');
+        renderCanvas.width = viewport.width;
+        renderCanvas.height = viewport.height;
+        const rctx = renderCanvas.getContext('2d');
+        rctx.fillStyle = '#ffffff';
+        rctx.fillRect(0,0,renderCanvas.width, renderCanvas.height);
+        await page.render({canvasContext: rctx, viewport}).promise;
+
+        const finalCanvas = applyScanEffect(renderCanvas, {
+          mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn, preserveWatermark
+        });
+
+        canvasHolder.width = finalCanvas.width;
+        canvasHolder.height = finalCanvas.height;
+        canvasHolder.getContext('2d').drawImage(finalCanvas,0,0);
+        card.classList.remove('scanning');
+
+        processedCanvases.push(finalCanvas);
+        await new Promise(r=>setTimeout(r,10));
+      }
+
+      setStatus(`Done — ${pdf.numPages} page(s) ready.`, 'done');
+      downloadBtn.style.display = 'inline-block';
+    }catch(err){
+      console.error(err);
+      setStatus('Error: ' + err.message, 'error');
+    }finally{
+      processBtn.disabled = false;
+    }
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if(!processedCanvases.length) return;
+    const { jsPDF } = window.jspdf;
+    const first = processedCanvases[0];
+    const doc = new jsPDF({unit:'px', format:[first.width, first.height]});
+
+    processedCanvases.forEach((canvas, idx) => {
+      if(idx>0) doc.addPage([canvas.width, canvas.height]);
+      const imgData = canvas.toDataURL('image/jpeg', 0.87);
+      doc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
+    });
+
+    doc.save('scanned-' + (currentFile ? currentFile.name.replace(/\.pdf$/i,'') : 'document') + '.pdf');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+})();
 </script>
 
 </body>
