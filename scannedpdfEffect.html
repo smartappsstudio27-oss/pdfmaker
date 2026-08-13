@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scan Effect — PDF ko scanned jaisa banao</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#15181c;
+    --panel:#1e2227;
+    --panel-2:#262b31;
+    --line:#343a41;
+    --text:#e7e6e1;
+    --muted:#9aa1a9;
+    --accent:#3ddc97;
+    --accent-dim:#1f5c43;
+    --warn:#f2b134;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    min-height:100vh;
+  }
+  .top{
+    border-bottom:1px solid var(--line);
+    padding:22px 24px 18px;
+    background:linear-gradient(180deg,#181b1f,#15181c);
+    position:relative;
+    overflow:hidden;
+  }
+  .top::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:0;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    animation:sweep 3.5s linear infinite;
+    opacity:.7;
+  }
+  @keyframes sweep{
+    0%{transform:translateX(-100%);}
+    100%{transform:translateX(100%);}
+  }
+  .brand{
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    color:var(--accent);
+    text-transform:uppercase;
+  }
+  h1{
+    margin:6px 0 4px;
+    font-size:22px;
+    font-weight:650;
+  }
+  .sub{
+    color:var(--muted);
+    font-size:13.5px;
+    margin:0;
+  }
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:22px 24px 60px;
+  }
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:18px;
+  }
+  .panel h2{
+    font-family:"SFMono-Regular",Consolas,monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 14px;
+  }
+  .drop{
+    border:1.5px dashed var(--line);
+    border-radius:8px;
+    padding:28px 16px;
+    text-align:center;
+    cursor:pointer;
+    transition:.15s;
+    background:var(--panel-2);
+  }
+  .drop:hover, .drop.drag{
+    border-color:var(--accent);
+    background:#20281f;
+  }
+  .drop input{display:none;}
+  .drop .icon{font-size:26px; margin-bottom:8px;}
+  .drop .fname{color:var(--accent); font-size:13px; margin-top:6px; word-break:break-all;}
+  .row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .field{
+    flex:1;
+    min-width:210px;
+  }
+  .field label{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .field label span.val{color:var(--accent); font-family:monospace;}
+  input[type=range]{
+    width:100%;
+    accent-color:var(--accent);
+  }
+  .seg{
+    display:flex;
+    gap:6px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:4px;
+  }
+  .seg button{
+    flex:1;
+    padding:8px 6px;
+    background:transparent;
+    border:none;
+    color:var(--muted);
+    font-size:12.5px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .seg button.active{
+    background:var(--accent-dim);
+    color:var(--accent);
+    font-weight:600;
+  }
+  .toggles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:14px;
+  }
+  .toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--text);
+    cursor:pointer;
+    user-select:none;
+  }
+  .toggle input{accent-color:var(--accent);}
+  .actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  button.primary, button.secondary{
+    border:none;
+    border-radius:8px;
+    padding:12px 20px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.15s;
+  }
+  button.primary{
+    background:var(--accent);
+    color:#0c1310;
+  }
+  button.primary:hover{filter:brightness(1.08);}
+  button.primary:disabled{
+    background:#2b3d35;
+    color:#6b7a72;
+    cursor:not-allowed;
+  }
+  button.secondary{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--text);
+  }
+  button.secondary:hover{border-color:var(--accent);}
+  .status{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:12px;
+    font-family:monospace;
+  }
+  .status.busy{color:var(--warn);}
+  .status.done{color:var(--accent);}
+  #grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .page-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .page-card canvas{
+    width:100%;
+    display:block;
+    background:#000;
+  }
+  .page-card .label{
+    padding:7px 10px;
+    font-size:11.5px;
+    color:var(--muted);
+    font-family:monospace;
+    border-top:1px solid var(--line);
+  }
+  .scanning-overlay{
+    position:relative;
+  }
+  .scanning-overlay::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:0;
+    height:3px;
+    background:var(--accent);
+    box-shadow:0 0 10px 2px var(--accent);
+    animation:scandown 1.4s linear infinite;
+  }
+  @keyframes scandown{
+    0%{top:0;}
+    100%{top:100%;}
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:30px;
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">◈ scan-effect.local</div>
+  <h1>PDF ko scanned page jaisa banao</h1>
+  <p class="sub">Ek clean PDF upload karo — noise, halka tilt, aur paper tone add karke woh photocopier/scanner se nikla hua lagega.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="panel">
+    <h2>1 — PDF Upload</h2>
+    <label class="drop" id="dropZone">
+      <input type="file" id="fileInput" accept="application/pdf">
+      <div class="icon">📄</div>
+      <div>Yahan click karo ya PDF file drag-drop karo</div>
+      <div class="fname" id="fileName"></div>
+    </label>
+  </div>
+
+  <div class="panel">
+    <h2>2 — Scan Style</h2>
+    <div class="seg" id="modeSeg">
+      <button data-mode="bw" class="active">Black &amp; White photocopy</button>
+      <button data-mode="sepia">Purana / Sepia paper</button>
+      <button data-mode="color">Color scan</button>
+    </div>
+
+    <div class="row" style="margin-top:16px;">
+      <div class="field">
+        <label>Noise / Graininess <span class="val" id="noiseVal">45</span></label>
+        <input type="range" id="noise" min="0" max="100" value="45">
+      </div>
+      <div class="field">
+        <label>Contrast <span class="val" id="contrastVal">55</span></label>
+        <input type="range" id="contrast" min="0" max="100" value="55">
+      </div>
+      <div class="field">
+        <label>Tilt / Skew <span class="val" id="skewVal">40</span></label>
+        <input type="range" id="skew" min="0" max="100" value="40">
+      </div>
+    </div>
+
+    <div class="toggles">
+      <label class="toggle"><input type="checkbox" id="vignette" checked> Edge shadow (corners dark)</label>
+      <label class="toggle"><input type="checkbox" id="darkBed" checked> Scanner-bed black margin</label>
+      <label class="toggle"><input type="checkbox" id="blur" checked> Halka blur (lens softness)</label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="processBtn" disabled>Scan Effect Apply Karo</button>
+      <button class="secondary" id="downloadBtn" style="display:none;">⬇ Scanned PDF Download Karo</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="panel" id="resultsPanel" style="display:none;">
+    <h2>3 — Preview</h2>
+    <div id="grid"></div>
+  </div>
+
+  <footer>Sab kuch aapke browser ke andar hi process hota hai — koi file kahin upload nahi hoti.</footer>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const fileInput = document.getElementById('fileInput');
+const dropZone = document.getElementById('dropZone');
+const fileName = document.getElementById('fileName');
+const processBtn = document.getElementById('processBtn');
+const downloadBtn = document.getElementById('downloadBtn');
+const statusEl = document.getElementById('status');
+const grid = document.getElementById('grid');
+const resultsPanel = document.getElementById('resultsPanel');
+
+let currentFile = null;
+let processedCanvases = []; // {canvas, w, h}
+let mode = 'bw';
+
+document.getElementById('modeSeg').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  document.querySelectorAll('#modeSeg button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  mode = btn.dataset.mode;
+});
+
+['noise','contrast','skew'].forEach(id=>{
+  const input = document.getElementById(id);
+  const val = document.getElementById(id+'Val');
+  input.addEventListener('input', ()=> val.textContent = input.value);
+});
+
+dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('drag'); });
+dropZone.addEventListener('dragleave', ()=> dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop', e=>{
+  e.preventDefault();
+  dropZone.classList.remove('drag');
+  if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e=>{
+  if(e.target.files.length) handleFile(e.target.files[0]);
+});
+
+function handleFile(file){
+  if(file.type !== 'application/pdf'){
+    alert('Sirf PDF file upload karo.');
+    return;
+  }
+  currentFile = file;
+  fileName.textContent = file.name;
+  processBtn.disabled = false;
+  downloadBtn.style.display = 'none';
+  resultsPanel.style.display = 'none';
+  grid.innerHTML = '';
+  statusEl.textContent = '';
+  statusEl.className = 'status';
+}
+
+processBtn.addEventListener('click', async ()=>{
+  if(!currentFile) return;
+  processBtn.disabled = true;
+  downloadBtn.style.display = 'none';
+  grid.innerHTML = '';
+  processedCanvases = [];
+  resultsPanel.style.display = 'block';
+  statusEl.className = 'status busy';
+  statusEl.textContent = 'PDF load ho raha hai...';
+
+  try{
+    const buf = await currentFile.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: buf}).promise;
+    const noiseAmt = +document.getElementById('noise').value;
+    const contrastAmt = +document.getElementById('contrast').value;
+    const skewAmt = +document.getElementById('skew').value;
+    const vignetteOn = document.getElementById('vignette').checked;
+    const darkBedOn = document.getElementById('darkBed').checked;
+    const blurOn = document.getElementById('blur').checked;
+
+    for(let i=1; i<=pdf.numPages; i++){
+      statusEl.textContent = `Page ${i} / ${pdf.numPages} process ho raha hai...`;
+      const card = document.createElement('div');
+      card.className = 'page-card scanning-overlay';
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = `Page ${i}`;
+      const canvasHolder = document.createElement('canvas');
+      card.appendChild(canvasHolder);
+      card.appendChild(label);
+      grid.appendChild(card);
+
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({scale: 2.0});
+      const renderCanvas = document.createElement('canvas');
+      renderCanvas.width = viewport.width;
+      renderCanvas.height = viewport.height;
+      const rctx = renderCanvas.getContext('2d');
+      rctx.fillStyle = '#ffffff';
+      rctx.fillRect(0,0,renderCanvas.width, renderCanvas.height);
+      await page.render({canvasContext: rctx, viewport}).promise;
+
+      const finalCanvas = applyScanEffect(renderCanvas, {
+        mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn
+      });
+
+      canvasHolder.width = finalCanvas.width;
+      canvasHolder.height = finalCanvas.height;
+      canvasHolder.getContext('2d').drawImage(finalCanvas,0,0);
+      card.classList.remove('scanning-overlay');
+
+      processedCanvases.push(finalCanvas);
+      await new Promise(r=>setTimeout(r,10)); // let UI breathe/paint
+    }
+
+    statusEl.className = 'status done';
+    statusEl.textContent = `Done — ${pdf.numPages} page(s) ready.`;
+    downloadBtn.style.display = 'inline-block';
+  }catch(err){
+    console.error(err);
+    statusEl.className = 'status';
+    statusEl.textContent = 'Error: ' + err.message;
+  }finally{
+    processBtn.disabled = false;
+  }
+});
+
+function clamp(v){ return v<0?0:(v>255?255:v); }
+
+function applyScanEffect(srcCanvas, opts){
+  const {mode, noiseAmt, contrastAmt, skewAmt, vignetteOn, darkBedOn, blurOn} = opts;
+
+  // Step 1: tone + noise on a working canvas same size as source
+  const work = document.createElement('canvas');
+  work.width = srcCanvas.width;
+  work.height = srcCanvas.height;
+  const wctx = work.getContext('2d');
+  if(blurOn) wctx.filter = 'blur(0.6px)';
+  wctx.drawImage(srcCanvas,0,0);
+  wctx.filter = 'none';
+
+  const w = work.width, h = work.height;
+  const imgData = wctx.getImageData(0,0,w,h);
+  const d = imgData.data;
+
+  const contrastFactor = 1 + (contrastAmt/100)*0.9; // up to ~1.9
+  const noiseStrength = (noiseAmt/100) * 55;
+
+  for(let i=0;i<d.length;i+=4){
+    let r=d[i], g=d[i+1], b=d[i+2];
+
+    if(mode==='bw'){
+      const gray = 0.299*r + 0.587*g + 0.114*b;
+      r = g = b = gray;
+    } else if(mode==='sepia'){
+      const gray = 0.299*r + 0.587*g + 0.114*b;
+      r = gray + 28;
+      g = gray + 12;
+      b = gray - 22;
+    }
+
+    r = (r-128)*contrastFactor + 128;
+    g = (g-128)*contrastFactor + 128;
+    b = (b-128)*contrastFactor + 128;
+
+    if(noiseStrength > 0){
+      const n = (Math.random()-0.5) * noiseStrength;
+      r += n; g += n; b += n;
+    }
+
+    d[i]   = clamp(r);
+    d[i+1] = clamp(g);
+    d[i+2] = clamp(b);
+  }
+  wctx.putImageData(imgData,0,0);
+
+  // Step 2: vignette (corner darkening)
+  if(vignetteOn){
+    const grad = wctx.createRadialGradient(w/2,h/2, Math.min(w,h)*0.35, w/2,h/2, Math.max(w,h)*0.72);
+    grad.addColorStop(0,'rgba(0,0,0,0)');
+    grad.addColorStop(1,'rgba(0,0,0,0.35)');
+    wctx.fillStyle = grad;
+    wctx.globalCompositeOperation = 'multiply';
+    wctx.fillRect(0,0,w,h);
+    wctx.globalCompositeOperation = 'source-over';
+  }
+
+  // Step 3: skew/rotate onto a bigger canvas with black scanner-bed margin
+  const maxAngle = (skewAmt/100) * 2.2; // degrees, up to ~2.2
+  const angle = (Math.random()*2 - 1) * maxAngle;
+  const rad = angle * Math.PI/180;
+
+  const pad = Math.ceil(Math.max(w,h) * 0.06) + 30;
+  const outW = w + pad*2;
+  const outH = h + pad*2;
+  const out = document.createElement('canvas');
+  out.width = outW;
+  out.height = outH;
+  const octx = out.getContext('2d');
+
+  octx.fillStyle = darkBedOn ? '#050505' : '#ffffff';
+  octx.fillRect(0,0,outW,outH);
+
+  octx.save();
+  octx.translate(outW/2, outH/2);
+  octx.rotate(rad);
+  octx.drawImage(work, -w/2, -h/2, w, h);
+  octx.restore();
+
+  return out;
+}
+
+downloadBtn.addEventListener('click', ()=>{
+  if(!processedCanvases.length) return;
+  const { jsPDF } = window.jspdf;
+  const first = processedCanvases[0];
+  const doc = new jsPDF({unit:'px', format:[first.width, first.height]});
+
+  processedCanvases.forEach((canvas, idx)=>{
+    if(idx>0) doc.addPage([canvas.width, canvas.height]);
+    const imgData = canvas.toDataURL('image/jpeg', 0.87);
+    doc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
+  });
+
+  doc.save('scanned-' + (currentFile ? currentFile.name.replace(/\.pdf$/i,'') : 'document') + '.pdf');
+});
+</script>
+
+</body>
+</html>
