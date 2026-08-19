@@ -123,8 +123,8 @@ gtag('config', 'G-TNBKQNNTMY');
   .legal-wrap{max-width:900px;margin:44px auto 70px;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start;}
   @media (max-width:800px){.legal-wrap{grid-template-columns:1fr;}}
 
-  .toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;}
-  @media (max-width:800px){.toc{position:static;}}
+  .toc{position:sticky;top:88px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;max-height:80vh;overflow-y:auto;}
+  @media (max-width:800px){.toc{position:static;max-height:none;}}
   .toc-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:12px;}
   .toc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
   .toc a{text-decoration:none;font-size:.85rem;color:var(--muted);font-weight:500;}
@@ -137,6 +137,8 @@ gtag('config', 'G-TNBKQNNTMY');
   .legal-doc h2 .n{font-family:var(--font-mono);color:var(--primary);font-size:.85rem;font-weight:700;}
   .legal-doc p{color:var(--muted);font-size:.92rem;margin:0 0 12px;}
   .legal-doc p:last-child{margin-bottom:0;}
+  .legal-doc ul.legal-list{margin:0 0 12px;padding-left:20px;color:var(--muted);font-size:.92rem;}
+  .legal-doc ul.legal-list li{margin-bottom:6px;}
   .legal-doc strong{color:var(--text);}
   .legal-doc a.inline-link{color:var(--primary);font-weight:600;text-decoration:none;}
   .legal-doc a.inline-link:hover{text-decoration:underline;}
@@ -249,9 +251,13 @@ gtag('config', 'G-TNBKQNNTMY');
         <li><a href="#overview">Overview</a></li>
         <li><a href="#browser-tools">Browser-Based Tools</a></li>
         <li><a href="#info-collected">Information We Collect</a></li>
+        <li><a href="#cookies">Cookies &amp; Similar Tech</a></li>
         <li><a href="#advertising">Advertising</a></li>
+        <li><a href="#third-party">Third-Party Services &amp; Links</a></li>
         <li><a href="#permissions">App Permissions</a></li>
+        <li><a href="#retention">Data Retention</a></li>
         <li><a href="#security">Data Security</a></li>
+        <li><a href="#choices">Your Privacy Choices</a></li>
         <li><a href="#children">Children's Privacy</a></li>
         <li><a href="#changes">Changes to This Policy</a></li>
         <li><a href="#contact">Contact Us</a></li>
@@ -261,7 +267,7 @@ gtag('config', 'G-TNBKQNNTMY');
     <article class="legal-doc">
       <section id="overview">
         <h2><span class="n">01</span> Overview</h2>
-        <p>This Privacy Policy explains how SmartApps Studio collects, uses and protects information across our website (smartappsstudio.in), our free browser-based tools, and our Android applications and games.</p>
+        <p>This Privacy Policy explains how SmartApps Studio collects, uses and protects information across our website (smartappsstudio.in), our free browser-based tools, and our Android applications and games. By using any part of this website or our apps, you agree to the practices described in this policy.</p>
       </section>
 
       <section id="browser-tools">
@@ -273,35 +279,62 @@ gtag('config', 'G-TNBKQNNTMY');
       <section id="info-collected">
         <h2><span class="n">03</span> Information We Collect</h2>
         <p>Depending on the app or page, we may collect limited technical information such as device type, browser type, app version, crash reports and anonymous analytics (via Google Analytics) to help us understand usage and improve performance. We do not require an account or personal sign-up to use any tool on this website.</p>
+        <p>This technical data typically includes things like the pages you visit, how long you stay, the general region you're browsing from (derived from IP address, not stored as an exact address), and which device or browser you're using. None of this is tied to your name or contact details unless you choose to email us directly.</p>
+      </section>
+
+      <section id="cookies">
+        <h2><span class="n">04</span> Cookies &amp; Similar Technologies</h2>
+        <p>This website uses cookies and similar technologies for two main purposes:</p>
+        <ul class="legal-list">
+          <li><strong>Analytics cookies</strong> (Google Analytics) — help us understand how visitors use the site so we can improve it.</li>
+          <li><strong>Advertising cookies</strong> (Google AdSense) — help serve ads that are more relevant, and measure ad performance.</li>
+        </ul>
+        <p>You can control or disable cookies through your browser settings at any time. Disabling cookies may affect how ads are personalized but will not prevent you from using any of the tools on this site.</p>
       </section>
 
       <section id="advertising">
-        <h2><span class="n">04</span> Advertising</h2>
+        <h2><span class="n">05</span> Advertising</h2>
         <p>This website displays advertisements using <strong>Google AdSense</strong>, and our Android applications may display ads using <strong>Google AdMob</strong>. These ad providers may use cookies or device identifiers to serve relevant ads and may collect information as described in their own privacy policies. You can learn more about how Google uses this data at <a class="inline-link" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</p>
       </section>
 
+      <section id="third-party">
+        <h2><span class="n">06</span> Third-Party Services &amp; Links</h2>
+        <p>Our website and apps may link out to third-party destinations, such as our Google Play Store listings. We are not responsible for the content or privacy practices of external sites we don't control. We recommend reviewing the privacy policy of any third-party site or service before providing information to it.</p>
+        <p>We also rely on a small number of third-party service providers — such as Google Analytics and Google AdSense/AdMob — to operate this site and our apps. These providers process data under their own privacy policies and are not permitted to use information collected on our behalf for purposes unrelated to serving our site or apps.</p>
+      </section>
+
       <section id="permissions">
-        <h2><span class="n">05</span> App Permissions</h2>
-        <p>Our Android applications request only the permissions required for their core functionality — for example, camera or storage access for an app that scans documents. We do not request permissions unrelated to an app's purpose.</p>
+        <h2><span class="n">07</span> App Permissions</h2>
+        <p>Our Android applications request only the permissions required for their core functionality — for example, camera or storage access for an app that scans documents. We do not request permissions unrelated to an app's purpose, and each app's Play Store listing describes the specific permissions it uses.</p>
+      </section>
+
+      <section id="retention">
+        <h2><span class="n">08</span> Data Retention</h2>
+        <p>Because browser-based tools never receive your files in the first place, there is nothing for us to retain or delete from those tools. Limited technical and analytics data (such as aggregated usage statistics) is retained only as long as necessary to understand trends and improve our apps and website, and is handled according to Google Analytics' standard retention settings.</p>
       </section>
 
       <section id="security">
-        <h2><span class="n">06</span> Data Security</h2>
+        <h2><span class="n">09</span> Data Security</h2>
         <p>We take reasonable measures to protect any information that is collected. However, no method of electronic storage or internet transmission is 100% secure, and we cannot guarantee absolute security.</p>
       </section>
 
+      <section id="choices">
+        <h2><span class="n">10</span> Your Privacy Choices</h2>
+        <p>You can manage cookie and ad personalization preferences through your browser settings, or through Google's own ad settings at <a class="inline-link" href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>. If you'd like to ask what information, if any, we hold in connection with an email you've sent us, you're welcome to contact us directly at any time.</p>
+      </section>
+
       <section id="children">
-        <h2><span class="n">07</span> Children's Privacy</h2>
+        <h2><span class="n">11</span> Children's Privacy</h2>
         <p>Our apps, tools and website are not intentionally designed to collect personal information from children. If you believe a child has provided personal information through any of our products, please contact us so we can take appropriate action.</p>
       </section>
 
       <section id="changes">
-        <h2><span class="n">08</span> Changes to This Privacy Policy</h2>
+        <h2><span class="n">12</span> Changes to This Privacy Policy</h2>
         <p>We may update this Privacy Policy from time to time as we add new tools or apps. Any changes will be posted on this page along with an updated revision date at the top.</p>
       </section>
 
       <section id="contact">
-        <h2><span class="n">09</span> Contact Us</h2>
+        <h2><span class="n">13</span> Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, reach out anytime at:</p>
         <p><strong>Email:</strong> <a class="inline-link" href="mailto:smartapps.studio27@gmail.com">smartapps.studio27@gmail.com</a></p>
       </section>
