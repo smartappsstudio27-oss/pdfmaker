@@ -70,6 +70,21 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
+<!-- FAQ Schema (Contact page specific) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Do the browser tools need any account or signup?","acceptedAnswer":{"@type":"Answer","text":"No. Every browser-based tool on this site is free to use with no signup required, and files never leave your device."}},
+    {"@type":"Question","name":"A tool isn't working for me — what should I include in my email?","acceptedAnswer":{"@type":"Answer","text":"Please mention which tool or app, your device and browser, and what happened — that's usually enough to track down the issue quickly."}},
+    {"@type":"Question","name":"Can I suggest a new app or tool idea?","acceptedAnswer":{"@type":"Answer","text":"Yes, always welcome. Many of the tools on this site started as exactly that kind of suggestion from a user email."}},
+    {"@type":"Question","name":"How long does it take to get a reply?","acceptedAnswer":{"@type":"Answer","text":"Most emails get a reply within a day or two. Bug reports with clear details are usually looked at first."}},
+    {"@type":"Question","name":"Is there a phone number or live chat for support?","acceptedAnswer":{"@type":"Answer","text":"Support is handled by email only at this time, which keeps every request tracked and answered properly rather than lost in a chat queue."}},
+    {"@type":"Question","name":"Can businesses reach out for advertising or partnerships?","acceptedAnswer":{"@type":"Answer","text":"Yes, business and partnership inquiries can be sent to the same contact email and are reviewed individually."}}
+  ]
+}
+</script>
 <!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
@@ -183,6 +198,18 @@ gtag('config', 'G-TNBKQNNTMY');
   .icon-teal{background:#EAF6F5;color:var(--teal);}
   .icon-amber{background:#FDF3E4;color:#B4790A;}
   .icon-navy{background:#E9EBF3;color:#16233C;}
+
+  /* Process steps */
+  .steps-wrap{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:8px 32px;}
+  .step-row{display:flex;gap:18px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--border);}
+  .step-row:first-child{border-top:none;}
+  .step-num{
+    flex-shrink:0;width:34px;height:34px;border-radius:50%;
+    background:#FCE9E8;color:var(--primary);font-family:var(--font-display);font-weight:700;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  }
+  .step-row h4{font-family:var(--font-display);font-size:1rem;margin:2px 0 6px;}
+  .step-row p{color:var(--muted);font-size:.9rem;margin:0;}
 
   /* FAQ */
   .faq-item{border-bottom:1px solid var(--border);}
@@ -368,6 +395,45 @@ gtag('config', 'G-TNBKQNNTMY');
     </div>
   </section>
 
+  <!-- What happens after you email -->
+  <section class="info">
+    <div class="section-head">
+      <span class="section-tag">Process</span>
+      <h2>What happens after you email us</h2>
+      <p class="section-sub">A quick look at how messages get handled, so you know what to expect.</p>
+    </div>
+    <div class="steps-wrap">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Your email lands in one inbox</h4>
+          <p>There's no ticket system or bot in between — every message goes straight to the person who builds and maintains the apps and tools.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Bug reports are checked first</h4>
+          <p>If something is broken for you, it's likely broken for others too, so issue reports with clear steps are usually looked at before general questions.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div>
+          <h4>You get a reply, not a auto-response</h4>
+          <p>Replies are written individually rather than pulled from a canned template, which is part of why responses can take a day or two rather than being instant.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Good suggestions can turn into real features</h4>
+          <p>If a suggestion is useful and fits the direction of the studio, it can end up on the roadmap for a future update.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="info">
     <div class="section-head">
       <h2>Before you email us</h2>
@@ -385,6 +451,18 @@ gtag('config', 'G-TNBKQNNTMY');
       <div class="faq-item">
         <button class="faq-q">Can I suggest a new app or tool idea? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes, always welcome. Many of the tools on this site started as exactly that kind of suggestion.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does it take to get a reply? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Most emails get a reply within a day or two. Bug reports with clear details are usually looked at first.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is there a phone number or live chat for support? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Support is handled by email only at this time, which keeps every request tracked and answered properly rather than lost in a chat queue.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can businesses reach out for advertising or partnerships? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, business and partnership inquiries can be sent to the same contact email and are reviewed individually.</p></div>
       </div>
     </div>
   </section>
