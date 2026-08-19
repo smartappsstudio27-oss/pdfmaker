@@ -14,13 +14,13 @@ content="Convert images to PDF for free, right in your browser — no upload, no
 
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://smartappsstudio.in/pdf-maker.html">
+<link rel="canonical" href="https://smartappsstudio.in/onlinepdf.html">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SmartApps Studio">
 <meta property="og:title" content="PDF Maker — Images to PDF Converter | SmartApps Studio">
 <meta property="og:description" content="Convert images to PDF for free, right in your browser. Also available as an Android app on Google Play.">
-<meta property="og:url" content="https://smartappsstudio.in/pdf-maker.html">
+<meta property="og:url" content="https://smartappsstudio.in/onlinepdf.html">
 <meta property="og:image" content="https://smartappsstudio.in/og-image.png">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -54,7 +54,7 @@ gtag('config', 'G-TNBKQNNTMY');
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"PDF Maker",
-  "url":"https://smartappsstudio.in/pdf-maker.html",
+  "url":"https://smartappsstudio.in/onlinepdf.html",
   "applicationCategory":"Utility",
   "operatingSystem":"Any (Web), Android",
   "description":"Convert images into a PDF document for free, directly in your browser, with no upload or signup required. Also available as an Android app.",
@@ -73,7 +73,7 @@ gtag('config', 'G-TNBKQNNTMY');
   "itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
     {"@type":"ListItem","position":2,"name":"Apps & Games","item":"https://smartappsstudio.in/apps.html"},
-    {"@type":"ListItem","position":3,"name":"PDF Maker","item":"https://smartappsstudio.in/pdf-maker.html"}
+    {"@type":"ListItem","position":3,"name":"PDF Maker","item":"https://smartappsstudio.in/onlinepdf.html"}
   ]
 }
 </script>
@@ -86,7 +86,11 @@ gtag('config', 'G-TNBKQNNTMY');
     {"@type":"Question","name":"Is this Images to PDF tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It's completely free to use in your browser, with no signup and no watermark."}},
     {"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is built entirely inside your browser using JavaScript, so your images never leave your device."}},
     {"@type":"Question","name":"Is there an Android app version?","acceptedAnswer":{"@type":"Answer","text":"Yes. PDF Maker is available as a free Android app on the Google Play Store, with more features than the web tool."}},
-    {"@type":"Question","name":"How many images can I add at once?","acceptedAnswer":{"@type":"Answer","text":"You can add up to 20 images in one go, and reorder or remove them before creating the PDF."}}
+    {"@type":"Question","name":"How many images can I add at once?","acceptedAnswer":{"@type":"Answer","text":"You can add up to 20 images in one go, and reorder or remove them before creating the PDF."}},
+    {"@type":"Question","name":"Can I use this to convert Aadhaar or PAN card photos to PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Since images never leave your device, it's a practical way to turn ID documents like Aadhaar or PAN card photos into a single PDF without uploading sensitive images anywhere."}},
+    {"@type":"Question","name":"What page sizes are supported?","acceptedAnswer":{"@type":"Answer","text":"You can choose A4, Letter, or a page size that automatically fits each image's original dimensions."}},
+    {"@type":"Question","name":"Will the PDF have a watermark or ads printed on it?","acceptedAnswer":{"@type":"Answer","text":"No. The generated PDF is completely clean, with no watermark or branding added to the file."}},
+    {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, the tool works in any modern mobile or desktop browser. For a smoother mobile experience with offline access, the Android app is also available."}}
   ]
 }
 </script>
@@ -360,6 +364,12 @@ gtag('config', 'G-TNBKQNNTMY');
   .check-item strong{display:block;font-size:14.5px;color:var(--ink);}
   .check-item span{font-size:13px;color:var(--ink-soft);}
 
+  /* ============ Use-case rows ============ */
+  .usecase-list{display:flex;flex-direction:column;gap:16px;max-width:820px;margin:0 auto;}
+  .usecase-item{background:var(--paper-card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;}
+  .usecase-item h3{font-size:16px;margin-bottom:6px;}
+  .usecase-item p{font-size:14px;margin:0;}
+
   /* ============ CTA ============ */
   .cta{
     background:var(--ink);color:#fff;border-radius:22px;margin:0 24px;
@@ -445,7 +455,7 @@ gtag('config', 'G-TNBKQNNTMY');
 <ul class="dropdown-menu">
 <li><a href="typing.html">Smart Typing</a></li>
 <li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
-<li><a href="pdf-maker.html" class="active">Online PDF</a></li>
+<li><a href="onlinepdf.html" class="active">Online PDF</a></li>
 <li><a href="mic-audio-enhancer.html" >Mic Enhancer</a></li>
 </ul>
 </li>
@@ -582,6 +592,45 @@ Kuch bhi upload nahi hota — sab kuch aapke device par hi process hota hai.
 </div>
 </section>
 
+<!-- ================= WHY CONVERT TO PDF (new content) ================= -->
+<section style="background:var(--paper-card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+<div class="container">
+<div class="section-title center">
+<div class="eyebrow" style="justify-content:center;">Why PDF</div>
+<h2>Why turn images into a PDF in the first place?</h2>
+</div>
+<p style="max-width:720px;margin:0 auto;text-align:center;">A loose collection of photos is hard to manage — separate files, inconsistent sizing, and awkward to attach to an email or form. A single PDF keeps every page in order, opens the same way on any device, and is the format most schools, banks, and government portals expect for document uploads. Converting on-device also means there's no waiting for a slow upload, and no copy of a sensitive document sitting on someone else's server afterward.</p>
+</div>
+</section>
+
+<!-- ================= USE CASES (new content) ================= -->
+<section>
+<div class="container">
+<div class="section-title center">
+<div class="eyebrow" style="justify-content:center;">Common Uses</div>
+<h2>What people use PDF Maker for</h2>
+</div>
+<div class="usecase-list">
+<div class="usecase-item">
+<h3>🪪 ID documents — Aadhaar, PAN Card, Voter ID</h3>
+<p>Most online forms and portals ask for a single PDF of your ID rather than separate front/back photos. Since nothing is uploaded to a server here, it's a straightforward way to combine both sides into one clean file for a job application, bank KYC, or government form.</p>
+</div>
+<div class="usecase-item">
+<h3>📝 Marksheets and certificates</h3>
+<p>Combine multiple pages of a marksheet, degree certificate, or transcript into one PDF for college admissions, scholarship applications, or job portals that only accept a single file per document.</p>
+</div>
+<div class="usecase-item">
+<h3>🧾 Bills and receipts</h3>
+<p>Turn a stack of photographed receipts or utility bills into one PDF for expense reports, warranty claims, or tax record-keeping — much easier to file and search later than loose image files.</p>
+</div>
+<div class="usecase-item">
+<h3>📚 Notes and handwritten pages</h3>
+<p>Students photographing handwritten notes or worksheets can combine several pages into a single, orderly PDF to share with classmates or keep as a study reference.</p>
+</div>
+</div>
+</div>
+</section>
+
 <!-- ================= WHY CHOOSE OUR APP ================= -->
 <section style="background:var(--paper-card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
 <div class="container">
@@ -648,6 +697,22 @@ Kuch bhi upload nahi hota — sab kuch aapke device par hi process hota hai.
 <div class="faq-item">
 <h3>How many images can I add at once?</h3>
 <p>You can add up to 20 images in one go, and remove any of them before creating the PDF.</p>
+</div>
+<div class="faq-item">
+<h3>Can I use this to convert Aadhaar or PAN card photos to PDF?</h3>
+<p>Yes. Since images never leave your device, it's a practical way to turn ID documents like Aadhaar or PAN card photos into a single PDF without uploading sensitive images anywhere.</p>
+</div>
+<div class="faq-item">
+<h3>What page sizes are supported?</h3>
+<p>You can choose A4, Letter, or a page size that automatically fits each image's original dimensions.</p>
+</div>
+<div class="faq-item">
+<h3>Will the PDF have a watermark or ads printed on it?</h3>
+<p>No. The generated PDF is completely clean, with no watermark or branding added to the file.</p>
+</div>
+<div class="faq-item">
+<h3>Does this work on mobile phones?</h3>
+<p>Yes, the tool works in any modern mobile or desktop browser. For a smoother mobile experience with offline access, the Android app is also available.</p>
 </div>
 </div>
 </div>
