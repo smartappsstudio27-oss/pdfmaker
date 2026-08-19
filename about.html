@@ -74,6 +74,19 @@ gtag('config', 'G-TNBKQNNTMY');
   }
 }
 </script>
+<!-- FAQ Schema (About page specific) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is SmartApps Studio a company or an individual developer?","acceptedAnswer":{"@type":"Answer","text":"SmartApps Studio is run by a single independent developer who designs, builds and maintains every app and tool on this site, rather than a large company or team."}},
+    {"@type":"Question","name":"How does SmartApps Studio make money if the tools are free?","acceptedAnswer":{"@type":"Answer","text":"Browser-based tools are supported by ads shown on the website. Android apps are free to download, with optional upgrades for some advanced features. Core functionality is never locked behind a paywall."}},
+    {"@type":"Question","name":"How is my privacy protected when using these tools?","acceptedAnswer":{"@type":"Answer","text":"All browser-based tools process files locally on your device using WebAssembly. Files are never uploaded to a server, so there is nothing for the studio to store or access."}},
+    {"@type":"Question","name":"Where is SmartApps Studio based?","acceptedAnswer":{"@type":"Answer","text":"SmartApps Studio is based in India and builds apps and tools primarily for Android users and browser users worldwide."}}
+  ]
+}
+</script>
 <!-- Breadcrumb Schema -->
 <script type="application/ld+json">
 {
@@ -174,6 +187,15 @@ gtag('config', 'G-TNBKQNNTMY');
   .icon-amber{background:#FDF3E4;color:#B4790A;}
   .icon-navy{background:#E9EBF3;color:#16233C;}
 
+  /* Timeline */
+  .timeline{border-left:2px solid var(--border);padding-left:28px;margin-left:6px;}
+  .timeline-item{position:relative;padding-bottom:30px;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-item::before{content:'';position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--primary);border:3px solid var(--bg);}
+  .timeline-item .tl-tag{font-family:var(--font-mono);font-size:.72rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;}
+  .timeline-item h4{font-family:var(--font-display);font-size:1.02rem;margin:4px 0 6px;}
+  .timeline-item p{color:var(--muted);font-size:.9rem;margin:0;}
+
   /* Timeline / roadmap */
   .roadmap-card{
     background:#16233C;border-radius:22px;padding:40px 32px;text-align:center;color:#fff;
@@ -193,6 +215,18 @@ gtag('config', 'G-TNBKQNNTMY');
   .stat{text-align:center;}
   .stat .num{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--primary);}
   .stat .lbl{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-top:2px;}
+
+  /* About FAQ */
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;
+    padding:18px 0;font-family:var(--font-body);font-weight:600;font-size:.95rem;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);
+  }
+  .faq-q .plus{font-family:var(--font-mono);color:var(--primary);font-size:1.1rem;transition:transform .15s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;}
+  .faq-a p{margin:0 0 18px;color:var(--muted);font-size:.9rem;}
 </style>
 
 <!-- ================= Shared header / footer / ad-rail system (matches Home / Mic Enhancer pages) ================= -->
@@ -357,6 +391,7 @@ gtag('config', 'G-TNBKQNNTMY');
       <p>SmartApps Studio started with a simple goal: build Android apps and browser tools that are genuinely useful, without the bloat, clutter or invasive permissions that most apps come with today.</p>
       <p>The first release was <strong>PDF Maker</strong> — a straightforward tool for turning photos into clean, private PDFs. Since then the studio has grown to include free browser-based tools like <strong>MP4 to MP3 Converter</strong> and <strong>Mic Audio Enhancer</strong>, all built around the same idea: your files stay on your device, and the tool does one job really well.</p>
       <p>It's a small, independent operation — one developer designing, building and shipping every app and tool on this site. That keeps things focused: no growth hacks, no dark patterns, just steady, useful updates.</p>
+      <p>Most ideas for new tools come directly from everyday frustrations — a slow file converter that demands an account, a PDF app that buries a simple task behind ads and paywalls, a mic recording ruined by background hum. Each SmartApps Studio release starts as an answer to one of these small, specific annoyances, rather than a feature checklist copied from a competitor.</p>
     </div>
   </section>
 
@@ -394,6 +429,62 @@ gtag('config', 'G-TNBKQNNTMY');
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  <!-- Journey timeline -->
+  <section class="info narrow">
+    <div class="section-head">
+      <span class="section-tag">Our Journey</span>
+      <h2>How things have grown so far</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="tl-tag">Getting started</span>
+        <h4>PDF Maker launches</h4>
+        <p>The first tool — a simple, private way to turn photos into a clean PDF, built after one too many bad experiences with upload-heavy PDF converters online.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="tl-tag">Expanding the toolkit</span>
+        <h4>MP4 to MP3 Converter added</h4>
+        <p>A browser-based converter for pulling audio out of video files, built the same way — entirely on-device, with batch conversion support.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="tl-tag">Refining audio</span>
+        <h4>Mic Audio Enhancer joins the lineup</h4>
+        <p>A tool focused on cleaning up noisy voice recordings for podcasters, students, and anyone recording on a phone mic in a less-than-ideal room.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="tl-tag">Looking ahead</span>
+        <h4>A small-business ledger app, in progress</h4>
+        <p>The next release moves beyond browser tools into Android — a lightweight customer ledger app for shopkeepers who currently track dues on paper.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About-specific FAQ -->
+  <section class="info narrow">
+    <div class="section-head">
+      <span class="section-tag">FAQ</span>
+      <h2>Common questions about the studio</h2>
+    </div>
+    <div id="aboutFaqList">
+      <div class="faq-item">
+        <button class="faq-q">Is SmartApps Studio a company or an individual developer? <span class="plus">+</span></button>
+        <div class="faq-a"><p>SmartApps Studio is run by a single independent developer who designs, builds and maintains every app and tool on this site, rather than a large company or team.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How does SmartApps Studio make money if the tools are free? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Browser-based tools are supported by ads shown on the website. Android apps are free to download, with optional upgrades for some advanced features. Core functionality is never locked behind a paywall.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How is my privacy protected when using these tools? <span class="plus">+</span></button>
+        <div class="faq-a"><p>All browser-based tools process files locally on your device using WebAssembly. Files are never uploaded to a server, so there is nothing for the studio to store or access.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Where is SmartApps Studio based? <span class="plus">+</span></button>
+        <div class="faq-a"><p>SmartApps Studio is based in India and builds apps and tools primarily for Android users and browser users worldwide.</p></div>
+      </div>
+    </div>
+  </section>
 
   <section class="info narrow">
     <div class="roadmap-card">
@@ -447,6 +538,24 @@ gtag('config', 'G-TNBKQNNTMY');
 <p>© 2026 SmartApps Studio. All Rights Reserved.</p>
 </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
