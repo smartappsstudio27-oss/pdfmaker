@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Unlock &amp; Merge — Password Protected PDFs Ko Jodo | SmartApps Studio</title>
-<meta name="description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi, koi signup nahi. Free tool by SmartApps Studio.">
+<title>PDF Unlock &amp; Merge — Combine Password Protected PDFs | SmartApps Studio</title>
+<meta name="description" content="Unlock password-protected PDFs and merge multiple files into one, free, right in your browser. No upload, no signup, instant download.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://smartappsstudio.in/pdf-unlock-merge.html">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SmartApps Studio">
 <meta property="og:title" content="PDF Unlock &amp; Merge | SmartApps Studio">
-<meta property="og:description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi.">
+<meta property="og:description" content="Unlock password-protected PDFs and merge multiple files into one, free, right in your browser. No upload, no signup.">
 <meta property="og:url" content="https://smartappsstudio.in/pdf-unlock-merge.html">
 <meta property="og:image" content="https://smartappsstudio.in/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PDF Unlock &amp; Merge | SmartApps Studio">
-<meta name="twitter:description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi.">
+<meta name="twitter:description" content="Unlock password-protected PDFs and merge multiple files into one, free, right in your browser. No upload, no signup.">
 <meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
 
 <!-- Google Analytics -->
@@ -27,9 +27,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-TNBKQNNTMY');
 </script>
-
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
 
 <!-- Organization Schema -->
 <script type="application/ld+json">
@@ -76,455 +73,500 @@ gtag('config', 'G-TNBKQNNTMY');
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {"@type":"Question","name":"Kya mere PDF files kahin upload hoti hain?","acceptedAnswer":{"@type":"Answer","text":"Nahi. Har PDF aapke apne browser ke andar hi process hoti hai, kisi bhi server par upload nahi hoti."}},
-    {"@type":"Question","name":"Agar meri saari PDFs ka password same hai to kya karein?","acceptedAnswer":{"@type":"Answer","text":"'Sab files ka password same hai' checkbox on karke ek hi password daalein, wo saari files par apply ho jayega."}},
-    {"@type":"Question","name":"Merge hone ke baad kya text select kar sakte hain?","acceptedAnswer":{"@type":"Answer","text":"Password-protected pages ko is tool mein image ke roop mein process kiya jaata hai, isliye unka text select nahi hoga — lekin page bilkul clear aur original jaisa dikhega."}},
-    {"@type":"Question","name":"Kitni PDF files ek saath merge kar sakte hain?","acceptedAnswer":{"@type":"Answer","text":"Aap ek saath jitni chahein utni PDF files daal sakte hain aur unhe apni pasand ke order mein arrange kar sakte hain."}},
-    {"@type":"Question","name":"Agar galat password daalein to kya hoga?","acceptedAnswer":{"@type":"Answer","text":"Us file ke saamne 'Galat password' status dikhega aur aapko sahi password dobara daalne ka option milega, baaki files par koi asar nahi padega."}}
+    {"@type":"Question","name":"Are my PDF files uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Every PDF is processed entirely inside your own browser and is never uploaded to any server."}},
+    {"@type":"Question","name":"What if all my PDFs share the same password?","acceptedAnswer":{"@type":"Answer","text":"Turn on 'All files use the same password' and enter it once — it will apply to every file automatically."}},
+    {"@type":"Question","name":"Can I select text in the merged PDF afterward?","acceptedAnswer":{"@type":"Answer","text":"Password-protected pages are processed as images in this tool, so their text won't be selectable — but the page will look exactly as clear as the original."}},
+    {"@type":"Question","name":"How many PDF files can I merge at once?","acceptedAnswer":{"@type":"Answer","text":"You can add as many PDF files as you need and arrange them in any order before merging."}},
+    {"@type":"Question","name":"What happens if I enter the wrong password?","acceptedAnswer":{"@type":"Answer","text":"That file will show a 'Wrong password' status so you can correct it, without affecting any of the other files."}},
+    {"@type":"Question","name":"Is this tool free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no signup required and no limit on how often you can use it."}}
   ]
 }
 </script>
 
+<link rel="icon" href="smartapps.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
+
+<!-- pdf.js + pdf-lib: everything runs locally in the browser, no upload -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
 <style>
   :root{
-    --ink:#12261f;
-    --paper:#f6f4ee;
-    --line:#12261f22;
-    --accent:#1f5c4a;
-    --accent-soft:#e4efe9;
-    --danger:#a3402f;
-    --danger-soft:#f6e6e1;
-    --gold:#b8863b;
+    --bg:#F8F9FB;
+    --surface:#FFFFFF;
+    --primary:#D32F2D;
+    --primary-dark:#AB2523;
+    --teal:#0EA5A0;
+    --text:#14171F;
+    --muted:#667085;
+    --border:#E4E7EC;
+    --success:#16A34A;
+    --danger:#DC2626;
+    --radius:14px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Georgia', 'Noto Serif', serif;
-    line-height:1.5;
-    padding:0 0 60px;
-  }
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;}
   a{color:inherit;}
-  .wrap{max-width:640px;margin:0 auto;padding:28px 20px;}
+  img{max-width:100%;}
+  .skip-link{position:absolute;left:-999px;top:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:200;}
+  .skip-link:focus{left:0;}
+  main.content{min-width:0;}
 
-  /* Simple site nav, kept lightweight to match this page's own theme */
-  .site-nav{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    background:#fff;border-bottom:1px solid var(--line);
+  .hero{
+    max-width:1100px;margin:0 auto;padding:56px 24px 20px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
   }
-  .site-nav-inner{
-    max-width:640px;margin:0 auto;padding:14px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  @media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:36px;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.75rem;font-weight:600;
+    color:var(--primary);background:#FCE9E8;padding:6px 12px;border-radius:20px;letter-spacing:.03em;
   }
-  .site-nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);}
-  .site-nav .brand img{width:34px;height:34px;border-radius:8px;}
-  .site-nav .brand span{font-weight:700;font-size:15px;}
-  .site-nav ul{list-style:none;display:flex;gap:16px;margin:0;padding:0;flex-wrap:wrap;}
-  .site-nav a.nav-link{font-size:13px;font-weight:600;color:#12261f99;text-decoration:none;}
-  .site-nav a.nav-link:hover{color:var(--accent);}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  h1{font-family:var(--font-display);font-size:2.5rem;line-height:1.1;margin:18px 0 14px;font-weight:700;}
+  .hero p.lead{color:var(--muted);font-size:1.05rem;max-width:46ch;}
+  .trust-row{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);font-weight:600;}
+  .trust-item svg{width:18px;height:18px;color:var(--success);flex-shrink:0;}
 
-  header{margin-bottom:28px;}
-  .kicker{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:13px;
-    letter-spacing:.02em;
-    color:var(--accent);
-    margin:0 0 6px;
-  }
-  h1{
-    font-size:28px;
-    margin:0 0 10px;
-    font-weight:600;
-    letter-spacing:-.01em;
-  }
-  header p{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:14.5px;
-    color:#12261fbb;
-    margin:0;
-    max-width:52ch;
-  }
+  .lock-wrap{display:flex;justify-content:center;}
+  .lock-wrap svg{width:100%;max-width:320px;height:auto;}
 
-  .privacy{
-    margin-top:16px;
-    padding:12px 14px;
-    background:var(--accent-soft);
-    border-left:3px solid var(--accent);
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:13px;
-    color:var(--accent);
-    border-radius:2px;
+  .converter-section{max-width:900px;margin:10px auto 0;padding:0 24px;}
+  .converter-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;
+    box-shadow:0 1px 2px rgba(20,23,31,.04),0 10px 30px -18px rgba(20,23,31,.15);
   }
-
   .dropzone{
-    border:1.5px dashed #12261f55;
-    border-radius:6px;
-    padding:34px 20px;
-    text-align:center;
-    cursor:pointer;
-    background:#fff;
-    transition:border-color .15s, background .15s;
-    font-family:'Segoe UI', system-ui, sans-serif;
+    border:2px dashed var(--border);border-radius:16px;padding:44px 20px;text-align:center;cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;background:linear-gradient(180deg,#FAFBFC,#FFFFFF);
   }
-  .dropzone.drag{
-    border-color:var(--accent);
-    background:var(--accent-soft);
-  }
-  .dropzone .dz-title{
-    font-family:'Georgia', serif;
-    font-size:17px;
-    color:var(--ink);
-    margin-bottom:4px;
-  }
-  .dropzone .dz-sub{
-    font-size:13px;
-    color:#12261f88;
-  }
+  .dropzone.drag{border-color:var(--primary);background:#FCF2F1;}
+  .dropzone .dz-icon{width:56px;height:56px;margin:0 auto 14px;color:var(--primary);}
+  .dropzone h3{font-family:var(--font-display);margin:0 0 6px;font-size:1.15rem;}
+  .dropzone p{margin:0;color:var(--muted);font-size:.9rem;}
   input[type=file]{display:none;}
 
-  .filelist{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
-  .file-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:14px 14px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .file-top{
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .file-order{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:12px;
-    color:#12261f66;
-    width:20px;
-    flex-shrink:0;
-  }
-  .file-name{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:14px;
-    font-weight:600;
-    flex:1;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .file-status{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:12px;
-    padding:2px 8px;
-    border-radius:20px;
-    flex-shrink:0;
-  }
-  .status-pending{background:#12261f11;color:#12261f88;}
-  .status-ok{background:var(--accent-soft);color:var(--accent);}
-  .status-error{background:var(--danger-soft);color:var(--danger);}
-
-  .file-row2{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Segoe UI', system-ui, sans-serif;
-  }
-  .file-row2 input[type=password], .file-row2 input[type=text]{
-    flex:1;
-    padding:8px 10px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    font-size:14px;
-    font-family:inherit;
-  }
-  .file-row2 input:focus{outline:2px solid var(--accent);outline-offset:1px;}
-  .icon-btn{
-    background:none;
-    border:1px solid var(--line);
-    border-radius:4px;
-    width:32px;
-    height:32px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    color:var(--ink);
-    font-size:14px;
-    flex-shrink:0;
-  }
-  .icon-btn:hover{background:#12261f0d;}
-  .icon-btn.danger{color:var(--danger);border-color:var(--danger-soft);}
-  .err-msg{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:12.5px;
-    color:var(--danger);
-  }
-
   .same-pw{
-    margin-top:16px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Segoe UI', system-ui, sans-serif;
-    font-size:13.5px;
+    margin-top:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:.88rem;font-weight:600;color:var(--text);
   }
   .same-pw input[type=text]{
-    padding:7px 10px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    font-size:13.5px;
-    width:160px;
+    padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;width:170px;
+    font-family:var(--font-body);background:var(--bg);color:var(--text);
   }
+  .same-pw input[type=checkbox]{width:16px;height:16px;accent-color:var(--primary);}
 
-  .actions{margin-top:24px;display:flex;flex-direction:column;gap:10px;}
-  button.primary{
-    font-family:'Segoe UI', system-ui, sans-serif;
-    background:var(--accent);
-    color:#fff;
-    border:none;
-    padding:14px 18px;
-    border-radius:6px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    letter-spacing:.01em;
+  .file-list{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .file-card{
+    background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;
+    display:flex;flex-direction:column;gap:10px;
   }
-  button.primary:disabled{background:#12261f33;cursor:not-allowed;}
-  button.primary:hover:not(:disabled){background:#164737;}
+  .file-top{display:flex;align-items:center;gap:10px;}
+  .file-order{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);width:20px;flex-shrink:0;}
+  .file-name{font-weight:600;font-size:.88rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .file-status{font-family:var(--font-mono);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;flex-shrink:0;}
+  .status-pending{background:var(--border);color:var(--muted);}
+  .status-ok{background:#DCFCE7;color:var(--success);}
+  .status-error{background:#FCE9E8;color:var(--danger);}
 
-  .progress-wrap{
-    margin-top:14px;
-    font-family:'Segoe UI', system-ui, sans-serif;
+  .file-row2{display:flex;align-items:center;gap:8px;}
+  .file-row2 input[type=password], .file-row2 input[type=text]{
+    flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;
+    font-family:var(--font-body);background:var(--surface);color:var(--text);
   }
-  .progress-bar-bg{
-    height:6px;
-    background:#12261f14;
-    border-radius:20px;
-    overflow:hidden;
+  .file-row2 input:focus{outline:2px solid var(--primary);outline-offset:1px;}
+  .icon-btn{
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:14px;flex-shrink:0;
   }
-  .progress-bar-fg{
-    height:100%;
-    background:var(--accent);
-    width:0%;
-    transition:width .2s;
-  }
-  .progress-label{
-    font-size:12.5px;
-    color:#12261f88;
-    margin-top:6px;
-  }
+  .icon-btn:hover{border-color:var(--primary);color:var(--primary);}
+  .icon-btn.danger:hover{background:#FCE9E8;color:var(--danger);border-color:#FCE9E8;}
+  .icon-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .err-msg{font-size:.78rem;color:var(--danger);font-weight:600;}
 
-  .result{
-    margin-top:22px;
-    padding:18px;
-    background:var(--accent-soft);
-    border-radius:6px;
-    text-align:center;
-    font-family:'Segoe UI', system-ui, sans-serif;
-    display:none;
-  }
-  .result.show{display:block;}
-  .result .r-title{
-    font-family:'Georgia', serif;
-    font-size:18px;
-    color:var(--ink);
-    margin-bottom:12px;
-  }
-  a.download-btn{
-    display:inline-block;
-    background:var(--gold);
-    color:#fff;
-    text-decoration:none;
-    padding:12px 22px;
-    border-radius:6px;
-    font-size:14.5px;
-    font-weight:600;
-  }
+  .action-row{display:flex;flex-direction:column;gap:10px;margin-top:22px;}
+  .btn{font-family:var(--font-body);font-weight:700;font-size:.92rem;padding:13px 22px;border-radius:10px;border:none;cursor:pointer;}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-primary:disabled{background:#E4A9A8;cursor:not-allowed;}
+  .quality-note{font-size:.78rem;color:var(--muted);}
 
-  .quality-note{
-    margin-top:8px;
-    font-size:12px;
-    color:#12261f77;
-    font-family:'Segoe UI', system-ui, sans-serif;
-  }
+  .progress-wrap{margin-top:16px;}
+  .progress-track{width:100%;height:6px;background:var(--border);border-radius:6px;overflow:hidden;}
+  .progress-fill{height:100%;width:0%;background:var(--primary);transition:width .2s ease;}
+  .progress-label{font-size:.78rem;color:var(--muted);margin-top:8px;}
 
-  /* New content sections — styled to match the page's serif theme */
-  .content-section{
-    margin-top:52px;
-    padding-top:32px;
-    border-top:1px solid var(--line);
-    font-family:'Segoe UI', system-ui, sans-serif;
+  .result-box{
+    margin-top:20px;padding:20px;background:#EAF6F5;border:1px solid #CFEDEA;border-radius:14px;
+    text-align:center;display:none;
   }
-  .content-section h2{
-    font-family:'Georgia', serif;
-    font-size:20px;
-    margin:0 0 14px;
-    color:var(--ink);
+  .result-box.show{display:block;}
+  .result-box .r-title{font-family:var(--font-display);font-size:1.05rem;color:#0B655F;margin-bottom:14px;}
+  a.download-link-big{
+    display:inline-block;background:var(--teal);color:#fff;text-decoration:none;
+    padding:12px 24px;border-radius:10px;font-weight:700;font-size:.9rem;
   }
-  .content-section p{
-    font-size:14px;
-    color:#12261fcc;
-    margin:0 0 12px;
-  }
-  .usecase-grid{display:flex;flex-direction:column;gap:12px;}
-  .usecase-row{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
-  .usecase-row strong{display:block;font-size:14px;color:var(--ink);margin-bottom:3px;}
-  .usecase-row span{font-size:13px;color:#12261f99;}
+  a.download-link-big:hover{background:#0C8B87;}
 
-  .steps-list{counter-reset:st;display:flex;flex-direction:column;gap:14px;}
-  .steps-list li{
-    list-style:none;position:relative;padding-left:34px;font-size:14px;color:#12261fcc;
-  }
-  .steps-list li::before{
-    counter-increment:st;content:counter(st);
-    position:absolute;left:0;top:0;
-    width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
-    font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;
-  }
+  section.info{max-width:900px;margin:64px auto;padding:0 24px;}
+  section.info h2{font-family:var(--font-display);font-size:1.7rem;margin-bottom:10px;}
+  section.info p.section-sub{color:var(--muted);margin-bottom:28px;max-width:60ch;}
 
-  .faq-item{border-bottom:1px solid var(--line);}
+  .steps{counter-reset:step;display:flex;flex-direction:column;gap:0;}
+  .step{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--border);}
+  .step:first-child{border-top:none;}
+  .step-num{counter-increment:step;font-family:var(--font-mono);font-weight:700;color:var(--primary);font-size:.85rem;flex-shrink:0;width:32px;}
+  .step-num::before{content:"0" counter(step);}
+  .step-body h4{margin:0 0 4px;font-family:var(--font-display);font-size:1rem;}
+  .step-body p{margin:0;color:var(--muted);font-size:.88rem;}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:640px){.grid-2{grid-template-columns:1fr;}}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;}
+  .info-card h3{font-family:var(--font-display);font-size:1.05rem;margin:0 0 8px;color:var(--primary);}
+  .info-card p{margin:0;color:var(--muted);font-size:.9rem;}
+
+  .privacy-banner{display:flex;gap:14px;align-items:flex-start;background:#EAF6F5;border:1px solid #CFEDEA;border-radius:14px;padding:18px 20px;}
+  .privacy-banner svg{width:24px;height:24px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+  .privacy-banner p{margin:0;font-size:.88rem;color:#0B655F;}
+
+  .faq-item{border-bottom:1px solid var(--border);}
   .faq-q{
-    width:100%;text-align:left;background:none;border:none;
-    padding:14px 0;font-family:'Segoe UI', system-ui, sans-serif;font-weight:600;font-size:14px;
-    display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);
+    width:100%;text-align:left;background:none;border:none;padding:18px 0;font-family:var(--font-body);
+    font-weight:600;font-size:.95rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);
   }
-  .faq-q .plus{color:var(--accent);font-size:16px;}
+  .faq-q .plus{font-family:var(--font-mono);color:var(--primary);font-size:1.1rem;transition:transform .15s ease;}
   .faq-item.open .plus{transform:rotate(45deg);}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;}
-  .faq-a p{margin:0 0 14px;font-size:13.5px;color:#12261f99;}
+  .faq-a p{margin:0 0 18px;color:var(--muted);font-size:.9rem;}
+</style>
 
-  .site-footer{
-    margin-top:60px;padding:26px 20px;text-align:center;
-    font-family:'Segoe UI', system-ui, sans-serif;font-size:12.5px;color:#12261f77;
-    border-top:1px solid var(--line);
+<!-- ================= Shared header / footer / ad-rail system (matches Online PDF / MP4→MP3 pages) ================= -->
+<style>
+  .sas-ad-rail{
+    position:fixed;top:0;bottom:0;width:170px;background:rgba(22,35,60,0.03);
+    border-right:1px dashed rgba(22,35,60,0.15);display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:999;
   }
-  .site-footer a{color:var(--accent);text-decoration:none;font-weight:600;}
+  .sas-ad-rail.right{border-right:none;border-left:1px dashed rgba(22,35,60,0.15);}
+  .sas-ad-rail.left{left:0;}
+  .sas-ad-rail.right{right:0;}
+  body{padding-left:170px;padding-right:170px;}
+  @media (max-width:860px){ .sas-ad-rail{width:130px;} body{padding-left:130px;padding-right:130px;} }
+  @media (max-width:640px){ .sas-ad-rail{display:none;} body{padding-left:0;padding-right:0;} }
+
+  .site-header{
+    position:sticky;top:0;z-index:200;background:rgba(248,249,251,0.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid #E4E7EC;font-family:'Inter',sans-serif;
+  }
+  .site-header .container{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:15px;text-decoration:none;color:#222;}
+  .brand img{width:110px;height:110px;border-radius:30px;}
+  .brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;margin:0;color:#16233C;letter-spacing:.01em;line-height:1.15;}
+  .brand-sub{font-size:13px;margin:0;color:#777;font-weight:500;letter-spacing:.02em;}
+  .navbar ul{list-style:none;display:flex;gap:26px;margin:0;padding:0;}
+  .navbar li{position:relative;}
+  .navbar a{text-decoration:none;font-size:14.5px;font-weight:600;color:#4B5C78;padding-bottom:4px;border-bottom:2px solid transparent;}
+  .navbar a:hover, .navbar a.active{color:#16233C;border-bottom-color:#B4402C;}
+  .navbar .dropdown-trigger{display:inline-flex;align-items:center;gap:4px;}
+  .navbar .caret{font-size:16px;transition:transform .15s ease;display:inline-block;}
+  .navbar li.has-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{
+    list-style:none;margin:0;padding:8px;padding-top:14px;position:absolute;top:100%;left:0;min-width:180px;
+    background:#fff;border:1px solid #E4E7EC;border-radius:10px;box-shadow:0 14px 28px -10px rgba(22,35,60,0.22);
+    opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s ease, transform .15s ease, visibility .15s ease;z-index:210;
+  }
+  .navbar li.has-dropdown:hover .dropdown-menu, .navbar li.has-dropdown:focus-within .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown-menu li{padding:0;}
+  .dropdown-menu a{display:block;padding:9px 12px;border-radius:7px;border-bottom:none;font-size:14px;}
+  .dropdown-menu a:hover, .dropdown-menu a.active{background:#EEF1F4;color:#16233C;}
+  .header-buttons{display:flex;gap:8px;}
+  .menuBtn{width:38px;height:38px;border-radius:9px;border:1px solid #E4E7EC;background:#fff;cursor:pointer;font-size:16px;display:none;}
+  @media (max-width:860px){ .navbar{display:none;} .menuBtn{display:block;} }
+
+  .sas-ad-inline{max-width:900px;margin:36px auto;padding:0 24px;}
+
+  .sas-footer{background:#0F1830;color:rgba(255,255,255,0.82);margin-top:40px;font-family:'Inter',sans-serif;}
+  .sas-footer-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding:52px 24px 26px;}
+  @media (max-width:800px){ .sas-footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .sas-footer-grid{grid-template-columns:1fr;} }
+  .sas-footer-logo{width:110px;height:110px;border-radius:30px;margin-bottom:14px;display:block;}
+  .sas-footer-brand-title{font-family:'Fraunces',serif;font-weight:700;font-size:24px;color:#fff;margin:0 0 4px;}
+  .sas-footer-brand-sub{font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 14px;font-weight:500;}
+  .sas-footer p{color:rgba(255,255,255,0.55);font-size:13.5px;margin:0;}
+  .sas-footer h3{color:#fff;font-family:'Inter',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;}
+  .sas-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .sas-footer a{color:rgba(255,255,255,0.72);text-decoration:none;font-size:13.5px;}
+  .sas-footer a:hover{color:#fff;}
+  .sas-copyright{border-top:1px solid rgba(255,255,255,0.08);padding:18px 24px;text-align:center;font-size:12.5px;color:rgba(255,255,255,0.45);}
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="site-nav-inner">
-    <a href="index.html" class="brand">
-      <img src="smartapps.png" alt="SmartApps Studio">
-      <span>SmartApps Studio</span>
-    </a>
-    <ul>
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="onlinepdf.html" class="nav-link">Online PDF</a></li>
-      <li><a href="mp4-to-mp3.html" class="nav-link">MP4 → MP3</a></li>
-      <li><a href="mic-audio-enhancer.html" class="nav-link">Mic Enhancer</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<div class="wrap">
-  <header>
-    <p class="kicker">PDF Unlock &amp; Merge</p>
-    <h1>Password wali PDFs ko ek saath jodo</h1>
-    <p>Apni PDFs daaliye, password bhariye, aur sabko ek file mein merge kar lijiye — sahi order mein.</p>
-    <div class="privacy">🔒 Sab kuch aapke phone/browser mein hi process hota hai. Koi bhi file kisi server par upload nahi hoti.</div>
-  </header>
-
-  <div class="dropzone" id="dropzone">
-    <div class="dz-title">PDFs yahan daaliye</div>
-    <div class="dz-sub">ya tap karke chuniye — multiple files chun sakte hain</div>
-    <input type="file" id="fileInput" accept="application/pdf" multiple>
-  </div>
-
-  <div class="same-pw" id="samePwRow" style="display:none;">
-    <input type="checkbox" id="sameToggle">
-    <label for="sameToggle">Sab files ka password same hai</label>
-    <input type="text" id="samePwInput" placeholder="password" style="display:none;">
-  </div>
-
-  <div class="filelist" id="fileList"></div>
-
-  <div class="actions" id="actions" style="display:none;">
-    <button class="primary" id="mergeBtn">PDFs Merge Karo</button>
-    <div class="quality-note">Note: password-protected pages ko image ke roop mein process kiya jaata hai, isliye text select nahi ho payega — lekin dikhega bilkul clear.</div>
-  </div>
-
-  <div class="progress-wrap" id="progressWrap" style="display:none;">
-    <div class="progress-bar-bg"><div class="progress-bar-fg" id="progressFg"></div></div>
-    <div class="progress-label" id="progressLabel">Shuru ho raha hai...</div>
-  </div>
-
-  <div class="result" id="result">
-    <div class="r-title">✅ Merge ho gaya!</div>
-    <a class="download-btn" id="downloadLink" download="merged.pdf">Merged PDF Download Karo</a>
-  </div>
-
-  <!-- ================= NEW CONTENT: How it works ================= -->
-  <section class="content-section">
-    <h2>Yeh kaise kaam karta hai</h2>
-    <ol class="steps-list">
-      <li>Apni ek ya zyada PDF files upload karein — chahe unme se kuch ya sab password-protected ho.</li>
-      <li>Jis file ka password hai, uske saamne wala box mein password daalein. Agar sabka password same hai, to "Sab files ka password same hai" checkbox use karein.</li>
-      <li>↑ aur ↓ buttons se files ka order set karein — final PDF isi order mein banegi.</li>
-      <li>"PDFs Merge Karo" par tap karein. Poora process aapke browser ke andar hota hai, kuch bhi upload nahi hota.</li>
-      <li>Final merged PDF turant download ke liye taiyaar ho jaati hai.</li>
-    </ol>
-  </section>
-
-  <!-- ================= NEW CONTENT: Use cases ================= -->
-  <section class="content-section">
-    <h2>Yeh tool kis kaam aata hai</h2>
-    <div class="usecase-grid">
-      <div class="usecase-row">
-        <strong>Bank statements aur salary slips</strong>
-        <span>Alag-alag mahino ke password-protected statements ya slips ko ek hi PDF mein jodkar loan ya visa application ke liye submit karna.</span>
-      </div>
-      <div class="usecase-row">
-        <strong>Scanned government documents</strong>
-        <span>Aadhaar, marksheet ya certificate jaise multiple locked PDFs ko ek saath combine karke ek clean file banana.</span>
-      </div>
-      <div class="usecase-row">
-        <strong>Office reports</strong>
-        <span>Alag-alag departments se aayi password-protected reports ko ek single file mein merge karke review ke liye bhejna.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= NEW CONTENT: FAQ ================= -->
-  <section class="content-section">
-    <h2>Aksar poochhe jaane wale sawaal</h2>
-    <div id="faqList">
-      <div class="faq-item">
-        <button class="faq-q">Kya mere PDF files kahin upload hoti hain? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Nahi. Har PDF aapke apne browser ke andar hi process hoti hai, kisi bhi server par upload nahi hoti.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Agar meri saari PDFs ka password same hai to kya karein? <span class="plus">+</span></button>
-        <div class="faq-a"><p>"Sab files ka password same hai" checkbox on karke ek hi password daalein, wo saari files par apply ho jayega.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Merge hone ke baad kya text select kar sakte hain? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Password-protected pages is tool mein image ke roop mein process kiye jaate hain, isliye unka text select nahi hoga — lekin page bilkul clear aur original jaisa dikhega.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Kitni PDF files ek saath merge kar sakte hain? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Aap ek saath jitni chahein utni PDF files daal sakte hain aur unhe apni pasand ke order mein arrange kar sakte hain.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Agar galat password daalein to kya hoga? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Us file ke saamne "Galat password" status dikhega aur aapko sahi password dobara daalne ka option milega, baaki files par koi asar nahi padega.</p></div>
-      </div>
-    </div>
-  </section>
+<div class="sas-ad-rail left">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
+       data-ad-client="ca-pub-1124864848953243" data-ad-slot="5989140493" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="sas-ad-rail right">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:100%"
+       data-ad-client="ca-pub-1124864848953243" data-ad-slot="7154882503" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<footer class="site-footer">
-  <p>SmartApps Studio — Apps &amp; Tools that just work · <a href="contact.html">smartapps.studio27@gmail.com</a></p>
-  <p style="margin-top:6px;"><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></p>
+<header class="site-header">
+<div class="container">
+<a href="index.html" class="brand">
+<img src="smartapps.png" alt="SmartApps Studio" width="512" height="512">
+<div>
+<div class="brand-title">PDF Unlock &amp; Merge</div>
+<p class="brand-sub">SmartApps Studio</p>
+</div>
+</a>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li class="has-dropdown">
+<a href="apps.html" class="dropdown-trigger">Apps &amp; Games <span class="caret">▾</span></a>
+<ul class="dropdown-menu">
+<li><a href="typing.html">Smart Typing</a></li>
+<li><a href="mp4-to-mp3.html">MP4 → MP3</a></li>
+<li><a href="onlinepdf.html">Online PDF</a></li>
+<li><a href="pdf-unlock-merge.html" class="active">PDF Unlock &amp; Merge</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+</ul>
+</li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+</ul>
+</nav>
+<div class="header-buttons">
+<button class="menuBtn">☰</button>
+</div>
+</div>
+</header>
+
+<main class="content" id="main">
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> 100% browser-based · nothing uploaded</span>
+      <h1>Unlock and merge password-protected PDFs</h1>
+      <p class="lead">Add your PDFs, enter each password, reorder the pages, and combine everything into one clean file — right here on this page.</p>
+      <div class="trust-row">
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Free, no signup</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Files stay on your device</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Any number of files</div>
+      </div>
+    </div>
+    <div class="lock-wrap" aria-hidden="true">
+      <svg viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="70" width="90" height="120" rx="10" fill="#FCE9E8" stroke="#D32F2D" stroke-width="2"/>
+        <rect x="60" y="120" width="30" height="6" rx="3" fill="#D32F2D"/>
+        <rect x="60" y="135" width="20" height="6" rx="3" fill="#D32F2D"/>
+        <circle cx="75" cy="95" r="14" fill="none" stroke="#D32F2D" stroke-width="3"/>
+        <rect x="68" y="95" width="14" height="12" rx="2" fill="#D32F2D"/>
+        <rect x="140" y="50" width="90" height="120" rx="10" fill="#fff" stroke="#16233C" stroke-width="2"/>
+        <rect x="155" y="80" width="60" height="6" rx="3" fill="rgba(22,35,60,0.15)"/>
+        <rect x="155" y="95" width="45" height="6" rx="3" fill="rgba(22,35,60,0.15)"/>
+        <rect x="155" y="110" width="55" height="6" rx="3" fill="rgba(22,35,60,0.15)"/>
+        <rect x="180" y="150" width="110" height="70" rx="10" fill="#0EA5A0"/>
+        <rect x="196" y="176" width="78" height="6" rx="3" fill="rgba(255,255,255,0.5)"/>
+        <rect x="196" y="190" width="55" height="6" rx="3" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="converter-section" id="tool">
+    <div class="converter-card">
+
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Drag and drop PDF files here, or click to browse">
+        <svg class="dz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+          <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+        </svg>
+        <h3>Drag &amp; drop PDF files here</h3>
+        <p>or click to browse from your device · any number of files</p>
+        <input type="file" id="fileInput" accept="application/pdf" multiple>
+      </div>
+
+      <div class="same-pw" id="samePwRow" style="display:none;">
+        <input type="checkbox" id="sameToggle">
+        <label for="sameToggle">All files use the same password</label>
+        <input type="text" id="samePwInput" placeholder="password" style="display:none;">
+      </div>
+
+      <div class="file-list" id="fileList"></div>
+
+      <div class="action-row" id="actions" style="display:none;">
+        <button class="btn btn-primary" id="mergeBtn">Merge PDFs</button>
+        <div class="quality-note">Note: password-protected pages are processed as images, so their text won't be selectable — but they'll look exactly as clear as the original.</div>
+      </div>
+
+      <div class="progress-wrap" id="progressWrap" style="display:none;">
+        <div class="progress-track"><div class="progress-fill" id="progressFg"></div></div>
+        <div class="progress-label" id="progressLabel">Starting…</div>
+      </div>
+
+      <div class="result-box" id="result">
+        <div class="r-title">✅ Merge complete!</div>
+        <a class="download-link-big" id="downloadLink" download="merged.pdf">Download Merged PDF</a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info">
+    <h2>How it works</h2>
+    <p class="section-sub">All running locally in your browser tab — nothing is ever uploaded.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Add your PDF files</h4>
+          <p>Drag and drop one or more PDFs, including any that are password-protected.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Enter passwords and set the order</h4>
+          <p>Type each file's password, or use "same password" if they all match. Use the arrows to arrange the final order.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Merge and download</h4>
+          <p>Click Merge PDFs and download the single combined file, ready to use immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>What people use this for</h2>
+    <p class="section-sub">A few common situations where unlocking and merging PDFs together saves real time.</p>
+    <div class="grid-2">
+      <div class="info-card">
+        <h3>Bank statements &amp; salary slips</h3>
+        <p>Combine several months of password-protected statements or slips into one file for a loan or visa application.</p>
+      </div>
+      <div class="info-card">
+        <h3>Scanned ID documents</h3>
+        <p>Merge multiple locked PDFs — Aadhaar, marksheets, certificates — into a single, clean document.</p>
+      </div>
+      <div class="info-card">
+        <h3>Office reports</h3>
+        <p>Combine password-protected reports from different departments into one file for easier review.</p>
+      </div>
+      <div class="info-card">
+        <h3>Reordering pages</h3>
+        <p>Use the up/down arrows to fix the page order across files before creating the final merged PDF.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sas-ad-inline">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1124864848953243" data-ad-slot="6771739129" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="info">
+    <div class="privacy-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+      <p><strong>Your privacy is respected.</strong> Unlocking and merging happens entirely inside your browser — your PDFs and their passwords are never sent to any server.</p>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">Are my PDF files uploaded anywhere? <span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Every PDF is processed entirely inside your own browser and is never uploaded to any server.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if all my PDFs share the same password? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Turn on "All files use the same password" and enter it once — it will apply to every file automatically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I select text in the merged PDF afterward? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Password-protected pages are processed as images in this tool, so their text won't be selectable — but the page will look exactly as clear as the original.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How many PDF files can I merge at once? <span class="plus">+</span></button>
+        <div class="faq-a"><p>You can add as many PDF files as you need and arrange them in any order before merging.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What happens if I enter the wrong password? <span class="plus">+</span></button>
+        <div class="faq-a"><p>That file will show a "Wrong password" status so you can correct it, without affecting any of the other files.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this tool free to use? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, completely free with no signup required and no limit on how often you can use it.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sas-footer">
+<div class="sas-footer-grid">
+<div>
+<img src="smartapps.png" class="sas-footer-logo" alt="SmartApps Studio" width="512" height="512">
+<div class="sas-footer-brand-title">PDF Unlock &amp; Merge</div>
+<p class="sas-footer-brand-sub">SmartApps Studio</p>
+<p>Creating useful Android Apps and handy browser tools with modern design and excellent user experience.</p>
+</div>
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="apps.html">Apps & Games</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="typing.html">Smart Typing</a></li>
+<li><a href="onlinepdf.html">Online PDF</a></li>
+<li><a href="mp4-to-mp3.html">MP4 to MP3</a></li>
+<li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
+</ul>
+</div>
+<div>
+<h3>Legal</h3>
+<ul>
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+<li><a href="terms.html">Terms & Conditions</a></li>
+<li><a href="sitemap.html">HTML Sitemap</a></li>
+</ul>
+</div>
+<div>
+<h3>Email</h3>
+<p>smartapps.studio27@gmail.com</p>
+</div>
+</div>
+<div class="sas-copyright">
+<p>© 2026 SmartApps Studio. All Rights Reserved.</p>
+</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -546,6 +588,7 @@ let files = []; // {id, file, name, password, status, error}
 let idCounter = 0;
 
 dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') fileInput.click(); });
 dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag'); });
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
 dropzone.addEventListener('drop', e => {
@@ -603,7 +646,7 @@ function render() {
       <span class="file-order">${i + 1}</span>
       <span class="file-name">${f.name}</span>
       <span class="file-status status-${f.status === 'pending' ? 'pending' : (f.status === 'ok' ? 'ok' : 'error')}">
-        ${f.status === 'pending' ? 'Ready' : (f.status === 'ok' ? 'OK' : 'Galat password')}
+        ${f.status === 'pending' ? 'Ready' : (f.status === 'ok' ? 'OK' : 'Wrong password')}
       </span>
     `;
     card.appendChild(top);
@@ -613,28 +656,28 @@ function render() {
 
     const pwInput = document.createElement('input');
     pwInput.type = 'password';
-    pwInput.placeholder = 'PDF ka password (agar hai to)';
+    pwInput.placeholder = 'PDF password (if any)';
     pwInput.value = f.password;
     pwInput.addEventListener('input', e => { f.password = e.target.value; f.status = 'pending'; f.error=''; });
 
     const upBtn = document.createElement('button');
     upBtn.className = 'icon-btn';
     upBtn.textContent = '↑';
-    upBtn.title = 'Upar le jao';
+    upBtn.title = 'Move up';
     upBtn.disabled = i === 0;
     upBtn.addEventListener('click', () => moveFile(f.id, -1));
 
     const downBtn = document.createElement('button');
     downBtn.className = 'icon-btn';
     downBtn.textContent = '↓';
-    downBtn.title = 'Neeche le jao';
+    downBtn.title = 'Move down';
     downBtn.disabled = i === files.length - 1;
     downBtn.addEventListener('click', () => moveFile(f.id, 1));
 
     const delBtn = document.createElement('button');
     delBtn.className = 'icon-btn danger';
     delBtn.textContent = '✕';
-    delBtn.title = 'Hatao';
+    delBtn.title = 'Remove';
     delBtn.addEventListener('click', () => removeFile(f.id));
 
     row2.appendChild(pwInput);
@@ -694,7 +737,7 @@ mergeBtn.addEventListener('click', async () => {
   progressWrap.style.display = 'block';
   resultEl.classList.remove('show');
   progressFg.style.width = '2%';
-  progressLabel.textContent = 'Shuru ho raha hai...';
+  progressLabel.textContent = 'Starting…';
 
   const { PDFDocument } = PDFLib;
   const mergedPdf = await PDFDocument.create();
@@ -721,29 +764,28 @@ mergeBtn.addEventListener('click', async () => {
       hadError = true;
       f.status = 'error';
       if (err && err.name === 'PasswordException') {
-        f.error = f.password ? 'Galat password — dobara try karein' : 'Password chahiye';
+        f.error = f.password ? 'Wrong password — try again' : 'Password required';
       } else {
-        f.error = 'PDF process nahi ho payi — file corrupt ho sakti hai';
+        f.error = 'Could not process this PDF — file may be corrupted';
       }
     }
     render();
-    // re-append progress bar / actions since render() clears the list area only, not progress
   }
 
   progressFg.style.width = '100%';
 
   if (hadError) {
-    progressLabel.textContent = 'Kuch files process nahi ho payi — upar check karein aur dobara try karein.';
+    progressLabel.textContent = 'Some files could not be processed — check above and try again.';
     mergeBtn.disabled = false;
     return;
   }
 
-  progressLabel.textContent = 'Final PDF taiyaar ho raha hai...';
+  progressLabel.textContent = 'Preparing final PDF…';
   const mergedBytes = await mergedPdf.save();
   const blob = new Blob([mergedBytes], { type: 'application/pdf' });
   const url = URL.createObjectURL(blob);
   downloadLink.href = url;
-  progressLabel.textContent = 'Ho gaya!';
+  progressLabel.textContent = 'Done!';
   resultEl.classList.add('show');
   mergeBtn.disabled = false;
 });
@@ -765,5 +807,6 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 </script>
+
 </body>
 </html>
