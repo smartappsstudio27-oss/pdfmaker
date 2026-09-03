@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Unlock &amp; Merge</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+  :root{
+    --ink:#12261f;
+    --paper:#f6f4ee;
+    --line:#12261f22;
+    --accent:#1f5c4a;
+    --accent-soft:#e4efe9;
+    --danger:#a3402f;
+    --danger-soft:#f6e6e1;
+    --gold:#b8863b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Georgia', 'Noto Serif', serif;
+    line-height:1.5;
+    padding:0 0 60px;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:28px 20px;}
+
+  header{margin-bottom:28px;}
+  .kicker{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:13px;
+    letter-spacing:.02em;
+    color:var(--accent);
+    margin:0 0 6px;
+  }
+  h1{
+    font-size:28px;
+    margin:0 0 10px;
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  header p{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:14.5px;
+    color:#12261fbb;
+    margin:0;
+    max-width:52ch;
+  }
+
+  .privacy{
+    margin-top:16px;
+    padding:12px 14px;
+    background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:13px;
+    color:var(--accent);
+    border-radius:2px;
+  }
+
+  .dropzone{
+    border:1.5px dashed #12261f55;
+    border-radius:6px;
+    padding:34px 20px;
+    text-align:center;
+    cursor:pointer;
+    background:#fff;
+    transition:border-color .15s, background .15s;
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+  .dropzone.drag{
+    border-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .dropzone .dz-title{
+    font-family:'Georgia', serif;
+    font-size:17px;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .dropzone .dz-sub{
+    font-size:13px;
+    color:#12261f88;
+  }
+  input[type=file]{display:none;}
+
+  .filelist{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+  .file-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:14px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .file-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .file-order{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:12px;
+    color:#12261f66;
+    width:20px;
+    flex-shrink:0;
+  }
+  .file-name{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:14px;
+    font-weight:600;
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .file-status{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:12px;
+    padding:2px 8px;
+    border-radius:20px;
+    flex-shrink:0;
+  }
+  .status-pending{background:#12261f11;color:#12261f88;}
+  .status-ok{background:var(--accent-soft);color:var(--accent);}
+  .status-error{background:var(--danger-soft);color:var(--danger);}
+
+  .file-row2{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+  .file-row2 input[type=password], .file-row2 input[type=text]{
+    flex:1;
+    padding:8px 10px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-size:14px;
+    font-family:inherit;
+  }
+  .file-row2 input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .icon-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:4px;
+    width:32px;
+    height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:var(--ink);
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .icon-btn:hover{background:#12261f0d;}
+  .icon-btn.danger{color:var(--danger);border-color:var(--danger-soft);}
+  .err-msg{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:12.5px;
+    color:var(--danger);
+  }
+
+  .same-pw{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Segoe UI', system-ui, sans-serif;
+    font-size:13.5px;
+  }
+  .same-pw input[type=text]{
+    padding:7px 10px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-size:13.5px;
+    width:160px;
+  }
+
+  .actions{margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+  button.primary{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:14px 18px;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    letter-spacing:.01em;
+  }
+  button.primary:disabled{background:#12261f33;cursor:not-allowed;}
+  button.primary:hover:not(:disabled){background:#164737;}
+
+  .progress-wrap{
+    margin-top:14px;
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+  .progress-bar-bg{
+    height:6px;
+    background:#12261f14;
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .progress-bar-fg{
+    height:100%;
+    background:var(--accent);
+    width:0%;
+    transition:width .2s;
+  }
+  .progress-label{
+    font-size:12.5px;
+    color:#12261f88;
+    margin-top:6px;
+  }
+
+  .result{
+    margin-top:22px;
+    padding:18px;
+    background:var(--accent-soft);
+    border-radius:6px;
+    text-align:center;
+    font-family:'Segoe UI', system-ui, sans-serif;
+    display:none;
+  }
+  .result.show{display:block;}
+  .result .r-title{
+    font-family:'Georgia', serif;
+    font-size:18px;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  a.download-btn{
+    display:inline-block;
+    background:var(--gold);
+    color:#fff;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:6px;
+    font-size:14.5px;
+    font-weight:600;
+  }
+
+  .quality-note{
+    margin-top:8px;
+    font-size:12px;
+    color:#12261f77;
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">PDF Unlock &amp; Merge</p>
+    <h1>Password wali PDFs ko ek saath jodo</h1>
+    <p>Apni PDFs daaliye, password bhariye, aur sabko ek file mein merge kar lijiye — sahi order mein.</p>
+    <div class="privacy">🔒 Sab kuch aapke phone/browser mein hi process hota hai. Koi bhi file kisi server par upload nahi hoti.</div>
+  </header>
+
+  <div class="dropzone" id="dropzone">
+    <div class="dz-title">PDFs yahan daaliye</div>
+    <div class="dz-sub">ya tap karke chuniye — multiple files chun sakte hain</div>
+    <input type="file" id="fileInput" accept="application/pdf" multiple>
+  </div>
+
+  <div class="same-pw" id="samePwRow" style="display:none;">
+    <input type="checkbox" id="sameToggle">
+    <label for="sameToggle">Sab files ka password same hai</label>
+    <input type="text" id="samePwInput" placeholder="password" style="display:none;">
+  </div>
+
+  <div class="filelist" id="fileList"></div>
+
+  <div class="actions" id="actions" style="display:none;">
+    <button class="primary" id="mergeBtn">PDFs Merge Karo</button>
+    <div class="quality-note">Note: password-protected pages ko image ke roop mein process kiya jaata hai, isliye text select nahi ho payega — lekin dikhega bilkul clear.</div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-bar-bg"><div class="progress-bar-fg" id="progressFg"></div></div>
+    <div class="progress-label" id="progressLabel">Shuru ho raha hai...</div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="r-title">✅ Merge ho gaya!</div>
+    <a class="download-btn" id="downloadLink" download="merged.pdf">Merged PDF Download Karo</a>
+  </div>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileListEl = document.getElementById('fileList');
+const actions = document.getElementById('actions');
+const mergeBtn = document.getElementById('mergeBtn');
+const progressWrap = document.getElementById('progressWrap');
+const progressFg = document.getElementById('progressFg');
+const progressLabel = document.getElementById('progressLabel');
+const resultEl = document.getElementById('result');
+const downloadLink = document.getElementById('downloadLink');
+const samePwRow = document.getElementById('samePwRow');
+const sameToggle = document.getElementById('sameToggle');
+const samePwInput = document.getElementById('samePwInput');
+
+let files = []; // {id, file, name, password, status, error}
+let idCounter = 0;
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('drag');
+  addFiles([...e.dataTransfer.files].filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')));
+});
+fileInput.addEventListener('change', e => {
+  addFiles([...e.target.files]);
+  fileInput.value = '';
+});
+
+sameToggle.addEventListener('change', () => {
+  samePwInput.style.display = sameToggle.checked ? 'inline-block' : 'none';
+});
+samePwInput.addEventListener('input', () => {
+  if (sameToggle.checked) {
+    files.forEach(f => f.password = samePwInput.value);
+    render();
+  }
+});
+
+function addFiles(newFiles) {
+  newFiles.forEach(f => {
+    files.push({ id: idCounter++, file: f, name: f.name, password: sameToggle.checked ? samePwInput.value : '', status: 'pending', error: '' });
+  });
+  render();
+}
+
+function removeFile(id) {
+  files = files.filter(f => f.id !== id);
+  render();
+}
+
+function moveFile(id, dir) {
+  const idx = files.findIndex(f => f.id === id);
+  const swapIdx = idx + dir;
+  if (swapIdx < 0 || swapIdx >= files.length) return;
+  [files[idx], files[swapIdx]] = [files[swapIdx], files[idx]];
+  render();
+}
+
+function render() {
+  fileListEl.innerHTML = '';
+  samePwRow.style.display = files.length > 1 ? 'flex' : 'none';
+  actions.style.display = files.length > 0 ? 'flex' : 'none';
+
+  files.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = 'file-card';
+
+    const top = document.createElement('div');
+    top.className = 'file-top';
+    top.innerHTML = `
+      <span class="file-order">${i + 1}</span>
+      <span class="file-name">${f.name}</span>
+      <span class="file-status status-${f.status === 'pending' ? 'pending' : (f.status === 'ok' ? 'ok' : 'error')}">
+        ${f.status === 'pending' ? 'Ready' : (f.status === 'ok' ? 'OK' : 'Galat password')}
+      </span>
+    `;
+    card.appendChild(top);
+
+    const row2 = document.createElement('div');
+    row2.className = 'file-row2';
+
+    const pwInput = document.createElement('input');
+    pwInput.type = 'password';
+    pwInput.placeholder = 'PDF ka password (agar hai to)';
+    pwInput.value = f.password;
+    pwInput.addEventListener('input', e => { f.password = e.target.value; f.status = 'pending'; f.error=''; });
+
+    const upBtn = document.createElement('button');
+    upBtn.className = 'icon-btn';
+    upBtn.textContent = '↑';
+    upBtn.title = 'Upar le jao';
+    upBtn.disabled = i === 0;
+    upBtn.addEventListener('click', () => moveFile(f.id, -1));
+
+    const downBtn = document.createElement('button');
+    downBtn.className = 'icon-btn';
+    downBtn.textContent = '↓';
+    downBtn.title = 'Neeche le jao';
+    downBtn.disabled = i === files.length - 1;
+    downBtn.addEventListener('click', () => moveFile(f.id, 1));
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'icon-btn danger';
+    delBtn.textContent = '✕';
+    delBtn.title = 'Hatao';
+    delBtn.addEventListener('click', () => removeFile(f.id));
+
+    row2.appendChild(pwInput);
+    row2.appendChild(upBtn);
+    row2.appendChild(downBtn);
+    row2.appendChild(delBtn);
+    card.appendChild(row2);
+
+    if (f.status === 'error' && f.error) {
+      const err = document.createElement('div');
+      err.className = 'err-msg';
+      err.textContent = f.error;
+      card.appendChild(err);
+    }
+
+    fileListEl.appendChild(card);
+  });
+
+  resultEl.classList.remove('show');
+}
+
+async function renderPdfPagesAsImages(arrayBuffer, password) {
+  const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer, password: password || undefined });
+  const pdf = await loadingTask.promise;
+  const pages = [];
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const unscaledViewport = page.getViewport({ scale: 1 });
+    const scale = 2; // quality
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    pages.push({
+      dataUrl: jpegDataUrl,
+      widthPt: unscaledViewport.width,
+      heightPt: unscaledViewport.height
+    });
+  }
+  return pages;
+}
+
+function dataUrlToBytes(dataUrl) {
+  const base64 = dataUrl.split(',')[1];
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+mergeBtn.addEventListener('click', async () => {
+  if (files.length === 0) return;
+  mergeBtn.disabled = true;
+  progressWrap.style.display = 'block';
+  resultEl.classList.remove('show');
+  progressFg.style.width = '2%';
+  progressLabel.textContent = 'Shuru ho raha hai...';
+
+  const { PDFDocument } = PDFLib;
+  const mergedPdf = await PDFDocument.create();
+
+  let hadError = false;
+
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i];
+    progressLabel.textContent = `Processing: ${f.name} (${i + 1}/${files.length})`;
+    progressFg.style.width = `${Math.round(((i) / files.length) * 90) + 2}%`;
+
+    try {
+      const arrayBuffer = await f.file.arrayBuffer();
+      const pages = await renderPdfPagesAsImages(arrayBuffer, f.password);
+      for (const p of pages) {
+        const imgBytes = dataUrlToBytes(p.dataUrl);
+        const img = await mergedPdf.embedJpg(imgBytes);
+        const pdfPage = mergedPdf.addPage([p.widthPt, p.heightPt]);
+        pdfPage.drawImage(img, { x: 0, y: 0, width: p.widthPt, height: p.heightPt });
+      }
+      f.status = 'ok';
+      f.error = '';
+    } catch (err) {
+      hadError = true;
+      f.status = 'error';
+      if (err && err.name === 'PasswordException') {
+        f.error = f.password ? 'Galat password — dobara try karein' : 'Password chahiye';
+      } else {
+        f.error = 'PDF process nahi ho payi — file corrupt ho sakti hai';
+      }
+    }
+    render();
+    // re-append progress bar / actions since render() clears the list area only, not progress
+  }
+
+  progressFg.style.width = '100%';
+
+  if (hadError) {
+    progressLabel.textContent = 'Kuch files process nahi ho payi — upar check karein aur dobara try karein.';
+    mergeBtn.disabled = false;
+    return;
+  }
+
+  progressLabel.textContent = 'Final PDF taiyaar ho raha hai...';
+  const mergedBytes = await mergedPdf.save();
+  const blob = new Blob([mergedBytes], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  downloadLink.href = url;
+  progressLabel.textContent = 'Ho gaya!';
+  resultEl.classList.add('show');
+  mergeBtn.disabled = false;
+});
+</script>
+</body>
+</html>
