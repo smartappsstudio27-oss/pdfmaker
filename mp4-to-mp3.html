@@ -102,7 +102,10 @@ gtag('config', 'G-TNBKQNNTMY');
     {"@type":"Question","name":"Are my video files uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Conversion runs entirely inside your browser using WebAssembly. Your files never leave your device."}},
     {"@type":"Question","name":"How many files can I convert at once?","acceptedAnswer":{"@type":"Answer","text":"You can select and convert up to 5 MP4 files in a single batch."}},
     {"@type":"Question","name":"Will converting reduce audio quality?","acceptedAnswer":{"@type":"Answer","text":"You can choose the output bitrate: 128kbps for smaller files, 192kbps for balanced quality, or 320kbps for near-original audio quality."}},
-    {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, it works on any modern mobile or desktop browser that supports WebAssembly, including Chrome, Edge and Safari."}}
+    {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, it works on any modern mobile or desktop browser that supports WebAssembly, including Chrome, Edge and Safari."}},
+    {"@type":"Question","name":"Which bitrate should I choose?","acceptedAnswer":{"@type":"Answer","text":"128kbps is fine for spoken-word content like lectures or podcasts. 192kbps is a good balance for most music. 320kbps is best when audio quality matters most, such as a full song you want to keep long-term."}},
+    {"@type":"Question","name":"Is there a limit on video length or file size?","acceptedAnswer":{"@type":"Answer","text":"There's no hard-coded limit, but very large files depend on your device's available memory since everything is processed locally rather than on a server."}},
+    {"@type":"Question","name":"Why does the first conversion take longer than the next one?","acceptedAnswer":{"@type":"Answer","text":"The first conversion needs to download the audio processing engine to your browser. Your browser caches it, so later conversions on the same device start faster."}}
   ]
 }
 </script>
@@ -325,6 +328,12 @@ gtag('config', 'G-TNBKQNNTMY');
   }
   .privacy-banner svg{width:24px;height:24px;color:var(--teal);flex-shrink:0;margin-top:2px;}
   .privacy-banner p{margin:0;font-size:.88rem;color:#0B655F;}
+
+  .bitrate-list{display:flex;flex-direction:column;gap:12px;}
+  .bitrate-row{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+  .bitrate-tag{flex:none;font-family:var(--font-mono);font-weight:700;font-size:.82rem;color:#fff;background:var(--teal);padding:6px 12px;border-radius:8px;min-width:74px;text-align:center;}
+  .bitrate-row h4{margin:0 0 4px;font-family:var(--font-display);font-size:.98rem;}
+  .bitrate-row p{margin:0;color:var(--muted);font-size:.87rem;}
 </style>
 
 <!-- ================= Shared header / footer / ad-rail system (matches Online PDF page) ================= -->
@@ -624,6 +633,35 @@ gtag('config', 'G-TNBKQNNTMY');
       </table>
     </section>
 
+    <!-- Bitrate guide (new content) -->
+    <section class="info">
+      <h2>Which bitrate should you pick?</h2>
+      <p class="section-sub">A quick guide to choosing between 128, 192 and 320 kbps.</p>
+      <div class="bitrate-list">
+        <div class="bitrate-row">
+          <div class="bitrate-tag">128 kbps</div>
+          <div>
+            <h4>Smallest file size</h4>
+            <p>Good enough for spoken-word content like lectures, interviews, and podcasts, where absolute audio fidelity matters less than keeping the file small and quick to share.</p>
+          </div>
+        </div>
+        <div class="bitrate-row">
+          <div class="bitrate-tag">192 kbps</div>
+          <div>
+            <h4>Balanced — the default</h4>
+            <p>A solid middle ground for most music and general video audio. Noticeably better than 128kbps without doubling the file size.</p>
+          </div>
+        </div>
+        <div class="bitrate-row">
+          <div class="bitrate-tag">320 kbps</div>
+          <div>
+            <h4>Best quality</h4>
+            <p>Closest to the original audio quality, ideal for music tracks or recordings you plan to keep long-term or listen to on good headphones or speakers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="info">
       <div class="privacy-banner">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
@@ -659,6 +697,18 @@ gtag('config', 'G-TNBKQNNTMY');
           <button class="faq-q">Does this work on mobile phones? <span class="plus">+</span></button>
           <div class="faq-a"><p>Yes, it works on any modern mobile or desktop browser that supports WebAssembly, including Chrome, Edge and Safari.</p></div>
         </div>
+        <div class="faq-item">
+          <button class="faq-q">Which bitrate should I choose? <span class="plus">+</span></button>
+          <div class="faq-a"><p>128kbps is fine for spoken-word content like lectures or podcasts. 192kbps is a good balance for most music. 320kbps is best when audio quality matters most, such as a full song you want to keep long-term.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is there a limit on video length or file size? <span class="plus">+</span></button>
+          <div class="faq-a"><p>There's no hard-coded limit, but very large files depend on your device's available memory since everything is processed locally rather than on a server.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Why does the first conversion take longer than the next one? <span class="plus">+</span></button>
+          <div class="faq-a"><p>The first conversion needs to download the audio processing engine to your browser. Your browser caches it, so later conversions on the same device start faster.</p></div>
+        </div>
       </div>
     </section>
 
@@ -680,7 +730,7 @@ gtag('config', 'G-TNBKQNNTMY');
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
 <li><a href="typing.html">Smart Typing</a></li>
-<li><a href="pdf-maker.html">Online PDF</a></li>
+<li><a href="onlinepdf.html">Online PDF</a></li>
 <li><a href="mic-audio-enhancer.html">Mic Enhancer</a></li>
 </ul>
 </div>
