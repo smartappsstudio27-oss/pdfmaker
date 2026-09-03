@@ -3,9 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Unlock &amp; Merge</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<title>PDF Unlock &amp; Merge — Password Protected PDFs Ko Jodo | SmartApps Studio</title>
+<meta name="description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi, koi signup nahi. Free tool by SmartApps Studio.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://smartappsstudio.in/pdf-unlock-merge.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SmartApps Studio">
+<meta property="og:title" content="PDF Unlock &amp; Merge | SmartApps Studio">
+<meta property="og:description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi.">
+<meta property="og:url" content="https://smartappsstudio.in/pdf-unlock-merge.html">
+<meta property="og:image" content="https://smartappsstudio.in/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Unlock &amp; Merge | SmartApps Studio">
+<meta name="twitter:description" content="Password-protected PDFs ko unlock karke ek saath merge karein, seedha aapke browser mein — koi upload nahi.">
+<meta name="twitter:image" content="https://smartappsstudio.in/og-image.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNBKQNNTMY"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-TNBKQNNTMY');
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1124864848953243" crossorigin="anonymous"></script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"SmartApps Studio",
+  "url":"https://smartappsstudio.in/",
+  "logo":"https://smartappsstudio.in/smartapps.png",
+  "email":"smartapps.studio27@gmail.com"
+}
+</script>
+<!-- WebApplication Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"PDF Unlock & Merge",
+  "url":"https://smartappsstudio.in/pdf-unlock-merge.html",
+  "applicationCategory":"Utility",
+  "operatingSystem":"Any (Web)",
+  "description":"Unlock password-protected PDF files and merge multiple PDFs into one, entirely inside your browser with no upload required.",
+  "offers":{
+    "@type":"Offer",
+    "price":"0",
+    "priceCurrency":"INR"
+  }
+}
+</script>
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://smartappsstudio.in/"},
+    {"@type":"ListItem","position":2,"name":"PDF Unlock & Merge","item":"https://smartappsstudio.in/pdf-unlock-merge.html"}
+  ]
+}
+</script>
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Kya mere PDF files kahin upload hoti hain?","acceptedAnswer":{"@type":"Answer","text":"Nahi. Har PDF aapke apne browser ke andar hi process hoti hai, kisi bhi server par upload nahi hoti."}},
+    {"@type":"Question","name":"Agar meri saari PDFs ka password same hai to kya karein?","acceptedAnswer":{"@type":"Answer","text":"'Sab files ka password same hai' checkbox on karke ek hi password daalein, wo saari files par apply ho jayega."}},
+    {"@type":"Question","name":"Merge hone ke baad kya text select kar sakte hain?","acceptedAnswer":{"@type":"Answer","text":"Password-protected pages ko is tool mein image ke roop mein process kiya jaata hai, isliye unka text select nahi hoga — lekin page bilkul clear aur original jaisa dikhega."}},
+    {"@type":"Question","name":"Kitni PDF files ek saath merge kar sakte hain?","acceptedAnswer":{"@type":"Answer","text":"Aap ek saath jitni chahein utni PDF files daal sakte hain aur unhe apni pasand ke order mein arrange kar sakte hain."}},
+    {"@type":"Question","name":"Agar galat password daalein to kya hoga?","acceptedAnswer":{"@type":"Answer","text":"Us file ke saamne 'Galat password' status dikhega aur aapko sahi password dobara daalne ka option milega, baaki files par koi asar nahi padega."}}
+  ]
+}
+</script>
+
 <style>
   :root{
     --ink:#12261f;
@@ -26,7 +105,24 @@
     line-height:1.5;
     padding:0 0 60px;
   }
+  a{color:inherit;}
   .wrap{max-width:640px;margin:0 auto;padding:28px 20px;}
+
+  /* Simple site nav, kept lightweight to match this page's own theme */
+  .site-nav{
+    font-family:'Segoe UI', system-ui, sans-serif;
+    background:#fff;border-bottom:1px solid var(--line);
+  }
+  .site-nav-inner{
+    max-width:640px;margin:0 auto;padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .site-nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);}
+  .site-nav .brand img{width:34px;height:34px;border-radius:8px;}
+  .site-nav .brand span{font-weight:700;font-size:15px;}
+  .site-nav ul{list-style:none;display:flex;gap:16px;margin:0;padding:0;flex-wrap:wrap;}
+  .site-nav a.nav-link{font-size:13px;font-weight:600;color:#12261f99;text-decoration:none;}
+  .site-nav a.nav-link:hover{color:var(--accent);}
 
   header{margin-bottom:28px;}
   .kicker{
@@ -253,9 +349,79 @@
     color:#12261f77;
     font-family:'Segoe UI', system-ui, sans-serif;
   }
+
+  /* New content sections — styled to match the page's serif theme */
+  .content-section{
+    margin-top:52px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+    font-family:'Segoe UI', system-ui, sans-serif;
+  }
+  .content-section h2{
+    font-family:'Georgia', serif;
+    font-size:20px;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .content-section p{
+    font-size:14px;
+    color:#12261fcc;
+    margin:0 0 12px;
+  }
+  .usecase-grid{display:flex;flex-direction:column;gap:12px;}
+  .usecase-row{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;}
+  .usecase-row strong{display:block;font-size:14px;color:var(--ink);margin-bottom:3px;}
+  .usecase-row span{font-size:13px;color:#12261f99;}
+
+  .steps-list{counter-reset:st;display:flex;flex-direction:column;gap:14px;}
+  .steps-list li{
+    list-style:none;position:relative;padding-left:34px;font-size:14px;color:#12261fcc;
+  }
+  .steps-list li::before{
+    counter-increment:st;content:counter(st);
+    position:absolute;left:0;top:0;
+    width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+    font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;
+  }
+
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;
+    padding:14px 0;font-family:'Segoe UI', system-ui, sans-serif;font-weight:600;font-size:14px;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--ink);
+  }
+  .faq-q .plus{color:var(--accent);font-size:16px;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;}
+  .faq-a p{margin:0 0 14px;font-size:13.5px;color:#12261f99;}
+
+  .site-footer{
+    margin-top:60px;padding:26px 20px;text-align:center;
+    font-family:'Segoe UI', system-ui, sans-serif;font-size:12.5px;color:#12261f77;
+    border-top:1px solid var(--line);
+  }
+  .site-footer a{color:var(--accent);text-decoration:none;font-weight:600;}
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="brand">
+      <img src="smartapps.png" alt="SmartApps Studio">
+      <span>SmartApps Studio</span>
+    </a>
+    <ul>
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="onlinepdf.html" class="nav-link">Online PDF</a></li>
+      <li><a href="mp4-to-mp3.html" class="nav-link">MP4 → MP3</a></li>
+      <li><a href="mic-audio-enhancer.html" class="nav-link">Mic Enhancer</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
 <div class="wrap">
   <header>
     <p class="kicker">PDF Unlock &amp; Merge</p>
@@ -292,8 +458,73 @@
     <div class="r-title">✅ Merge ho gaya!</div>
     <a class="download-btn" id="downloadLink" download="merged.pdf">Merged PDF Download Karo</a>
   </div>
+
+  <!-- ================= NEW CONTENT: How it works ================= -->
+  <section class="content-section">
+    <h2>Yeh kaise kaam karta hai</h2>
+    <ol class="steps-list">
+      <li>Apni ek ya zyada PDF files upload karein — chahe unme se kuch ya sab password-protected ho.</li>
+      <li>Jis file ka password hai, uske saamne wala box mein password daalein. Agar sabka password same hai, to "Sab files ka password same hai" checkbox use karein.</li>
+      <li>↑ aur ↓ buttons se files ka order set karein — final PDF isi order mein banegi.</li>
+      <li>"PDFs Merge Karo" par tap karein. Poora process aapke browser ke andar hota hai, kuch bhi upload nahi hota.</li>
+      <li>Final merged PDF turant download ke liye taiyaar ho jaati hai.</li>
+    </ol>
+  </section>
+
+  <!-- ================= NEW CONTENT: Use cases ================= -->
+  <section class="content-section">
+    <h2>Yeh tool kis kaam aata hai</h2>
+    <div class="usecase-grid">
+      <div class="usecase-row">
+        <strong>Bank statements aur salary slips</strong>
+        <span>Alag-alag mahino ke password-protected statements ya slips ko ek hi PDF mein jodkar loan ya visa application ke liye submit karna.</span>
+      </div>
+      <div class="usecase-row">
+        <strong>Scanned government documents</strong>
+        <span>Aadhaar, marksheet ya certificate jaise multiple locked PDFs ko ek saath combine karke ek clean file banana.</span>
+      </div>
+      <div class="usecase-row">
+        <strong>Office reports</strong>
+        <span>Alag-alag departments se aayi password-protected reports ko ek single file mein merge karke review ke liye bhejna.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NEW CONTENT: FAQ ================= -->
+  <section class="content-section">
+    <h2>Aksar poochhe jaane wale sawaal</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">Kya mere PDF files kahin upload hoti hain? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Nahi. Har PDF aapke apne browser ke andar hi process hoti hai, kisi bhi server par upload nahi hoti.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Agar meri saari PDFs ka password same hai to kya karein? <span class="plus">+</span></button>
+        <div class="faq-a"><p>"Sab files ka password same hai" checkbox on karke ek hi password daalein, wo saari files par apply ho jayega.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Merge hone ke baad kya text select kar sakte hain? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Password-protected pages is tool mein image ke roop mein process kiye jaate hain, isliye unka text select nahi hoga — lekin page bilkul clear aur original jaisa dikhega.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Kitni PDF files ek saath merge kar sakte hain? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Aap ek saath jitni chahein utni PDF files daal sakte hain aur unhe apni pasand ke order mein arrange kar sakte hain.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Agar galat password daalein to kya hoga? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Us file ke saamne "Galat password" status dikhega aur aapko sahi password dobara daalne ka option milega, baaki files par koi asar nahi padega.</p></div>
+      </div>
+    </div>
+  </section>
 </div>
 
+<footer class="site-footer">
+  <p>SmartApps Studio — Apps &amp; Tools that just work · <a href="contact.html">smartapps.studio27@gmail.com</a></p>
+  <p style="margin-top:6px;"><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -515,6 +746,23 @@ mergeBtn.addEventListener('click', async () => {
   progressLabel.textContent = 'Ho gaya!';
   resultEl.classList.add('show');
   mergeBtn.disabled = false;
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
 });
 </script>
 </body>
